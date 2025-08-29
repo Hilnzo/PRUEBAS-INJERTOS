@@ -10,7 +10,7 @@ body {
   margin: 0;
   background: url('https://i.imgur.com/MtMtUkM.jpeg') no-repeat center center fixed;
   background-size: cover;
-  font-family: sans-serif; /* fuente normal por defecto */
+  font-family: sans-serif;
   color: white;
   text-align: center;
   overflow-x: hidden;
@@ -36,19 +36,15 @@ p { font-size: 1.3rem; margin-bottom: 30px; font-weight: bold; position: relativ
 .layout { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 20px; margin-top: 40px; }
 
 /* Staff */
-.staff-col {
-  perspective: 800px;
-}
-
+.staff-col { perspective: 800px; }
 .staff-carousel {
   display: flex;
-  gap: 0px; /* sin espacio */
+  gap: 0px;
   flex-wrap: nowrap;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   padding: 10px;
 }
-
 .staff-carousel .card {
   flex: 0 0 auto;
   width: 120px;
@@ -60,12 +56,9 @@ p { font-size: 1.3rem; margin-bottom: 30px; font-weight: bold; position: relativ
   scroll-snap-align: start;
   transform-style: preserve-3d;
   transition: transform 0.3s;
-  font-family: sans-serif; /* fuente normal para los avatares */
+  font-family: sans-serif;
 }
-
-.staff-carousel .card:hover {
-  transform: rotateY(15deg) scale(1.05);
-}
+.staff-carousel .card:hover { transform: rotateY(15deg) scale(1.05); }
 
 .card img { border-radius: 50%; width: 80px; height: 80px; margin-bottom: 8px; border: 2px solid red; }
 .card .role { font-size: 13px; color: #bbb; }
@@ -74,9 +67,9 @@ p { font-size: 1.3rem; margin-bottom: 30px; font-weight: bold; position: relativ
 .aporte {
   background: rgba(0,0,0,0.7); padding: 30px; border-radius: 15px;
   margin-bottom: 40px; border: 2px solid red;
-  box-shadow: 0 0 10px red, 0 0 20px red, 0 0 40px red, 0 0 60px rgba(255, 0, 0, 0.8);
+  box-shadow: 0 0 10px red,0 0 20px red,0 0 40px red,0 0 60px rgba(255,0,0,0.8);
   transition: 0.3s; position: relative; z-index: 2; line-height: 1.8; letter-spacing: 0.5px; text-align: left;
-  font-family: sans-serif; /* fuente normal para aportes */
+  font-family: sans-serif;
 }
 .aporte:hover { box-shadow: 0 0 20px red,0 0 40px red,0 0 80px red,0 0 100px rgba(255,0,0,1); }
 .aporte h2 { font-size: 2rem; color: red; margin-bottom: 15px; text-align: center; }
@@ -86,24 +79,15 @@ p { font-size: 1.3rem; margin-bottom: 30px; font-weight: bold; position: relativ
   transition:0.3s; box-shadow:0 0 10px red,0 0 20px red,0 0 30px rgba(255, 0, 0, 0.8);}
 .download-btn:hover { background: darkred; box-shadow:0 0 20px red,0 0 40px red,0 0 60px red; }
 
-/* Responsive Android / móvil */
+/* Responsive */
 @media (max-width: 768px){
   .layout { display:block; }
   .staff-carousel { gap: 10px; }
-  .staff-carousel .card { 
-    width: 35vw; min-width: 120px; transform: none; 
-  }
+  .card { width: 110px; transform: none; }
 }
-
-/* PC / columnas verticales y espacio para más staff */
+/* PC vertical staff */
 @media (min-width: 769px){
-  .staff-col { 
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    max-height: 80vh;
-    overflow-y: auto;
-  }
+  .staff-carousel { flex-direction: column; overflow-y: auto; max-height: 80vh; }
 }
 </style>
 </head>
@@ -130,11 +114,17 @@ p { font-size: 1.3rem; margin-bottom: 30px; font-weight: bold; position: relativ
       <div class="card"><img src="#"><p><b>Hilnzo</b></p><p class="role">DUEÑO</p></div>
       <div class="card"><img src="#"><p><b>Kalcor</b></p><p class="role">DUEÑO</p></div>
       <div class="card"><img src="#"><p><b>Drago</b></p><p class="role">DUEÑO</p></div>
-      <!-- Puedes agregar más staff aquí y en Android será scroll infinito -->
+    </div>
+    <!-- Bloque extra izquierda -->
+    <div class="staff-carousel">
+      <div class="card"><img src="#"><p><b>Extra1</b></p><p class="role">ROL</p></div>
+      <div class="card"><img src="#"><p><b>Extra2</b></p><p class="role">ROL</p></div>
+      <div class="card"><img src="#"><p><b>Extra3</b></p><p class="role">ROL</p></div>
+      <div class="card"><img src="#"><p><b>Extra4</b></p><p class="role">ROL</p></div>
     </div>
   </div>
 
-  <!-- Aportes en medio -->
+  <!-- Aportes medio -->
   <div>
     <div class="aporte">
       <h2>Tiffany</h2>
@@ -150,29 +140,4 @@ p { font-size: 1.3rem; margin-bottom: 30px; font-weight: bold; position: relativ
       <h2>VERSION R5 INJERTOS MODS</h2>
       <p><b>Descripción:</b> unos de los aportes que menos me gusto crear por ser R5 ya que no es compatible con nada.</p>
       <p>Si descargas este aporte por otro lugar que no sea mi discord de aportes o sampmods, es que no es mío y fue modificado.</p>
-      <p><b>Incluye:</b> El aporte está limpio, el R5 no permite muchos cleos o .asi</p>
-      <p><b>Contraseña:</b> <span style="color:red;font-weight:bold;">injertosr5</span></p>
-      <video controls><source src="https://files.catbox.moe/vlkt2e.mp4" type="video/mp4"></video>
-      <a href="https://www.mediafire.com/file/wsgq5q0r3su9hzo/version_R5_injertos_mods.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
-    </div>
-  </div>
-
-  <!-- Staff derecha -->
-  <div class="staff-col">
-    <div class="staff-carousel">
-      <div class="card"><img src="#"><p><b>Manzer</b></p><p class="role">SUB ENCARGADO</p></div>
-      <div class="card"><img src="#"><p><b>Maik</b></p><p class="role">ADMIN</p></div>
-      <div class="card"><img src="#"><p><b>Zair</b></p><p class="role">HELPER</p></div>
-      <!-- Más staff aquí -->
-    </div>
-  </div>
-</div>
-
-<script>
-function toggleMusic(){
-  const music = document.getElementById("bg-music");
-  if(music.paused) music.play(); else music.pause();
-}
-</script>
-</body>
-</html>
+      <p><b>Incluye:</b> El aporte está limpio,
