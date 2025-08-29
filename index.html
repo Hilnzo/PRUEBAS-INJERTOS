@@ -11,7 +11,7 @@
       margin: 0;
       background: url('https://i.imgur.com/MtMtUkM.jpeg') no-repeat center center fixed;
       background-size: cover;
-      font-family: Arial, sans-serif; /* fuente “normal” para todo */
+      font-family: Arial, sans-serif; /* fuente normal para todo */
       color: white;
       text-align: center;
       overflow-x: hidden;
@@ -66,11 +66,10 @@
     /* STAFF */
     .staff-col {
       display: flex;
-      flex-direction: row; /* siempre horizontal para scroll infinito en móvil */
-      overflow-x: auto;    /* scroll horizontal */
-      gap: 15px;
-      padding: 10px;
-      scroll-snap-type: x mandatory;
+      flex-direction: column; /* por defecto columna para PC */
+      gap: 20px;
+      align-items: center;
+      overflow-x: visible; /* PC sin scroll horizontal */
     }
     .card {
       background: #111;
@@ -80,9 +79,7 @@
       text-align: center;
       box-shadow: 0 0 10px red, 0 0 20px rgba(255,0,0,0.6);
       animation: glow 2s infinite alternate;
-      flex: 0 0 auto;
-      scroll-snap-align: start;
-      font-family: Arial, sans-serif; /* fuente normal para las tarjetas */
+      font-family: Arial, sans-serif; /* fuente normal para tarjetas */
     }
     @keyframes glow {
       from { box-shadow: 0 0 10px red; }
@@ -118,11 +115,16 @@
     }
     .download-btn:hover { background: darkred; box-shadow: 0 0 20px red, 0 0 40px red, 0 0 60px red; }
 
-    /* RESPONSIVE PC */
-    @media (min-width: 769px) {
-      .staff-col { 
-        flex-direction: column; /* columna en PC */
-        overflow-x: visible;
+    /* SCROLL HORIZONTAL EN MÓVIL */
+    @media (max-width: 768px) {
+      .staff-col {
+        flex-direction: row; /* fila para scroll horizontal */
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+      }
+      .card {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
       }
     }
   </style>
@@ -193,4 +195,4 @@
     }
   </script>
 </body>
-                                                                                                                                                 </html>
+</html>
