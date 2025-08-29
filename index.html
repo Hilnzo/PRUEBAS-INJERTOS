@@ -6,26 +6,37 @@
   <title>Hilnzo</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    /* BODY */
     body {
       margin: 0;
       background: url('https://i.imgur.com/MtMtUkM.jpeg') no-repeat center center fixed;
       background-size: cover;
-      font-family: Arial, sans-serif; /* fuente normal para todo */
+      font-family: "Courier New", monospace;
       color: white;
       text-align: center;
       overflow-x: hidden;
     }
 
-    h1 { font-size: 3rem; margin-top: 20px; text-shadow: 2px 2px 8px red; position: relative; z-index: 2; }
-    p { font-size: 1.3rem; margin-bottom: 30px; font-weight: bold; position: relative; z-index: 2; }
+    h1 {
+      font-size: 3rem;
+      margin-top: 20px;
+      text-shadow: 2px 2px 8px red;
+      position: relative;
+      z-index: 2;
+    }
+    p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      font-weight: bold;
+      position: relative;
+      z-index: 2;
+    }
 
-    /* REDES SOCIALES */
-    .socials { 
-      margin-top: 20px; 
-      position: relative; 
-      z-index: 2; 
-      font-family: "Courier New", monospace; /* redes conservan su fuente */
+    /* Redes sociales */
+    .socials {
+      margin-top: 20px;
+      position: relative;
+      z-index: 2;
+      font-family: "Courier New", monospace;
     }
     .socials a {
       display: inline-block;
@@ -46,16 +57,23 @@
     .socials a.roblox { background: #FF4757; }
     .socials a.discord { background: #5865F2; }
 
-    /* BOTÓN MÚSICA */
+    /* Botón música */
     .music-btn {
-      margin-top: 30px; padding: 10px 20px; border: 2px solid white;
-      border-radius: 10px; background: transparent; color: white;
-      font-size: 1.1rem; cursor: pointer; transition: 0.3s;
-      position: relative; z-index: 2;
+      margin-top: 30px;
+      padding: 10px 20px;
+      border: 2px solid white;
+      border-radius: 10px;
+      background: transparent;
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      position: relative;
+      z-index: 2;
     }
     .music-btn:hover { background: red; border-color: red; color: black; }
 
-    /* LAYOUT PRINCIPAL */
+    /* Layout principal en PC */
     .layout {
       display: grid;
       grid-template-columns: 1fr 2fr 1fr;
@@ -66,10 +84,9 @@
     /* STAFF */
     .staff-col {
       display: flex;
-      flex-direction: column; /* por defecto columna para PC */
+      flex-direction: column;
       gap: 20px;
       align-items: center;
-      overflow-x: visible; /* PC sin scroll horizontal */
     }
     .card {
       background: #111;
@@ -79,7 +96,7 @@
       text-align: center;
       box-shadow: 0 0 10px red, 0 0 20px rgba(255,0,0,0.6);
       animation: glow 2s infinite alternate;
-      font-family: Arial, sans-serif; /* fuente normal para tarjetas */
+      font-family: "Courier New", monospace;
     }
     @keyframes glow {
       from { box-shadow: 0 0 10px red; }
@@ -88,7 +105,7 @@
     .card img { border-radius: 50%; width: 80px; height: 80px; margin-bottom: 8px; border: 2px solid red; }
     .card .role { font-size: 13px; color: #bbb; }
 
-    /* SECCIÓN APORTE */
+    /* Sección aporte */
     .aporte {
       background: rgba(0, 0, 0, 0.7);
       padding: 30px;
@@ -102,7 +119,6 @@
       line-height: 1.8;
       letter-spacing: 0.5px;
       text-align: left;
-      font-family: Arial, sans-serif; /* fuente normal para aportes */
     }
     .aporte:hover { box-shadow: 0 0 20px red, 0 0 40px red, 0 0 80px red, 0 0 100px rgba(255, 0, 0, 1); }
     .aporte h2 { font-size: 2rem; color: red; margin-bottom: 15px; text-align: center; }
@@ -115,25 +131,36 @@
     }
     .download-btn:hover { background: darkred; box-shadow: 0 0 20px red, 0 0 40px red, 0 0 60px red; }
 
-    /* SCROLL HORIZONTAL EN MÓVIL */
+    /* RESPONSIVE */
     @media (max-width: 768px) {
+      .layout { display: block; }
       .staff-col {
-        flex-direction: row; /* fila para scroll horizontal */
+        flex-direction: row;
         overflow-x: auto;
+        gap: 15px;
+        padding: 10px;
         scroll-snap-type: x mandatory;
       }
       .card {
         flex: 0 0 auto;
+        width: 130px;
         scroll-snap-align: start;
       }
     }
+    @media (min-width: 769px) {
+      .staff-col {
+        flex-direction: column;
+        overflow-x: visible;
+      }
+    }
+
   </style>
 </head>
 <body>
   <h1>HILNZO</h1>
   <p>"crece sin hacerle daño a alguien sin que se lo merezca"</p>
 
-  <!-- REDES SOCIALES -->
+  <!-- Redes sociales -->
   <div class="socials">
     <a href="https://open.spotify.com/user/31mtjz2i5m63xek4cp4pevznd74i" target="_blank" class="spotify"><i class="fa-brands fa-spotify"></i> Spotify</a>
     <a href="https://steamcommunity.com/profiles/76561199805784382/" target="_blank" class="steam"><i class="fa-brands fa-steam"></i> Steam</a>
@@ -142,22 +169,22 @@
     <a href="https://discord.gg/rNJ7UaPBYa" target="_blank" class="discord" style="margin-top:15px; display:inline-block;"><i class="fa-brands fa-discord"></i> DC - INJERTOS MODS</a>
   </div>
 
-  <!-- MÚSICA -->
+  <!-- Música -->
   <audio id="bg-music" autoplay loop>
     <source src="https://files.catbox.moe/vf3nc4.mp3" type="audio/mpeg">
   </audio>
   <button class="music-btn" onclick="toggleMusic()">sonido - angel caido</button>
 
-  <!-- LAYOUT -->
+  <!-- Layout -->
   <div class="layout">
-    <!-- STAFF IZQUIERDA -->
+    <!-- Staff Izquierda -->
     <div class="staff-col">
       <div class="card"><img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.png"><p><b>Hilnzo</b></p><p class="role">DUEÑO</p></div>
       <div class="card"><img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1354865570880946176/avatars/27e176d0ac337ce28c7d5177014aff87.png"><p><b>Kalcor</b></p><p class="role">DUEÑO</p></div>
       <div class="card"><img src="https://cdn.discordapp.com/avatars/1246355878840631327/2c0846a264c2af5eede51ab3aa0fc3cb.png"><p><b>Drago</b></p><p class="role">DUEÑO</p></div>
     </div>
 
-    <!-- APORTES -->
+    <!-- Aportes -->
     <div>
       <div class="aporte">
         <h2>Tiffany</h2>
@@ -180,7 +207,7 @@
       </div>
     </div>
 
-    <!-- STAFF DERECHA -->
+    <!-- Staff Derecha -->
     <div class="staff-col">
       <div class="card"><img src="https://cdn.discordapp.com/avatars/1298942723847622690/7013e30ca714c9548128b99534035e3c.png"><p><b>Manzer</b></p><p class="role">SUB ENCARGADO</p></div>
       <div class="card"><img src="https://cdn.discordapp.com/avatars/1260353622001188875/66c48f30b95b7b331c48196b31fb7282.png"><p><b>Maik</b></p><p class="role">ADMIN</p></div>
