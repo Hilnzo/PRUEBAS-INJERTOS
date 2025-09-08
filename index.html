@@ -142,19 +142,26 @@
     .card .role { font-size: 13px; color: #bbb; }
 
     /* ===========================
-       APORTE
+       APORTE - NUEVO CONTENEDOR PARA SCROLL HORIZONTAL
     =========================== */
     .aportes-container {
       display: flex;
-      flex-direction: column;
-      gap: 20px;
+      flex-direction: row; /* Horizontal siempre */
+      overflow-x: auto; /* Scroll horizontal cuando no quepan */
+      gap: 15px; /* Espacio entre tarjetas */
+      padding: 10px 0;
+      scroll-behavior: smooth; /* Scroll suave */
+      max-height: 500px; /* Límite de altura para no extender demasiado la página */
+      overflow-y: hidden; /* No scroll vertical en el contenedor */
     }
 
     .aporte {
+      flex: 0 0 auto; /* No crece ni se encoge, ancho fijo */
+      min-width: 300px; /* Ancho mínimo de cada tarjeta; ajusta si quieres más/ menos */
       background: rgba(0, 0, 0, 0.7);
-      padding: 30px;
+      padding: 20px; /* Reducido un poco para que quepa mejor horizontal */
       border-radius: 15px;
-      margin-bottom: 40px;
+      margin-bottom: 0; /* Quita el margen inferior original */
       border: 2px solid red;
       box-shadow: 0 0 10px red, 0 0 20px red, 0 0 40px red, 0 0 60px rgba(255, 0, 0, 0.8);
       transition: 0.3s;
@@ -164,8 +171,8 @@
       letter-spacing: 0.5px;
       text-align: left;
       font-family: Arial, Helvetica, sans-serif; /* Fuente normal */
-      max-height: 400px;
-      overflow-y: auto;
+      overflow-y: auto; /* Si el contenido es muy largo, scroll vertical individual en cada tarjeta */
+      max-height: 450px; /* Altura máxima por tarjeta */
     }
 
     .aporte:hover {
@@ -173,7 +180,7 @@
     }
 
     .aporte h2 {
-      font-size: 2rem;
+      font-size: 1.8rem; /* Un poco más pequeño para horizontal */
       color: red;
       margin-bottom: 15px;
       text-align: center;
@@ -205,7 +212,7 @@
     }
 
     /* ===========================
-       RESPONSIVE
+       RESPONSIVE - Mantiene horizontal, pero ajusta anchos en móvil
     =========================== */
     @media (max-width: 768px) {
       .layout {
@@ -227,19 +234,36 @@
       }
 
       .aportes-container {
-        flex-direction: row;
-        overflow-x: auto;
-        gap: 15px;
-        padding: 10px 0;
+        gap: 10px; /* Menos espacio en móvil */
       }
 
       .aporte {
-        flex: 0 0 auto;
-        min-width: 300px;
-        max-height: none;
-        overflow-y: visible;
-        margin-bottom: 0;
+        min-width: 280px; /* Un poco más estrecho en móvil para que quepan más */
+        padding: 15px;
       }
+
+      .aporte h2 {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* Estilo opcional para la barra de scroll horizontal (más sutil) */
+    .aportes-container::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .aportes-container::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.3);
+      border-radius: 4px;
+    }
+
+    .aportes-container::-webkit-scrollbar-thumb {
+      background: red;
+      border-radius: 4px;
+    }
+
+    .aportes-container::-webkit-scrollbar-thumb:hover {
+      background: darkred;
     }
   </style>
 </head>
@@ -271,7 +295,7 @@
       <div class="card"><img src="https://cdn.discordapp.com/avatars/1246355878840631327/2c0846a264c2af5eede51ab3aa0fc3cb.png"><p><b>Drago</b></p><p class="role">DUEÑO</p></div>
     </div>
 
-    <!-- Aportes -->
+    <!-- Aportes - Ahora con contenedor horizontal -->
     <div>
       <div class="aportes-container">
         <div class="aporte">
@@ -316,7 +340,7 @@
         </div>
 
         <!-- ===========================
-             AQUI PUEDES AGREGAR NUEVOS APORTES
+             AQUI PUEDES AGREGAR NUEVOS APORTES (se agregarán horizontalmente)
         =========================== -->
       </div>
     </div>
@@ -327,7 +351,6 @@
       <div class="card"><img src="https://cdn.discordapp.com/avatars/1260353622001188875/66c48f30b95b7b331c48196b31fb7282.png"><p><b>Maik</b></p><p class="role">ADMIN</p></div>
       <div class="card"><img src="https://cdn.discordapp.com/avatars/1308947599235223637/ac79495194906156d3116496e4c7c72d.png"><p><b>Zair</b></p><p class="role">MODERADOR</p></div>
       <div class="card"><img src="https://cdn.discordapp.com/avatars/1216152197277159535/957b02311b279cf298f0775eb5c4be04.png"><p><b>Dayron</b></p><p class="role">MODERADOR</p></div>
-
     </div>
   </div>
 
