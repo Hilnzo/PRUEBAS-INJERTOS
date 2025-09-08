@@ -3,209 +3,202 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hilnzo</title>
-
-  <!-- Google Font -->
+  <title>HILNZO - INJERTOS MODS</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-    /* Estilos generales */
+    * { box-sizing: border-box; }
     body {
       margin: 0;
+      background: linear-gradient(to bottom, #000428, #004e92);
       font-family: "Poppins", sans-serif;
-      background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
-      color: white;
-      text-align: center;
+      color: #fff;
+      overflow-x: hidden;
     }
+
+    .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
 
     /* HEADER */
     header {
-      padding: 20px;
-      background: rgba(0,0,0,0.6);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      text-align: center;
+      padding: 60px 0;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+      border-radius: 0 0 50px 50px;
+      box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
     }
-    header h1 {
+    h1 {
+      font-size: 4rem;
       margin: 0;
-      font-size: 1.8rem;
+      text-shadow: 0 0 20px #ff6b6b;
     }
-    .music-btn {
-      background: none;
-      border: 2px solid #fff;
-      border-radius: 30px;
-      padding: 8px 15px;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .music-btn:hover {
-      background: white;
-      color: black;
-    }
-
-    /* PERFIL */
-    .profile img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      margin-top: 20px;
-      border: 3px solid #fff;
-    }
-    .desc {
-      margin-top: 10px;
-      font-size: 1rem;
-      opacity: 0.8;
-    }
-
-    /* REDES */
+    .quote { font-size: 1.3rem; margin: 15px 0; font-style: italic; }
     .socials {
-      margin: 20px 0;
+      display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 15px; margin: 25px 0;
     }
     .socials a {
-      font-size: 2rem;
-      margin: 0 10px;
-      transition: 0.3s;
+      display: flex; align-items: center;
+      padding: 12px 20px; border-radius: 50px;
+      color: #fff; text-decoration: none; font-weight: bold;
+      transition: all 0.3s ease; font-size: 1rem;
     }
-    .socials a.spotify:hover { color: #1DB954; }
-    .socials a.steam:hover { color: #00adee; }
-    .socials a.discord:hover { color: #5865F2; }
-    .socials a.github:hover { color: #999; }
+    .socials a i { margin-right: 8px; }
+    .socials a.spotify { background: #1DB954; }
+    .socials a.steam { background: #2a475e; }
+    .socials a.roblox { background: #ff4757; }
+    .socials a.discord { background: #5865F2; }
 
-    /* CARRUSEL */
-    .carousel-container {
-      position: relative;
-      width: 90%;
-      margin: auto;
-      overflow: hidden;
+    /* MÚSICA */
+    .music-section { text-align: center; margin: 30px 0; }
+    .music-btn {
+      padding: 12px 30px; border: none; border-radius: 50px;
+      background: linear-gradient(#ff6b6b, #4ecdc4);
+      color: #fff; font-weight: bold; cursor: pointer;
     }
-    .carousel {
-      display: flex;
-      overflow-x: auto;
-      scroll-behavior: smooth;
+
+    /* LAYOUT */
+    .main-content {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      gap: 30px; padding: 40px 0;
     }
-    .carousel img {
-      max-height: 200px;
-      margin: 10px;
-      border-radius: 15px;
+
+    /* STAFF */
+    .staff-title { font-size: 2rem; color: #4ecdc4; text-align: center; margin-bottom: 20px; }
+    .staff-list { display: flex; flex-direction: column; gap: 20px; }
+    .staff-card {
+      background: #1a1a2e; padding: 20px; border-radius: 20px;
+      text-align: center; transition: 0.3s;
     }
-    .carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.7);
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      padding: 10px;
-      cursor: pointer;
-      border-radius: 50%;
+    .staff-card:hover { transform: translateY(-5px); }
+    .staff-card img {
+      width: 80px; height: 80px; border-radius: 50%; border: 3px solid #4ecdc4; margin-bottom: 10px;
     }
-    .prev { left: 10px; }
-    .next { right: 10px; }
+    .role { color: #ff6b6b; font-size: 0.9rem; }
+
+    /* APORTES */
+    .aportes-section {
+      background: #0f3460; padding: 30px; border-radius: 20px;
+      text-align: center; box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+    .aportes-title { font-size: 2.5rem; margin-bottom: 25px; }
+    .aportes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+    .aporte-card {
+      background: #1a1a2e; padding: 20px;
+      border-radius: 15px; display: flex; flex-direction: column;
+      justify-content: space-between; box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+    .aporte-card h2 { color: #4ecdc4; font-size: 1.5rem; margin: 0; }
+    .aporte-card p { font-size: 0.95rem; color: #ccc; }
+    .aporte-card video { width: 100%; border-radius: 10px; margin-top: 10px; }
+    .download-btn {
+      margin-top: 10px; padding: 10px; background: linear-gradient(#ff6b6b, #4ecdc4);
+      border-radius: 10px; text-decoration: none; color: #fff; font-weight: bold;
+    }
 
     /* FOOTER */
-    footer {
-      margin-top: 30px;
-      padding: 15px;
-      font-size: 0.9rem;
-      opacity: 0.7;
-    }
+    footer { text-align: center; padding: 15px; font-size: 0.85rem; opacity: 0.7; }
 
     /* RESPONSIVE */
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 1.2rem;
-      }
-      .music-btn {
-        font-size: 0.8rem;
-        padding: 5px 10px;
-      }
-      .carousel img {
-        max-height: 150px;
-      }
+    @media (max-width: 768px) {
+      .main-content { grid-template-columns: 1fr; }
+      h1 { font-size: 2.5rem; }
+      .aportes-title { font-size: 2rem; }
+      .staff-list { flex-direction: row; overflow-x: auto; }
+      .staff-card { min-width: 180px; }
     }
   </style>
 </head>
 <body>
-
   <!-- HEADER -->
   <header>
-    <h1>Hilnzo</h1>
-    <button class="music-btn" onclick="toggleMusic()" aria-label="Activar o desactivar música">
-      <i class="fa-solid fa-music"></i> Sonido - Ángel Caído
-    </button>
+    <div class="container">
+      <h1>HILNZO</h1>
+      <p class="quote">"Crece sin hacerle daño a alguien sin que se lo merezca"</p>
+      <div class="socials">
+        <a href="https://open.spotify.com/user/31mtjz2i5m63xek4cp4pevznd74i" class="spotify"><i class="fab fa-spotify"></i> Spotify</a>
+        <a href="https://steamcommunity.com/profiles/76561199805784382/" class="steam"><i class="fab fa-steam"></i> Steam</a>
+        <a href="https://www.roblox.com/es/users/9207271059/profile" class="roblox"><i class="fa-solid fa-cube"></i> Roblox</a>
+        <a href="https://discordapp.com/users/1298301131641983019" class="discord"><i class="fab fa-discord"></i> Discord</a>
+      </div>
+    </div>
   </header>
 
-  <!-- PERFIL -->
-  <section class="profile">
-    <img src="https://cdn.discordapp.com/avatars/639279766339526676/a_34fefedbc3f8a75b6fbd8b20d895fa29.gif?size=512" alt="Avatar de Hilnzo" loading="lazy">
-    <p class="desc">Creador de aportes - SA:MP & Mods GTA</p>
-  </section>
+  <!-- MÚSICA -->
+  <div class="music-section">
+    <audio id="bg-music" autoplay loop>
+      <source src="https://files.catbox.moe/vf3nc4.mp3" type="audio/mpeg">
+    </audio>
+    <button class="music-btn" onclick="toggleMusic()">🎵 Sonido - Ángel Caído</button>
+  </div>
 
-  <!-- REDES -->
-  <section class="socials">
-    <a href="https://open.spotify.com/user/31tb3hzyd3kgi7t7urvpz4ylxqqi" target="_blank" rel="noopener noreferrer" class="spotify">
-      <i class="fab fa-spotify"></i>
-    </a>
-    <a href="https://steamcommunity.com/id/hilnzo" target="_blank" rel="noopener noreferrer" class="steam">
-      <i class="fab fa-steam"></i>
-    </a>
-    <a href="https://discord.gg/7n5D9Kf8" target="_blank" rel="noopener noreferrer" class="discord">
-      <i class="fab fa-discord"></i>
-    </a>
-    <a href="https://github.com/Hilnzo" target="_blank" rel="noopener noreferrer" class="github">
-      <i class="fab fa-github"></i>
-    </a>
-  </section>
-
-  <!-- CARRUSEL -->
-  <section class="carousel-container">
-    <button class="carousel-btn prev" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
-    <div class="carousel">
-      <img src="https://cdn.discordapp.com/attachments/1148109215206158477/1222599198982897805/sample1.jpg" alt="Imagen 1" loading="lazy">
-      <img src="https://cdn.discordapp.com/attachments/1148109215206158477/1222599199335227483/sample2.jpg" alt="Imagen 2" loading="lazy">
-      <img src="https://cdn.discordapp.com/attachments/1148109215206158477/1222599199704328192/sample3.jpg" alt="Imagen 3" loading="lazy">
+  <!-- MAIN -->
+  <div class="container main-content">
+    <!-- STAFF IZQUIERDA -->
+    <div class="staff-left">
+      <div class="staff-title">Staff</div>
+      <div class="staff-list">
+        <div class="staff-card"><img src="https://cdn.discordapp.com/...png"><p>Hilnzo</p><p class="role">DUEÑO</p></div>
+        <div class="staff-card"><img src="https://cdn.discordapp.com/...png"><p>Kalcor</p><p class="role">DUEÑO</p></div>
+        <div class="staff-card"><img src="https://cdn.discordapp.com/...png"><p>Drago</p><p class="role">DUEÑO</p></div>
+      </div>
     </div>
-    <button class="carousel-btn next" aria-label="Siguiente"><i class="fa-solid fa-chevron-right"></i></button>
-  </section>
+
+    <!-- APORTES -->
+    <div class="aportes-section">
+      <div class="aportes-title">Aportes</div>
+      <div class="aportes-grid">
+        <div class="aporte-card">
+          <h2>Tiffany</h2>
+          <p><b>Descripción:</b> aporte creado por Hilnzo (@klenoz).</p>
+          <p><b>Contraseña:</b> <span style="color:#4ecdc4">tiffanyctmr</span></p>
+          <video controls><source src="https://files.catbox.moe/7z0rtz.mp4" type="video/mp4"></video>
+          <a href="https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file" class="download-btn">⬇ Descargar</a>
+        </div>
+        <div class="aporte-card">
+          <h2>Version R5</h2>
+          <p><b>Descripción:</b> Aporte R5 limitado en compatibilidad.</p>
+          <p><b>Contraseña:</b> <span style="color:#4ecdc4">injertosr5</span></p>
+          <video controls><source src="https://files.catbox.moe/vlkt2e.mp4" type="video/mp4"></video>
+          <a href="https://www.mediafire.com/file/wsgq5q0r3su9hzo/version_R5_injertos_mods.rar/file" class="download-btn">⬇ Descargar</a>
+        </div>
+        <div class="aporte-card">
+          <h2>DataBlue🔵</h2>
+          <p><b>Descripción:</b> Incluye skins, cleos, sonidos, armas.</p>
+          <p><b>Contraseña:</b> <span style="color:#4ecdc4">---</span></p>
+          <video controls><source src="https://files.catbox.moe/4x7q1m.mp4" type="video/mp4"></video>
+          <a href="https://www.mediafire.com/file/12efvtjw3392v58/DataBlue.zip/file" class="download-btn">⬇ Descargar</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAFF DERECHA -->
+    <div class="staff-right">
+      <div class="staff-list">
+        <div class="staff-card"><img src="https://cdn.discordapp.com/...png"><p>Manzer</p><p class="role">SUB ENCARGADO</p></div>
+        <div class="staff-card"><img src="https://cdn.discordapp.com/...png"><p>Maik</p><p class="role">ADMIN</p></div>
+        <div class="staff-card"><img src="https://cdn.discordapp.com/...png"><p>Zair</p><p class="role">MODERADOR</p></div>
+        <div class="staff-card"><img src="https://cdn.discordapp.com/...png"><p>Dayron</p><p class="role">MODERADOR</p></div>
+      </div>
+    </div>
+  </div>
 
   <!-- FOOTER -->
   <footer>
-    <p>© 2025 Hilnzo - Todos los derechos reservados</p>
+    <p>© 2025 HILNZO - INJERTOS MODS</p>
   </footer>
-
-  <!-- AUDIO -->
-  <audio id="bg-music" preload="none" loop>
-    <source src="https://cdn.discordapp.com/attachments/1148109215206158477/1222599200182462546/musica.mp3" type="audio/mpeg">
-    Tu navegador no soporta audio.
-  </audio>
 
   <!-- SCRIPT -->
   <script>
-    const music = document.getElementById("bg-music");
     function toggleMusic() {
-      if (music.paused) {
-        music.play();
-      } else {
-        music.pause();
-      }
+      const music = document.getElementById("bg-music");
+      if (music.paused) { music.play(); } else { music.pause(); }
     }
-
-    // Carrusel
-    const carousel = document.querySelector(".carousel");
-    const prevBtn = document.querySelector(".prev");
-    const nextBtn = document.querySelector(".next");
-
-    nextBtn.addEventListener("click", () => {
-      carousel.scrollBy({ left: 300, behavior: "smooth" });
-    });
-    prevBtn.addEventListener("click", () => {
-      carousel.scrollBy({ left: -300, behavior: "smooth" });
-    });
   </script>
 </body>
 </html>
