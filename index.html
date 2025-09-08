@@ -6,6 +6,7 @@
   <title>HILNZO - INJERTOS MODS</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       background: linear-gradient(to bottom, #000, #111, #222);
@@ -15,7 +16,7 @@
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1400px; /* Aumentado para más espacio en PC */
       margin: 0 auto;
       padding: 20px;
     }
@@ -111,14 +112,14 @@
     }
 
     .main-content {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
       gap: 30px;
       padding: 40px 0;
+      align-items: start;
     }
 
     .staff-side {
-      flex: 1;
       display: flex;
       flex-direction: column;
       gap: 20px;
@@ -129,6 +130,7 @@
       color: #ff00aa;
       text-shadow: 0 0 5px #ff0055;
       margin-bottom: 10px;
+      text-align: center;
     }
 
     .staff-list {
@@ -156,7 +158,8 @@
       height: 80px;
       border-radius: 50%;
       border: 3px solid #ff00aa;
-      margin-bottom: 10px;
+      margin: 0 auto 10px;
+      display: block;
     }
 
     .staff-card p {
@@ -170,11 +173,13 @@
     }
 
     .aportes-section {
-      flex: 2;
       background: linear-gradient(#111, #222);
       padding: 30px;
       border-radius: 20px;
       box-shadow: 0 0 30px rgba(255,0,85,0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .aportes-title {
@@ -187,48 +192,56 @@
     .aportes-carousel {
       display: flex;
       overflow-x: auto;
-      gap: 20px;
+      gap: 25px; /* Más espacio entre tarjetas */
       padding-bottom: 20px;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
+      width: 100%;
     }
 
     .aporte-card {
-      flex: 0 0 300px;
+      flex: 0 0 350px; /* Más ancho para no verse flacucho en PC */
       background: linear-gradient(#333, #444);
-      padding: 20px;
+      padding: 25px; /* Más padding interno para mejor forma */
       border-radius: 15px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.5);
       transition: all 0.3s ease;
       scroll-snap-align: start;
+      height: 550px; /* Altura fija para uniformidad */
+      overflow-y: auto; /* Scroll vertical si el contenido es largo */
+      display: flex;
+      flex-direction: column;
     }
 
     .aporte-card:hover {
-      transform: scale(1.05);
+      transform: scale(1.02); /* Escala sutil para no desbordar */
       box-shadow: 0 6px 20px rgba(255,0,85,0.5);
     }
 
     .aporte-card h2 {
       font-size: 1.8rem;
       color: #ff00aa;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
+      text-align: center;
     }
 
     .aporte-card p {
       font-size: 1rem;
       color: #ddd;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      line-height: 1.4;
     }
 
     .aporte-card video {
       width: 100%;
       border-radius: 10px;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
+      flex-grow: 1; /* Video ocupa espacio disponible */
     }
 
     .download-btn {
       display: block;
-      padding: 10px;
+      padding: 12px;
       background: linear-gradient(#ff0055, #ff00aa);
       color: #fff;
       text-decoration: none;
@@ -236,50 +249,102 @@
       font-weight: bold;
       text-align: center;
       transition: all 0.3s ease;
+      margin-top: auto; /* Al final de la tarjeta */
     }
 
     .download-btn:hover {
       box-shadow: 0 0 15px #ff0055;
     }
 
-    .featured-video {
-      margin-bottom: 30px;
-      text-align: center;
+    /* Scrollbar personalizada */
+    .aportes-carousel::-webkit-scrollbar {
+      height: 8px;
     }
-
-    .featured-video video {
-      width: 80%;
-      max-width: 600px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(255,0,85,0.4);
+    .aportes-carousel::-webkit-scrollbar-track {
+      background: #111;
+    }
+    .aportes-carousel::-webkit-scrollbar-thumb {
+      background: #ff00aa;
+      border-radius: 4px;
+    }
+    .aporte-card::-webkit-scrollbar {
+      width: 6px;
+    }
+    .aporte-card::-webkit-scrollbar-track {
+      background: #222;
+    }
+    .aporte-card::-webkit-scrollbar-thumb {
+      background: #ff0055;
     }
 
     @media (max-width: 768px) {
       .main-content {
-        flex-direction: column;
+        grid-template-columns: 1fr;
+        gap: 20px;
       }
 
       .staff-side {
         flex-direction: row;
         overflow-x: auto;
         gap: 15px;
-        padding-bottom: 20px;
+        padding-bottom: 10px;
+        justify-content: flex-start;
+      }
+
+      .staff-list {
+        flex-direction: row;
+        gap: 15px;
       }
 
       .staff-card {
         flex: 0 0 200px;
+        min-width: 200px;
       }
 
-      .aporte-card {
-        flex: 0 0 250px;
+      .staff-card img {
+        width: 60px;
+        height: 60px;
       }
 
       h1 {
         font-size: 3rem;
       }
 
+      .quote {
+        font-size: 1.2rem;
+      }
+
       .aportes-title {
         font-size: 2rem;
+      }
+
+      .aporte-card {
+        flex: 0 0 300px; /* Más ancho en móvil para no flacucho */
+        min-width: 300px;
+        height: 500px; /* Ajustado para pantallas pequeñas */
+        padding: 20px;
+      }
+
+      .socials {
+        gap: 10px;
+      }
+
+      .socials a {
+        padding: 8px 15px;
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .aporte-card {
+        flex: 0 0 280px;
+        min-width: 280px;
+        height: 480px;
+      }
+
+      .staff-card {
+        flex: 0 0 180px;
+        min-width: 180px;
       }
     }
   </style>
@@ -307,8 +372,9 @@
   </div>
 
   <div class="container main-content">
+    <!-- Staff Izquierda -->
     <div class="staff-side">
-      <div class="staff-title">Staff Izquierda</div>
+      <div class="staff-title">Staff</div>
       <div class="staff-list">
         <div class="staff-card">
           <img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.png">
@@ -328,13 +394,9 @@
       </div>
     </div>
 
+    <!-- Aportes - Carrusel mejorado -->
     <div class="aportes-section">
-      <div class="aportes-title">Aportes Destacados</div>
-      <div class="featured-video">
-        <video controls>
-          <source src="https://files.catbox.moe/7z0rtz.mp4" type="video/mp4">
-        </video>
-      </div>
+      <div class="aportes-title">Aportes</div>
       <div class="aportes-carousel">
         <div class="aporte-card">
           <h2>Tiffany</h2>
@@ -376,8 +438,8 @@
       </div>
     </div>
 
+    <!-- Staff Derecha -->
     <div class="staff-side">
-      <div class="staff-title">Staff Derecha</div>
       <div class="staff-list">
         <div class="staff-card">
           <img src="https://cdn.discordapp.com/avatars/1298942723847622690/7013e30ca714c9548128b99534035e3c.png">
