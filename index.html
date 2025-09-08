@@ -3,69 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hilnzo</title>
+  <title>HILNZO - INJERTOS MODS</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    /* ===========================
-       FUENTES Y ESTILO GENERAL
-    =========================== */
     body {
       margin: 0;
-      background: url('https://i.imgur.com/MtMtUkM.jpeg') no-repeat center center fixed;
-      background-size: cover;
-      font-family: Arial, Helvetica, sans-serif; /* Fuente normal */
-      color: white;
+      background: linear-gradient(135deg, #1a001a, #330033);
+      font-family: 'Arial', sans-serif;
+      color: #fff;
       text-align: center;
       overflow-x: hidden;
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     h1 {
-      font-size: 3rem;
-      margin-top: 20px;
-      text-shadow: 2px 2px 8px red;
-      position: relative;
-      z-index: 2;
+      font-size: 4rem;
+      margin: 20px 0;
+      text-shadow: 0 0 15px #ff0000, 0 0 30px #ff3333;
+      color: #ff0000;
+      font-weight: bold;
+      animation: pulse 2s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.05); }
     }
 
     p {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       margin-bottom: 30px;
+      color: #ff6666;
       font-weight: bold;
-      position: relative;
-      z-index: 2;
+      text-shadow: 0 0 5px #ff3333;
     }
 
-    /* ===========================
-       REDES SOCIALES
-    =========================== */
-    .socials {
-      margin-top: 20px;
-      position: relative;
-      z-index: 2;
+    /* Header y redes sociales */
+    .header {
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      border-bottom: 2px solid #ff0000;
     }
 
     .socials a {
       display: inline-block;
       margin: 10px;
       padding: 12px 25px;
-      border-radius: 12px;
-      color: white;
+      border-radius: 15px;
+      color: #fff;
       text-decoration: none;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: bold;
-      font-family: "Courier New", monospace; /* Fuente máquina solo aquí */
-      transition: all 0.3s ease-in-out;
-      box-shadow: 0 0 8px rgba(255,255,255,0.3);
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
     }
 
     .socials a i {
       margin-right: 8px;
-      font-size: 1.3rem;
     }
 
     .socials a:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 15px rgba(255,255,255,0.7), 0 0 25px currentColor;
+      transform: scale(1.1);
+      box-shadow: 0 0 20px #ff0000;
     }
 
     .socials a.spotify { background: #1DB954; }
@@ -73,42 +77,35 @@
     .socials a.roblox { background: #FF4757; }
     .socials a.discord { background: #5865F2; }
 
-    /* ===========================
-       BOTÓN DE MÚSICA
-    =========================== */
+    /* Música */
     .music-btn {
-      margin-top: 30px;
+      margin-top: 20px;
       padding: 10px 20px;
-      border: 2px solid white;
+      border: 2px solid #ff0000;
       border-radius: 10px;
       background: transparent;
-      color: white;
-      font-size: 1.1rem;
+      color: #fff;
+      font-size: 1.2rem;
       cursor: pointer;
       transition: 0.3s;
-      position: relative;
-      z-index: 2;
     }
 
     .music-btn:hover {
-      background: red;
-      border-color: red;
-      color: black;
+      background: #ff0000;
+      color: #000;
     }
 
-    /* ===========================
-       LAYOUT PRINCIPAL
-    =========================== */
+    /* Layout principal */
     .layout {
       display: grid;
-      grid-template-columns: 1fr 2fr 1fr;
+      grid-template-columns: 1fr 3fr 1fr;
       gap: 20px;
-      margin-top: 40px;
+      padding: 20px;
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
-    /* ===========================
-       STAFF
-    =========================== */
+    /* Staff */
     .staff-col {
       display: flex;
       flex-direction: column;
@@ -117,71 +114,61 @@
     }
 
     .card {
-      background: #111;
+      background: #1a001a;
       padding: 15px;
       border-radius: 12px;
       width: 150px;
       text-align: center;
-      box-shadow: 0 0 10px red, 0 0 20px rgba(255,0,0,0.6);
-      animation: glow 2s infinite alternate;
+      border: 2px solid #ff0000;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+      transition: transform 0.3s;
     }
 
-    @keyframes glow {
-      from { box-shadow: 0 0 10px red; }
-      to { box-shadow: 0 0 25px red, 0 0 50px rgba(255,0,0,0.9);}
+    .card:hover {
+      transform: scale(1.05);
     }
 
     .card img {
       border-radius: 50%;
       width: 80px;
       height: 80px;
-      margin-bottom: 8px;
-      border: 2px solid red;
+      border: 2px solid #ff0000;
     }
 
-    .card .role { font-size: 13px; color: #bbb; }
+    .card .role { font-size: 13px; color: #ff6666; }
 
-    /* ===========================
-       APORTE - NUEVO CONTENEDOR PARA SCROLL HORIZONTAL
-    =========================== */
+    /* Aportes - Carrusel horizontal */
     .aportes-container {
       display: flex;
-      flex-direction: row; /* Horizontal siempre */
-      overflow-x: auto; /* Scroll horizontal cuando no quepan */
-      gap: 15px; /* Espacio entre tarjetas */
+      flex-direction: row;
+      overflow-x: auto;
+      gap: 15px;
       padding: 10px 0;
-      scroll-behavior: smooth; /* Scroll suave */
-      max-height: 500px; /* Límite de altura para no extender demasiado la página */
-      overflow-y: hidden; /* No scroll vertical en el contenedor */
+      scroll-behavior: smooth;
+      max-height: 500px;
     }
 
     .aporte {
-      flex: 0 0 auto; /* No crece ni se encoge, ancho fijo */
-      min-width: 300px; /* Ancho mínimo de cada tarjeta; ajusta si quieres más/ menos */
-      background: rgba(0, 0, 0, 0.7);
-      padding: 20px; /* Reducido un poco para que quepa mejor horizontal */
+      flex: 0 0 auto;
+      min-width: 300px;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 20px;
       border-radius: 15px;
-      margin-bottom: 0; /* Quita el margen inferior original */
-      border: 2px solid red;
-      box-shadow: 0 0 10px red, 0 0 20px red, 0 0 40px red, 0 0 60px rgba(255, 0, 0, 0.8);
-      transition: 0.3s;
-      position: relative;
-      z-index: 2;
-      line-height: 1.8;
-      letter-spacing: 0.5px;
+      border: 2px solid #ff0000;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+      transition: box-shadow 0.3s;
       text-align: left;
-      font-family: Arial, Helvetica, sans-serif; /* Fuente normal */
-      overflow-y: auto; /* Si el contenido es muy largo, scroll vertical individual en cada tarjeta */
-      max-height: 450px; /* Altura máxima por tarjeta */
+      overflow-y: auto;
+      max-height: 480px;
     }
 
     .aporte:hover {
-      box-shadow: 0 0 20px red, 0 0 40px red, 0 0 80px red, 0 0 100px rgba(255, 0, 0, 1);
+      box-shadow: 0 0 25px #ff0000;
     }
 
     .aporte h2 {
-      font-size: 1.8rem; /* Un poco más pequeño para horizontal */
-      color: red;
+      font-size: 1.8rem;
+      color: #ff0000;
       margin-bottom: 15px;
       text-align: center;
     }
@@ -189,56 +176,108 @@
     .aporte video {
       width: 100%;
       border-radius: 10px;
-      margin-top: 20px;
+      margin-top: 15px;
     }
 
     .download-btn {
       display: inline-block;
-      margin-top: 20px;
-      padding: 12px 25px;
-      background: red;
-      color: white;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #ff0000;
+      color: #fff;
       font-weight: bold;
-      border-radius: 12px;
+      border-radius: 10px;
       text-decoration: none;
-      font-size: 1.2rem;
       transition: 0.3s;
-      box-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px rgba(255, 0, 0, 0.8);
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
     }
 
     .download-btn:hover {
-      background: darkred;
-      box-shadow: 0 0 20px red, 0 0 40px red, 0 0 60px red;
+      background: #cc0000;
+      box-shadow: 0 0 20px #ff0000;
     }
 
-    /* ===========================
-       RESPONSIVE - Mantiene horizontal, pero ajusta anchos en móvil
-    =========================== */
+    /* Video destacado */
+    .featured-video {
+      margin: 20px 0;
+      border: 2px solid #ff0000;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+    }
+
+    .featured-video video {
+      width: 100%;
+      height: auto;
+    }
+
+    /* Scrollbar styling */
+    .aportes-container::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .aportes-container::-webkit-scrollbar-track {
+      background: #1a001a;
+    }
+
+    .aportes-container::-webkit-scrollbar-thumb {
+      background: #ff0000;
+      border-radius: 4px;
+    }
+
+    .aporte::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .aporte::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .aporte::-webkit-scrollbar-thumb {
+      background: #ff6666;
+      border-radius: 4px;
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
       .layout {
         display: block;
       }
 
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      p {
+        font-size: 1.2rem;
+      }
+
+      .socials a {
+        padding: 10px 15px;
+        font-size: 1.1rem;
+      }
+
       .staff-col {
         flex-direction: row;
         overflow-x: auto;
-        gap: 15px;
-        padding: 10px;
-        scroll-snap-type: x mandatory;
+        padding: 10px 0;
       }
 
       .card {
-        flex: 0 0 auto;
-        width: 130px;
-        scroll-snap-align: start;
+        width: 120px;
+      }
+
+      .card img {
+        width: 60px;
+        height: 60px;
       }
 
       .aportes-container {
-        gap: 10px; /* Menos espacio en móvil */
+        gap: 10px;
       }
 
       .aporte {
-        min-width: 280px; /* Un poco más estrecho en móvil para que quepan más */
+        min-width: 250px;
         padding: 15px;
       }
 
@@ -246,106 +285,82 @@
         font-size: 1.5rem;
       }
     }
-
-    /* Estilo opcional para la barra de scroll horizontal (más sutil) */
-    .aportes-container::-webkit-scrollbar {
-      height: 8px;
-    }
-
-    .aportes-container::-webkit-scrollbar-track {
-      background: rgba(0,0,0,0.3);
-      border-radius: 4px;
-    }
-
-    .aportes-container::-webkit-scrollbar-thumb {
-      background: red;
-      border-radius: 4px;
-    }
-
-    .aportes-container::-webkit-scrollbar-thumb:hover {
-      background: darkred;
-    }
   </style>
 </head>
 <body>
-  <h1>HILNZO</h1>
-  <p>"crece sin hacerle daño a alguien sin que se lo merezca"</p>
-
-  <!-- Redes sociales -->
-  <div class="socials">
-    <a href="https://open.spotify.com/user/31mtjz2i5m63xek4cp4pevznd74i" target="_blank" class="spotify"><i class="fa-brands fa-spotify"></i> Spotify</a>
-    <a href="https://steamcommunity.com/profiles/76561199805784382/" target="_blank" class="steam"><i class="fa-brands fa-steam"></i> Steam</a>
-    <a href="https://www.roblox.com/es/users/9207271059/profile" target="_blank" class="roblox"><i class="fa-solid fa-cube"></i> Roblox</a>
-    <a href="https://discordapp.com/users/1298301131641983019" target="_blank" class="discord"><i class="fa-brands fa-discord"></i> Discord</a>
-    <a href="https://discord.gg/rNJ7UaPBYa" target="_blank" class="discord" style="margin-top:15px; display:inline-block;"><i class="fa-brands fa-discord"></i> DC - INJERTOS MODS</a>
+  <div class="header">
+    <h1>HILNZO</h1>
+    <p>"crece sin hacerle daño a alguien sin que se lo merezca"</p>
+    <div class="socials">
+      <a href="https://open.spotify.com/user/31mtjz2i5m63xek4cp4pevznd74i" target="_blank" class="spotify"><i class="fa-brands fa-spotify"></i> Spotify</a>
+      <a href="https://steamcommunity.com/profiles/76561199805784382/" target="_blank" class="steam"><i class="fa-brands fa-steam"></i> Steam</a>
+      <a href="https://www.roblox.com/es/users/9207271059/profile" target="_blank" class="roblox"><i class="fa-solid fa-cube"></i> Roblox</a>
+      <a href="https://discordapp.com/users/1298301131641983019" target="_blank" class="discord"><i class="fa-brands fa-discord"></i> Discord</a>
+      <a href="https://discord.gg/rNJ7UaPBYa" target="_blank" class="discord"><i class="fa-brands fa-discord"></i> INJERTOS MODS</a>
+    </div>
+    <audio id="bg-music" autoplay loop>
+      <source src="https://files.catbox.moe/vf3nc4.mp3" type="audio/mpeg">
+    </audio>
+    <button class="music-btn" onclick="toggleMusic()">Sonido - Ángel Caído</button>
   </div>
 
-  <!-- Música -->
-  <audio id="bg-music" autoplay loop>
-    <source src="https://files.catbox.moe/vf3nc4.mp3" type="audio/mpeg">
-  </audio>
-  <button class="music-btn" onclick="toggleMusic()">sonido - angel caido</button>
-
-  <!-- Layout principal -->
   <div class="layout">
-    <!-- STAFF izquierda -->
+    <!-- Staff Izquierda -->
     <div class="staff-col">
       <div class="card"><img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.png"><p><b>Hilnzo</b></p><p class="role">DUEÑO</p></div>
       <div class="card"><img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1354865570880946176/avatars/5986239fed096a6beb8d2998bd1ac729.png"><p><b>Kalcor</b></p><p class="role">DUEÑO</p></div>
       <div class="card"><img src="https://cdn.discordapp.com/avatars/1246355878840631327/2c0846a264c2af5eede51ab3aa0fc3cb.png"><p><b>Drago</b></p><p class="role">DUEÑO</p></div>
     </div>
 
-    <!-- Aportes - Ahora con contenedor horizontal -->
+    <!-- Centro: Video y Aportes -->
     <div>
+      <div class="featured-video">
+        <video controls>
+          <source src="https://files.catbox.moe/7z0rtz.mp4" type="video/mp4">
+        </video>
+      </div>
       <div class="aportes-container">
         <div class="aporte">
           <h2>Tiffany</h2>
-          <p><b>Descripción:</b> aporte para los demeros jodidos hecho por Hilnzo (@klenoz).</p>
-          <p>Si descargas este aporte por otro lugar que no sea mi discord de aportes o sampmods, es que no es mío y fue modificado.</p>
-          <p><b>Incluye:</b> macros, barra de estamina, gamefixer, hit maker, sonido de campana, efectos, armas y más.</p>
-          <p><b>Contraseña:</b> <span style="color: red; font-weight: bold;">tiffanyctmr</span></p>
+          <p><b>Descripción:</b> Aporte para los demeros jodidos hecho por Hilnzo (@klenoz).</p>
+          <p>Si lo descargas fuera de mi Discord o SAMPMods, podría estar modificado.</p>
+          <p><b>Incluye:</b> Macros, barra de estamina, gamefixer, hit maker, sonido de campana, efectos, armas y más.</p>
+          <p><b>Contraseña:</b> <span style="color: #ff0000;">tiffanyctmr</span></p>
           <video controls><source src="https://files.catbox.moe/7z0rtz.mp4" type="video/mp4"></video>
-          <a href="https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+          <a href="https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file" target="_blank" class="download-btn">⬇ Descargar</a>
         </div>
-
         <div class="aporte">
           <h2>VERSION R5 INJERTOS MODS</h2>
-          <p><b>Descripción:</b> unos de los aportes que menos me gusto crear por ser R5 ya que no es compatible con nada.</p>
-          <p>Si descargas este aporte por otro lugar que no sea mi discord de aportes o sampmods, es que no es mío y fue modificado.</p>
-          <p><b>Incluye:</b> El aporte esta limpio el R5 no permite muchos cleos o .asi).</p>
-          <p><b>Contraseña:</b> <span style="color: red; font-weight: bold;">injertosr5</span></p>
+          <p><b>Descripción:</b> Uno de los aportes que menos me gustó crear por ser R5, no compatible con mucho.</p>
+          <p>Si lo descargas fuera de mi Discord o SAMPMods, podría estar modificado.</p>
+          <p><b>Incluye:</b> Aporte limpio, R5 no permite muchos cleos o .asi.</p>
+          <p><b>Contraseña:</b> <span style="color: #ff0000;">injertosr5</span></p>
           <video controls><source src="https://files.catbox.moe/vlkt2e.mp4" type="video/mp4"></video>
-          <a href="https://www.mediafire.com/file/wsgq5q0r3su9hzo/version_R5_injertos_mods.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+          <a href="https://www.mediafire.com/file/wsgq5q0r3su9hzo/version_R5_injertos_mods.rar/file" target="_blank" class="download-btn">⬇ Descargar</a>
         </div>
-
         <div class="aporte">
           <h2>DataBlue🔵MR$</h2>
-          <p><b>Descripción:</b> Para que se les vea igual usar los cleos. (Estan dentro de la carpeta de la data).</p>
-          <p>creador: (@manzer)</p>
-          <p><b>Incluye:</b> lista rápida de lo que trae: skins, cleos, sonidos, armas, etc).</p>
-          <p><b>Contraseña:</b> <span style="color: red; font-weight: bold;"> --- </span></p>
+          <p><b>Descripción:</b> Usa los cleos en la carpeta data para igualar.</p>
+          <p>Creador: (@manzer)</p>
+          <p><b>Incluye:</b> Skins, cleos, sonidos, armas, etc.</p>
+          <p><b>Contraseña:</b> <span style="color: #ff0000;">---</span></p>
           <video controls><source src="https://files.catbox.moe/4x7q1m.mp4" type="video/mp4"></video>
-          <a href="https://www.mediafire.com/file/12efvtjw3392v58/DataBlue%F0%9F%94%B5MR%24.zip/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+          <a href="https://www.mediafire.com/file/12efvtjw3392v58/DataBlue%F0%9F%94%B5MR%24.zip/file" target="_blank" class="download-btn">⬇ Descargar</a>
         </div>
-
         <div class="aporte">
           <h2>ROJO SANGRE</h2>
-          <p><b>Descripción:</b> Este aporte fue el que mas megusto hacer ya que le dedique bastante tiempo y le agg varias cosas sin que de crash  .</p>
-          <p><b>Aviso:</b> ESTE APORTE ES EXCLUSIVAMENTE DE INJERTOS MODS, SI LO VES EN OTRO LADO PROBABLEMENTE NO ES DE NOSOTROS O ESTA MODIFICADO .</p>
-          <p>creador: Dayron_Wayne</p>
-          <p><b>Incluye:</b> armas, skins, calles, timecyc, gmenu, ds, fov, sensa y mucho mas.</p>
-          <p><b>Contraseña:</b> <span style="color: red; font-weight: bold;"> --- </span></p>
+          <p><b>Descripción:</b> Aporte que más me gustó, con mucho tiempo y detalles sin crash.</p>
+          <p>Aviso: Exclusivo de INJERTOS MODS, fuera podría estar modificado.</p>
+          <p>Creador: Dayron_Wayne</p>
+          <p><b>Incluye:</b> Armas, skins, calles, timecyc, gmenu, ds, fov, sensa y más.</p>
+          <p><b>Contraseña:</b> <span style="color: #ff0000;">---</span></p>
           <video controls><source src="https://files.catbox.moe/rb3i3u.mp4" type="video/mp4"></video>
-          <a href="https://www.mediafire.com/file/yj8ydpl407vrkr4/Rojo_sangre-Dayron.W.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+          <a href="https://www.mediafire.com/file/yj8ydpl407vrkr4/Rojo_sangre-Dayron.W.rar/file" target="_blank" class="download-btn">⬇ Descargar</a>
         </div>
-
-        <!-- ===========================
-             AQUI PUEDES AGREGAR NUEVOS APORTES (se agregarán horizontalmente)
-        =========================== -->
       </div>
     </div>
 
-    <!-- STAFF derecha -->
+    <!-- Staff Derecha -->
     <div class="staff-col">
       <div class="card"><img src="https://cdn.discordapp.com/avatars/1298942723847622690/7013e30ca714c9548128b99534035e3c.png"><p><b>Manzer</b></p><p class="role">SUB ENCARGADO</p></div>
       <div class="card"><img src="https://cdn.discordapp.com/avatars/1260353622001188875/66c48f30b95b7b331c48196b31fb7282.png"><p><b>Maik</b></p><p class="role">ADMIN</p></div>
@@ -361,4 +376,4 @@
     }
   </script>
 </body>
-</html>
+        </html>
