@@ -37,19 +37,25 @@
     /* Redes sociales */
     .socials {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      flex-wrap: wrap;
       gap: 15px;
       margin: 25px auto;
-      text-align: center;
       width: 100%;
+      text-align: center;
     }
     .socials a {
-      display: flex; align-items: center; justify-content: center;
-      padding: 12px 20px; border-radius: 50px;
-      color: #fff; text-decoration: none; font-weight: bold;
-      transition: all 0.3s ease; font-size: 1rem;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 12px 20px;
+      border-radius: 50px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      font-size: 1rem;
       min-width: 180px;
     }
     .socials a i { margin-right: 8px; }
@@ -58,11 +64,12 @@
     .socials a.roblox { background: #ff4757; }
     .socials a.discord { background: #5865F2; }
 
+    /* Fix para móviles */
     @media (max-width: 768px) {
       .socials {
         flex-direction: column;
-        gap: 12px;
         align-items: center;
+        justify-content: center;
       }
       .socials a {
         width: 90%;
@@ -226,4 +233,4 @@
     }
   </script>
 </body>
-        </html>
+    </html>
