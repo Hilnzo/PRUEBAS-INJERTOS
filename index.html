@@ -30,29 +30,45 @@
     h1 {
       font-size: 4rem;
       margin: 0;
-      text-shadow: 0 0 20px #ff6b6b;
+      text-shadow: 0 0 20px #ff0000; /* rojo neón */
     }
     .quote { font-size: 1.3rem; margin: 15px 0; font-style: italic; }
+
+    /* Redes sociales */
     .socials {
       display: flex;
-      justify-content: center;   /* Centrado horizontal */
-      align-items: center;       /* Centrado vertical */
+      justify-content: center;
+      align-items: center;
       flex-wrap: wrap;
       gap: 15px;
-      margin: 25px 0;
-      text-align: center;        /* Evita descuadres */
+      margin: 25px auto;
+      text-align: center;
+      width: 100%;
     }
     .socials a {
-      display: flex; align-items: center;
+      display: flex; align-items: center; justify-content: center;
       padding: 12px 20px; border-radius: 50px;
       color: #fff; text-decoration: none; font-weight: bold;
       transition: all 0.3s ease; font-size: 1rem;
+      min-width: 180px;
     }
     .socials a i { margin-right: 8px; }
     .socials a.spotify { background: #1DB954; }
     .socials a.steam { background: #2a475e; }
     .socials a.roblox { background: #ff4757; }
     .socials a.discord { background: #5865F2; }
+
+    @media (max-width: 768px) {
+      .socials {
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+      }
+      .socials a {
+        width: 90%;
+        max-width: 300px;
+      }
+    }
 
     /* MÚSICA */
     .music-section { text-align: center; margin: 30px 0; }
@@ -70,11 +86,12 @@
     }
 
     /* STAFF */
-    .staff-title { font-size: 2rem; color: #4ecdc4; text-align: center; margin-bottom: 20px; }
+    .staff-title { font-size: 2rem; color: #4ecdc4; text-align: center; margin-bottom: 20px; text-shadow: 0 0 10px #ff0000; }
     .staff-list { display: flex; flex-direction: column; gap: 20px; }
     .staff-card {
       background: #1a1a2e; padding: 20px; border-radius: 20px;
       text-align: center; transition: 0.3s;
+      border: 1px solid #ff0000; box-shadow: 0 0 15px #ff0000;
     }
     .staff-card:hover { transform: translateY(-5px); }
     .staff-card img {
@@ -86,8 +103,9 @@
     .aportes-section {
       background: #0f3460; padding: 30px; border-radius: 20px;
       text-align: center; box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      border: 1px solid #ff0000; box-shadow: 0 0 25px #ff0000;
     }
-    .aportes-title { font-size: 2.5rem; margin-bottom: 25px; }
+    .aportes-title { font-size: 2.5rem; margin-bottom: 25px; text-shadow: 0 0 15px #ff0000; }
     .aportes-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -96,9 +114,10 @@
     .aporte-card {
       background: #1a1a2e; padding: 20px;
       border-radius: 15px; display: flex; flex-direction: column;
-      justify-content: space-between; box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      justify-content: space-between;
+      border: 1px solid #ff0000; box-shadow: 0 0 15px #ff0000;
     }
-    .aporte-card h2 { color: #4ecdc4; font-size: 1.5rem; margin: 0; }
+    .aporte-card h2 { color: #4ecdc4; font-size: 1.5rem; margin: 0; text-shadow: 0 0 8px #ff0000; }
     .aporte-card p { font-size: 0.95rem; color: #ccc; }
     .aporte-card video { width: 100%; border-radius: 10px; margin-top: 10px; }
     .download-btn {
@@ -116,7 +135,6 @@
       .aportes-title { font-size: 2rem; }
       .staff-list { flex-direction: row; overflow-x: auto; }
       .staff-card { min-width: 180px; }
-      .socials { flex-direction: column; gap: 10px; }  /* En móvil en columna */
     }
   </style>
 </head>
@@ -127,21 +145,11 @@
       <h1>HILNZO</h1>
       <p class="quote">"Crece sin hacerle daño a alguien sin que se lo merezca"</p>
       <div class="socials">
-        <a href="https://open.spotify.com/user/31mtjz2i5m63xek4cp4pevznd74i" class="spotify">
-          <i class="fab fa-spotify"></i> Spotify
-        </a>
-        <a href="https://steamcommunity.com/profiles/76561199805784382/" class="steam">
-          <i class="fab fa-steam"></i> Steam
-        </a>
-        <a href="https://www.roblox.com/es/users/9207271059/profile" class="roblox">
-          <i class="fa-solid fa-cube"></i> Roblox
-        </a>
-        <a href="https://discordapp.com/users/1298301131641983019" class="discord">
-          <i class="fab fa-discord"></i> Discord
-        </a>
-        <a href="https://discord.gg/rNJ7UaPBYa" class="discord">
-          <i class="fab fa-discord"></i> DISCORD INJERTOS MODS
-        </a>
+        <a href="https://open.spotify.com/user/31mtjz2i5m63xek4cp4pevznd74i" class="spotify"><i class="fab fa-spotify"></i> Spotify</a>
+        <a href="https://steamcommunity.com/profiles/76561199805784382/" class="steam"><i class="fab fa-steam"></i> Steam</a>
+        <a href="https://www.roblox.com/es/users/9207271059/profile" class="roblox"><i class="fa-solid fa-cube"></i> Roblox</a>
+        <a href="https://discordapp.com/users/1298301131641983019" class="discord"><i class="fab fa-discord"></i> Discord</a>
+        <a href="https://discord.gg/rNJ7UaPBYa" class="discord"><i class="fab fa-discord"></i> DISCORD INJERTOS MODS</a>
       </div>
     </div>
   </header>
@@ -218,4 +226,4 @@
     }
   </script>
 </body>
-</html>
+        </html>
