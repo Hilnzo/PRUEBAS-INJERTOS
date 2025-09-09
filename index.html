@@ -20,16 +20,23 @@
       font-size: 3rem;
       margin-top: 20px;
       text-shadow: 2px 2px 8px red;
+      position: relative;
+      z-index: 2;
     }
 
     p {
       font-size: 1.3rem;
       margin-bottom: 30px;
       font-weight: bold;
+      position: relative;
+      z-index: 2;
     }
 
+    /* Redes sociales */
     .socials {
       margin-top: 20px;
+      position: relative;
+      z-index: 2;
     }
 
     .socials a {
@@ -47,13 +54,32 @@
     }
 
     .socials a i { margin-right: 8px; font-size: 1.3rem; }
-    .socials a:hover { transform: scale(1.08); box-shadow: 0 0 15px rgba(255,255,255,0.7), 0 0 25px currentColor; }
-
+    .socials a:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 15px rgba(255,255,255,0.7), 0 0 25px currentColor;
+    }
     .socials a.spotify { background: #1DB954; }
     .socials a.steam { background: #171A21; }
     .socials a.roblox { background: #FF4757; }
     .socials a.discord { background: #5865F2; }
 
+    /* Botón música */
+    .music-btn {
+      margin-top: 30px;
+      padding: 10px 20px;
+      border: 2px solid white;
+      border-radius: 10px;
+      background: transparent;
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      position: relative;
+      z-index: 2;
+    }
+    .music-btn:hover { background: red; border-color: red; color: black; }
+
+    /* Layout */
     .layout {
       display: grid;
       grid-template-columns: 1fr 2fr 1fr;
@@ -61,13 +87,13 @@
       margin-top: 40px;
     }
 
+    /* Staff */
     .staff-col {
       display: flex;
       flex-direction: column;
       gap: 20px;
       align-items: center;
     }
-
     .card {
       background: #111;
       padding: 15px;
@@ -77,12 +103,10 @@
       box-shadow: 0 0 10px red, 0 0 20px rgba(255,0,0,0.6);
       animation: glow 2s infinite alternate;
     }
-
     @keyframes glow {
       from { box-shadow: 0 0 10px red; }
       to { box-shadow: 0 0 25px red, 0 0 50px rgba(255,0,0,0.9);}
     }
-
     .card img {
       border-radius: 50%;
       width: 80px;
@@ -90,9 +114,9 @@
       margin-bottom: 8px;
       border: 2px solid red;
     }
-
     .card .role { font-size: 13px; color: #bbb; }
 
+    /* Aportes */
     .aporte {
       background: rgba(0, 0, 0, 0.7);
       padding: 30px;
@@ -100,10 +124,16 @@
       margin-bottom: 40px;
       border: 2px solid red;
       box-shadow: 0 0 10px red, 0 0 20px red, 0 0 40px red, 0 0 60px rgba(255, 0, 0, 0.8);
+      transition: 0.3s;
+      position: relative;
+      z-index: 2;
       line-height: 1.8;
+      letter-spacing: 0.5px;
       text-align: left;
     }
-
+    .aporte:hover {
+      box-shadow: 0 0 20px red, 0 0 40px red, 0 0 80px red, 0 0 100px rgba(255, 0, 0, 1);
+    }
     .aporte h2 {
       font-size: 2rem;
       color: red;
@@ -111,6 +141,7 @@
       text-align: center;
     }
 
+    /* Video YouTube responsivo */
     .video-wrapper {
       position: relative;
       padding-bottom: 56.25%;
@@ -119,15 +150,10 @@
       border-radius: 10px;
       margin-top: 20px;
     }
-
     .video-wrapper iframe {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-      border-radius: 10px;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
     }
 
     .download-btn {
@@ -143,13 +169,26 @@
       transition: 0.3s;
       box-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px rgba(255, 0, 0, 0.8);
     }
+    .download-btn:hover {
+      background: darkred;
+      box-shadow: 0 0 20px red, 0 0 40px red, 0 0 60px red;
+    }
 
-    .download-btn:hover { background: darkred; box-shadow: 0 0 20px red, 0 0 40px red, 0 0 60px red; }
-
+    /* Responsive */
     @media (max-width: 768px) {
       .layout { display: block; }
-      .staff-col { flex-direction: row; overflow-x: auto; gap: 15px; padding: 10px; }
-      .card { flex: 0 0 auto; width: 130px; }
+      .staff-col {
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 15px;
+        padding: 10px;
+        scroll-snap-type: x mandatory;
+      }
+      .card {
+        flex: 0 0 auto;
+        width: 130px;
+        scroll-snap-align: start;
+      }
     }
   </style>
 </head>
@@ -157,6 +196,7 @@
   <h1>HILNZO</h1>
   <p>"crece sin hacerle daño a alguien sin que se lo merezca"</p>
 
+  <!-- Redes -->
   <div class="socials">
     <a href="https://open.spotify.com/user/31mtjz2i5m63xek4cp4pevznd74i" target="_blank" class="spotify"><i class="fa-brands fa-spotify"></i> Spotify</a>
     <a href="https://steamcommunity.com/profiles/76561199805784382/" target="_blank" class="steam"><i class="fa-brands fa-steam"></i> Steam</a>
@@ -165,11 +205,20 @@
     <a href="https://discord.gg/rNJ7UaPBYa" target="_blank" class="discord" style="margin-top:15px; display:inline-block;"><i class="fa-brands fa-discord"></i> DC - INJERTOS MODS</a>
   </div>
 
+  <!-- Música -->
+  <audio id="bg-music" autoplay loop>
+    <source src="https://files.catbox.moe/vf3nc4.mp3" type="audio/mpeg">
+  </audio>
+  <button class="music-btn" onclick="toggleMusic()">sonido - angel caido</button>
+
+  <!-- Layout -->
   <div class="layout">
-    <!-- STAFF izquierda -->
+    <!-- Staff izquierda -->
     <div class="staff-col">
-      <div class="card"><img src="https://cdn.discordapp.com/..."><p><b>Hilnzo</b></p><p class="role">DUEÑO</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/..."><p><b>Kalcor</b></p><p class="role">DUEÑO</p></div>
+      <div class="card"><img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.png"><p><b>Hilnzo</b></p><p class="role">DUEÑO</p></div>
+      <div class="card"><img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1354865570880946176/avatars/5986239fed096a6beb8d2998bd1ac729.png"><p><b>Kalcor</b></p><p class="role">DUEÑO</p></div>
+      <div class="card"><img src="https://cdn.discordapp.com/avatars/1246355878840631327/2c0846a264c2af5eede51ab3aa0fc3cb.png"><p><b>KAIROX</b></p><p class="role">DUEÑO</p></div>
+      <div class="card"><img src="https://cdn.discordapp.com/avatars/1221849688593137830/ccbeb578b68bd02a4b19dc1ddd506842.png"><p><b>JACOB</b></p><p class="role">DUEÑO</p></div>
     </div>
 
     <!-- Aportes -->
@@ -177,26 +226,73 @@
       <div class="aporte">
         <h2>Tiffany</h2>
         <p><b>Descripción:</b> aporte para los demeros jodidos hecho por Hilnzo (@klenoz).</p>
+        <p><b>Contraseña:</b> <span style="color: red; font-weight: bold;">tiffanyctmr</span></p>
         <div class="video-wrapper">
-          <iframe src="https://www.youtube.com/embed/X_QHBGORzpc" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/ID_DEL_VIDEO1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <a href="https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
       </div>
 
       <div class="aporte">
         <h2>VERSION R5 INJERTOS MODS</h2>
-        <p><b>Descripción:</b> unos de los aportes que menos me gusto crear...</p>
+        <p><b>Contraseña:</b> <span style="color: red; font-weight: bold;">injertosr5</span></p>
         <div class="video-wrapper">
-          <iframe src="https://www.youtube.com/embed/ID_DEL_VIDEO" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/ID_DEL_VIDEO2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <a href="https://www.mediafire.com/file/wsgq5q0r3su9hzo/version_R5_injertos_mods.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
       </div>
+
+      <div class="aporte">
+        <h2>DataBlue🔵MR$</h2>
+        <p><b>Contraseña:</b> <span style="color: red; font-weight: bold;">NO TIENE CONTRASEÑA</span></p>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/ID_DEL_VIDEO3" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <a href="https://www.mediafire.com/file/12efvtjw3392v58/DataBlue%F0%9F%94%B5MR%24.zip/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+      </div>
+
+      <div class="aporte">
+        <h2>ROJO SANGRE</h2>
+        <p><b>Contraseña:</b> <span style="color: red; font-weight: bold;">NO TIENE CONTRASEÑA</span></p>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/ID_DEL_VIDEO4" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <a href="https://www.mediafire.com/file/yj8ydpl407vrkr4/Rojo_sangre-Dayron.W.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+      </div>
+
+      <div class="aporte">
+        <h2>Dayron GOTIC</h2>
+        <p><b>Contraseña:</b> <span style="color: red; font-weight: bold;">NO TIENE CONTRASEÑA</span></p>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/ID_DEL_VIDEO5" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <a href="https://www.mediafire.com/file/r0rslgetqumv0e0/Dayron_GOTIC.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+      </div>
+
+      <div class="aporte">
+        <h2>BRUTALITY</h2>
+        <p><b>Contraseña:</b> <span style="color: red; font-weight: bold;">NO TIENE CONTRASEÑA</span></p>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/ID_DEL_VIDEO6" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <a href="https://www.mediafire.com/file/rj4hc064ibyu767/BRUTALITY.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+      </div>
     </div>
 
-    <!-- STAFF derecha -->
+    <!-- Staff derecha -->
     <div class="staff-col">
-      <div class="card"><img src="https://cdn.discordapp.com/..."><p><b>Manzer</b></p><p class="role">SUB ENCARGADO</p></div>
+      <div class="card"><img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1298942723847622690/avatars/3807323106ed6e938774fb9af5ff365f.png"><p><b>Manzer</b></p><p class="role">SUB ENCARGADO</p></div>
+      <div class="card"><img src="https://cdn.discordapp.com/avatars/1260353622001188875/66c48f30b95b7b331c48196b31fb7282.png"><p><b>Maik</b></p><p class="role">ADMIN</p></div>
+      <div class="card"><img src="https://cdn.discordapp.com/avatars/1308947599235223637/ac79495194906156d3116496e4c7c72d.png"><p><b>Zair</b></p><p class="role">MODERADOR</p></div>
+      <div class="card"><img src="https://cdn.discordapp.com/avatars/1216152197277159535/957b02311b279cf298f0775eb5c4be04.png"><p><b>Dayron</b></p><p class="role">MODERADOR</p></div>
     </div>
   </div>
+
+  <script>
+    function toggleMusic() {
+      const music = document.getElementById("bg-music");
+      if (music.paused) music.play(); else music.pause();
+    }
+  </script>
 </body>
 </html>
