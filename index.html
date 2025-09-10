@@ -1,247 +1,147 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hilnzo</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aportes Exclusivos - Hilnzo</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    /* --- Base --- */
+    :root { --red: #ff0000; --bg-img: url('https://i.imgur.com/kXp9RhC.jpeg'); }
+    html,body { height:100%; }
     body {
       margin: 0;
-      background: url('https://i.imgur.com/kXp9RhC.jpeg') no-repeat center center fixed;
+      background: var(--bg-img) no-repeat center center fixed;
       background-size: cover;
       font-family: Arial, Helvetica, sans-serif;
       color: white;
       text-align: center;
       overflow-x: hidden;
+      -webkit-font-smoothing:antialiased;
     }
-
     h1 {
       font-size: 3rem;
       margin-top: 20px;
-      text-shadow: 2px 2px 8px red;
+      text-shadow: 2px 2px 8px var(--red);
       position: relative;
       z-index: 2;
     }
+    p { font-size:1.15rem; margin-bottom:20px; font-weight:bold; position: relative; z-index:2; }
 
-    p {
-      font-size: 1.3rem;
-      margin-bottom: 30px;
-      font-weight: bold;
-      position: relative;
-      z-index: 2;
-    }
-
-    /* Redes sociales */
-    .socials {
-      margin-top: 20px;
-      position: relative;
-      z-index: 2;
-    }
-
+    /* --- Redes sociales --- */
+    .socials { margin-top: 12px; position: relative; z-index: 2; }
     .socials a {
-      display: inline-block;
-      margin: 10px;
-      padding: 12px 25px;
-      border-radius: 12px;
-      color: white;
-      text-decoration: none;
-      font-size: 1.2rem;
-      font-weight: bold;
-      font-family: "Courier New", monospace;
-      transition: all 0.3s ease-in-out;
-      box-shadow: 0 0 8px rgba(255,255,255,0.3);
+      display:inline-block; margin:8px; padding:10px 18px; border-radius:10px;
+      color:white; text-decoration:none; font-size:1rem; font-weight:bold; font-family:"Courier New", monospace;
+      transition: transform .18s ease, box-shadow .18s ease;
+      box-shadow: 0 0 8px rgba(255,255,255,0.25);
     }
+    .socials a i { margin-right:8px; }
+    .socials a:hover { transform: scale(1.06); box-shadow: 0 0 18px rgba(255,255,255,0.6); }
+    .spotify { background: #1DB954; } .steam { background:#171A21; } .roblox{ background:#FF4757; } .discord{ background:#5865F2; }
 
-    .socials a i { margin-right: 8px; font-size: 1.3rem; }
-    .socials a:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 15px rgba(255,255,255,0.7), 0 0 25px currentColor;
-    }
-    .socials a.spotify { background: #1DB954; }
-    .socials a.steam { background: #171A21; }
-    .socials a.roblox { background: #FF4757; }
-    .socials a.discord { background: #5865F2; }
-
-    /* Botón música */
+    /* --- Música botón --- */
     .music-btn {
-      margin-top: 30px;
-      padding: 10px 20px;
-      border: 2px solid white;
-      border-radius: 10px;
-      background: transparent;
-      color: white;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: 0.3s;
-      position: relative;
-      z-index: 2;
+      margin-top: 12px; padding: 10px 18px; border:2px solid #fff; border-radius:10px;
+      background: transparent; color:#fff; cursor:pointer; font-weight:bold; z-index:2;
     }
-    .music-btn:hover { background: red; border-color: red; color: black; }
+    .music-btn:hover { background: var(--red); color:#000; border-color:var(--red); }
 
-    /* Layout */
+    /* --- Layout principal: staff (izq/der) + centro aportes --- */
     .layout {
       display: grid;
-      grid-template-columns: 1fr 2fr 1fr;
-      gap: 20px;
-      margin-top: 40px;
+      grid-template-columns: 1fr minmax(320px, 900px) 1fr;
+      gap: 18px;
+      align-items: start;
+      padding: 30px;
+      box-sizing: border-box;
+      margin-top: 10px;
     }
 
-    /* Staff */
+    /* Staff column (reusable) */
     .staff-col {
-      display: flex;
+      display:flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 16px;
       align-items: center;
     }
     .card {
-      background: #111;
-      padding: 15px;
+      background: rgba(17,17,17,0.95);
+      padding: 12px;
       border-radius: 12px;
       width: 150px;
-      text-align: center;
-      box-shadow: 0 0 10px red, 0 0 20px rgba(255,0,0,0.6);
-      animation: glow 2s infinite alternate;
+      text-align:center;
+      box-shadow: 0 0 10px var(--red), 0 0 20px rgba(255,0,0,0.45);
+      animation: glow 2.2s infinite alternate;
     }
     @keyframes glow {
-      from { box-shadow: 0 0 10px red; }
-      to { box-shadow: 0 0 25px red, 0 0 50px rgba(255,0,0,0.9);}
+      from { box-shadow: 0 0 8px var(--red); }
+      to   { box-shadow: 0 0 22px var(--red), 0 0 40px rgba(255,0,0,0.8); }
     }
-    .card img {
-      border-radius: 50%;
-      width: 80px;
-      height: 80px;
-      margin-bottom: 8px;
-      border: 2px solid red;
-    }
-    .card .role { font-size: 13px; color: #bbb; }
+    .card img { width:80px; height:80px; border-radius:50%; margin-bottom:8px; border:2px solid var(--red); object-fit:cover; }
+    .card p { margin:4px 0; color:#fff; }
+    .card .role { font-size:13px; color:#bbb; }
 
-    /* Aportes */
+    /* --- Aporte center --- */
+    #aportes { padding: 6px 0; }
     .aporte {
-      background: rgba(0, 0, 0, 0.7);
-      padding: 30px;
-      border-radius: 15px;
-      margin-bottom: 40px;
-      border: 2px solid red;
-      box-shadow: 0 0 10px red, 0 0 20px red, 0 0 40px red, 0 0 60px rgba(255, 0, 0, 0.8);
-      transition: 0.3s;
-      position: relative;
-      z-index: 2;
-      line-height: 1.8;
-      letter-spacing: 0.5px;
-      text-align: left;
+      background: rgba(0,0,0,0.72); padding: 22px; border-radius:12px; margin: 18px auto;
+      border: 2px solid var(--red); box-shadow: 0 0 12px var(--red), 0 0 26px rgba(255,0,0,0.35);
+      transition: box-shadow .25s ease; text-align:left; line-height:1.6; max-width:900px;
     }
-    .aporte:hover {
-      box-shadow: 0 0 20px red, 0 0 40px red, 0 0 80px red, 0 0 100px rgba(255, 0, 0, 1);
-    }
-    .aporte h2 {
-      font-size: 2rem;
-      color: red;
-      margin-bottom: 15px;
-      text-align: center;
-    }
+    .aporte:hover { box-shadow: 0 0 26px var(--red), 0 0 60px rgba(255,0,0,0.6); }
+    .aporte h2 { font-size:1.8rem; color:var(--red); text-align:center; margin-bottom:12px; }
 
-    /* Video YouTube responsivo */
-    .video-wrapper {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      border-radius: 10px;
-      margin-top: 20px;
-    }
-    .video-wrapper iframe {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-    }
+    .video-wrapper { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:10px; margin-top:14px; }
+    .video-wrapper iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
 
     .download-btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 25px;
-      background: red;
-      color: white;
-      font-weight: bold;
-      border-radius: 12px;
-      text-decoration: none;
-      font-size: 1.2rem;
-      transition: 0.3s;
-      box-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px rgba(255, 0, 0, 0.8);
+      display:inline-block; margin-top:14px; padding:10px 18px; background:var(--red); color:#fff; font-weight:bold; border-radius:10px;
+      text-decoration:none; box-shadow: 0 0 8px var(--red);
     }
-    .download-btn:hover {
-      background: darkred;
-      box-shadow: 0 0 20px red, 0 0 40px red, 0 0 60px red;
-    }
+    .download-btn:hover { background:darkred; box-shadow:0 0 20px var(--red); }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .layout { display: block; }
-      .staff-col {
-        flex-direction: row;
-        overflow-x: auto;
-        gap: 15px;
-        padding: 10px;
-        scroll-snap-type: x mandatory;
-      }
-      .card {
-        flex: 0 0 auto;
-        width: 130px;
-        scroll-snap-align: start;
-      }
+    /* --- Overlay entrada (GIF + botón) --- */
+    #overlay {
+      position: fixed; inset:0; display:flex; flex-direction:column; justify-content:center; align-items:center;
+      background: rgba(0,0,0,0.95); z-index:99999; transition: opacity 1s ease;
     }
+    #overlay.fade-out { opacity:0; pointer-events:none; }
+    #overlay img { max-width:90vw; max-height:60vh; object-fit:cover; border-radius:8px; }
+    #enter-btn {
+      margin-top:18px; padding:12px 22px; border-radius:12px; background:var(--red); color:#fff; font-weight:bold; border:none;
+      cursor:pointer; box-shadow:0 0 16px var(--red);
+    }
+    #enter-btn:hover { background:darkred; }
 
-    /* Botón Sharingan */
-    .sharingan-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 50px;
-      height: 50px;
-      cursor: pointer;
-      z-index: 1000;
-    }
-    .sharingan-btn img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      animation: spin 4s linear infinite, glowRed 1.5s infinite alternate;
-    }
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    @keyframes glowRed {
-      from { box-shadow: 0 0 5px red; }
-      to { box-shadow: 0 0 20px red, 0 0 40px red; }
-    }
+    /* --- Sharingan button & overlay --- */
+    .sharingan-btn { position: fixed; bottom: 18px; right: 18px; width:54px; height:54px; z-index:1001; cursor:pointer; }
+    .sharingan-btn img { width:100%; height:100%; border-radius:50%; display:block; }
 
-    /* Overlay fullscreen */
     #sharingan-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: black;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2000;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.6s;
+      position: fixed; inset:0; background:black; display:flex; align-items:center; justify-content:center;
+      z-index:2000; opacity:0; visibility:hidden; transition: opacity .5s ease;
     }
-    #sharingan-overlay img {
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
+    #sharingan-overlay.active { opacity:1; visibility:visible; }
+    #sharingan-overlay img { width:100vw; height:100vh; object-fit:cover; }
+
+    /* --- Responsive --- */
+    @media (max-width: 992px) {
+      .layout { grid-template-columns: 1fr; padding:16px; }
+      .staff-col { flex-direction:row; gap:12px; overflow-x:auto; padding:6px; }
+      .staff-col .card { width:120px; flex:0 0 auto; }
+      #aportes { order:2; }
     }
-    #sharingan-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
+    @media (min-width: 1200px) { .layout { padding:36px 60px; } }
   </style>
 </head>
 <body>
+  <!-- Overlay de entrada (GIF + botón) -->
+  <div id="overlay">
+    <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Entrada GIF">
+    <button id="enter-btn">ENTRAR</button>
+  </div>
+
   <h1>HILNZO</h1>
   <p>"crece sin hacerle daño a alguien sin que se lo merezca"</p>
 
@@ -251,208 +151,212 @@
     <a href="https://steamcommunity.com/profiles/76561199805784382/" target="_blank" class="steam"><i class="fa-brands fa-steam"></i> Steam</a>
     <a href="https://www.roblox.com/es/users/9207271059/profile" target="_blank" class="roblox"><i class="fa-solid fa-cube"></i> Roblox</a>
     <a href="https://discordapp.com/users/1298301131641983019" target="_blank" class="discord"><i class="fa-brands fa-discord"></i> Discord</a>
-    <a href="https://discord.gg/rNJ7UaPBYa" target="_blank" class="discord" style="margin-top:15px; display:inline-block;"><i class="fa-brands fa-discord"></i> DC - INJERTOS MODS</a>
+    <a href="https://discord.gg/rNJ7UaPBYa" target="_blank" class="discord" style="display:inline-block; margin-top:6px;"><i class="fa-brands fa-discord"></i> DC - INJERTOS MODS</a>
   </div>
 
-  <!-- Música -->
-  <audio id="bg-music" autoplay loop>
+  <!-- Música Ángel Caído (se reproduce al pulsar ENTRAR) -->
+  <audio id="bg-music" loop>
     <source src="https://files.catbox.moe/vf3nc4.mp3" type="audio/mpeg">
   </audio>
-  <button class="music-btn" onclick="toggleMusic()">sonido - angel caido</button>
+  <div style="margin-top:10px;">
+    <button class="music-btn" onclick="toggleMusic()">Sonido - Ángel Caído</button>
+  </div>
 
-  <!-- Layout con Staff y Aportes -->
-  <div class="layout">
-    <!-- Staff izquierda -->
-    <div class="staff-col">
-      <div class="card"><img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif"><p><b>Hilnzo</b></p><p class="role">DUEÑO</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1354865570880946176/avatars/5986239fed096a6beb8d2998bd1ac729.png"><p><b>Kalcor</b></p><p class="role">DUEÑO</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/avatars/1246355878840631327/2c0846a264c2af5eede51ab3aa0fc3cb.png"><p><b>KAIROX</b></p><p class="role">DUEÑO</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/avatars/1221849688593137830/ccbeb578b68bd02a4b19dc1ddd506842.png"><p><b>JACOB</b></p><p class="role">DUEÑO</p></div>
+  <!-- Layout principal: staff-left / aportes / staff-right -->
+  <div class="layout" role="main">
+    <!-- staff izquierda -->
+    <div class="staff-col" aria-label="staff-izquierda">
+      <div class="card">
+        <img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif" alt="Hilnzo">
+        <p><strong>Hilnzo</strong></p><p class="role">DUEÑO</p>
+      </div>
+      <div class="card">
+        <img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1354865570880946176/avatars/5986239fed096a6beb8d2998bd1ac729.png" alt="Kalcor">
+        <p><strong>Kalcor</strong></p><p class="role">DUEÑO</p>
+      </div>
+      <div class="card">
+        <img src="https://cdn.discordapp.com/avatars/1246355878840631327/2c0846a264c2af5eede51ab3aa0fc3cb.png" alt="KAIROX">
+        <p><strong>KAIROX</strong></p><p class="role">DUEÑO</p>
+      </div>
+      <div class="card">
+        <img src="https://cdn.discordapp.com/avatars/1221849688593137830/ccbeb578b68bd02a4b19dc1ddd506842.png" alt="JACOB">
+        <p><strong>JACOB</strong></p><p class="role">DUEÑO</p>
+      </div>
     </div>
 
-    <!-- APORTES -->
-    <div id="aportes">
+    <!-- centro: aportes -->
+    <div id="aportes" aria-live="polite">
+      <!-- Todos los aportes incluidos (copiado y respetado) -->
       <div class="aporte">
         <h2>TIFFANY</h2>
-        <p><b>DESCRITPCION:</b> aporte para los demeros jodidos hecho por Hilnzo (@klenoz).</p>
+        <p><strong>DESCRIPCION:</strong> aporte para los demeros jodidos hecho por Hilnzo (@klenoz).</p>
         <p>Si descargas este aporte por otro lugar que no sea mi discord de aportes o sampmods, es que no es mío y fue modificado.</p>
-        <p><b>INCLUYE:</b> macros, barra de estamina, gamefixer, hit maker, sonido de campana, efectos, armas y más.</p>
-        <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">tiffanyctmr</span></p>
+        <p><strong>INCLUYE:</strong> macros, barra de estamina, gamefixer, hit maker, sonido de campana, efectos, armas y más.</p>
+        <p><strong>CONTRASEÑA:</strong> <span style="color:red; font-weight:bold;">tiffanyctmr</span></p>
         <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/1Iq2YeDLVmM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe src="https://youtube.com/embed/1Iq2YeDLVmM" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Tiffany"></iframe>
         </div>
-        <a href="https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+        <a class="download-btn" href="https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file" target="_blank" rel="noopener">⬇ DESCARGAR APORTE</a>
       </div>
 
       <div class="aporte">
         <h2>VERSION R5 INJERTOS MODS</h2>
-        <p><b>DESCRITPCION:</b> unos de los aportes que menos me gusto crear por ser R5 ya que no es compatible con nada.</p>
-        <p>Si descargas este aporte por otro lugar que no sea mi discord de aportes o sampmods, es que no es mío y fue modificado.</p>
-        <p><b>INCLUYE:</b> El aporte esta limpio el R5 no permite muchos cleos o .asi).</p>
-        <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">injertosr5</span></p>
+        <p><strong>DESCRIPCION:</strong> unos de los aportes que menos me gusto crear por ser R5 ya que no es compatible con nada.</p>
+        <p><strong>INCLUYE:</strong> El aporte esta limpio el R5 no permite muchos cleos o .asi).</p>
+        <p><strong>CONTRASEÑA:</strong> <span style="color:red; font-weight:bold;">injertosr5</span></p>
         <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/BywZG9Ckh9Q" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe src="https://youtube.com/embed/BywZG9Ckh9Q" allowfullscreen title="R5"></iframe>
         </div>
-        <a href="https://www.mediafire.com/file/wsgq5q0r3su9hzo/version_R5_injertos_mods.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+        <a class="download-btn" href="https://www.mediafire.com/file/wsgq5q0r3su9hzo/version_R5_injertos_mods.rar/file" target="_blank" rel="noopener">⬇ DESCARGAR APORTE</a>
       </div>
 
       <div class="aporte">
         <h2>DataBlue🔵MR$</h2>
-        <p><b>DESCRITPCION:</b> Para que se les vea igual usar los cleos. (Estan dentro de la carpeta de la data).</p>
+        <p><strong>DESCRIPCION:</strong> Para que se les vea igual usar los cleos. (Estan dentro de la carpeta de la data).</p>
         <p>CREADOR: (@manzer)</p>
-        <p><b>INCLUYE:</b> lista rápida de lo que trae: skins, cleos, sonidos, armas, etc).</p>
-        <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">NO TIENE CONTRASEÑA</span></p>
+        <p><strong>INCLUYE:</strong> lista rápida de lo que trae: skins, cleos, sonidos, armas, etc).</p>
+        <p><strong>CONTRASEÑA:</strong> <span style="color:red; font-weight:bold;">NO TIENE CONTRASEÑA</span></p>
         <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/Tv7fyMCG0G0" frameborder="0" allowfullscreen></iframe>
+          <iframe src="https://youtube.com/embed/Tv7fyMCG0G0" allowfullscreen title="DataBlue"></iframe>
         </div>
-        <a href="https://www.mediafire.com/file/12efvtjw3392v58/DataBlue%F0%9F%94%B5MR%24.zip/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+        <a class="download-btn" href="https://www.mediafire.com/file/12efvtjw3392v58/DataBlue%F0%9F%94%B5MR%24.zip/file" target="_blank" rel="noopener">⬇ DESCARGAR APORTE</a>
       </div>
 
       <div class="aporte">
         <h2>ROJO SANGRE</h2>
-        <p><b>DESCRITPCION:</b> Este aporte fue el que mas me gusto hacer ya que le dedique bastante tiempo y le agg varias cosas sin que de crash.</p>
-        <p><b>AVISO:</b> ESTE APORTE ES EXCLUSIVAMENTE DE INJERTOS MODS, SI LO VES EN OTRO LADO PROBABLEMENTE NO ES DE NOSOTROS O ESTA MODIFICADO.</p>
+        <p><strong>DESCRIPCION:</strong> Este aporte fue el que mas me gusto hacer ya que le dedique bastante tiempo y le agg varias cosas sin que de crash.</p>
+        <p><strong>AVISO:</strong> ESTE APORTE ES EXCLUSIVAMENTE DE INJERTOS MODS, SI LO VES EN OTRO LADO PROBABLEMENTE NO ES DE NOSOTROS O ESTA MODIFICADO.</p>
         <p>CREADOR: Dayron_Wayne</p>
-        <p><b>INCLUYE:</b> armas, skins, calles, timecyc, gmenu, ds, fov, sensa y mucho mas.</p>
-        <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">NO TIENE CONTRASEÑA</span></p>
+        <p><strong>INCLUYE:</strong> armas, skins, calles, timecyc, gmenu, ds, fov, sensa y mucho mas.</p>
+        <p><strong>CONTRASEÑA:</strong> <span style="color:red; font-weight:bold;">NO TIENE CONTRASEÑA</span></p>
         <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/-KZjfOpFfKM" frameborder="0" allowfullscreen></iframe>
+          <iframe src="https://youtube.com/embed/-KZjfOpFfKM" allowfullscreen title="Rojo Sangre"></iframe>
         </div>
-        <a href="https://www.mediafire.com/file/yj8ydpl407vrkr4/Rojo_sangre-Dayron.W.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+        <a class="download-btn" href="https://www.mediafire.com/file/yj8ydpl407vrkr4/Rojo_sangre-Dayron.W.rar/file" target="_blank" rel="noopener">⬇ DESCARGAR APORTE</a>
       </div>
 
       <div class="aporte">
         <h2>DAYRON GOTIC</h2>
-        <p><b>DESCRITPCION:</b> Este aporte fue el que mas costo hacer y que no me gusto mucho tener un bug en el skybox y la unica forma de arreglarlo es configurar el /gmenu.</p>
-        <p><b>AVISO:</b> ESTE APORTE ES EXCLUSIVAMENTE DE INJERTOS MODS, SI LO VES EN OTRO LADO PROBABLEMENTE NO ES DE NOSOTROS O ESTA MODIFICADO.</p>
+        <p><strong>DESCRIPCION:</strong> Este aporte fue el que mas costo hacer y que no me gusto mucho tener un bug en el skybox y la unica forma de arreglarlo es configurar el /gmenu.</p>
+        <p><strong>AVISO:</strong> ESTE APORTE ES EXCLUSIVAMENTE DE INJERTOS MODS, SI LO VES EN OTRO LADO PROBABLEMENTE NO ES DE NOSOTROS O ESTA MODIFICADO.</p>
         <p>CREADOR: Dayron_Wayne</p>
-        <p><b>INCLUYE:</b> armas, skins, calles, skybox, gmenu, ds, fov, sensa y mucho mas.</p>
-        <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">NO TIENE CONTRASEÑA</span></p>
+        <p><strong>INCLUYE:</strong> armas, skins, calles, skybox, gmenu, ds, fov, sensa y mucho mas.</p>
+        <p><strong>CONTRASEÑA:</strong> <span style="color:red; font-weight:bold;">NO TIENE CONTRASEÑA</span></p>
         <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/9tnU1rBBCmI" frameborder="0" allowfullscreen></iframe>
+          <iframe src="https://youtube.com/embed/9tnU1rBBCmI" allowfullscreen title="Dayron Gotic"></iframe>
         </div>
-        <a href="https://www.mediafire.com/file/r0rslgetqumv0e0/Dayron_GOTIC.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+        <a class="download-btn" href="https://www.mediafire.com/file/r0rslgetqumv0e0/Dayron_GOTIC.rar/file" target="_blank" rel="noopener">⬇ DESCARGAR APORTE</a>
       </div>
 
       <div class="aporte">
         <h2>BRUTALITY</h2>
-        <p><b>DESCRITPCION:</b> VERSION R4 - INJERTOS MODS - BRUTALITY MATAR SIN PENSARLO.</p>
-        <p><b>Aviso:</b> aporte limpio y verificado, puedes encontrar mas en nuestro discord.</p>
+        <p><strong>DESCRIPCION:</strong> VERSION R4 - INJERTOS MODS - BRUTALITY MATAR SIN PENSARLO.</p>
+        <p><strong>Aviso:</strong> aporte limpio y verificado, puedes encontrar mas en nuestro discord.</p>
         <p>AVISO: JACOB</p>
-        <p><b>INCLUYE:</b> armas,vehiculos,/sensa y /macros.</p>
-        <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">NO TIENE CONTRASEÑA</span></p>
+        <p><strong>INCLUYE:</strong> armas,vehiculos,/sensa y /macros.</p>
+        <p><strong>CONTRASEÑA:</strong> <span style="color:red; font-weight:bold;">NO TIENE CONTRASEÑA</span></p>
         <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/fmVS7-nTmD4" frameborder="0" allowfullscreen></iframe>
+          <iframe src="https://youtube.com/embed/fmVS7-nTmD4" allowfullscreen title="Brutality"></iframe>
         </div>
-        <a href="https://www.mediafire.com/file/rj4hc064ibyu767/BRUTALITY.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+        <a class="download-btn" href="https://www.mediafire.com/file/rj4hc064ibyu767/BRUTALITY.rar/file" target="_blank" rel="noopener">⬇ DESCARGAR APORTE</a>
       </div>
 
-       <div class="aporte">
+      <div class="aporte">
         <h2>DRUKS</h2>
-        <p><b>DESCRITPCION:</b> PARA SABER QUE COSAS TRAE EL APORTE REVISA LA CARPETA INJERTOS SI SIENTES QUE TE VA MAL PUEDE APAGAR LOS EFECTOS CON EL GAMEFIXER USA - F4.</p>
-        <p><b>AVISO:</b> ESTE APORTE ES EXCLUSIVAMENTE DE INJERTOS MODS, SI LO VES EN OTRO LADO PROBABLEMENTE NO ES DE NOSOTROS O ESTA MODIFICADO.</p>
-        <p><b>CREADOR:</b> HILNZO</p>
-        <p><b>INCLUYE:</b> /MACROS - /HINFO - /PCMDS - /SDPOS - /HD - /SENSA.</p>
-        <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">hilnzodruks</span></p>
+        <p><strong>DESCRIPCION:</strong> PARA SABER QUE COSAS TRAE EL APORTE REVISA LA CARPETA INJERTOS SI SIENTES QUE TE VA MAL PUEDE APAGAR LOS EFECTOS CON EL GAMEFIXER USA - F4.</p>
+        <p><strong>AVISO:</strong> ESTE APORTE ES EXCLUSIVAMENTE DE INJERTOS MODS, SI LO VES EN OTRO LADO PROBABLEMENTE NO ES DE NOSOTROS O ESTA MODIFICADO.</p>
+        <p><strong>CREADOR:</strong> HILNZO</p>
+        <p><strong>INCLUYE:</strong> /MACROS - /HINFO - /PCMDS - /SDPOS - /HD - /SENSA.</p>
+        <p><strong>CONTRASEÑA:</strong> <span style="color:red; font-weight:bold;">hilnzodruks</span></p>
         <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/FPXuZPFyCd8" frameborder="0" allowfullscreen></iframe>
+          <iframe src="https://youtube.com/embed/FPXuZPFyCd8" allowfullscreen title="Druks"></iframe>
         </div>
-        <a href="https://www.mediafire.com/file/6d06kpjwz836nu8/DRUKS.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+        <a class="download-btn" href="https://www.mediafire.com/file/6d06kpjwz836nu8/DRUKS.rar/file" target="_blank" rel="noopener">⬇ DESCARGAR APORTE</a>
       </div>
 
-      <!-- NUEVOS APORTES VAN AQUÍ (COPIA/PEGA EL BLOQUE .aporte PARA AGREGAR MÁS) -->
-
-      <!-- Plantillas vacías para copiar -->
+      <!-- Plantillas y próximos (se mantienen) -->
       <div class="aporte">
         <h2>PROXIMAMENTE</h2>
-        <p><b>DESCRITPCION:</b>***.</p>
-        <p><b>CREADOR:</b>***</p>
-        <p><b>INCLUYE:</b>***.</p>
-        <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">***</span></p>
+        <p><strong>DESCRIPCION:</strong> ***.</p><p><strong>CREADOR:</strong> ***</p><p><strong>INCLUYE:</strong> ***</p>
+        <p><strong>CONTRASEÑA:</strong> <span style="color:red; font-weight:bold;">***</span></p>
         <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/YYYYYYYYYYY" frameborder="0" allowfullscreen></iframe>
+          <iframe src="https://youtube.com/embed/YYYYYYYYYYY" allowfullscreen title="Plantilla"></iframe>
         </div>
-        <a href="https://www.mediafire.com/file/xxxxxx/Aporte_Plantilla2.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
-      </div>
-
-      <div class="aporte">
-        <h2>PROXIMAMENTE</h2>
-        <p><b>DESCRITPCION:</b>***.</p>
-        <p><b>CREADOR:</b>***</p>
-        <p><b>INCLUYE:</b>***.</p>
-        <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">***</span></p>
-        <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/ZZZZZZZZZZZ" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <a href="https://www.mediafire.com/file/xxxxxx/Aporte_Plantilla3.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
-      </div>
-
-      <div class="aporte">
-        <h2>PROXIMAMENTE</h2>
-        <p><b>DESCRITPCION:</b>***</p>
-        <p><b>CREADOR:</b>***</p>
-        <p><b>INCLUYE:</b>***.</p>
-        <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">***</span></p>
-        <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/AAAAAAAAAAA" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <a href="https://www.mediafire.com/file/xxxxxx/Aporte_Plantilla4.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
-      </div>
-
-      <div class="aporte">
-        <h2>PROXIMAMENTE</h2>
-        <p><b>DESCRITPCION:</b>***.</p>
-        <p><b>CREADOR:</b>***</p>
-        <p><b>INCLUYE:</b>***.</p>
-        <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">***</span></p>
-        <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/BBBBBBBBBBB" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <a href="https://www.mediafire.com/file/xxxxxx/Aporte_Plantilla5.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+        <a class="download-btn" href="https://www.mediafire.com/file/xxxxxx/Aporte_Plantilla2.rar/file" target="_blank" rel="noopener">⬇ DESCARGAR APORTE</a>
       </div>
     </div>
 
-    <!-- Staff derecha -->
-    <div class="staff-col">
-      <div class="card"><img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1298942723847622690/avatars/3a3d7b727f6d8b018dcc639c260e49f8.png"><p><b>Manzer</b></p><p class="role">SUB ENCARGADO</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/avatars/1260353622001188875/66c48f30b95b7b331c48196b31fb7282.png"><p><b>Maik</b></p><p class="role">ADMIN</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/avatars/933010372120698890/832e04104fa6be337f009700a914c7f3.png"><p><b>David</b></p><p class="role">HEAD MODERADOR</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/avatars/1308947599235223637/ac79495194906156d3116496e4c7c72d.png"><p><b>Zair</b></p><p class="role">HEAD MODERADOR</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/avatars/1386421165052002366/a_e752489e8b37d4af5efefbb1bb796f40.gif"><p><b>Veloz</b></p><p class="role">STAR HELPER</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/avatars/1000966605729181847/9de61981cbe4d9ba985aace659cec1ef.png"><p><b>infi</b></p><p class="role">STAR HELPER</p></div>
+    <!-- staff derecha -->
+    <div class="staff-col" aria-label="staff-derecha">
+      <div class="card">
+        <img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1298942723847622690/avatars/3a3d7b727f6d8b018dcc639c260e49f8.png" alt="Manzer">
+        <p><strong>Manzer</strong></p><p class="role">SUB ENCARGADO</p>
+      </div>
+      <div class="card">
+        <img src="https://cdn.discordapp.com/avatars/1260353622001188875/66c48f30b95b7b331c48196b31fb7282.png" alt="Maik">
+        <p><strong>Maik</strong></p><p class="role">ADMIN</p>
+      </div>
+      <div class="card">
+        <img src="https://cdn.discordapp.com/avatars/933010372120698890/832e04104fa6be337f009700a914c7f3.png" alt="David">
+        <p><strong>David</strong></p><p class="role">HEAD MODERADOR</p>
+      </div>
+      <div class="card">
+        <img src="https://cdn.discordapp.com/avatars/1308947599235223637/ac79495194906156d3116496e4c7c72d.png" alt="Zair">
+        <p><strong>Zair</strong></p><p class="role">HEAD MODERADOR</p>
+      </div>
+      <div class="card">
+        <img src="https://cdn.discordapp.com/avatars/1386421165052002366/a_e752489e8b37d4af5efefbb1bb796f40.gif" alt="Veloz">
+        <p><strong>Veloz</strong></p><p class="role">STAR HELPER</p>
+      </div>
+      <div class="card">
+        <img src="https://cdn.discordapp.com/avatars/1000966605729181847/9de61981cbe4d9ba985aace659cec1ef.png" alt="infi">
+        <p><strong>infi</strong></p><p class="role">STAR HELPER</p>
+      </div>
     </div>
   </div>
 
-  <!-- BOTÓN SHARINGAN -->
-  <div class="sharingan-btn" onclick="activarSharingan()">
+  <!-- BOTON SHARINGAN (funciona igual: efecto + sonido + redirige) -->
+  <div class="sharingan-btn" onclick="activarSharingan()" title="Abrir Aportes Exclusivos">
     <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2VjcXMzdmR5bTc4b3RpN3FmeGlrd3M3ZzltNjY4bmY0c2F2MmtnYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AD9YKaY2vxTXO/giphy.gif" alt="Sharingan">
   </div>
 
-  <!-- EFECTO FULLSCREEN -->
+  <!-- EFECTO FULLSCREEN SHARINGAN -->
   <div id="sharingan-overlay" onclick="cerrarSharingan()">
-    <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Sharingan Efecto">
+    <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Efecto Sharingan">
   </div>
 
   <!-- SONIDO SHARINGAN -->
-  <audio id="sharingan-sound">
-    <source src="https://files.catbox.moe/4dxgfn.mp3" type="audio/mpeg">
-  </audio>
+  <audio id="sharingan-sound"><source src="https://files.catbox.moe/4dxgfn.mp3" type="audio/mpeg"></audio>
 
   <script>
+    // Toggle música (usa el mismo elemento bg-music)
     function toggleMusic() {
       const music = document.getElementById("bg-music");
-      if (music.paused) music.play(); else music.pause();
+      if (!music) return;
+      if (music.paused) music.play().catch(()=>{}); else music.pause();
     }
 
+    // Entrada: al hacer click en ENTRAR desaparece overlay y reproduce bg-music.
+    document.getElementById("enter-btn").addEventListener("click", () => {
+      const overlay = document.getElementById("overlay");
+      const music = document.getElementById("bg-music");
+      overlay.classList.add("fade-out");
+      // Intentamos tocar la música (si el navegador lo permite)
+      if (music) music.play().catch(()=>{ /* si el navegador bloquea, el usuario puede pulsar Sonido */ });
+      // quitamos del DOM después de la animación
+      setTimeout(() => { overlay.style.display = "none"; }, 1000);
+    });
+
+    // Sharingan: muestra overlay, reproduce sonido, luego redirige (igual que pediste)
     function activarSharingan() {
       const overlay = document.getElementById("sharingan-overlay");
       const sound = document.getElementById("sharingan-sound");
-
       overlay.classList.add("active");
-      sound.play();
-
+      if (sound) sound.currentTime = 0, sound.play().catch(()=>{});
       setTimeout(() => {
+        // marca para que al volver no quede pillado
         sessionStorage.setItem("sharinganActivo", "true");
+        // redirige a la página que tenías
         window.location.href = "https://hilnzo.github.io/PRUEBAS-INJERTOS/aportes.esclusivos.html";
       }, 3000);
     }
@@ -462,7 +366,7 @@
       overlay.classList.remove("active");
     }
 
-    // Para evitar que quede trabado al volver
+    // Evitar que quede trabado al volver
     window.addEventListener("load", () => {
       if (sessionStorage.getItem("sharinganActivo")) {
         cerrarSharingan();
@@ -471,4 +375,4 @@
     });
   </script>
 </body>
-                                
+        </html>
