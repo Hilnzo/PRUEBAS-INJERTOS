@@ -242,7 +242,7 @@
   </style>
 </head>
 <body>
-  <h1>APORTES ESCLUSIVOS</h1>
+  <h1>APORTES EXCLUSIVOS</h1>
   <p>"PROXIMAMENTE"</p>
 
   <!-- Redes -->
@@ -258,7 +258,7 @@
   <audio id="bg-music" autoplay loop>
     <source src="https://files.catbox.moe/vf3nc4.mp3" type="audio/mpeg">
   </audio>
-  <button class="music-btn" onclick="toggleMusic()">sonido - angel caido</button>
+  <button class="music-btn" onclick="toggleMusic()">Sonido - Ángel Caído</button>
 
   <!-- Layout con Staff y Aportes -->
   <div class="layout">
@@ -272,11 +272,6 @@
 
     <!-- APORTES -->
     <div id="aportes">
-     
-
-      <!-- NUEVOS APORTES VAN AQUÍ (COPIA/PEGA EL BLOQUE .aporte PARA AGREGAR MÁS) -->
-
-      <!-- Plantillas vacías para copiar -->
       <div class="aporte">
         <h2>PROXIMAMENTE</h2>
         <p><b>DESCRITPCION:</b>***.</p>
@@ -284,45 +279,9 @@
         <p><b>INCLUYE:</b>***.</p>
         <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">***</span></p>
         <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/YYYYYYYYYYY" frameborder="0" allowfullscreen></iframe>
+          <iframe src="https://youtube.com/embed/YYYYYYYYYYY?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
         </div>
         <a href="https://www.mediafire.com/file/xxxxxx/Aporte_Plantilla2.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
-      </div>
-
-      <div class="aporte">
-        <h2>PROXIMAMENTE</h2>
-        <p><b>DESCRITPCION:</b>***.</p>
-        <p><b>CREADOR:</b>***</p>
-        <p><b>INCLUYE:</b>***.</p>
-        <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">***</span></p>
-        <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/ZZZZZZZZZZZ" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <a href="https://www.mediafire.com/file/xxxxxx/Aporte_Plantilla3.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
-      </div>
-
-      <div class="aporte">
-        <h2>PROXIMAMENTE</h2>
-        <p><b>DESCRITPCION:</b>***</p>
-        <p><b>CREADOR:</b>***</p>
-        <p><b>INCLUYE:</b>***.</p>
-        <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">***</span></p>
-        <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/AAAAAAAAAAA" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <a href="https://www.mediafire.com/file/xxxxxx/Aporte_Plantilla4.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
-      </div>
-
-      <div class="aporte">
-        <h2>PROXIMAMENTE</h2>
-        <p><b>DESCRITPCION:</b>***.</p>
-        <p><b>CREADOR:</b>***</p>
-        <p><b>INCLUYE:</b>***.</p>
-        <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">***</span></p>
-        <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/BBBBBBBBBBB" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <a href="https://www.mediafire.com/file/xxxxxx/Aporte_Plantilla5.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
       </div>
     </div>
 
@@ -353,11 +312,34 @@
   </audio>
 
   <script>
+    // Botón música
     function toggleMusic() {
       const music = document.getElementById("bg-music");
       if (music.paused) music.play(); else music.pause();
     }
 
+    // Pausar música cuando se reproduce un video
+    function onYouTubeIframeAPIReady() {
+      const iframes = document.querySelectorAll("iframe");
+      iframes.forEach(iframe => {
+        new YT.Player(iframe, {
+          events: {
+            'onStateChange': function (event) {
+              if (event.data == YT.PlayerState.PLAYING) {
+                document.getElementById("bg-music").pause();
+              }
+            }
+          }
+        });
+      });
+    }
+
+    // Cargar API de YouTube
+    const tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.body.appendChild(tag);
+
+    // Sharingan efecto
     function activarSharingan() {
       const overlay = document.getElementById("sharingan-overlay");
       const sound = document.getElementById("sharingan-sound");
@@ -367,7 +349,7 @@
 
       setTimeout(() => {
         sessionStorage.setItem("sharinganActivo", "true");
-        window.location.href = "https://github.com/Hilnzo/PRUEBAS-INJERTOS/commit/5f295bb82179e817d61b5b2d88dc814c7661b783";
+        window.location.href = "https://github.com/Hilnzo/PRUEBAS-INJERTOS";
       }, 3000);
     }
 
@@ -376,7 +358,6 @@
       overlay.classList.remove("active");
     }
 
-    // Para evitar que quede trabado al volver
     window.addEventListener("load", () => {
       if (sessionStorage.getItem("sharinganActivo")) {
         cerrarSharingan();
@@ -385,4 +366,4 @@
     });
   </script>
 </body>
-                                  
+</html>
