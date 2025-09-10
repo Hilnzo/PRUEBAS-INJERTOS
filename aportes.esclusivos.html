@@ -32,7 +32,6 @@
       z-index: 2;
     }
 
-    /* Redes sociales */
     .socials {
       margin-top: 20px;
       position: relative;
@@ -63,7 +62,6 @@
     .socials a.roblox { background: #FF4757; }
     .socials a.discord { background: #5865F2; }
 
-    /* Botón música */
     .music-btn {
       margin-top: 30px;
       padding: 10px 20px;
@@ -79,7 +77,6 @@
     }
     .music-btn:hover { background: red; border-color: red; color: black; }
 
-    /* Layout */
     .layout {
       display: grid;
       grid-template-columns: 1fr 2fr 1fr;
@@ -87,7 +84,6 @@
       margin-top: 40px;
     }
 
-    /* Staff */
     .staff-col {
       display: flex;
       flex-direction: column;
@@ -116,7 +112,6 @@
     }
     .card .role { font-size: 13px; color: #bbb; }
 
-    /* Aportes */
     .aporte {
       background: rgba(0, 0, 0, 0.7);
       padding: 30px;
@@ -141,7 +136,6 @@
       text-align: center;
     }
 
-    /* Video YouTube responsivo */
     .video-wrapper {
       position: relative;
       padding-bottom: 56.25%;
@@ -174,7 +168,6 @@
       box-shadow: 0 0 20px red, 0 0 40px red, 0 0 60px red;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
       .layout { display: block; }
       .staff-col {
@@ -191,7 +184,6 @@
       }
     }
 
-    /* Botón Sharingan */
     .sharingan-btn {
       position: fixed;
       bottom: 20px;
@@ -216,7 +208,6 @@
       to { box-shadow: 0 0 20px red, 0 0 40px red; }
     }
 
-    /* Overlay fullscreen */
     #sharingan-overlay {
       position: fixed;
       top: 0; left: 0;
@@ -245,7 +236,6 @@
   <h1>APORTES EXCLUSIVOS</h1>
   <p>"PROXIMAMENTE"</p>
 
-  <!-- Redes -->
   <div class="socials">
     <a href="https://open.spotify.com/user/31mtjz2i5m63xek4cp4pevznd74i" target="_blank" class="spotify"><i class="fa-brands fa-spotify"></i> Spotify</a>
     <a href="https://steamcommunity.com/profiles/76561199805784382/" target="_blank" class="steam"><i class="fa-brands fa-steam"></i> Steam</a>
@@ -254,15 +244,12 @@
     <a href="https://discord.gg/rNJ7UaPBYa" target="_blank" class="discord" style="margin-top:15px; display:inline-block;"><i class="fa-brands fa-discord"></i> DC - INJERTOS MODS</a>
   </div>
 
-  <!-- Música -->
   <audio id="bg-music" autoplay loop>
     <source src="https://files.catbox.moe/vf3nc4.mp3" type="audio/mpeg">
   </audio>
   <button class="music-btn" onclick="toggleMusic()">Sonido - Ángel Caído</button>
 
-  <!-- Layout con Staff y Aportes -->
   <div class="layout">
-    <!-- Staff izquierda -->
     <div class="staff-col">
       <div class="card"><img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif"><p><b>Hilnzo</b></p><p class="role">DUEÑO</p></div>
       <div class="card"><img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1354865570880946176/avatars/5986239fed096a6beb8d2998bd1ac729.png"><p><b>Kalcor</b></p><p class="role">DUEÑO</p></div>
@@ -270,7 +257,6 @@
       <div class="card"><img src="https://cdn.discordapp.com/avatars/1221849688593137830/ccbeb578b68bd02a4b19dc1ddd506842.png"><p><b>JACOB</b></p><p class="role">DUEÑO</p></div>
     </div>
 
-    <!-- APORTES -->
     <div id="aportes">
       <div class="aporte">
         <h2>PROXIMAMENTE</h2>
@@ -279,13 +265,12 @@
         <p><b>INCLUYE:</b>***.</p>
         <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">***</span></p>
         <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/PY9v8G8cIxo" frameborder="0" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/PY9v8G8cIxo?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
         </div>
         <a href="https://www.mediafire.com/file/xxxxxx/Aporte_Plantilla2.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
       </div>
     </div>
 
-    <!-- Staff derecha -->
     <div class="staff-col">
       <div class="card"><img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1298942723847622690/avatars/3a3d7b727f6d8b018dcc639c260e49f8.png"><p><b>Manzer</b></p><p class="role">SUB ENCARGADO</p></div>
       <div class="card"><img src="https://cdn.discordapp.com/avatars/1260353622001188875/66c48f30b95b7b331c48196b31fb7282.png"><p><b>Maik</b></p><p class="role">ADMIN</p></div>
@@ -296,29 +281,24 @@
     </div>
   </div>
 
-  <!-- BOTÓN SHARINGAN -->
   <div class="sharingan-btn" onclick="activarSharingan()">
     <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2VjcXMzdmR5bTc4b3RpN3FmeGlrd3M3ZzltNjY4bmY0c2F2MmtnYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AD9YKaY2vxTXO/giphy.gif" alt="Sharingan">
   </div>
 
-  <!-- EFECTO FULLSCREEN -->
   <div id="sharingan-overlay" onclick="cerrarSharingan()">
     <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Sharingan Efecto">
   </div>
 
-  <!-- SONIDO SHARINGAN -->
   <audio id="sharingan-sound">
     <source src="https://files.catbox.moe/4dxgfn.mp3" type="audio/mpeg">
   </audio>
 
   <script>
-    // Botón música
     function toggleMusic() {
       const music = document.getElementById("bg-music");
       if (music.paused) music.play(); else music.pause();
     }
 
-    // Pausar música cuando se reproduce un video
     function onYouTubeIframeAPIReady() {
       const iframes = document.querySelectorAll("iframe");
       iframes.forEach(iframe => {
@@ -334,12 +314,10 @@
       });
     }
 
-    // Cargar API de YouTube
     const tag = document.createElement("script");
     tag.src = "https://www.youtube.com/iframe_api";
     document.body.appendChild(tag);
 
-    // Sharingan efecto
     function activarSharingan() {
       const overlay = document.getElementById("sharingan-overlay");
       const sound = document.getElementById("sharingan-sound");
