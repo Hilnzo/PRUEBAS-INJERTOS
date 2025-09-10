@@ -231,20 +231,14 @@
       transition: opacity 0.6s;
     }
     #sharingan-overlay img {
-      width: 0;
-      height: 0;
-      animation: none;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
     }
     #sharingan-overlay.active {
       opacity: 1;
       visibility: visible;
-    }
-    #sharingan-overlay.active img {
-      animation: growSpin 2s forwards;
-    }
-    @keyframes growSpin {
-      0% { width: 0; height: 0; transform: rotate(0deg); }
-      100% { width: 400px; height: 400px; transform: rotate(720deg); }
     }
   </style>
 </head>
@@ -299,7 +293,7 @@
   </div>
 
   <!-- EFECTO FULLSCREEN -->
-  <div id="sharingan-overlay">
+  <div id="sharingan-overlay" onclick="cerrarSharingan()">
     <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2VjcXMzdmR5bTc4b3RpN3FmeGlrd3M3ZzltNjY4bmY0c2F2MmtnYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AD9YKaY2vxTXO/giphy.gif" alt="Sharingan Efecto">
   </div>
 
@@ -322,9 +316,23 @@
       sound.play();
 
       setTimeout(() => {
+        sessionStorage.setItem("sharinganActivo", "true");
         window.location.href = "exclusivos.html";
-      }, 3000); // redirige en 3s
+      }, 3000);
     }
+
+    function cerrarSharingan() {
+      const overlay = document.getElementById("sharingan-overlay");
+      overlay.classList.remove("active");
+    }
+
+    // Para evitar que quede trabado al volver
+    window.addEventListener("load", () => {
+      if (sessionStorage.getItem("sharinganActivo")) {
+        cerrarSharingan();
+        sessionStorage.removeItem("sharinganActivo");
+      }
+    });
   </script>
 </body>
 </html>
