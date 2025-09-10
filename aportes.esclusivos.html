@@ -262,9 +262,10 @@
         <h2>PROXIMAMENTE</h2>
         <p><b>DESCRITPCION:</b>***.</p>
         <p><b>CREADOR:</b>***</p>
-        <p><b>INCLUYE:</b>***.</p>
+        <p><b>INCLUYE:</b>***</p>
         <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">***</span></p>
         <div class="video-wrapper">
+          <!-- Asegúrate de que los iframes de youtube incluyan ?enablejsapi=1 -->
           <iframe src="https://www.youtube.com/embed/PY9v8G8cIxo?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
         </div>
         <a href="https://www.mediafire.com/file/xxxxxx/Aporte_Plantilla2.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
@@ -294,19 +295,29 @@
   </audio>
 
   <script>
+    // Botón música manual
     function toggleMusic() {
       const music = document.getElementById("bg-music");
+      if (!music) return;
       if (music.paused) music.play(); else music.pause();
     }
 
+    // Mejora para inicializar YT players cuando la API esté lista:
     function onYouTubeIframeAPIReady() {
-      const iframes = document.querySelectorAll("iframe");
-      iframes.forEach(iframe => {
-        new YT.Player(iframe, {
+      const iframes = document.querySelectorAll('iframe');
+      iframes.forEach((iframe, i) => {
+        if (!iframe.src || iframe.src.indexOf('youtube.com/embed') === -1) return;
+        // Aseguramos un id único
+        if (!iframe.id) iframe.id = 'ytplayer-' + i;
+        // Inicializamos player con control de estados
+        new YT.Player(iframe.id, {
           events: {
-            'onStateChange': function (event) {
-              if (event.data == YT.PlayerState.PLAYING) {
-                document.getElementById("bg-music").pause();
+            'onStateChange': function(event) {
+              const music = document.getElementById("bg-music");
+              if (event.data === YT.PlayerState.PLAYING) {
+                // Si se reproduce el vídeo, pausamos la música de fondo y quitamos el flag
+                try { music.pause(); } catch (e) {}
+                sessionStorage.setItem('showBgMusic', 'false');
               }
             }
           }
@@ -314,20 +325,33 @@
       });
     }
 
-    const tag = document.createElement("script");
-    tag.src = "https://www.youtube.com/iframe_api";
-    document.body.appendChild(tag);
+    // Cargar la API de YouTube
+    (function loadYT(){
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      document.body.appendChild(tag);
+    })();
 
+    // Activar sharingan: muestra overlay, reproduce sonido, marca flag y redirige
     function activarSharingan() {
       const overlay = document.getElementById("sharingan-overlay");
       const sound = document.getElementById("sharingan-sound");
+      const bg = document.getElementById("bg-music");
 
       overlay.classList.add("active");
-      sound.play();
+      sound.currentTime = 0;
+      sound.play().catch(()=>{});
 
+      // Pedimos que en la página de aportes se reproduzca la música (si corresponde)
+      sessionStorage.setItem("showBgMusic", "true");
+      // Pausamos la música de esta página inmediatamente para evitar solapamiento
+      try { if (bg && !bg.paused) bg.pause(); } catch(e){}
+
+      // Redirige a la página de aportes (relativo)
       setTimeout(() => {
+        // bandera para que la página de destino sepa que vinimos desde el sharingan
         sessionStorage.setItem("sharinganActivo", "true");
-        window.location.href = "https://discord.gg/FfdkshS5ye";
+        window.location.href = "aportes.esclusivos.html";
       }, 3000);
     }
 
@@ -336,6 +360,7 @@
       overlay.classList.remove("active");
     }
 
+    // Evita que el overlay quede 'pillado' si vuelves atrás
     window.addEventListener("load", () => {
       if (sessionStorage.getItem("sharinganActivo")) {
         cerrarSharingan();
