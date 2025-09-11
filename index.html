@@ -63,21 +63,63 @@
     .socials a.roblox { background: #FF4757; }  
     .socials a.discord { background: #5865F2; }  
 
-    /* Botón música */  
+    /* Botón música - FIX: Estados dinámicos + animación */
     .music-btn {  
       margin-top: 30px;  
       padding: 10px 20px;  
       border: 2px solid white;  
       border-radius: 10px;  
-      background: transparent;  
+      background: transparent;  /* Estado base: apagado */  
       color: white;  
       font-size: 1.1rem;  
       cursor: pointer;  
-      transition: 0.3s;  
+      transition: all 0.3s ease;  /* Transición suave para todo */  
       position: relative;  
       z-index: 2;  
     }  
-    .music-btn:hover { background: red; border-color: red; color: black; }  
+    .music-btn:hover {  
+      transform: scale(1.05);  /* Hover general: leve zoom */  
+    }  
+    .music-btn:active {  
+      transform: scale(0.98);  /* Al click: leve shrink para feedback */  
+    }  
+
+    /* Estado apagado (paused) */  
+    .music-btn.paused {  
+      background: transparent;  
+      border-color: white;  
+      color: white;  
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);  
+    }  
+    .music-btn.paused:hover {  
+      background: rgba(255, 255, 255, 0.1);  /* Hover sutil en paused */  
+      border-color: #ccc;  
+    }  
+
+    /* Estado encendido (playing) */  
+    .music-btn.playing {  
+      background: red;  
+      border-color: red;  
+      color: white;  /* Blanco para contraste en rojo */  
+      box-shadow: 0 0 10px red, 0 0 20px rgba(255, 0, 0, 0.8);  
+      animation: pulse 1.5s infinite alternate;  /* Animación pulsando cuando suena */  
+    }  
+    .music-btn.playing:hover {  
+      background: darkred;  
+      border-color: darkred;  
+      box-shadow: 0 0 15px red, 0 0 30px rgba(255, 0, 0, 1);  
+    }  
+
+    @keyframes pulse {  
+      from {  
+        box-shadow: 0 0 10px red, 0 0 20px rgba(255, 0, 0, 0.8);  
+        transform: scale(1);  
+      }  
+      to {  
+        box-shadow: 0 0 20px red, 0 0 40px rgba(255, 0, 0, 1);  
+        transform: scale(1.02);  /* Pulsación leve */  
+      }  
+    }  
 
     /* Layout */  
     .layout {  
@@ -216,28 +258,28 @@
       to { box-shadow: 0 0 20px red, 0 0 40px red; }  
     }  
 
-    /* Overlay fullscreen Sharingan - FIX V2: Fondo negro sólido y sin flex para evitar glitches de transparencias */
+    /* Overlay fullscreen Sharingan */  
     #sharingan-overlay {  
       position: fixed;  
       top: 0; left: 0;  
       width: 100%; height: 100%;  
-      background: #000 !important;  /* Negro sólido para tapar transparencias */  
-      background-size: cover;  
+      background: black;  
+      display: flex;  
+      align-items: center;  
+      justify-content: center;  
       z-index: 2000;  
       opacity: 0;  
       visibility: hidden;  
       transition: opacity 0.6s;  
     }  
     #sharingan-overlay img {  
-      position: absolute;  
-      top: 50%;  
-      left: 50%;  
-      transform: translate(-50%, -50%);  /* Centra el GIF sin flex */  
-      width: 100%;  
-      height: 100%;  
-      object-fit: cover;  
-      mix-blend-mode: normal;  /* Fuerza blend normal para que transparencias se fundan con negro */  
-      z-index: 2001;  
+      max-width: 80%;  
+      max-height: 80%;  
+      width: auto;  
+      height: auto;  
+      object-fit: contain;  
+      background-color: black;  
+      border-radius: 50%;  
     }  
     #sharingan-overlay.active {  
       opacity: 1;  
@@ -311,7 +353,7 @@
     <audio id="bg-music" loop>  
       <source src="https://files.catbox.moe/vf3nc4.mp3" type="audio/mpeg">  
     </audio>  
-    <button class="music-btn" onclick="toggleMusic()">sonido - angel caido</button>  
+    <button class="music-btn paused" id="musicToggle" onclick="toggleMusic()">sonido - angel caido</button>  <!-- Clase inicial: paused -->  
 
     <!-- Layout con Staff y Aportes -->  
     <div class="layout">  
@@ -412,7 +454,7 @@
             <iframe src="https://youtube.com/embed/FPXuZPFyCd8?enablejsapi=1" frameborder="0" allowfullscreen id="youtube-video-7"></iframe>  
           </div>  
           <a href="https://www.mediafire.com/file/6d06kpjwz836nu8/DRUKS.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>  
-                             </div>  
+  </div>  
 
         <!-- Plantillas vacías para copiar -->  
         <div class="aporte">  
@@ -479,7 +521,7 @@
   </div>  
 
   <!-- Botón Sharingan -->  
-  <div class="sharingan-btn" onclick="activarSharingan()">  
+  <div class="sharingan-btn" onclick="activarSharingan(event)">  
     <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2VjcXMzdmR5bTc4b3RpN3FmeGlrd3M3ZzltNjY4bmY0c2F2MmtnYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AD9YKaY2vxTXO/giphy.gif" alt="Sharingan">  
   </div>  
 
@@ -496,26 +538,41 @@
   <script>  
     // Inicializar la música de fondo  
     const bgMusic = document.getElementById("bg-music");  
+    const musicBtn = document.getElementById("musicToggle");  
     let isMusicPlaying = false;  
+
+    // Eventos del audio para sincronizar estado visual automáticamente  
+    bgMusic.onplay = function() {  
+      isMusicPlaying = true;  
+      musicBtn.classList.remove("paused");  
+      musicBtn.classList.add("playing");  
+      musicBtn.textContent = "apagado - angel caido";  // Texto cuando suena  
+    };  
+
+    bgMusic.onpause = function() {  
+      isMusicPlaying = false;  
+      musicBtn.classList.remove("playing");  
+      musicBtn.classList.add("paused");  
+      musicBtn.textContent = "sonido - angel caido";  // Texto cuando pausado  
+    };  
 
     function toggleMusic() {  
       if (bgMusic.paused) {  
-        bgMusic.play();  
-        isMusicPlaying = true;  
+        bgMusic.play().catch(e => console.log("Error al reproducir: ", e));  // Manejo de errores (ej. autoplay policy)  
       } else {  
         bgMusic.pause();  
-        isMusicPlaying = false;  
       }  
     }  
 
     function enterSite() {  
       document.getElementById("intro-overlay").style.display = "none";  
       document.getElementById("mainContent").style.display = "block";  
-      bgMusic.play();  
-      isMusicPlaying = true;  
+      // No auto-play aquí para evitar issues en mobile  
     }  
 
-    function activarSharingan() {  
+    function activarSharingan(event) {  
+      event.preventDefault();  
+      event.stopPropagation();  
       const overlay = document.getElementById("sharingan-overlay");  
       const sound = document.getElementById("sharingan-sound");  
 
@@ -542,21 +599,19 @@
           new YT.Player(id, {  
             events: {  
               'onStateChange': (event) => {  
-                console.log('Estado del video:', event.data); // Depuración  
+                console.log('Estado del video:', event.data);  
                 if (event.data === YT.PlayerState.PLAYING && isMusicPlaying) {  
                   bgMusic.pause();  
                   isMusicPlaying = false;  
-                  console.log('Música pausada'); // Depuración  
                 } else if ((event.data === YT.PlayerState.ENDED || event.data === YT.PlayerState.PAUSED) && !isMusicPlaying) {  
                   bgMusic.play();  
                   isMusicPlaying = true;  
-                  console.log('Música reanudada'); // Depuración  
                 }  
               }  
             }  
           });  
         } else {  
-          console.error(`Iframe con ID ${id} no encontrado`); // Depuración  
+          console.error(`Iframe con ID ${id} no encontrado`);  
         }  
       });  
     }  
@@ -585,4 +640,4 @@
     });  
   </script>  
 </body>  
-                            </html>
+                                                                                                                                                   </html>
