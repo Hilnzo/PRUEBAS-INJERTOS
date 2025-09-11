@@ -16,6 +16,52 @@
       overflow-x: hidden;
     }
 
+    /* Pantalla inicial */
+    .intro-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #000;
+      z-index: 3000;
+    }
+
+    .gif-background {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    #enterButton {
+      position: relative;
+      z-index: 2;
+      padding: 15px 30px;
+      font-size: 18px;
+      cursor: pointer;
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+      font-family: "Courier New", monospace;
+      font-weight: bold;
+      box-shadow: 0 0 10px red, 0 0 20px rgba(255, 0, 0, 0.8);
+    }
+
+    #enterButton:hover {
+      background-color: #e63939;
+      box-shadow: 0 0 20px red, 0 0 40px red;
+    }
+
+    /* Estilos originales */
     h1 {
       font-size: 3rem;
       margin-top: 20px;
@@ -32,7 +78,6 @@
       z-index: 2;
     }
 
-    /* Redes sociales */
     .socials {
       margin-top: 20px;
       position: relative;
@@ -63,7 +108,6 @@
     .socials a.roblox { background: #FF4757; }
     .socials a.discord { background: #5865F2; }
 
-    /* Botón música */
     .music-btn {
       margin-top: 30px;
       padding: 10px 20px;
@@ -79,7 +123,6 @@
     }
     .music-btn:hover { background: red; border-color: red; color: black; }
 
-    /* Layout */
     .layout {
       display: grid;
       grid-template-columns: 1fr 2fr 1fr;
@@ -87,7 +130,6 @@
       margin-top: 40px;
     }
 
-    /* Staff */
     .staff-col {
       display: flex;
       flex-direction: column;
@@ -116,7 +158,6 @@
     }
     .card .role { font-size: 13px; color: #bbb; }
 
-    /* Aportes */
     .aporte {
       background: rgba(0, 0, 0, 0.7);
       padding: 30px;
@@ -141,7 +182,6 @@
       text-align: center;
     }
 
-    /* Video YouTube responsivo */
     .video-wrapper {
       position: relative;
       padding-bottom: 56.25%;
@@ -174,7 +214,6 @@
       box-shadow: 0 0 20px red, 0 0 40px red, 0 0 60px red;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
       .layout { display: block; }
       .staff-col {
@@ -191,7 +230,6 @@
       }
     }
 
-    /* Botón Sharingan */
     .sharingan-btn {
       position: fixed;
       bottom: 20px;
@@ -216,7 +254,6 @@
       to { box-shadow: 0 0 20px red, 0 0 40px red; }
     }
 
-    /* Overlay fullscreen */
     #sharingan-overlay {
       position: fixed;
       top: 0; left: 0;
@@ -242,233 +279,277 @@
   </style>
 </head>
 <body>
-  <h1>HILNZO</h1>
-  <p>"crece sin hacerle daño a alguien sin que se lo merezca"</p>
-
-  <!-- Redes -->
-  <div class="socials">
-    <a href="https://open.spotify.com/user/31mtjz2i5m63xek4cp4pevznd74i" target="_blank" class="spotify"><i class="fa-brands fa-spotify"></i> Spotify</a>
-    <a href="https://steamcommunity.com/profiles/76561199805784382/" target="_blank" class="steam"><i class="fa-brands fa-steam"></i> Steam</a>
-    <a href="https://www.roblox.com/es/users/9207271059/profile" target="_blank" class="roblox"><i class="fa-solid fa-cube"></i> Roblox</a>
-    <a href="https://discordapp.com/users/1298301131641983019" target="_blank" class="discord"><i class="fa-brands fa-discord"></i> Discord</a>
-    <a href="https://discord.gg/rNJ7UaPBYa" target="_blank" class="discord" style="margin-top:15px; display:inline-block;"><i class="fa-brands fa-discord"></i> DC - INJERTOS MODS</a>
+  <!-- Pantalla inicial -->
+  <div class="intro-container">
+    <img src="https://media.giphy.com/media/AD9YKaY2vxTXO/giphy.gif" alt="GIF Animado" class="gif-background">
+    <button id="enterButton">Entrar</button>
   </div>
 
-  <!-- Música -->
-  <audio id="bg-music" autoplay loop>
-    <source src="https://files.catbox.moe/vf3nc4.mp3" type="audio/mpeg">
-  </audio>
-  <button class="music-btn" onclick="toggleMusic()">sonido - angel caido</button>
+  <!-- Contenido principal -->
+  <div class="content" id="mainContent" style="display: none;">
+    <h1>HILNZO</h1>
+    <p>"crece sin hacerle daño a alguien sin que se lo merezca"</p>
 
-  <!-- Layout con Staff y Aportes -->
-  <div class="layout">
-    <!-- Staff izquierda -->
-    <div class="staff-col">
-      <div class="card"><img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif"><p><b>Hilnzo</b></p><p class="role">DUEÑO</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1354865570880946176/avatars/5986239fed096a6beb8d2998bd1ac729.png"><p><b>Kalcor</b></p><p class="role">DUEÑO</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/avatars/1246355878840631327/2c0846a264c2af5eede51ab3aa0fc3cb.png"><p><b>KAIROX</b></p><p class="role">DUEÑO</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/avatars/1221849688593137830/ccbeb578b68bd02a4b19dc1ddd506842.png"><p><b>JACOB</b></p><p class="role">DUEÑO</p></div>
+    <!-- Redes -->
+    <div class="socials">
+      <a href="https://open.spotify.com/user/31mtjz2i5m63xek4cp4pevznd74i" target="_blank" class="spotify"><i class="fa-brands fa-spotify"></i> Spotify</a>
+      <a href="https://steamcommunity.com/profiles/76561199805784382/" target="_blank" class="steam"><i class="fa-brands fa-steam"></i> Steam</a>
+      <a href="https://www.roblox.com/es/users/9207271059/profile" target="_blank" class="roblox"><i class="fa-solid fa-cube"></i> Roblox</a>
+      <a href="https://discordapp.com/users/1298301131641983019" target="_blank" class="discord"><i class="fa-brands fa-discord"></i> Discord</a>
+      <a href="https://discord.gg/rNJ7UaPBYa" target="_blank" class="discord" style="margin-top:15px; display:inline-block;"><i class="fa-brands fa-discord"></i> DC - INJERTOS MODS</a>
     </div>
 
-    <!-- APORTES -->
-    <div id="aportes">
-      <div class="aporte">
-        <h2>TIFFANY</h2>
-        <p><b>DESCRITPCION:</b> aporte para los demeros jodidos hecho por Hilnzo (@klenoz).</p>
-        <p>Si descargas este aporte por otro lugar que no sea mi discord de aportes o sampmods, es que no es mío y fue modificado.</p>
-        <p><b>INCLUYE:</b> macros, barra de estamina, gamefixer, hit maker, sonido de campana, efectos, armas y más.</p>
-        <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">tiffanyctmr</span></p>
-        <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/1Iq2YeDLVmM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <a href="https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+    <!-- Música -->
+    <audio id="bg-music" loop>
+      <source src="https://files.catbox.moe/vf3nc4.mp3" type="audio/mpeg">
+    </audio>
+    <button class="music-btn" onclick="toggleMusic()">sonido - angel caido</button>
+
+    <!-- Layout -->
+    <div class="layout">
+      <!-- Staff izquierda -->
+      <div class="staff-col">
+        <div class="card"><img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif"><p><b>Hilnzo</b></p><p class="role">DUEÑO</p></div>
+        <div class="card"><img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1354865570880946176/avatars/5986239fed096a6beb8d2998bd1ac729.png"><p><b>Kalcor</b></p><p class="role">DUEÑO</p></div>
+        <div class="card"><img src="https://cdn.discordapp.com/avatars/1246355878840631327/2c0846a264c2af5eede51ab3aa0fc3cb.png"><p><b>KAIROX</b></p><p class="role">DUEÑO</p></div>
+        <div class="card"><img src="https://cdn.discordapp.com/avatars/1221849688593137830/ccbeb578b68bd02a4b19dc1ddd506842.png"><p><b>JACOB</b></p><p class="role">DUEÑO</p></div>
       </div>
 
-      <div class="aporte">
-        <h2>VERSION R5 INJERTOS MODS</h2>
-        <p><b>DESCRITPCION:</b> unos de los aportes que menos me gusto crear por ser R5 ya que no es compatible con nada.</p>
-        <p>Si descargas este aporte por otro lugar que no sea mi discord de aportes o sampmods, es que no es mío y fue modificado.</p>
-        <p><b>INCLUYE:</b> El aporte esta limpio el R5 no permite muchos cleos o .asi).</p>
-        <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">injertosr5</span></p>
-        <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/BywZG9Ckh9Q" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <!-- Aportes -->
+      <div id="aportes">
+        <div class="aporte">
+          <h2>TIFFANY</h2>
+          <p><b>DESCRITPCION:</b> aporte para los demeros jodidos hecho por Hilnzo (@klenoz).</p>
+          <p>Si descargas este aporte por otro lugar que no sea mi discord de aportes o sampmods, es que no es mío y fue modificado.</p>
+          <p><b>INCLUYE:</b> macros, barra de estamina, gamefixer, hit maker, sonido de campana, efectos, armas y más.</p>
+          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">tiffanyctmr</span></p>
+          <div class="video-wrapper">
+            <iframe src="https://youtube.com/embed/1Iq2YeDLVmM" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <a href="https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
         </div>
-        <a href="https://www.mediafire.com/file/wsgq5q0r3su9hzo/version_R5_injertos_mods.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+        <div class="aporte">
+          <h2>VERSION R5 INJERTOS MODS</h2>
+          <p><b>DESCRITPCION:</b> unos de los aportes que menos me gusto crear por ser R5 ya que no es compatible con nada.</p>
+          <p>Si descargas este aporte por otro lugar que no sea mi discord de aportes o sampmods, es que no es mío y fue modificado.</p>
+          <p><b>INCLUYE:</b> El aporte esta limpio el R5 no permite muchos cleos o .asi).</p>
+          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">injertosr5</span></p>
+          <div class="video-wrapper">
+            <iframe src="https://youtube.com/embed/BywZG9Ckh9Q" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <a href="https://www.mediafire.com/file/wsgq5q0r3su9hzo/version_R5_injertos_mods.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+        </div>
+        <div class="aporte">
+          <h2>DataBlue🔵MR$</h2>
+          <p><b>DESCRITPCION:</b> Para que se les vea igual usar los cleos. (Estan dentro de la carpeta de la data).</p>
+          <p>CREADOR: (@manzer)</p>
+          <p><b>INCLUYE:</b> lista rápida de lo que trae: skins, cleos, sonidos, armas, etc).</p>
+          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">NO TIENE CONTRASEÑA</span></p>
+          <div class="video-wrapper">
+            <iframe src="https://youtube.com/embed/Tv7fyMCG0G0" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <a href="https://www.mediafire.com/file/12efvtjw3392v58/DataBlue%F0%9F%94%B5MR%24.zip/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+        </div>
+        <div class="aporte">
+          <h2>ROJO SANGRE</h2>
+          <p><b>DESCRITPCION:</b> Este aporte fue el que mas me gusto hacer ya que le dedique bastante tiempo y le agg varias cosas sin que de crash.</p>
+          <p><b>AVISO:</b> ESTE APORTE ES EXCLUSIVAMENTE DE INJERTOS MODS, SI LO VES EN OTRO LADO PROBABLEMENTE NO ES DE NOSOTROS O ESTA MODIFICADO.</p>
+          <p>CREADOR: Dayron_Wayne</p>
+          <p><b>INCLUYE:</b> armas, skins, calles, timecyc, gmenu, ds, fov, sensa y mucho mas.</p>
+          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">NO TIENE CONTRASEÑA</span></p>
+          <div class="video-wrapper">
+            <iframe src="https://youtube.com/embed/-KZjfOpFfKM" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <a href="https://www.mediafire.com/file/yj8ydpl407vrkr4/Rojo_sangre-Dayron.W.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+        </div>
+        <div class="aporte">
+          <h2>DAYRON GOTIC</h2>
+          <p><b>DESCRITPCION:</b> Este aporte fue el que mas costo hacer y que no me gusto mucho tener un bug en el skybox y la unica forma de arreglarlo es configurar el /gmenu.</p>
+          <p><b>AVISO:</b> ESTE APORTE ES EXCLUSIVAMENTE DE INJERTOS MODS, SI LO VES EN OTRO LADO PROBABLEMENTE NO ES DE NOSOTROS O ESTA MODIFICADO.</p>
+          <p>CREADOR: Dayron_Wayne</p>
+          <p><b>INCLUYE:</b> armas, skins, calles, skybox, gmenu, ds, fov, sensa y mucho mas.</p>
+          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">NO TIENE CONTRASEÑA</span></p>
+          <div class="video-wrapper">
+            <iframe src="https://youtube.com/embed/9tnU1rBBCmI" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <a href="https://www.mediafire.com/file/r0rslgetqumv0e0/Dayron_GOTIC.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+        </div>
+        <div class="aporte">
+          <h2>BRUTALITY</h2>
+          <p><b>DESCRITPCION:</b> VERSION R4 - INJERTOS MODS - BRUTALITY MATAR SIN PENSARLO.</p>
+          <p><b>Aviso:</b> aporte limpio y verificado, puedes encontrar mas en nuestro discord.</p>
+          <p>AVISO: JACOB</p>
+          <p><b>INCLUYE:</b> armas,vehiculos,/sensa y /macros.</p>
+          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">NO TIENE CONTRASEÑA</span></p>
+          <div class="video-wrapper">
+            <iframe src="https://youtube.com/embed/fmVS7-nTmD4" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <a href="https://www.mediafire.com/file/rj4hc064ibyu767/BRUTALITY.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+        </div>
+        <div class="aporte">
+          <h2>DRUKS</h2>
+          <p><b>DESCRITPCION:</b> PARA SABER QUE COSAS TRAE EL APORTE REVISA LA CARPETA INJERTOS SI SIENTES QUE TE VA MAL PUEDE APAGAR LOS EFECTOS CON EL GAMEFIXER USA - F4.</p>
+          <p><b>AVISO:</b> ESTE APORTE ES EXCLUSIVAMENTE DE INJERTOS MODS, SI LO VES EN OTRO LADO PROBABLEMENTE NO ES DE NOSOTROS O ESTA MODIFICADO.</p>
+          <p><b>CREADOR:</b> HILNZO</p>
+          <p><b>INCLUYE:</b> /MACROS - /HINFO - /PCMDS - /SDPOS - /HD - /SENSA.</p>
+          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">hilnzodruks</span></p>
+          <div class="video-wrapper">
+            <iframe src="https://youtube.com/embed/FPXuZPFyCd8" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <a href="https://www.mediafire.com/file/6d06kpjwz836nu8/DRUKS.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+        </div>
+        <div class="aporte">
+          <h2>PROXIMAMENTE</h2>
+          <p><b>DESCRITPCION:</b>***.</p>
+          <p><b>CREADOR:</b>***</p>
+          <p><b>INCLUYE:</b>***.</p>
+          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">***</span></p>
+          <div class="video-wrapper">
+            <iframe src="https://youtube.com/embed/YYYYYYYYYYY" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <a href="https://www.mediafire.com/file/xxxxxx/Aporte_Plantilla2.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+        </div>
+        <div class="aporte">
+          <h2>PROXIMAMENTE</h2>
+          <p><b>DESCRITPCION:</b>***.</p>
+          <p><b>CREADOR:</b>***</p>
+          <p><b>INCLUYE:</b>***.</p>
+          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">***</span></p>
+          <div class="video-wrapper">
+            <iframe src="https://youtube.com/embed/ZZZZZZZZZZZ" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <a href="https://www.mediafire.com/file/xxxxxx/Aporte_Plantilla3.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+        </div>
+        <div class="aporte">
+          <h2>PROXIMAMENTE</h2>
+          <p><b>DESCRITPCION:</b>***</p>
+          <p><b>CREADOR:</b>***</p>
+          <p><b>INCLUYE:</b>***.</p>
+          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">***</span></p>
+          <div class="video-wrapper">
+            <iframe src="https://youtube.com/embed/AAAAAAAAAAA" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <a href="https://www.mediafire.com/file/xxxxxx/Aporte_Plantilla4.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+        </div>
+        <div class="aporte">
+          <h2>PROXIMAMENTE</h2>
+          <p><b>DESCRITPCION:</b>***.</p>
+          <p><b>CREADOR:</b>***</p>
+          <p><b>INCLUYE:</b>***.</p>
+          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">***</span></p>
+          <div class="video-wrapper">
+            <iframe src="https://youtube.com/embed/BBBBBBBBBBB" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <a href="https://www.mediafire.com/file/xxxxxx/Aporte_Plantilla5.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+        </div>
       </div>
 
-      <div class="aporte">
-        <h2>DataBlue🔵MR$</h2>
-        <p><b>DESCRITPCION:</b> Para que se les vea igual usar los cleos. (Estan dentro de la carpeta de la data).</p>
-        <p>CREADOR: (@manzer)</p>
-        <p><b>INCLUYE:</b> lista rápida de lo que trae: skins, cleos, sonidos, armas, etc).</p>
-        <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">NO TIENE CONTRASEÑA</span></p>
-        <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/Tv7fyMCG0G0" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <a href="https://www.mediafire.com/file/12efvtjw3392v58/DataBlue%F0%9F%94%B5MR%24.zip/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
-      </div>
-
-      <div class="aporte">
-        <h2>ROJO SANGRE</h2>
-        <p><b>DESCRITPCION:</b> Este aporte fue el que mas me gusto hacer ya que le dedique bastante tiempo y le agg varias cosas sin que de crash.</p>
-        <p><b>AVISO:</b> ESTE APORTE ES EXCLUSIVAMENTE DE INJERTOS MODS, SI LO VES EN OTRO LADO PROBABLEMENTE NO ES DE NOSOTROS O ESTA MODIFICADO.</p>
-        <p>CREADOR: Dayron_Wayne</p>
-        <p><b>INCLUYE:</b> armas, skins, calles, timecyc, gmenu, ds, fov, sensa y mucho mas.</p>
-        <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">NO TIENE CONTRASEÑA</span></p>
-        <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/-KZjfOpFfKM" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <a href="https://www.mediafire.com/file/yj8ydpl407vrkr4/Rojo_sangre-Dayron.W.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
-      </div>
-
-      <div class="aporte">
-        <h2>DAYRON GOTIC</h2>
-        <p><b>DESCRITPCION:</b> Este aporte fue el que mas costo hacer y que no me gusto mucho tener un bug en el skybox y la unica forma de arreglarlo es configurar el /gmenu.</p>
-        <p><b>AVISO:</b> ESTE APORTE ES EXCLUSIVAMENTE DE INJERTOS MODS, SI LO VES EN OTRO LADO PROBABLEMENTE NO ES DE NOSOTROS O ESTA MODIFICADO.</p>
-        <p>CREADOR: Dayron_Wayne</p>
-        <p><b>INCLUYE:</b> armas, skins, calles, skybox, gmenu, ds, fov, sensa y mucho mas.</p>
-        <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">NO TIENE CONTRASEÑA</span></p>
-        <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/9tnU1rBBCmI" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <a href="https://www.mediafire.com/file/r0rslgetqumv0e0/Dayron_GOTIC.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
-      </div>
-
-      <div class="aporte">
-        <h2>BRUTALITY</h2>
-        <p><b>DESCRITPCION:</b> VERSION R4 - INJERTOS MODS - BRUTALITY MATAR SIN PENSARLO.</p>
-        <p><b>Aviso:</b> aporte limpio y verificado, puedes encontrar mas en nuestro discord.</p>
-        <p>AVISO: JACOB</p>
-        <p><b>INCLUYE:</b> armas,vehiculos,/sensa y /macros.</p>
-        <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">NO TIENE CONTRASEÑA</span></p>
-        <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/fmVS7-nTmD4" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <a href="https://www.mediafire.com/file/rj4hc064ibyu767/BRUTALITY.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
-      </div>
-
-       <div class="aporte">
-        <h2>DRUKS</h2>
-        <p><b>DESCRITPCION:</b> PARA SABER QUE COSAS TRAE EL APORTE REVISA LA CARPETA INJERTOS SI SIENTES QUE TE VA MAL PUEDE APAGAR LOS EFECTOS CON EL GAMEFIXER USA - F4.</p>
-        <p><b>AVISO:</b> ESTE APORTE ES EXCLUSIVAMENTE DE INJERTOS MODS, SI LO VES EN OTRO LADO PROBABLEMENTE NO ES DE NOSOTROS O ESTA MODIFICADO.</p>
-        <p><b>CREADOR:</b> HILNZO</p>
-        <p><b>INCLUYE:</b> /MACROS - /HINFO - /PCMDS - /SDPOS - /HD - /SENSA.</p>
-        <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">hilnzodruks</span></p>
-        <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/FPXuZPFyCd8" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <a href="https://www.mediafire.com/file/6d06kpjwz836nu8/DRUKS.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
-      </div>
-
-      <!-- NUEVOS APORTES VAN AQUÍ (COPIA/PEGA EL BLOQUE .aporte PARA AGREGAR MÁS) -->
-
-      <!-- Plantillas vacías para copiar -->
-      <div class="aporte">
-        <h2>PROXIMAMENTE</h2>
-        <p><b>DESCRITPCION:</b>***.</p>
-        <p><b>CREADOR:</b>***</p>
-        <p><b>INCLUYE:</b>***.</p>
-        <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">***</span></p>
-        <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/YYYYYYYYYYY" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <a href="https://www.mediafire.com/file/xxxxxx/Aporte_Plantilla2.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
-      </div>
-
-      <div class="aporte">
-        <h2>PROXIMAMENTE</h2>
-        <p><b>DESCRITPCION:</b>***.</p>
-        <p><b>CREADOR:</b>***</p>
-        <p><b>INCLUYE:</b>***.</p>
-        <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">***</span></p>
-        <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/ZZZZZZZZZZZ" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <a href="https://www.mediafire.com/file/xxxxxx/Aporte_Plantilla3.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
-      </div>
-
-      <div class="aporte">
-        <h2>PROXIMAMENTE</h2>
-        <p><b>DESCRITPCION:</b>***</p>
-        <p><b>CREADOR:</b>***</p>
-        <p><b>INCLUYE:</b>***.</p>
-        <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">***</span></p>
-        <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/AAAAAAAAAAA" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <a href="https://www.mediafire.com/file/xxxxxx/Aporte_Plantilla4.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
-      </div>
-
-      <div class="aporte">
-        <h2>PROXIMAMENTE</h2>
-        <p><b>DESCRITPCION:</b>***.</p>
-        <p><b>CREADOR:</b>***</p>
-        <p><b>INCLUYE:</b>***.</p>
-        <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">***</span></p>
-        <div class="video-wrapper">
-          <iframe src="https://youtube.com/embed/BBBBBBBBBBB" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <a href="https://www.mediafire.com/file/xxxxxx/Aporte_Plantilla5.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>
+      <!-- Staff derecha -->
+      <div class="staff-col">
+        <div class="card"><img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1298942723847622690/avatars/3a3d7b727f6d8b018dcc639c260e49f8.png"><p><b>Manzer</b></p><p class="role">SUB ENCARGADO</p></div>
+        <div class="card"><img src="https://cdn.discordapp.com/avatars/1260353622001188875/66c48f30b95b7b331c48196b31fb7282.png"><p><b>Maik</b></p><p class="role">ADMIN</p></div>
+        <div class="card"><img src="https://cdn.discordapp.com/avatars/933010372120698890/832e04104fa6be337f009700a914c7f3.png"><p><b>David</b></p><p class="role">HEAD MODERADOR</p></div>
+        <div class="card"><img src="https://cdn.discordapp.com/avatars/1308947599235223637/ac79495194906156d3116496e4c7c72d.png"><p><b>Zair</b></p><p class="role">HEAD MODERADOR</p></div>
+        <div class="card"><img src="https://cdn.discordapp.com/avatars/1386421165052002366/a_e752489e8b37d4af5efefbb1bb796f40.gif"><p><b>Veloz</b></p><p class="role">STAR HELPER</p></div>
+        <div class="card"><img src="https://cdn.discordapp.com/avatars/1000966605729181847/9de61981cbe4d9ba985aace659cec1ef.png"><p><b>infi</b></p><p class="role">STAR HELPER</p></div>
       </div>
     </div>
 
-    <!-- Staff derecha -->
-    <div class="staff-col">
-      <div class="card"><img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1298942723847622690/avatars/3a3d7b727f6d8b018dcc639c260e49f8.png"><p><b>Manzer</b></p><p class="role">SUB ENCARGADO</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/avatars/1260353622001188875/66c48f30b95b7b331c48196b31fb7282.png"><p><b>Maik</b></p><p class="role">ADMIN</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/avatars/933010372120698890/832e04104fa6be337f009700a914c7f3.png"><p><b>David</b></p><p class="role">HEAD MODERADOR</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/avatars/1308947599235223637/ac79495194906156d3116496e4c7c72d.png"><p><b>Zair</b></p><p class="role">HEAD MODERADOR</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/avatars/1386421165052002366/a_e752489e8b37d4af5efefbb1bb796f40.gif"><p><b>Veloz</b></p><p class="role">STAR HELPER</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/avatars/1000966605729181847/9de61981cbe4d9ba985aace659cec1ef.png"><p><b>infi</b></p><p class="role">STAR HELPER</p></div>
+    <!-- Botón Sharingan -->
+    <div class="sharingan-btn" onclick="activarSharingan()">
+      <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2VjcXMzdmR5bTc4b3RpN3FmeGlrd3M3ZzltNjY4bmY0c2F2MmtnYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AD9YKaY2vxTXO/giphy.gif" alt="Sharingan">
     </div>
+
+    <!-- Efecto Fullscreen -->
+    <div id="sharingan-overlay" onclick="cerrarSharingan()">
+      <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Sharingan Efecto">
+    </div>
+
+    <!-- Sonido Sharingan -->
+    <audio id="sharingan-sound">
+      <source src="https://files.catbox.moe/4dxgfn.mp3" type="audio/mpeg">
+    </audio>
   </div>
 
-  <!-- BOTÓN SHARINGAN -->
-  <div class="sharingan-btn" onclick="activarSharingan()">
-    <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2VjcXMzdmR5bTc4b3RpN3FmeGlrd3M3ZzltNjY4bmY0c2F2MmtnYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AD9YKaY2vxTXO/giphy.gif" alt="Sharingan">
-  </div>
-
-  <!-- EFECTO FULLSCREEN -->
-  <div id="sharingan-overlay" onclick="cerrarSharingan()">
-    <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Sharingan Efecto">
-  </div>
-
-  <!-- SONIDO SHARINGAN -->
-  <audio id="sharingan-sound">
-    <source src="https://files.catbox.moe/4dxgfn.mp3" type="audio/mpeg">
-  </audio>
-
+  <!-- Cargar API de YouTube -->
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script>
-    function toggleMusic() {
-      const music = document.getElementById("bg-music");
-      if (music.paused) music.play(); else music.pause();
+    // Referencias a elementos del DOM
+    const enterButton = document.getElementById('enterButton');
+    const introContainer = document.querySelector('.intro-container');
+    const mainContent = document.getElementById('mainContent');
+    const backgroundMusic = document.getElementById('bg-music');
+    const sharinganOverlay = document.getElementById('sharingan-overlay');
+    const sharinganSound = document.getElementById('sharingan-sound');
+
+    // Lista de reproductores de YouTube
+    let players = [];
+
+    // Al hacer clic en "Entrar"
+    if (enterButton) {
+      enterButton.addEventListener('click', () => {
+        introContainer.style.display = 'none';
+        mainContent.style.display = 'block';
+        backgroundMusic.play().catch(error => {
+          console.log('Error al reproducir música:', error);
+        });
+      });
     }
 
+    // Control de música
+    function toggleMusic() {
+      if (backgroundMusic.paused) {
+        backgroundMusic.play();
+      } else {
+        backgroundMusic.pause();
+      }
+    }
+
+    // Configuración de la API de YouTube
+    function onYouTubeIframeAPIReady() {
+      const iframes = document.querySelectorAll('.video-wrapper iframe');
+      iframes.forEach((iframe, index) => {
+        iframe.id = `player-${index}`;
+        players[index] = new YT.Player(`player-${index}`, {
+          events: {
+            'onStateChange': (event) => onPlayerStateChange(event, index)
+          }
+        });
+      });
+    }
+
+    // Pausar música cuando cualquier video se reproduce
+    function onPlayerStateChange(event, index) {
+      if (event.data === YT.PlayerState.PLAYING) {
+        backgroundMusic.pause();
+      } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+        backgroundMusic.play().catch(error => {
+          console.log('Error al reanudar música:', error);
+        });
+      }
+    }
+
+    // Lógica del Sharingan
     function activarSharingan() {
-      const overlay = document.getElementById("sharingan-overlay");
-      const sound = document.getElementById("sharingan-sound");
-
-      overlay.classList.add("active");
-      sound.play();
-
+      sharinganOverlay.classList.add('active');
+      sharinganSound.play();
       setTimeout(() => {
-        sessionStorage.setItem("sharinganActivo", "true");
-        window.location.href = "https://hilnzo.github.io/PRUEBAS-INJERTOS/aportes.esclusivos.html";
+        sessionStorage.setItem('sharinganActivo', 'true');
+        window.location.href = 'https://hilnzo.github.io/PRUEBAS-INJERTOS/aportes.esclusivos.html';
       }, 3000);
     }
 
     function cerrarSharingan() {
-      const overlay = document.getElementById("sharingan-overlay");
-      overlay.classList.remove("active");
+      sharinganOverlay.classList.remove('active');
     }
 
-    // Para evitar que quede trabado al volver
-    window.addEventListener("load", () => {
-      if (sessionStorage.getItem("sharinganActivo")) {
+    // Evitar que el overlay quede activo al volver
+    window.addEventListener('load', () => {
+      if (sessionStorage.getItem('sharinganActivo')) {
         cerrarSharingan();
-        sessionStorage.removeItem("sharinganActivo");
+        sessionStorage.removeItem('sharinganActivo');
       }
     });
   </script>
 </body>
-                                
+</html>
