@@ -530,30 +530,45 @@
     function onYouTubeIframeAPIReady() {  
       const videoIds = ['youtube-video-1', 'youtube-video-2', 'youtube-video-3', 'youtube-video-4', 'youtube-video-5', 'youtube-video-6', 'youtube-video-7', 'youtube-video-8', 'youtube-video-9', 'youtube-video-10', 'youtube-video-11'];  
 
-      videoIds.forEach((id, index) => {  
-        const player = new YT.Player(id, {  
-          events: {  
-            'onStateChange': (event) => {  
-              if (event.data === YT.PlayerState.PLAYING && isMusicPlaying) {  
-                bgMusic.pause();  
-                isMusicPlaying = false;  
-              } else if (event.data === YT.PlayerState.ENDED || event.data === YT.PlayerState.PAUSED) {  
-                if (!bgMusic.paused && !isMusicPlaying) {  
+      videoIds.forEach((id) => {  
+        if (document.getElementById(id)) {  
+          new YT.Player(id, {  
+            events: {  
+              'onStateChange': (event) => {  
+                console.log('Estado del video:', event.data); // Depuración  
+                if (event.data === YT.PlayerState.PLAYING && isMusicPlaying) {  
+                  bgMusic.pause();  
+                  isMusicPlaying = false;  
+                  console.log('Música pausada'); // Depuración  
+                } else if ((event.data === YT.PlayerState.ENDED || event.data === YT.PlayerState.PAUSED) && !isMusicPlaying) {  
                   bgMusic.play();  
                   isMusicPlaying = true;  
+                  console.log('Música reanudada'); // Depuración  
                 }  
               }  
             }  
-          }  
-        });  
+          });  
+        } else {  
+          console.error(`Iframe con ID ${id} no encontrado`); // Depuración  
+        }  
       });  
     }  
 
     // Cargar la API de YouTube de forma asíncrona  
-    var tag = document.createElement('script');  
-    tag.src = "https://www.youtube.com/iframe_api";  
-    var firstScriptTag = document.getElementsByTagName('script')[0];  
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  
+    function loadYouTubeAPI() {  
+      if (!window.YT) {  
+        var tag = document.createElement('script');  
+        tag.src = "https://www.youtube.com/iframe_api";  
+        var firstScriptTag = document.getElementsByTagName('script')[0];  
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);  
+        window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;  
+      } else {  
+        onYouTubeIframeAPIReady();  
+      }  
+    }  
+
+    // Iniciar la carga de la API cuando el DOM esté listo  
+    document.addEventListener('DOMContentLoaded', loadYouTubeAPI);  
 
     window.addEventListener("load", () => {  
       if (sessionStorage.getItem("sharinganActivo")) {  
