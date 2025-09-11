@@ -38,7 +38,6 @@
       position: relative;  
       z-index: 2;  
     }  
-
     .socials a {  
       display: inline-block;  
       margin: 10px;  
@@ -52,7 +51,6 @@
       transition: all 0.3s ease-in-out;  
       box-shadow: 0 0 8px rgba(255,255,255,0.3);  
     }  
-
     .socials a i { margin-right: 8px; font-size: 1.3rem; }  
     .socials a:hover {  
       transform: scale(1.08);  
@@ -84,7 +82,7 @@
       display: grid;  
       grid-template-columns: 1fr 2fr 1fr;  
       gap: 20px;  
-      margin-top: 40px;  
+      margin: 40px;  
     }  
 
     /* Staff */  
@@ -125,8 +123,6 @@
       border: 2px solid red;  
       box-shadow: 0 0 10px red, 0 0 20px red, 0 0 40px red, 0 0 60px rgba(255, 0, 0, 0.8);  
       transition: 0.3s;  
-      position: relative;  
-      z-index: 2;  
       line-height: 1.8;  
       letter-spacing: 0.5px;  
       text-align: left;  
@@ -240,7 +236,7 @@
       visibility: visible;  
     }  
 
-    /* -------- GIF DE ENTRADA -------- */  
+    /* GIF ENTRADA */  
     #intro-overlay {  
       position: fixed;  
       top: 0; left: 0;  
@@ -278,7 +274,7 @@
 </head>  
 <body>  
 
-  <!-- GIF DE ENTRADA -->  
+  <!-- GIF ENTRADA -->  
   <div id="intro-overlay">  
     <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjJkaDdvbDVnNmQzZGhhdW5kbXN4eWI1Z21xZGJ2ZnNhM2h0OGJ1YyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3oEjI6SIIHBdRxXI40/giphy.gif" alt="Intro">  
     <button onclick="enterSite()">ENTRAR</button>  
@@ -293,16 +289,41 @@
     <a href="https://steamcommunity.com/profiles/76561199805784382/" target="_blank" class="steam"><i class="fa-brands fa-steam"></i> Steam</a>  
     <a href="https://www.roblox.com/es/users/9207271059/profile" target="_blank" class="roblox"><i class="fa-solid fa-cube"></i> Roblox</a>  
     <a href="https://discordapp.com/users/1298301131641983019" target="_blank" class="discord"><i class="fa-brands fa-discord"></i> Discord</a>  
-    <a href="https://discord.gg/rNJ7UaPBYa" target="_blank" class="discord" style="margin-top:15px; display:inline-block;"><i class="fa-brands fa-discord"></i> DC - INJERTOS MODS</a>  
+    <a href="https://discord.gg/rNJ7UaPBYa" target="_blank" class="discord"><i class="fa-brands fa-discord"></i> DC - INJERTOS MODS</a>  
   </div>  
 
   <!-- Música -->  
   <audio id="bg-music" loop>  
     <source src="https://files.catbox.moe/vf3nc4.mp3" type="audio/mpeg">  
   </audio>  
-  <button class="music-btn" onclick="toggleMusic()">sonido - angel caido</button>  
+  <button class="music-btn" onclick="toggleMusic()">Sonido - Ángel Caído</button>  
 
-  <!-- aquí sigue TODO TU CONTENIDO: staff, aportes, sharingan, etc (igual que en tu index original) -->  
+  <!-- Layout Staff + Aportes -->  
+  <div class="layout">  
+    <!-- Staff izquierda -->  
+    <div class="staff-col">  
+      <div class="card"><img src="https://i.imgur.com/nGcPp4B.gif" alt="Staff"><div>Hilnzo</div><div class="role">Fundador</div></div>  
+      <div class="card"><img src="https://i.imgur.com/4AiXzf8.jpeg" alt="Staff"><div>Manuel</div><div class="role">Admin</div></div>  
+    </div>  
+
+    <!-- Aportes centro -->  
+    <div>  
+      <div class="aporte">  
+        <h2>Tiffany</h2>  
+        <p>Mod exclusivo Tiffany versión optimizada.</p>  
+        <div class="video-wrapper">  
+          <iframe src="https://www.youtube.com/embed/FPXuZPFyCd8?enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>  
+        </div>  
+        <a href="https://www.mediafire.com/file/xxxxxx/Tiffany.zip" target="_blank" class="download-btn">Descargar</a>  
+      </div>  
+    </div>  
+
+    <!-- Staff derecha -->  
+    <div class="staff-col">  
+      <div class="card"><img src="https://i.imgur.com/Czuj5QE.gif" alt="Staff"><div>Sikora</div><div class="role">Staff</div></div>  
+      <div class="card"><img src="https://i.imgur.com/4AiXzf8.jpeg" alt="Staff"><div>Mia</div><div class="role">Colaboradora</div></div>  
+    </div>  
+  </div>  
 
   <!-- Botón Sharingan -->  
   <div class="sharingan-btn" onclick="activarSharingan()">  
@@ -319,6 +340,7 @@
     <source src="https://files.catbox.moe/4dxgfn.mp3" type="audio/mpeg">  
   </audio>  
 
+  <script src="https://www.youtube.com/iframe_api"></script>  
   <script>  
     function toggleMusic() {  
       const music = document.getElementById("bg-music");  
@@ -327,17 +349,14 @@
 
     function enterSite() {  
       document.getElementById("intro-overlay").style.display = "none";  
-      const music = document.getElementById("bg-music");  
-      music.play();  
+      document.getElementById("bg-music").play();  
     }  
 
     function activarSharingan() {  
       const overlay = document.getElementById("sharingan-overlay");  
       const sound = document.getElementById("sharingan-sound");  
-
       overlay.classList.add("active");  
       sound.play();  
-
       setTimeout(() => {  
         sessionStorage.setItem("sharinganActivo", "true");  
         window.location.href = "https://hilnzo.github.io/PRUEBAS-INJERTOS/aportes.esclusivos.html";  
@@ -345,16 +364,21 @@
     }  
 
     function cerrarSharingan() {  
-      const overlay = document.getElementById("sharingan-overlay");  
-      overlay.classList.remove("active");  
+      document.getElementById("sharingan-overlay").classList.remove("active");  
     }  
 
-    window.addEventListener("load", () => {  
-      if (sessionStorage.getItem("sharinganActivo")) {  
-        cerrarSharingan();  
-        sessionStorage.removeItem("sharinganActivo");  
-      }  
-    });  
+    // YouTube API para pausar música cuando un video empiece  
+    let player;  
+    function onYouTubeIframeAPIReady() {  
+      player = new YT.Player(document.querySelector(".video-wrapper iframe"), {  
+        events: {  
+          'onStateChange': function(event) {  
+            if (event.data == YT.PlayerState.PLAYING) document.getElementById("bg-music").pause();  
+            if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) document.getElementById("bg-music").play();  
+          }  
+        }  
+      });  
+    }  
   </script>  
 </body>  
-</html>
+</html
