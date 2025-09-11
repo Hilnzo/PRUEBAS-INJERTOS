@@ -16,7 +16,7 @@
       overflow-x: hidden;
     }
 
-    /* Pantalla inicial con estilo neón */
+    /* Pantalla inicial */
     .intro-container {
       position: fixed;
       top: 0;
@@ -24,107 +24,64 @@
       width: 100vw;
       height: 100vh;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: rgba(0, 0, 0, 0.6);
+      background: #000;
       z-index: 3000;
-      animation: neonFade 1.5s ease-in-out infinite alternate;
-    }
-
-    @keyframes neonFade {
-      from { background: rgba(0, 0, 0, 0.6); }
-      to { background: rgba(0, 0, 0, 0.4); }
     }
 
     .gif-background {
-      position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.8;
-      animation: rotateNeon 8s linear infinite;
-      filter: brightness(1.2) contrast(1.1);
-    }
-
-    @keyframes rotateNeon {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .intro-title {
-      position: relative;
-      z-index: 2;
-      font-size: 4rem;
-      color: #ff3333;
-      text-shadow: 0 0 10px #ff3333, 0 0 20px #ff3333, 0 0 30px #ff0000;
-      margin-bottom: 30px;
-      font-family: "Courier New", monospace;
-      animation: neonBlink 1.5s infinite;
-    }
-
-    @keyframes neonBlink {
-      0% { opacity: 1; }
-      50% { opacity: 0.8; }
-      100% { opacity: 1; }
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
     }
 
     #enterButton {
       position: relative;
       z-index: 2;
-      padding: 25px 50px;
-      font-size: 24px;
+      padding: 15px 30px;
+      font-size: 18px;
       cursor: pointer;
-      background: linear-gradient(45deg, #ff3333, #ff6666);
-      color: #fff;
-      border: 2px solid #ff3333;
-      border-radius: 15px;
-      transition: all 0.3s ease;
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
       font-family: "Courier New", monospace;
       font-weight: bold;
-      text-transform: uppercase;
-      box-shadow: 0 0 15px #ff3333, 0 0 30px #ff0000, 0 0 50px #ff3333;
-      text-shadow: 0 0 5px #fff, 0 0 10px #ff3333;
+      box-shadow: 0 0 10px red, 0 0 20px rgba(255, 0, 0, 0.8);
     }
 
     #enterButton:hover {
-      transform: scale(1.15);
-      background: linear-gradient(45deg, #ff6666, #ff3333);
-      box-shadow: 0 0 25px #ff3333, 0 0 60px #ff0000, 0 0 80px #ff3333;
+      background-color: #e63939;
+      box-shadow: 0 0 20px red, 0 0 40px red;
     }
 
-    /* Contenido principal (oculto inicialmente) */
-    .content {
-      display: none;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Estilos originales con toque neón */
+    /* Estilos originales */
     h1 {
       font-size: 3rem;
       margin-top: 20px;
-      text-shadow: 0 0 10px #ff3333, 0 0 20px #ff0000;
-      animation: neonPulse 2s infinite;
-    }
-
-    @keyframes neonPulse {
-      0% { text-shadow: 0 0 10px #ff3333; }
-      50% { text-shadow: 0 0 20px #ff0000, 0 0 30px #ff3333; }
-      100% { text-shadow: 0 0 10px #ff3333; }
+      text-shadow: 2px 2px 8px red;
+      position: relative;
+      z-index: 2;
     }
 
     p {
       font-size: 1.3rem;
       margin-bottom: 30px;
       font-weight: bold;
-      text-shadow: 0 0 5px #ff3333;
+      position: relative;
+      z-index: 2;
     }
 
     .socials {
       margin-top: 20px;
+      position: relative;
+      z-index: 2;
     }
 
     .socials a {
@@ -138,13 +95,13 @@
       font-weight: bold;
       font-family: "Courier New", monospace;
       transition: all 0.3s ease-in-out;
-      box-shadow: 0 0 8px #ff3333;
+      box-shadow: 0 0 8px rgba(255,255,255,0.3);
     }
 
     .socials a i { margin-right: 8px; font-size: 1.3rem; }
     .socials a:hover {
       transform: scale(1.08);
-      box-shadow: 0 0 15px #ff3333, 0 0 25px #ff0000;
+      box-shadow: 0 0 15px rgba(255,255,255,0.7), 0 0 25px currentColor;
     }
     .socials a.spotify { background: #1DB954; }
     .socials a.steam { background: #171A21; }
@@ -154,16 +111,17 @@
     .music-btn {
       margin-top: 30px;
       padding: 10px 20px;
-      border: 2px solid #ff3333;
+      border: 2px solid white;
       border-radius: 10px;
       background: transparent;
       color: white;
       font-size: 1.1rem;
       cursor: pointer;
       transition: 0.3s;
-      box-shadow: 0 0 10px #ff3333;
+      position: relative;
+      z-index: 2;
     }
-    .music-btn:hover { background: #ff3333; color: black; }
+    .music-btn:hover { background: red; border-color: red; color: black; }
 
     .layout {
       display: grid;
@@ -179,48 +137,49 @@
       align-items: center;
     }
     .card {
-      background: rgba(0, 0, 0, 0.7);
+      background: #111;
       padding: 15px;
       border-radius: 12px;
       width: 150px;
       text-align: center;
-      box-shadow: 0 0 10px #ff3333, 0 0 20px #ff0000;
-      animation: neonGlow 2s infinite alternate;
+      box-shadow: 0 0 10px red, 0 0 20px rgba(255,0,0,0.6);
+      animation: glow 2s infinite alternate;
     }
-    @keyframes neonGlow {
-      from { box-shadow: 0 0 10px #ff3333; }
-      to { box-shadow: 0 0 25px #ff3333, 0 0 50px #ff0000; }
+    @keyframes glow {
+      from { box-shadow: 0 0 10px red; }
+      to { box-shadow: 0 0 25px red, 0 0 50px rgba(255,0,0,0.9);}
     }
     .card img {
       border-radius: 50%;
       width: 80px;
       height: 80px;
       margin-bottom: 8px;
-      border: 2px solid #ff3333;
+      border: 2px solid red;
     }
-    .card .role { font-size: 13px; color: #bbb; text-shadow: 0 0 5px #ff3333; }
+    .card .role { font-size: 13px; color: #bbb; }
 
     .aporte {
       background: rgba(0, 0, 0, 0.7);
       padding: 30px;
       border-radius: 15px;
       margin-bottom: 40px;
-      border: 2px solid #ff3333;
-      box-shadow: 0 0 10px #ff3333, 0 0 20px #ff0000, 0 0 40px #ff3333;
+      border: 2px solid red;
+      box-shadow: 0 0 10px red, 0 0 20px red, 0 0 40px red, 0 0 60px rgba(255, 0, 0, 0.8);
       transition: 0.3s;
+      position: relative;
+      z-index: 2;
       line-height: 1.8;
       letter-spacing: 0.5px;
       text-align: left;
     }
     .aporte:hover {
-      box-shadow: 0 0 20px #ff3333, 0 0 40px #ff0000, 0 0 80px #ff3333;
+      box-shadow: 0 0 20px red, 0 0 40px red, 0 0 80px red, 0 0 100px rgba(255, 0, 0, 1);
     }
     .aporte h2 {
       font-size: 2rem;
-      color: #ff3333;
+      color: red;
       margin-bottom: 15px;
       text-align: center;
-      text-shadow: 0 0 10px #ff3333;
     }
 
     .video-wrapper {
@@ -230,7 +189,6 @@
       overflow: hidden;
       border-radius: 10px;
       margin-top: 20px;
-      border: 2px solid #ff3333;
     }
     .video-wrapper iframe {
       position: absolute;
@@ -242,18 +200,18 @@
       display: inline-block;
       margin-top: 20px;
       padding: 12px 25px;
-      background: #ff3333;
+      background: red;
       color: white;
       font-weight: bold;
       border-radius: 12px;
       text-decoration: none;
       font-size: 1.2rem;
       transition: 0.3s;
-      box-shadow: 0 0 10px #ff3333, 0 0 20px #ff0000;
+      box-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px rgba(255, 0, 0, 0.8);
     }
     .download-btn:hover {
-      background: #ff6666;
-      box-shadow: 0 0 20px #ff3333, 0 0 40px #ff0000;
+      background: darkred;
+      box-shadow: 0 0 20px red, 0 0 40px red, 0 0 60px red;
     }
 
     @media (max-width: 768px) {
@@ -285,15 +243,15 @@
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      animation: spin 4s linear infinite, neonGlowBtn 1.5s infinite alternate;
+      animation: spin 4s linear infinite, glowRed 1.5s infinite alternate;
     }
     @keyframes spin {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
-    @keyframes neonGlowBtn {
-      from { box-shadow: 0 0 5px #ff3333; }
-      to { box-shadow: 0 0 20px #ff3333, 0 0 40px #ff0000; }
+    @keyframes glowRed {
+      from { box-shadow: 0 0 5px red; }
+      to { box-shadow: 0 0 20px red, 0 0 40px red; }
     }
 
     #sharingan-overlay {
@@ -313,7 +271,6 @@
       width: 100vw;
       height: 100vh;
       object-fit: cover;
-      filter: brightness(1.5);
     }
     #sharingan-overlay.active {
       opacity: 1;
@@ -322,15 +279,14 @@
   </style>
 </head>
 <body>
-  <!-- Pantalla inicial con estilo neón -->
+  <!-- Pantalla inicial -->
   <div class="intro-container">
-    <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Fondo Neón" class="gif-background">
-    <h2 class="intro-title">Bienvenido a Hilnzo</h2>
+    <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="GIF Animado" class="gif-background">
     <button id="enterButton">Entrar</button>
   </div>
 
   <!-- Contenido principal -->
-  <div class="content" id="mainContent">
+  <div class="content" id="mainContent" style="display: none;">
     <h1>HILNZO</h1>
     <p>"crece sin hacerle daño a alguien sin que se lo merezca"</p>
 
@@ -366,7 +322,7 @@
           <p><b>DESCRITPCION:</b> aporte para los demeros jodidos hecho por Hilnzo (@klenoz).</p>
           <p>Si descargas este aporte por otro lugar que no sea mi discord de aportes o sampmods, es que no es mío y fue modificado.</p>
           <p><b>INCLUYE:</b> macros, barra de estamina, gamefixer, hit maker, sonido de campana, efectos, armas y más.</p>
-          <p><b>CONTRASEÑA:</b> <span style="color: #ff3333; font-weight: bold;">tiffanyctmr</span></p>
+          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">tiffanyctmr</span></p>
           <div class="video-wrapper">
             <iframe src="https://youtube.com/embed/1Iq2YeDLVmM" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
@@ -377,7 +333,7 @@
           <p><b>DESCRITPCION:</b> unos de los aportes que menos me gusto crear por ser R5 ya que no es compatible con nada.</p>
           <p>Si descargas este aporte por otro lugar que no sea mi discord de aportes o sampmods, es que no es mío y fue modificado.</p>
           <p><b>INCLUYE:</b> El aporte esta limpio el R5 no permite muchos cleos o .asi).</p>
-          <p><b>CONTRASEÑA:</b> <span style="color: #ff3333; font-weight: bold;">injertosr5</span></p>
+          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">injertosr5</span></p>
           <div class="video-wrapper">
             <iframe src="https://youtube.com/embed/BywZG9Ckh9Q" frameborder="0" allowfullscreen></iframe>
           </div>
@@ -388,7 +344,7 @@
           <p><b>DESCRITPCION:</b> Para que se les vea igual usar los cleos. (Estan dentro de la carpeta de la data).</p>
           <p>CREADOR: (@manzer)</p>
           <p><b>INCLUYE:</b> lista rápida de lo que trae: skins, cleos, sonidos, armas, etc).</p>
-          <p><b>CONTRASEÑA:</b> <span style="color: #ff3333; font-weight: bold;">NO TIENE CONTRASEÑA</span></p>
+          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">NO TIENE CONTRASEÑA</span></p>
           <div class="video-wrapper">
             <iframe src="https://youtube.com/embed/Tv7fyMCG0G0" frameborder="0" allowfullscreen></iframe>
           </div>
@@ -400,7 +356,7 @@
           <p><b>AVISO:</b> ESTE APORTE ES EXCLUSIVAMENTE DE INJERTOS MODS, SI LO VES EN OTRO LADO PROBABLEMENTE NO ES DE NOSOTROS O ESTA MODIFICADO.</p>
           <p>CREADOR: Dayron_Wayne</p>
           <p><b>INCLUYE:</b> armas, skins, calles, timecyc, gmenu, ds, fov, sensa y mucho mas.</p>
-          <p><b>CONTRASEÑA:</b> <span style="color: #ff3333; font-weight: bold;">NO TIENE CONTRASEÑA</span></p>
+          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">NO TIENE CONTRASEÑA</span></p>
           <div class="video-wrapper">
             <iframe src="https://youtube.com/embed/-KZjfOpFfKM" frameborder="0" allowfullscreen></iframe>
           </div>
@@ -412,7 +368,7 @@
           <p><b>AVISO:</b> ESTE APORTE ES EXCLUSIVAMENTE DE INJERTOS MODS, SI LO VES EN OTRO LADO PROBABLEMENTE NO ES DE NOSOTROS O ESTA MODIFICADO.</p>
           <p>CREADOR: Dayron_Wayne</p>
           <p><b>INCLUYE:</b> armas, skins, calles, skybox, gmenu, ds, fov, sensa y mucho mas.</p>
-          <p><b>CONTRASEÑA:</b> <span style="color: #ff3333; font-weight: bold;">NO TIENE CONTRASEÑA</span></p>
+          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">NO TIENE CONTRASEÑA</span></p>
           <div class="video-wrapper">
             <iframe src="https://youtube.com/embed/9tnU1rBBCmI" frameborder="0" allowfullscreen></iframe>
           </div>
@@ -424,7 +380,7 @@
           <p><b>Aviso:</b> aporte limpio y verificado, puedes encontrar mas en nuestro discord.</p>
           <p>AVISO: JACOB</p>
           <p><b>INCLUYE:</b> armas,vehiculos,/sensa y /macros.</p>
-          <p><b>CONTRASEÑA:</b> <span style="color: #ff3333; font-weight: bold;">NO TIENE CONTRASEÑA</span></p>
+          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">NO TIENE CONTRASEÑA</span></p>
           <div class="video-wrapper">
             <iframe src="https://youtube.com/embed/fmVS7-nTmD4" frameborder="0" allowfullscreen></iframe>
           </div>
@@ -436,7 +392,7 @@
           <p><b>AVISO:</b> ESTE APORTE ES EXCLUSIVAMENTE DE INJERTOS MODS, SI LO VES EN OTRO LADO PROBABLEMENTE NO ES DE NOSOTROS O ESTA MODIFICADO.</p>
           <p><b>CREADOR:</b> HILNZO</p>
           <p><b>INCLUYE:</b> /MACROS - /HINFO - /PCMDS - /SDPOS - /HD - /SENSA.</p>
-          <p><b>CONTRASEÑA:</b> <span style="color: #ff3333; font-weight: bold;">hilnzodruks</span></p>
+          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">hilnzodruks</span></p>
           <div class="video-wrapper">
             <iframe src="https://youtube.com/embed/FPXuZPFyCd8" frameborder="0" allowfullscreen></iframe>
           </div>
@@ -447,7 +403,7 @@
           <p><b>DESCRITPCION:</b>***.</p>
           <p><b>CREADOR:</b>***</p>
           <p><b>INCLUYE:</b>***.</p>
-          <p><b>CONTRASEÑA:</b> <span style="color: #ff3333; font-weight: bold;">***</span></p>
+          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">***</span></p>
           <div class="video-wrapper">
             <iframe src="https://youtube.com/embed/YYYYYYYYYYY" frameborder="0" allowfullscreen></iframe>
           </div>
@@ -458,7 +414,7 @@
           <p><b>DESCRITPCION:</b>***.</p>
           <p><b>CREADOR:</b>***</p>
           <p><b>INCLUYE:</b>***.</p>
-          <p><b>CONTRASEÑA:</b> <span style="color: #ff3333; font-weight: bold;">***</span></p>
+          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">***</span></p>
           <div class="video-wrapper">
             <iframe src="https://youtube.com/embed/ZZZZZZZZZZZ" frameborder="0" allowfullscreen></iframe>
           </div>
@@ -469,7 +425,7 @@
           <p><b>DESCRITPCION:</b>***</p>
           <p><b>CREADOR:</b>***</p>
           <p><b>INCLUYE:</b>***.</p>
-          <p><b>CONTRASEÑA:</b> <span style="color: #ff3333; font-weight: bold;">***</span></p>
+          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">***</span></p>
           <div class="video-wrapper">
             <iframe src="https://youtube.com/embed/AAAAAAAAAAA" frameborder="0" allowfullscreen></iframe>
           </div>
@@ -480,7 +436,7 @@
           <p><b>DESCRITPCION:</b>***.</p>
           <p><b>CREADOR:</b>***</p>
           <p><b>INCLUYE:</b>***.</p>
-          <p><b>CONTRASEÑA:</b> <span style="color: #ff3333; font-weight: bold;">***</span></p>
+          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">***</span></p>
           <div class="video-wrapper">
             <iframe src="https://youtube.com/embed/BBBBBBBBBBB" frameborder="0" allowfullscreen></iframe>
           </div>
@@ -579,7 +535,7 @@
       sharinganSound.play();
       setTimeout(() => {
         sessionStorage.setItem('sharinganActivo', 'true');
-        window.location.href = 'https://hilnzo.github.io/PRUEBAS-INJERTOS/';
+        window.location.href = 'https://hilnzo.github.io/PRUEBAS-INJERTOS/aportes.esclusivos.html';
       }, 3000);
     }
 
@@ -596,4 +552,4 @@
     });
   </script>
 </body>
-  </html>
+</html>
