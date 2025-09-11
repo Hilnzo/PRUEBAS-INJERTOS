@@ -63,7 +63,7 @@
     .socials a.roblox { background: #FF4757; }  
     .socials a.discord { background: #5865F2; }  
 
-    /* Botón música */  
+    /* Botón música - Estados dinámicos + animación */
     .music-btn {  
       margin-top: 30px;  
       padding: 10px 20px;  
@@ -73,11 +73,53 @@
       color: white;  
       font-size: 1.1rem;  
       cursor: pointer;  
-      transition: 0.3s;  
+      transition: all 0.3s ease;  
       position: relative;  
       z-index: 2;  
+      display: flex;  
+      align-items: center;  
+      justify-content: center;  
     }  
-    .music-btn:hover { background: red; border-color: red; color: black; }  
+    .music-btn i { margin-right: 8px; }  
+    .music-btn:hover { transform: scale(1.05); }  
+    .music-btn:active { transform: scale(0.98); }  
+
+    /* Estado apagado (paused) */  
+    .music-btn.paused {  
+      background: transparent;  
+      border-color: white;  
+      color: white;  
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);  
+    }  
+    .music-btn.paused:hover {  
+      background: rgba(255, 255, 255, 0.1);  
+      border-color: #ccc;  
+    }  
+
+    /* Estado encendido (playing) */  
+    .music-btn.playing {  
+      background: red;  
+      border-color: red;  
+      color: white;  
+      box-shadow: 0 0 10px red, 0 0 20px rgba(255, 0, 0, 0.8);  
+      animation: pulse 1.5s infinite alternate;  
+    }  
+    .music-btn.playing:hover {  
+      background: darkred;  
+      border-color: darkred;  
+      box-shadow: 0 0 15px red, 0 0 30px rgba(255, 0, 0, 1);  
+    }  
+
+    @keyframes pulse {  
+      from {  
+        box-shadow: 0 0 10px red, 0 0 20px rgba(255, 0, 0, 0.8);  
+        transform: scale(1);  
+      }  
+      to {  
+        box-shadow: 0 0 20px red, 0 0 40px rgba(255, 0, 0, 1);  
+        transform: scale(1.02);  
+      }  
+    }  
 
     /* Layout */  
     .layout {  
@@ -191,7 +233,7 @@
       }  
     }  
 
-    /* Botón Sharingan - FIX definitivo para ripple/ondas en Android */
+    /* Botón Sharingan - FIX para Android */  
     .sharingan-btn {  
       position: fixed;  
       bottom: 20px;  
@@ -203,10 +245,10 @@
       outline: none;  
       border: none;  
       user-select: none;  
-      -webkit-tap-highlight-color: transparent;  /* Quita highlight/ripple en Chrome Android */  
-      touch-action: manipulation;  /* Optimiza touch, reduce delay y ondas */  
-      -webkit-user-select: none;  /* Extra para iOS/Android */  
-      -webkit-touch-callout: none;  /* Evita callout en touch */  
+      -webkit-tap-highlight-color: transparent;  
+      touch-action: manipulation;  
+      -webkit-user-select: none;  
+      -webkit-touch-callout: none;  
     }  
     .sharingan-btn img {  
       width: 100%;  
@@ -214,22 +256,21 @@
       border-radius: 50%;  
       animation: spin 4s linear infinite, glowRed 1.5s infinite alternate;  
     }  
-    .sharingan-btn:focus,
-    .sharingan-btn:active {
+    .sharingan-btn:focus,  
+    .sharingan-btn:active {  
       outline: none !important;  
-      box-shadow: none !important;  /* Limpia sombras/ondas en active */  
-      background-color: transparent !important;  /* Fuerza transparente para ripple */  
+      box-shadow: none !important;  
+      background-color: transparent !important;  
     }  
-    /* Media query para touch devices (Android/iOS) - Pausa animaciones en touch para evitar conflictos */
     @media (hover: none) and (pointer: coarse) {  
       .sharingan-btn {  
         -webkit-tap-highlight-color: transparent !important;  
         touch-action: manipulation !important;  
       }  
       .sharingan-btn:active img {  
-        animation-play-state: paused;  /* Pausa spin/glow en touch para no chocar con ripple */  
+        animation-play-state: paused;  
       }  
-      .sharingan-btn::before {  /* Pseudo para tapar cualquier ripple residual */  
+      .sharingan-btn::before {  
         content: '';  
         position: absolute;  
         top: 0; left: 0;  
@@ -247,7 +288,7 @@
       to { box-shadow: 0 0 20px red, 0 0 40px red; }  
     }  
 
-    /* Overlay fullscreen Sharingan */
+    /* Overlay fullscreen Sharingan */  
     #sharingan-overlay {  
       position: fixed;  
       top: 0; left: 0;  
@@ -275,7 +316,7 @@
       visibility: visible;  
     }  
 
-    /* -------- GIF DE ENTRADA -------- */  
+    /* GIF de entrada */  
     #intro-overlay {  
       position: fixed;  
       top: 0; left: 0;  
@@ -304,7 +345,7 @@
       cursor: pointer;  
       box-shadow: 0 0 20px red, 0 0 40px red;  
       transition: 0.3s;  
-      -webkit-tap-highlight-color: transparent;  /* Fix para botón intro también */  
+      -webkit-tap-highlight-color: transparent;  
     }  
     #intro-overlay button:hover {  
       background: darkred;  
@@ -319,7 +360,7 @@
 </head>  
 <body>  
 
-  <!-- GIF DE ENTRADA -->  
+  <!-- GIF de entrada -->  
   <div id="intro-overlay">  
     <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Intro">  
     <button onclick="enterSite()">ENTRAR</button>  
@@ -343,7 +384,7 @@
     <audio id="bg-music" loop>  
       <source src="https://files.catbox.moe/vf3nc4.mp3" type="audio/mpeg">  
     </audio>  
-    <button class="music-btn" onclick="toggleMusic()">sonido - angel caido</button>  
+    <button class="music-btn paused" id="musicToggle" onclick="toggleMusic()"><i class="fa-solid fa-play"></i> encender música</button>  
 
     <!-- Layout con Staff y Aportes -->  
     <div class="layout">  
@@ -444,9 +485,7 @@
             <iframe src="https://youtube.com/embed/FPXuZPFyCd8?enablejsapi=1" frameborder="0" allowfullscreen id="youtube-video-7"></iframe>  
           </div>  
           <a href="https://www.mediafire.com/file/6d06kpjwz836nu8/DRUKS.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>  
-  </div>  
-
-        <!-- Plantillas vacías para copiar -->  
+            </div><!-- Plantillas vacías para copiar -->  
         <div class="aporte">  
           <h2>PROXIMAMENTE</h2>  
           <p><b>DESCRITPCION:</b>***.</p>  
@@ -528,15 +567,29 @@
   <script>  
     // Inicializar la música de fondo  
     const bgMusic = document.getElementById("bg-music");  
+    const musicBtn = document.getElementById("musicToggle");  
     let isMusicPlaying = false;  
+
+    // Eventos del audio para sincronizar estado visual  
+    bgMusic.onplay = function() {  
+      isMusicPlaying = true;  
+      musicBtn.classList.remove("paused");  
+      musicBtn.classList.add("playing");  
+      musicBtn.innerHTML = '<i class="fa-solid fa-pause"></i> apagar música';  
+    };  
+
+    bgMusic.onpause = function() {  
+      isMusicPlaying = false;  
+      musicBtn.classList.remove("playing");  
+      musicBtn.classList.add("paused");  
+      musicBtn.innerHTML = '<i class="fa-solid fa-play"></i> encender música';  
+    };  
 
     function toggleMusic() {  
       if (bgMusic.paused) {  
-        bgMusic.play();  
-        isMusicPlaying = true;  
+        bgMusic.play().catch(e => console.log("Error al reproducir: ", e));  
       } else {  
         bgMusic.pause();  
-        isMusicPlaying = false;  
       }  
     }  
 
@@ -544,12 +597,11 @@
       document.getElementById("intro-overlay").style.display = "none";  
       document.getElementById("mainContent").style.display = "block";  
       bgMusic.play();  
-      isMusicPlaying = true;  
     }  
 
     function activarSharingan(event) {  
-      event.preventDefault();  /* Bloquea default touch/ripple en Android */  
-      event.stopPropagation();  /* Evita burbujeo que cause ondas */  
+      event.preventDefault();  
+      event.stopPropagation();  
       const overlay = document.getElementById("sharingan-overlay");  
       const sound = document.getElementById("sharingan-sound");  
 
@@ -576,21 +628,16 @@
           new YT.Player(id, {  
             events: {  
               'onStateChange': (event) => {  
-                console.log('Estado del video:', event.data); // Depuración  
                 if (event.data === YT.PlayerState.PLAYING && isMusicPlaying) {  
                   bgMusic.pause();  
                   isMusicPlaying = false;  
-                  console.log('Música pausada'); // Depuración  
                 } else if ((event.data === YT.PlayerState.ENDED || event.data === YT.PlayerState.PAUSED) && !isMusicPlaying) {  
                   bgMusic.play();  
                   isMusicPlaying = true;  
-                  console.log('Música reanudada'); // Depuración  
                 }  
               }  
             }  
           });  
-        } else {  
-          console.error(`Iframe con ID ${id} no encontrado`); // Depuración  
         }  
       });  
     }  
@@ -608,7 +655,6 @@
       }  
     }  
 
-    // Iniciar la carga de la API cuando el DOM esté listo  
     document.addEventListener('DOMContentLoaded', loadYouTubeAPI);  
 
     window.addEventListener("load", () => {  
