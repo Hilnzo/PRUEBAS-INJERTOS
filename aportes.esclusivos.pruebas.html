@@ -20,7 +20,8 @@
     #password-overlay {
       position: fixed;
       top: 0; left: 0;
-      width: 100vw; height: 100vh;
+      width: 100vw;
+      height: 100vh;
       background: rgba(0, 0, 0, 0.9);
       display: flex;
       flex-direction: column;
@@ -29,11 +30,21 @@
       z-index: 4000;
       padding: 20px;
     }
+    #password-overlay .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+      max-width: 500px; /* Limita el ancho en pantallas grandes */
+    }
     #password-overlay img {
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      max-height: 70vh; /* Limita la altura para no tapar input/botón */
       object-fit: cover;
-      image-rendering: pixelated; /* Mejora nitidez en HD */
+      image-rendering: pixelated;
+      margin-bottom: 20px;
     }
     #password-overlay p {
       font-size: 1.2rem;
@@ -43,6 +54,8 @@
       background: rgba(0, 0, 0, 0.7);
       padding: 10px;
       border-radius: 5px;
+      width: 90%;
+      max-width: 400px;
     }
     #password-overlay input {
       padding: 10px;
@@ -52,7 +65,8 @@
       background: transparent;
       color: white;
       margin-bottom: 15px;
-      width: 200px;
+      width: 80%;
+      max-width: 300px;
       z-index: 1;
     }
     #password-overlay button {
@@ -67,6 +81,7 @@
       box-shadow: 0 0 10px red;
       transition: 0.3s;
       z-index: 1;
+      width: 150px;
     }
     #password-overlay button:hover {
       background: darkred;
@@ -272,6 +287,13 @@
         width: 130px;
         scroll-snap-align: start;
       }
+      #password-overlay input {
+        width: 70%;
+        max-width: 250px;
+      }
+      #password-overlay button {
+        width: 120px;
+      }
     }
 
     .sharingan-btn {
@@ -335,10 +357,12 @@
 <body>
   <!-- Overlay de contraseña inicial -->
   <div id="password-overlay">
-    <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2VjcXMzdmR5bTc4b3RpN3FmeGlrd3M3ZzltNjY4bmY0c2F2MmtnYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AD9YKaY2vxTXO/giphy.gif" id="password-img" alt="Intro GIF">
-    <p>Si tienes el rol Padrino en el servidor de Injertos, sabes la contraseña. Ingresa la contraseña</p>
-    <input type="password" id="pass-input" placeholder="Contraseña">
-    <button onclick="checkPassword()">Entrar</button>
+    <div class="content">
+      <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2VjcXMzdmR5bTc4b3RpN3FmeGlrd3M3ZzltNjY4bmY0c2F2MmtnYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AD9YKaY2vxTXO/giphy.gif" id="password-img" alt="Intro GIF">
+      <p>Si tienes el rol Padrino en el servidor de Injertos, sabes la contraseña. Ingresa la contraseña</p>
+      <input type="password" id="pass-input" placeholder="Contraseña">
+      <button onclick="checkPassword()">Entrar</button>
+    </div>
   </div>
 
   <h1>APORTES EXCLUSIVOS</h1>
@@ -420,7 +444,7 @@
       if (pass === correctPass) {
         overlay.style.display = 'none';
       } else {
-        img.src = 'https://media.giphy.com/media/l0HlRN7ndVF76E4Xw/giphy.gif'; // GIF de error (cambia por uno en HD)
+        img.src = 'https://media.giphy.com/media/l0HlRN7ndVF76E4Xw/giphy.gif'; // GIF de error
         p.textContent = 'No es la contraseña, compay. Mejor boostea el servidor de Discord y consigue la contraseña';
         document.getElementById('pass-input').value = ''; // Limpia el input
       }
