@@ -8,13 +8,23 @@
   <style>  
     body {  
       margin: 0;  
-      background: url('https://i.imgur.com/kXp9RhC.jpeg') no-repeat center center;  
-      background-size: cover;  
-      background-attachment: scroll; /* Cambiado para evitar problemas en móviles */  
       font-family: Arial, Helvetica, sans-serif;  
       color: white;  
       text-align: center;  
       overflow-x: hidden;  
+      position: relative;  
+    }  
+
+    /* Contenedor de fondo */  
+    .background-container {  
+      position: fixed;  
+      top: 0;  
+      left: 0;  
+      width: 100%;  
+      height: 100%;  
+      background: url('https://i.imgur.com/kXp9RhC.jpeg') no-repeat center center;  
+      background-size: cover;  
+      z-index: -1;  
     }  
 
     h1 {  
@@ -66,7 +76,7 @@
 
     /* Botón música - Estados dinámicos + animación */  
     .music-btn {  
-      margin-top: 30px;  
+      margin: 30px auto; /* Centrado horizontalmente */  
       padding: 10px 20px;  
       border: 2px solid white;  
       border-radius: 10px;  
@@ -328,7 +338,6 @@
       align-items: center;  
       justify-content: center;  
       z-index: 3000;  
-      transition: opacity 0.5s ease-out;  
     }  
     #intro-overlay img {  
       max-width: 100%;  
@@ -361,6 +370,7 @@
   </style>  
 </head>  
 <body>  
+  <div class="background-container"></div>  
 
   <!-- GIF de entrada -->  
   <div id="intro-overlay">  
@@ -386,7 +396,7 @@
     <audio id="bg-music" loop>  
       <source src="https://files.catbox.moe/vf3nc4.mp3" type="audio/mpeg">  
     </audio>  
-    <button class="music-btn paused" id="musicToggle" onclick="toggleMusic()"><i class="fa-solid fa-play"></i> Música Apagada</button>  
+    <button class="music-btn paused" id="musicToggle" onclick="toggleMusic()"><i class="fa-solid fa-play"></i> encender música</button>  
 
     <!-- Layout con Staff y Aportes -->  
     <div class="layout">  
@@ -530,14 +540,14 @@
       isMusicPlaying = true;  
       musicBtn.classList.remove("paused");  
       musicBtn.classList.add("playing");  
-      musicBtn.innerHTML = '<i class="fa-solid fa-pause"></i> Música Encendida';  
+      musicBtn.innerHTML = '<i class="fa-solid fa-pause"></i> apagar música';  
     };  
 
     bgMusic.onpause = function() {  
       isMusicPlaying = false;  
       musicBtn.classList.remove("playing");  
       musicBtn.classList.add("paused");  
-      musicBtn.innerHTML = '<i class="fa-solid fa-play"></i> Música Apagada';  
+      musicBtn.innerHTML = '<i class="fa-solid fa-play"></i> encender música';  
     };  
 
     function toggleMusic() {  
@@ -549,23 +559,17 @@
     }  
 
     function enterSite() {  
-      const introOverlay = document.getElementById("intro-overlay");  
-      introOverlay.style.opacity = "0";  
-      setTimeout(() => {  
-        introOverlay.style.display = "none";  
-        document.getElementById("mainContent").style.display = "block";  
-        bgMusic.play().catch(e => console.log("Error al reproducir música: ", e));  
-      }, 500); // Espera la transición de 0.5s  
+      document.getElementById("intro-overlay").style.display = "none";  
+      document.getElementById("mainContent").style.display = "block";  
+      bgMusic.play();  
     }  
 
     function activarSharingan() {  
       const overlay = document.getElementById("sharingan-overlay");  
       const sound = document.getElementById("sharingan-sound");  
-      const bg = document.getElementById("bg-music");  
 
       overlay.classList.add("active");  
       sound.play();  
-      if (bg && !bg.paused) bg.pause(); // Pausa la música de fondo  
 
       setTimeout(() => {  
         sessionStorage.setItem("sharinganActivo", "true");  
@@ -580,7 +584,7 @@
 
     // Función para manejar la API de YouTube  
     function onYouTubeIframeAPIReady() {  
-      const videoIds = ['youtube-video-1', 'youtube-video-2', 'youtube-video-3', 'youtube-video-4', 'youtube-video-5', 'youtube-video-6', 'youtube-video-7']; // Ajustado a 7 videos  
+      const videoIds = ['youtube-video-1', 'youtube-video-2', 'youtube-video-3', 'youtube-video-4', 'youtube-video-5', 'youtube-video-6', 'youtube-video-7'];  
 
       videoIds.forEach((id) => {  
         if (document.getElementById(id)) {  
@@ -591,7 +595,7 @@
                   bgMusic.pause();  
                   isMusicPlaying = false;  
                 } else if ((event.data === YT.PlayerState.ENDED || event.data === YT.PlayerState.PAUSED) && !isMusicPlaying) {  
-                  bgMusic.play().catch(e => console.log("Error al reanudar música: ", e));  
+                  bgMusic.play();  
                   isMusicPlaying = true;  
                 }  
               }  
