@@ -22,12 +22,12 @@
       top: 0; left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.9);
+      background: rgba(0, 0, 0, 0.95); /* Aumenta opacidad para cubrir contenido */
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      z-index: 4000;
+      z-index: 4000; /* Asegura que esté por encima de todo */
       padding: 20px;
     }
     #password-overlay .content {
@@ -37,11 +37,11 @@
       justify-content: center;
       text-align: center;
       width: 100%;
-      max-width: 500px; /* Limita el ancho en pantallas grandes */
+      max-width: 500px;
     }
     #password-overlay img {
       width: 100%;
-      max-height: 70vh; /* Limita la altura para no tapar input/botón */
+      max-height: 70vh;
       object-fit: cover;
       image-rendering: pixelated;
       margin-bottom: 20px;
@@ -379,7 +379,7 @@
   <audio id="bg-music" loop>
     <source src="https://files.catbox.moe/0sxa7b.mp3" type="audio/mpeg">
   </audio>
-  <button class="music-btn paused" id="musicToggle" onclick="toggleMusic()"><i class="fa-solid fa-play"></i> Sonido - Ángel Caído</button>
+  <button class="music-btn paused" id="musicToggle" onclick="toggleMusic()"><i class="fa-solid fa-play"></i> Música</button>
 
   <div class="layout">
     <div class="staff-col">
@@ -444,9 +444,9 @@
       if (pass === correctPass) {
         overlay.style.display = 'none';
       } else {
-        img.src = 'https://media.giphy.com/media/l0HlRN7ndVF76E4Xw/giphy.gif'; // GIF de error
+        img.src = 'https://media.giphy.com/media/l0HlRN7ndVF76E4Xw/giphy.gif';
         p.textContent = 'No es la contraseña, compay. Mejor boostea el servidor de Discord y consigue la contraseña';
-        document.getElementById('pass-input').value = ''; // Limpia el input
+        document.getElementById('pass-input').value = '';
       }
     }
 
@@ -458,12 +458,12 @@
         music.play();
         btn.classList.remove('paused');
         btn.classList.add('playing');
-        btn.innerHTML = '<i class="fa-solid fa-pause"></i> Sonido - Ángel Caído';
+        btn.innerHTML = '<i class="fa-solid fa-pause"></i> Música';
       } else {
         music.pause();
         btn.classList.remove('playing');
         btn.classList.add('paused');
-        btn.innerHTML = '<i class="fa-solid fa-play"></i> Sonido - Ángel Caído';
+        btn.innerHTML = '<i class="fa-solid fa-play"></i> Música';
       }
     }
 
@@ -482,7 +482,7 @@
                 try { music.pause(); } catch (e) {}
                 btn.classList.remove('playing');
                 btn.classList.add('paused');
-                btn.innerHTML = '<i class="fa-solid fa-play"></i> Sonido - Ángel Caído';
+                btn.innerHTML = '<i class="fa-solid fa-play"></i> Música';
               }
             }
           }
