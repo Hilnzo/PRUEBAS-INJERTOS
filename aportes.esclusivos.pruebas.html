@@ -8,8 +8,9 @@
   <style>
     body {
       margin: 0;
-      background: url('https://i.imgur.com/ZSKMRE8.jpeg') no-repeat center center fixed;
+      background: url('https://i.imgur.com/ZSKMRE8.jpeg') no-repeat center center;
       background-size: cover;
+      background-attachment: scroll; /* Cambiado para evitar problemas en móviles */
       font-family: Arial, Helvetica, sans-serif;
       color: white;
       text-align: center;
@@ -22,13 +23,17 @@
       top: 0; left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.95); /* Aumenta opacidad para cubrir contenido */
+      background: rgba(0, 0, 0, 0.99); /* Aumenta opacidad para cubrir todo */
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      z-index: 4000; /* Asegura que esté por encima de todo */
+      z-index: 5000; /* Aumentado para prioridad máxima */
       padding: 20px;
+    }
+    #password-overlay .content-wrapper {
+      position: relative;
+      z-index: 1;
     }
     #password-overlay .content {
       display: flex;
@@ -357,11 +362,13 @@
 <body>
   <!-- Overlay de contraseña inicial -->
   <div id="password-overlay">
-    <div class="content">
-      <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2VjcXMzdmR5bTc4b3RpN3FmeGlrd3M3ZzltNjY4bmY0c2F2MmtnYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AD9YKaY2vxTXO/giphy.gif" id="password-img" alt="Intro GIF">
-      <p>Si tienes el rol Padrino en el servidor de Injertos, sabes la contraseña. Ingresa la contraseña</p>
-      <input type="password" id="pass-input" placeholder="Contraseña">
-      <button onclick="checkPassword()">Entrar</button>
+    <div class="content-wrapper">
+      <div class="content">
+        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2VjcXMzdmR5bTc4b3RpN3FmeGlrd3M3ZzltNjY4bmY0c2F2MmtnYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AD9YKaY2vxTXO/giphy.gif" id="password-img" alt="Intro GIF">
+        <p>Si tienes el rol Padrino en el servidor de Injertos, sabes la contraseña. Ingresa la contraseña</p>
+        <input type="password" id="pass-input" placeholder="Contraseña">
+        <button onclick="checkPassword()">Entrar</button>
+      </div>
     </div>
   </div>
 
@@ -379,7 +386,7 @@
   <audio id="bg-music" loop>
     <source src="https://files.catbox.moe/0sxa7b.mp3" type="audio/mpeg">
   </audio>
-  <button class="music-btn paused" id="musicToggle" onclick="toggleMusic()"><i class="fa-solid fa-play"></i> Música</button>
+  <button class="music-btn paused" id="musicToggle" onclick="toggleMusic()"><i class="fa-solid fa-play"></i> Música Apagada</button>
 
   <div class="layout">
     <div class="staff-col">
@@ -440,9 +447,15 @@
       const overlay = document.getElementById('password-overlay');
       const img = document.getElementById('password-img');
       const p = overlay.querySelector('p');
+      const music = document.getElementById('bg-music');
+      const btn = document.getElementById('musicToggle');
 
       if (pass === correctPass) {
         overlay.style.display = 'none';
+        music.play().catch(() => {}); // Reproduce música al entrar
+        btn.classList.remove('paused');
+        btn.classList.add('playing');
+        btn.innerHTML = '<i class="fa-solid fa-pause"></i> Música Encendida';
       } else {
         img.src = 'https://media.giphy.com/media/l0HlRN7ndVF76E4Xw/giphy.gif';
         p.textContent = 'No es la contraseña, compay. Mejor boostea el servidor de Discord y consigue la contraseña';
@@ -458,12 +471,12 @@
         music.play();
         btn.classList.remove('paused');
         btn.classList.add('playing');
-        btn.innerHTML = '<i class="fa-solid fa-pause"></i> Música';
+        btn.innerHTML = '<i class="fa-solid fa-pause"></i> Música Encendida';
       } else {
         music.pause();
         btn.classList.remove('playing');
         btn.classList.add('paused');
-        btn.innerHTML = '<i class="fa-solid fa-play"></i> Música';
+        btn.innerHTML = '<i class="fa-solid fa-play"></i> Música Apagada';
       }
     }
 
@@ -482,7 +495,7 @@
                 try { music.pause(); } catch (e) {}
                 btn.classList.remove('playing');
                 btn.classList.add('paused');
-                btn.innerHTML = '<i class="fa-solid fa-play"></i> Música';
+                btn.innerHTML = '<i class="fa-solid fa-play"></i> Música Apagada';
               }
             }
           }
