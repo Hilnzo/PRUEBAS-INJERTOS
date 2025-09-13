@@ -8,8 +8,9 @@
   <style>  
     body {  
       margin: 0;  
-      background: url('https://i.imgur.com/kXp9RhC.jpeg') no-repeat center center fixed;  
+      background: url('https://i.imgur.com/kXp9RhC.jpeg') no-repeat center center;  
       background-size: cover;  
+      background-attachment: scroll; /* Cambiado para evitar problemas en móviles */  
       font-family: Arial, Helvetica, sans-serif;  
       color: white;  
       text-align: center;  
@@ -63,7 +64,7 @@
     .socials a.roblox { background: #FF4757; }  
     .socials a.discord { background: #5865F2; }  
 
-    /* Botón música - Estados dinámicos + animación */
+    /* Botón música - Estados dinámicos + animación */  
     .music-btn {  
       margin-top: 30px;  
       padding: 10px 20px;  
@@ -327,6 +328,7 @@
       align-items: center;  
       justify-content: center;  
       z-index: 3000;  
+      transition: opacity 0.5s ease-out;  
     }  
     #intro-overlay img {  
       max-width: 100%;  
@@ -384,17 +386,17 @@
     <audio id="bg-music" loop>  
       <source src="https://files.catbox.moe/vf3nc4.mp3" type="audio/mpeg">  
     </audio>  
-    <button class="music-btn paused" id="musicToggle" onclick="toggleMusic()"><i class="fa-solid fa-play"></i> encender música</button>  
+    <button class="music-btn paused" id="musicToggle" onclick="toggleMusic()"><i class="fa-solid fa-play"></i> Música Apagada</button>  
 
     <!-- Layout con Staff y Aportes -->  
     <div class="layout">  
       <!-- Staff izquierda -->  
       <div class="staff-col">  
-         <div class="card"><img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif"><p><b>HILNZO</b></p><p class="role">DUEÑO</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1354865570880946176/avatars/5986239fed096a6beb8d2998bd1ac729.png"><p><b>KALCOR</b></p><p class="role">DUEÑO</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/avatars/1246355878840631327/2c0846a264c2af5eede51ab3aa0fc3cb.png"><p><b>KAIROX</b></p><p class="role">DUEÑO</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/avatars/1221849688593137830/ccbeb578b68bd02a4b19dc1ddd506842.png"><p><b>JACOB</b></p><p class="role">DUEÑO</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1298942723847622690/avatars/3a3d7b727f6d8b018dcc639c260e49f8.png"><p><b>MANZER</b></p><p class="role">DUEÑO</p></div>  
+        <div class="card"><img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif"><p><b>HILNZO</b></p><p class="role">DUEÑO</p></div>  
+        <div class="card"><img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1354865570880946176/avatars/5986239fed096a6beb8d2998bd1ac729.png"><p><b>KALCOR</b></p><p class="role">DUEÑO</p></div>  
+        <div class="card"><img src="https://cdn.discordapp.com/avatars/1246355878840631327/2c0846a264c2af5eede51ab3aa0fc3cb.png"><p><b>KAIROX</b></p><p class="role">DUEÑO</p></div>  
+        <div class="card"><img src="https://cdn.discordapp.com/avatars/1221849688593137830/ccbeb578b68bd02a4b19dc1ddd506842.png"><p><b>JACOB</b></p><p class="role">DUEÑO</p></div>  
+        <div class="card"><img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1298942723847622690/avatars/3a3d7b727f6d8b018dcc639c260e49f8.png"><p><b>MANZER</b></p><p class="role">DUEÑO</p></div>  
       </div>  
 
       <!-- APORTES -->  
@@ -482,75 +484,28 @@
           <p><b>INCLUYE:</b> /MACROS - /HINFO - /PCMDS - /SDPOS - /HD - /SENSA.</p>  
           <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">hilnzodruks</span></p>  
           <div class="video-wrapper">  
-            <iframe src="https://youtube.com/embed/FPXuZPFyCd8?enablejsapi=1" frameborder="0" allowfullscreen id="youtube-video-7"></iframe>  
+            <iframe src="https://www.youtube.com/embed/FPXuZPFyCd8" frameborder="0" allowfullscreen id="youtube-video-7"></iframe>  
           </div>  
           <a href="https://www.mediafire.com/file/6d06kpjwz836nu8/DRUKS.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>  
-            </div><!-- Plantillas vacías para copiar -->  
-        <div class="aporte">  
-          <h2>PROXIMAMENTE</h2>  
-          <p><b>DESCRITPCION:</b>***.</p>  
-          <p><b>CREADOR:</b>***</p>  
-          <p><b>INCLUYE:</b>***.</p>  
-          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">***</span></p>  
-          <div class="video-wrapper">  
-            <iframe src="https://youtube.com/embed/YYYYYYYYYYY?enablejsapi=1" frameborder="0" allowfullscreen id="youtube-video-8"></iframe>  
-          </div>  
-          <a href="https://www.mediafire.com/file/xxxxxx/Aporte_Plantilla2.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>  
-        </div>  
-
-        <div class="aporte">  
-          <h2>PROXIMAMENTE</h2>  
-          <p><b>DESCRITPCION:</b>***.</p>  
-          <p><b>CREADOR:</b>***</p>  
-          <p><b>INCLUYE:</b>***.</p>  
-          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">***</span></p>  
-          <div class="video-wrapper">  
-            <iframe src="https://youtube.com/embed/ZZZZZZZZZZZ?enablejsapi=1" frameborder="0" allowfullscreen id="youtube-video-9"></iframe>  
-          </div>  
-          <a href="https://www.mediafire.com/file/xxxxxx/Aporte_Plantilla3.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>  
-        </div>  
-
-        <div class="aporte">  
-          <h2>PROXIMAMENTE</h2>  
-          <p><b>DESCRITPCION:</b>***</p>  
-          <p><b>CREADOR:</b>***</p>  
-          <p><b>INCLUYE:</b>***.</p>  
-          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">***</span></p>  
-          <div class="video-wrapper">  
-            <iframe src="https://youtube.com/embed/AAAAAAAAAAA?enablejsapi=1" frameborder="0" allowfullscreen id="youtube-video-10"></iframe>  
-          </div>  
-          <a href="https://www.mediafire.com/file/xxxxxx/Aporte_Plantilla4.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>  
-        </div>  
-
-        <div class="aporte">  
-          <h2>PROXIMAMENTE</h2>  
-          <p><b>DESCRITPCION:</b>***.</p>  
-          <p><b>CREADOR:</b>***</p>  
-          <p><b>INCLUYE:</b>***.</p>  
-          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">***</span></p>  
-          <div class="video-wrapper">  
-            <iframe src="https://youtube.com/embed/BBBBBBBBBBB?enablejsapi=1" frameborder="0" allowfullscreen id="youtube-video-11"></iframe>  
-          </div>  
-          <a href="https://www.mediafire.com/file/xxxxxx/Aporte_Plantilla5.rar/file" target="_blank" class="download-btn">⬇ DESCARGAR APORTE</a>  
         </div>  
       </div>  
 
       <!-- Staff derecha -->  
       <div class="staff-col">  
-        <div class="card"><img src="https://cdn.discordapp.com/avatars/1260353622001188875/66c48f30b95b7b331c48196b31fb7282.png"><p><b>Maik</b></p><p class="role">ADMIN</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/avatars/933010372120698890/832e04104fa6be337f009700a914c7f3.png"><p><b>David</b></p><p class="role">HEAD MODERADOR</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/avatars/1308947599235223637/ac79495194906156d3116496e4c7c72d.png"><p><b>Zair</b></p><p class="role">HEAD MODERADOR</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/avatars/1386421165052002366/a_e752489e8b37d4af5efefbb1bb796f40.gif"><p><b>Veloz</b></p><p class="role">STAR HELPER</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/avatars/1000966605729181847/9de61981cbe4d9ba985aace659cec1ef.png"><p><b>infi</b></p><p class="role">STAR HELPER</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/avatars/1378867547394408470/16c25c75f2c2b78f72b57ba2be733215.png"><p><b>Daniel</b></p><p class="role">STAR HELPER</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/avatars/819972541925425202/5f37b46166d6a8848ba5ee22c32454b7.png"><p><b>Shelby</b></p><p class="role">STAR HELPER</p></div>
-      <div class="card"><img src="https://cdn.discordapp.com/avatars/1122922371699974144/bb813d792026bb69e0a2a4130d13540f.png"><p><b>Diego</b></p><p class="role">STAR HELPER</p></div>  
+        <div class="card"><img src="https://cdn.discordapp.com/avatars/1260353622001188875/66c48f30b95b7b331c48196b31fb7282.png"><p><b>Maik</b></p><p class="role">ADMIN</p></div>  
+        <div class="card"><img src="https://cdn.discordapp.com/avatars/933010372120698890/832e04104fa6be337f009700a914c7f3.png"><p><b>David</b></p><p class="role">HEAD MODERADOR</p></div>  
+        <div class="card"><img src="https://cdn.discordapp.com/avatars/1308947599235223637/ac79495194906156d3116496e4c7c72d.png"><p><b>Zair</b></p><p class="role">HEAD MODERADOR</p></div>  
+        <div class="card"><img src="https://cdn.discordapp.com/avatars/1386421165052002366/a_e752489e8b37d4af5efefbb1bb796f40.gif"><p><b>Veloz</b></p><p class="role">STAR HELPER</p></div>  
+        <div class="card"><img src="https://cdn.discordapp.com/avatars/1000966605729181847/9de61981cbe4d9ba985aace659cec1ef.png"><p><b>infi</b></p><p class="role">STAR HELPER</p></div>  
+        <div class="card"><img src="https://cdn.discordapp.com/avatars/1378867547394408470/16c25c75f2c2b78f72b57ba2be733215.png"><p><b>Daniel</b></p><p class="role">STAR HELPER</p></div>  
+        <div class="card"><img src="https://cdn.discordapp.com/avatars/819972541925425202/5f37b46166d6a8848ba5ee22c32454b7.png"><p><b>Shelby</b></p><p class="role">STAR HELPER</p></div>  
+        <div class="card"><img src="https://cdn.discordapp.com/avatars/1122922371699974144/bb813d792026bb69e0a2a4130d13540f.png"><p><b>Diego</b></p><p class="role">STAR HELPER</p></div>  
       </div>  
     </div>  
   </div>  
 
   <!-- Botón Sharingan -->  
-  <div class="sharingan-btn" onclick="activarSharingan(event)">  
+  <div class="sharingan-btn" onclick="activarSharingan()">  
     <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2VjcXMzdmR5bTc4b3RpN3FmeGlrd3M3ZzltNjY4bmY0c2F2MmtnYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AD9YKaY2vxTXO/giphy.gif" alt="Sharingan">  
   </div>  
 
@@ -575,14 +530,14 @@
       isMusicPlaying = true;  
       musicBtn.classList.remove("paused");  
       musicBtn.classList.add("playing");  
-      musicBtn.innerHTML = '<i class="fa-solid fa-pause"></i> apagar música';  
+      musicBtn.innerHTML = '<i class="fa-solid fa-pause"></i> Música Encendida';  
     };  
 
     bgMusic.onpause = function() {  
       isMusicPlaying = false;  
       musicBtn.classList.remove("playing");  
       musicBtn.classList.add("paused");  
-      musicBtn.innerHTML = '<i class="fa-solid fa-play"></i> encender música';  
+      musicBtn.innerHTML = '<i class="fa-solid fa-play"></i> Música Apagada';  
     };  
 
     function toggleMusic() {  
@@ -594,23 +549,27 @@
     }  
 
     function enterSite() {  
-      document.getElementById("intro-overlay").style.display = "none";  
-      document.getElementById("mainContent").style.display = "block";  
-      bgMusic.play();  
+      const introOverlay = document.getElementById("intro-overlay");  
+      introOverlay.style.opacity = "0";  
+      setTimeout(() => {  
+        introOverlay.style.display = "none";  
+        document.getElementById("mainContent").style.display = "block";  
+        bgMusic.play().catch(e => console.log("Error al reproducir música: ", e));  
+      }, 500); // Espera la transición de 0.5s  
     }  
 
-    function activarSharingan(event) {  
-      event.preventDefault();  
-      event.stopPropagation();  
+    function activarSharingan() {  
       const overlay = document.getElementById("sharingan-overlay");  
       const sound = document.getElementById("sharingan-sound");  
+      const bg = document.getElementById("bg-music");  
 
       overlay.classList.add("active");  
       sound.play();  
+      if (bg && !bg.paused) bg.pause(); // Pausa la música de fondo  
 
       setTimeout(() => {  
         sessionStorage.setItem("sharinganActivo", "true");  
-        window.location.href = "******";  
+        window.location.href = "https://hilnzo.github.io/injertos-mods/aportes.exclusivos.html";  
       }, 3000);  
     }  
 
@@ -621,7 +580,7 @@
 
     // Función para manejar la API de YouTube  
     function onYouTubeIframeAPIReady() {  
-      const videoIds = ['youtube-video-1', 'youtube-video-2', 'youtube-video-3', 'youtube-video-4', 'youtube-video-5', 'youtube-video-6', 'youtube-video-7', 'youtube-video-8', 'youtube-video-9', 'youtube-video-10', 'youtube-video-11'];  
+      const videoIds = ['youtube-video-1', 'youtube-video-2', 'youtube-video-3', 'youtube-video-4', 'youtube-video-5', 'youtube-video-6', 'youtube-video-7']; // Ajustado a 7 videos  
 
       videoIds.forEach((id) => {  
         if (document.getElementById(id)) {  
@@ -632,7 +591,7 @@
                   bgMusic.pause();  
                   isMusicPlaying = false;  
                 } else if ((event.data === YT.PlayerState.ENDED || event.data === YT.PlayerState.PAUSED) && !isMusicPlaying) {  
-                  bgMusic.play();  
+                  bgMusic.play().catch(e => console.log("Error al reanudar música: ", e));  
                   isMusicPlaying = true;  
                 }  
               }  
