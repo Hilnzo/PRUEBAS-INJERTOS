@@ -96,12 +96,18 @@
       position: relative;
       z-index: 2;
     }
+
+    h1 {
+      font-size: 3rem;
+      margin-top: 20px;
+      text-shadow: 2px 2px 8px red;
+    }
   </style>
 </head>
 <body>
   <div class="background-container">
     <video id="bg-video" loop muted playsinline preload="auto">
-      <source src="https://files.catbox.moe/zchrsh.mp4" type="video/mp4">
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
       Tu navegador no soporta videos.
     </video>
     <div class="fallback-image"></div>
@@ -114,30 +120,47 @@
 
   <div id="mainContent">
     <h1>INJERTOS</h1>
-    <p>Video y música funcionando</p>
+    <p>Probando video y música</p>
   </div>
 
   <audio id="bg-music" loop>
-    <source src="https://imgur.com/MZZQjnG" type="audio/mpeg">
+    <source src="https://files.catbox.moe/vf3nc4.mp3" type="audio/mpeg">
   </audio>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const video = document.querySelector('#bg-video');
       const fallbackImage = document.querySelector('.fallback-image');
+      const source = video.querySelector('source');
 
-      video.addEventListener('error', (e) => {
-        console.error('Error al cargar el video:', e.message);
-        video.style.display = 'none';
-        fallbackImage.style.display = 'block';
-      });
+      // Verificar si el enlace del video es accesible
+      fetch(source.src, { method: 'HEAD' })
+        .then(response => {
+          if (!response.ok) {
+            console.error('Enlace del video no accesible:', response.status);
+            video.style.display = 'none';
+            fallbackImage.style.display = 'block';
+          } else {
+            console.log('Enlace del video accesible');
+          }
+        })
+        .catch(e => console.error('Error al verificar enlace del video:', e));
 
+      // Evento cuando el video carga
       video.addEventListener('loadeddata', () => {
         console.log('Video cargado correctamente');
         video.style.display = 'block';
         fallbackImage.style.display = 'none';
       });
 
+      // Evento si el video falla al cargar
+      video.addEventListener('error', (e) => {
+        console.error('Error al cargar el video:', e.message || 'Desconocido');
+        video.style.display = 'none';
+        fallbackImage.style.display = 'block';
+      });
+
+      // Confirmar que el video está listo para reproducirse
       video.addEventListener('canplay', () => {
         console.log('Video listo para reproducirse');
       });
