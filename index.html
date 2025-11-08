@@ -6,6 +6,7 @@
   <title>INJERTOS MODS</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap');
     body {
       margin: 0;
       font-family: 'Orbitron', sans-serif;
@@ -15,19 +16,16 @@
       position: relative;
       background: #000;
     }
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap');
-
     .background-container {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: url('https://imgur.com/VcWPdTD.jpg') no-repeat center center;
       background-size: cover; z-index: -1; filter: brightness(0.6);
     }
-
-    h1 { font-size: 3.5rem; margin: 20px 0; text-shadow: 0 0 20px red, 0 0 40px #ff0000; z-index: 2; color: #ff1a1a; }
-    p { font-size: 1.3rem; margin-bottom: 30px; font-weight: bold; z-index: 2; }
+    h1 { font-size: 3.5rem; margin: 20px 0; text-shadow: 0 0 20px red, 0 0 40px #ff0000; color: #ff1a1a; }
+    p { font-size: 1.3rem; margin-bottom: 30px; font-weight: bold; }
 
     /* Redes */
-    .socials { margin-top: 20px; z-index: 2; }
+    .socials { margin-top: 20px; }
     .socials a {
       display: inline-block; margin: 10px; padding: 12px 25px; border-radius: 12px;
       color: white; text-decoration: none; font-size: 1.2rem; font-weight: bold;
@@ -40,7 +38,7 @@
     .socials a.roblox { background: #FF4757; }
     .socials a.discord { background: #5865F2; }
 
-    /* Reproductor Flotante */
+    /* Reproductor */
     .music-player {
       position: fixed; bottom: 20px; left: 20px; background: rgba(0,0,0,0.85); padding: 10px 15px;
       border-radius: 50px; display: flex; align-items: center; gap: 12px; z-index: 999;
@@ -54,9 +52,9 @@
     #volumeSlider::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; background: red; border-radius: 50%; box-shadow: 0 0 10px red; }
     .volume-icon { font-size: 1.2rem; min-width: 20px; }
 
-    /* FILTROS */
+    /* Filtros */
     .filters {
-      margin: 30px 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; z-index: 2;
+      margin: 30px 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;
     }
     .filter-btn {
       padding: 12px 25px; background: #111; border: 2px solid red; color: white;
@@ -66,8 +64,8 @@
       background: red; box-shadow: 0 0 20px red;
     }
 
-    /* CONTENIDO */
-    .content { max-width: 1600px; margin: 0 auto; padding: 0 15px; z-index: 2; }
+    /* Contenido */
+    .content { max-width: 1600px; margin: 0 auto; padding: 0 15px; }
     .grid {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; margin-top: 20px;
     }
@@ -76,14 +74,10 @@
       border: 2px solid red; box-shadow: 0 0 70px rgba(255,0,0,0.9); transition: 0.3s;
       text-align: left; line-height: 1.9;
     }
-    .aporte:hover {
-      box-shadow: 0 0 120px rgba(255,0,0,1.2); transform: translateY(-6px);
-    }
-    .aporte h3 {
-      font-size: 2.2rem; color: red; text-align: center; margin-bottom: 18px;
-    }
+    .aporte:hover { box-shadow: 0 0 120px rgba(255,0,0,1.2); transform: translateY(-6px); }
+    .aporte h3 { font-size: 2.2rem; color: red; text-align: center; margin-bottom: 18px; }
 
-    /* VIDEO PERFECTO */
+    /* Video */
     .video-wrapper {
       position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
       border-radius: 12px; margin: 20px 0; background: #000;
@@ -100,7 +94,7 @@
     }
     .download-btn:hover { background: darkred; transform: scale(1.04); }
 
-    /* === NUESTRO EQUIPO - ÉPICO === */
+    /* EQUIPO ÉPICO */
     #equipo-view {
       background: linear-gradient(135deg, rgba(50,0,0,0.9), rgba(0,0,0,0.95));
       padding: 50px 20px; border-radius: 25px; margin: 20px 0;
@@ -112,10 +106,7 @@
       background: radial-gradient(circle, rgba(255,0,0,0.2) 0%, transparent 70%);
       animation: fireMist 8s infinite linear; z-index: 0; pointer-events: none;
     }
-    @keyframes fireMist {
-      0% { transform: translate(0, 0) rotate(0deg); }
-      100% { transform: translate(20%, 20%) rotate(360deg); }
-    }
+    @keyframes fireMist { 0% { transform: translate(0, 0) rotate(0deg); } 100% { transform: translate(20%, 20%) rotate(360deg); } }
 
     .equipo-title {
       font-size: 4rem; font-weight: 900; color: #ff1a1a;
@@ -163,7 +154,6 @@
       display: inline-block; margin-top: 8px; box-shadow: 0 0 20px rgba(255,0,0,0.5);
     }
 
-    /* BOOSTERS */
     .boosters-title {
       font-size: 3rem; color: #ff1a1a; text-shadow: 0 0 25px #ff0000;
       margin: 50px 0 30px; position: relative; z-index: 1;
@@ -173,7 +163,6 @@
     .sharingan-btn {
       position: fixed; bottom: 20px; right: 20px; width: 55px; height: 55px; cursor: pointer; z-index: 1000;
       outline: none; border: none; user-select: none; -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation; -webkit-user-select: none; -webkit-touch-callout: none;
     }
     .sharingan-btn img {
       width: 100%; height: 100%; border-radius: 50%;
@@ -234,14 +223,14 @@
       <a href="https://discord.gg/rNJ7UaPBYa" target="_blank" class="discord">DC - INJERTOS MODS</a>
     </div>
 
-    <!-- Reproductor Flotante -->
+    <!-- Reproductor -->
     <div class="music-player">
       <button id="musicToggle" class="music-btn-small">Pause</button>
       <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
       <span id="volumeIcon" class="volume-icon">volume up</span>
     </div>
 
-    <!-- FILTROS -->
+    <!-- Filtros -->
     <div class="filters">
       <button class="filter-btn active" onclick="showView('equipo')">NUESTRO EQUIPO</button>
       <button class="filter-btn" onclick="showView('aportes')">APORTES</button>
@@ -249,13 +238,11 @@
       <button class="filter-btn" onclick="showView('tops')">APORTES TOPS</button>
     </div>
 
-    <!-- CONTENIDO -->
+    <!-- Contenido -->
     <div class="content">
-      <!-- NUESTRO EQUIPO ÉPICO -->
       <div id="equipo-view" class="view">
         <h2 class="equipo-title">NUESTRO EQUIPO</h2>
         <div class="grid" id="staff-grid"></div>
-
         <h2 class="boosters-title">GRACIAS A NUESTROS BOOSTERS</h2>
         <div class="grid" id="boosters-grid"></div>
       </div>
@@ -300,22 +287,38 @@
       { nombre: "TOMMY", rol: "HELPER", avatar: "https://cdn.discordapp.com/avatars/1397628533626638428/99e743f3feed7c2e758f668ac42b2b0d.png?size=256" }
     ];
 
-    const aportes = [ /* ... tus aportes ... */ ];
-    const datas = [ /* ... tus datas ... */ ];
-    const tops = [ /* ... tus tops ... */ ];
+    const aportes = [
+      { titulo: "TIFFANY", creador: "HILNZO", contrasena: "tiffanyctmr", video: "https://youtube.com/embed/1Iq2YeDLVmM", descarga: "https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file" },
+      { titulo: "BRUTALITY", creador: "JACOB", contrasena: "fuemip", video: "https://youtube.com/embed/fmVS7-nTmD4", descarga: "https://www.mediafire.com/file/rj4hc064ibyu767/BRUTALITY.rar/file" },
+      { titulo: "DRUKS", creador: "HILNZO", contrasena: "hilnzodruks", video: "https://youtube.com/embed/FPXuZPFyCd8", descarga: "https://www.mediafire.com/file/6d06kpjwz836nu8/DRUKS.rar/file" }
+    ];
+
+    const datas = [
+      { titulo: "DataBlue", creador: "MANZER", contrasena: "NO TIENE", video: "https://youtube.com/embed/Tv7fyMCG0G0", descarga: "https://www.mediafire.com/file/12efvtjw3392v58/DataBlue%F0%9F%94%B5MR%24.zip/file" },
+      { titulo: "VERSION R5", creador: "HILNZO", contrasena: "injertosr5", video: "https://youtube.com/embed/BywZG9Ckh9Q", descarga: "https://www.mediafire.com/file/wsgq5q0r3su9hzo/version_R5_injertos_mods.rar/file" }
+    ];
+
+    const tops = [
+      { titulo: "TIFFANY", autor: "HILNZO", descargas: 2847, video: "https://youtube.com/embed/1Iq2YeDLVmM", descarga: "https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file", contrasena: "tiffanyctmr" },
+      { titulo: "BRUTALITY", autor: "JACOB", descargas: 3201, video: "https://youtube.com/embed/fmVS7-nTmD4", descarga: "https://www.mediafire.com/file/rj4hc064ibyu767/BRUTALITY.rar/file", contrasena: "fuemip" },
+      { titulo: "DRUKS", autor: "HILNZO", descargas: 1923, video: "https://youtube.com/embed/FPXuZPFyCd8", descarga: "https://www.mediafire.com/file/6d06kpjwz836nu8/DRUKS.rar/file", contrasena: "hilnzodruks" },
+      { titulo: "DataBlue", autor: "MANZER", descargas: 1500, video: "https://youtube.com/embed/Tv7fyMCG0G0", descarga: "https://www.mediafire.com/file/12efvtjw3392v58/DataBlue%F0%9F%94%B5MR%24.zip/file", contrasena: "NO TIENE" },
+      { titulo: "VERSION R5", autor: "HILNZO", descargas: 1200, video: "https://youtube.com/embed/BywZG9Ckh9Q", descarga: "https://www.mediafire.com/file/wsgq5q0r3su9hzo/version_R5_injertos_mods.rar/file", contrasena: "injertosr5" },
+      { titulo: "GIRLZ", autor: "JACOB", descargas: 1100, video: "https://youtube.com/embed/VsXBeqeQHbQ", descarga: "https://www.mediafire.com/file/l6dun8dkpstz1ks/GIRLZ.rar/file", contrasena: "NO TIENE" }
+    ];
 
     const boosters = [
       { nombre: "HILNZO", avatar: "https://cdn.discordapp.com/avatars/1298301131641983019/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif?size=256" },
       { nombre: "JACOB", avatar: "https://cdn.discordapp.com/avatars/1221849688593137830/9df3e244543051e16ccb8cdab9a851c0.png?size=256" },
       { nombre: "MANZER", avatar: "https://cdn.discordapp.com/avatars/1414075135350280234/c3b5512a81fe635e12eac2a25511b7ca.png?size=256" },
-      { nombre: "KAIROX", avatar: "https://cdn.discordapp.com/avatars/1246355878840631327/5a14e4c676a423d4acda0ff29bd225e.png?size=256" },
+      { nombre: "KAIROX", avatar: "https://cdn.discordapp.com/avatars/1246355878840631327/5a14e4c676a423d04acda0ff29bd225e.png?size=256" },
       { nombre: "ISAAC", avatar: "https://cdn.discordapp.com/avatars/1079142194071486574/c88ca46b136aeecebe37f49ea026cd77.png?size=256" },
       { nombre: "Yerlin", avatar: "https://cdn.discordapp.com/avatars/1297359221280739389/0c8e21345db6f35f607546e0dcbf4295.png?size=256" },
       { nombre: "David", avatar: "https://cdn.discordapp.com/avatars/1386421165052002366/ad60538bd141ab74a7029f32a0288fc2.png?size=256" },
       { nombre: "Tom", avatar: "https://cdn.discordapp.com/avatars/1310311626737582223/064d6b85c2b423cbf18888e69e1fd7ed.png?size=256" }
     ];
 
-    // === RENDER ÉPICO ===
+    // === RENDER ===
     function renderEquipo() {
       document.getElementById('staff-grid').innerHTML = staff.map(s => `
         <div class="staff-card">
@@ -334,8 +337,105 @@
       `).join('');
     }
 
-    // === RESTO DE FUNCIONES (aportes, datas, tops, audio, sharingan, enterSite, etc.) ===
-    // (Mismo código que antes, solo cambia el renderEquipo)
+    function renderAportes() {
+      document.getElementById('aportes-view').innerHTML = `<div class="grid">${aportes.map(a => `
+        <div class="aporte">
+          <h3>${a.titulo}</h3>
+          <p><b>CREADOR:</b> ${a.creador}</p>
+          <p><b>CONTRASEÑA:</b> <span style="color:red;font-weight:bold;">${a.contrasena}</span></p>
+          <div class="video-wrapper"><iframe src="${a.video}?enablejsapi=1" allowfullscreen></iframe></div>
+          <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
+        </div>
+      `).join('') || '<p style="color:#ff6b6b;">Pronto más aportes...</p>'}</div>`;
+    }
+
+    function renderDatas() {
+      document.getElementById('datas-view').innerHTML = `<div class="grid">${datas.map(a => `
+        <div class="aporte">
+          <h3>${a.titulo}</h3>
+          <p><b>CREADOR:</b> ${a.creador}</p>
+          <p><b>CONTRASEÑA:</b> <span style="color:red;font-weight:bold;">${a.contrasena}</span></p>
+          <div class="video-wrapper"><iframe src="${a.video}?enablejsapi=1" allowfullscreen></iframe></div>
+          <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
+        </div>
+      `).join('') || '<p style="color:#ff6b6b;">Pronto más datas...</p>'}</div>`;
+    }
+
+    function renderTops() {
+      document.getElementById('tops-view').innerHTML = `<div class="grid">${tops.map(a => `
+        <div class="aporte">
+          <h3>${a.titulo}</h3>
+          <p><b>CREADOR:</b> ${a.autor}</p>
+          <p><b>DESCARGAS:</b> ${a.descargas}</p>
+          <div class="video-wrapper"><iframe src="${a.video}?enablejsapi=1" allowfullscreen></iframe></div>
+          <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
+        </div>
+      `).join('')}</div>`;
+    }
+
+    // === AUDIO & SHARINGAN ===
+    const audio = document.getElementById('bg-music');
+    const sharinganSound = document.getElementById('sharingan-sound');
+    const toggleBtn = document.getElementById('musicToggle');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const volumeIcon = document.getElementById('volumeIcon');
+    let unlocked = false;
+    let volume = 0.5;
+    audio.volume = volume;
+
+    function updateVolumeIcon() {
+      volumeIcon.textContent = volume == 0 ? 'muted' : volume < 0.5 ? 'volume down' : 'volume up';
+    }
+
+    function unlockAudio() {
+      if (unlocked) return;
+      unlocked = true;
+      const dummy = new Audio(); dummy.play().catch(() => {});
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      unlockAudio();
+      if (audio.paused) { audio.play(); toggleBtn.innerHTML = 'Pause'; toggleBtn.classList.add('playing'); }
+      else { audio.pause(); toggleBtn.innerHTML = 'Play'; toggleBtn.classList.remove('playing'); }
+    });
+
+    volumeSlider.addEventListener('input', (e) => {
+      unlockAudio();
+      volume = e.target.value;
+      audio.volume = volume;
+      updateVolumeIcon();
+    });
+
+    function activarSharingan() {
+      document.getElementById('sharingan-overlay').classList.add('active');
+      if (unlocked) { sharinganSound.currentTime = 0; sharinganSound.play().catch(() => {}); }
+      setTimeout(() => {
+        sessionStorage.setItem("fromSharingan", "true");
+        location.href = "aportes-exclusivos.html";
+      }, 3000);
+    }
+
+    function cerrarSharingan() {
+      document.getElementById('sharingan-overlay').classList.remove('active');
+      if (unlocked) sharinganSound.pause();
+    }
+
+    // === ENTRAR - FUNCIONA ===
+    function enterSite() {
+      unlockAudio();
+      audio.play().catch(() => {});
+      toggleBtn.innerHTML = 'Pause';
+      toggleBtn.classList.add('playing');
+
+      document.getElementById('intro-overlay').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'block';
+
+      const savedView = sessionStorage.getItem('currentView') || 'equipo';
+      showView(savedView);
+
+      updateVolumeIcon();
+      loadYouTubeAPI();
+    }
 
     function showView(view) {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -353,24 +453,7 @@
       if (view === 'tops') renderTops();
     }
 
-    // ... (resto del script igual que antes)
-
-    function enterSite() {
-      unlockAudio();
-      audio.play().catch(() => {});
-      toggleBtn.innerHTML = 'Pause';
-      toggleBtn.classList.add('playing');
-
-      document.getElementById('intro-overlay').style.display = 'none';
-      document.getElementById('mainContent').style.display = 'block';
-
-      const savedView = sessionStorage.getItem('currentView') || 'equipo';
-      showView(savedView);
-
-      updateVolumeIcon();
-      loadYouTubeAPI();
-    }
-
+    // AL REGRESAR: MUESTRA "ENTRAR"
     window.addEventListener('load', () => {
       if (sessionStorage.getItem("fromSharingan")) {
         sessionStorage.removeItem("fromSharingan");
@@ -382,7 +465,28 @@
       }
     });
 
-    // ... resto del script ...
+    function loadYouTubeAPI() {
+      if (!window.YT) {
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        document.head.appendChild(tag);
+      }
+    }
+
+    function onYouTubeIframeAPIReady() {
+      document.querySelectorAll('iframe').forEach(iframe => {
+        new YT.Player(iframe, {
+          events: {
+            'onStateChange': (e) => {
+              if (e.data === 1 && !audio.paused) audio.pause();
+              else if ((e.data === 0 || e.data === 2) && audio.paused && unlocked) audio.play().catch(() => {});
+            }
+          }
+        });
+      });
+    }
+
+    updateVolumeIcon();
   </script>
 </body>
 </html>
