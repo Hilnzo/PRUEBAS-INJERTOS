@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>INJERTOS MODS</title>
-  
-  <!-- FAVICON (ÍCONO EN LA PESTAÑA) -->
+
+  <!-- FAVICON CORRECTO (Sharingan) -->
   <link rel="icon" href="https://i.imgur.com/8gL0ZfK.png" type="image/png" />
   <link rel="shortcut icon" href="https://i.imgur.com/8gL0ZfK.png" type="image/png" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    /* === ESTILO ORIGINAL MEJORADO === */
+    /* === ESTILO ORIGINAL === */
     body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: white; text-align: center; overflow-x: hidden; position: relative; background: #000; }
     .background-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('https://imgur.com/VcWPdTD.jpg') center/cover no-repeat; z-index: -1; filter: brightness(0.6); }
     h1 { font-size: 3rem; margin: 20px 0; text-shadow: 2px 2px 8px red; z-index: 2; position: relative; }
@@ -30,17 +30,16 @@
     .music-btn.playing { background: red; border-color: red; box-shadow: 0 0 10px red, 0 0 20px rgba(255,0,0,0.8); animation: pulse 1.5s infinite alternate; }
     @keyframes pulse { from { box-shadow: 0 0 10px red; } to { box-shadow: 0 0 40px red; } }
 
-    /* Filtros */
-    .filters { margin: 20px 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-    .filter-btn { padding: 10px 20px; background: #111; border: 2px solid red; color: white; border-radius: 10px; cursor: pointer; font-weight: bold; }
-    .filter-btn.active { background: red; }
+    /* FILTROS (BOTONES) */
+    .filters { margin: 30px 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+    .filter-btn { padding: 12px 25px; background: #111; border: 2px solid red; color: white; border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1.1rem; transition: 0.3s; }
+    .filter-btn.active, .filter-btn:hover { background: red; box-shadow: 0 0 20px red; }
 
-    /* Secciones */
-    .section { margin: 60px 0; padding: 0 15px; }
-    .section h2 { color: red; font-size: 2.2rem; text-shadow: 0 0 15px red; margin-bottom: 25px; }
+    /* CONTENIDO PRINCIPAL */
+    .content { max-width: 1300px; margin: 0 auto; padding: 0 15px; }
 
     /* TOP APORTES */
-    .top-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; max-width: 1300px; margin: 0 auto; }
+    .top-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; margin-top: 20px; }
     .aporte { background: rgba(0,0,0,0.75); padding: 28px; border-radius: 16px; border: 2px solid red; box-shadow: 0 0 60px rgba(255,0,0,0.8); transition: 0.3s; text-align: left; line-height: 1.8; }
     .aporte:hover { box-shadow: 0 0 100px rgba(255,0,0,1); transform: translateY(-5px); }
     .aporte h3 { font-size: 1.9rem; color: red; text-align: center; margin-bottom: 12px; }
@@ -49,9 +48,9 @@
     .download-btn { display: inline-block; margin-top: 18px; padding: 12px 28px; background: red; color: white; font-weight: bold; border-radius: 12px; text-decoration: none; font-size: 1.2rem; transition: 0.3s; box-shadow: 0 0 25px rgba(255,0,0,0.8); }
     .download-btn:hover { background: darkred; transform: scale(1.03); }
 
-    /* NUESTRO EQUIPO */
-    .staff-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
-    .card { background: #111; padding: 18px; border-radius: 14px; text-align: center; box-shadow: 0 0 15px red, 0 0 30px rgba(255,0,0,0.6); animation: glow 2s infinite alternate; cursor: pointer; transition: 0.3s; }
+    /* STAFF GRID */
+    .staff-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; margin-top: 20px; }
+  .card { background: #111; padding: 18px; border-radius: 14px; text-align: center; box-shadow: 0 0 15px red, 0 0 30px rgba(255,0,0,0.6); animation: glow 2s infinite alternate; cursor: pointer; transition: 0.3s; }
     .card:hover { transform: scale(1.08); }
     .card img { border-radius: 50%; width: 80px; height: 80px; margin-bottom: 10px; border: 3px solid red; }
     .role { font-size: 0.9rem; color: #ff6b6b; margin-top: 5px; }
@@ -101,7 +100,7 @@
     <h1>INJERTOS MODS HALLOWEEN</h1>
     <p>"PÁGINA EN MANTENIMIENTO"</p>
 
-    <!-- Redes (SIN ROBLOX) -->
+    <!-- Redes -->
     <div class="socials">
       <a href="https://open.spotify.com/user/31mtjz2i5m63xek4cp4pevznd74i" target="_blank" class="spotify">Spotify</a>
       <a href="https://steamcommunity.com/profiles/76561199805784382/" target="_blank" class="steam">Steam</a>
@@ -115,25 +114,25 @@
     </audio>
     <button id="musicToggle" class="music-btn paused" onclick="toggleMusic()">encender música</button>
 
-    <!-- SECCIÓN 1: TOP APORTES -->
-    <div class="section">
-      <h2>TOP APORTES</h2>
-      <div class="top-grid" id="top-aportes"></div>
+    <!-- FILTROS (BOTONES) -->
+    <div class="filters">
+      <button class="filter-btn active" onclick="showView('top')">TOP APORTES</button>
+      <button class="filter-btn" onclick="showView('aportes')">APORTES</button>
+      <button class="filter-btn" onclick="showView('staff')">STAFF</button>
     </div>
 
-    <!-- SECCIÓN 2: NUESTRO EQUIPO -->
-    <div class="section">
-      <h2>NUESTRO EQUIPO</h2>
-      <div class="staff-grid" id="staff-grid"></div>
+    <!-- CONTENIDO DINÁMICO -->
+    <div class="content">
+      <div id="top-view" class="view"></div>
+      <div id="aportes-view" class="view" hidden></div>
+      <div id="staff-view" class="view" hidden></div>
     </div>
 
-    <!-- SECCIÓN 3: AGRADECIMIENTOS -->
-    <div class="section">
-      <div class="boosters">
-        <h3>GRACIAS A NUESTROS BOOSTERS</h3>
-        <div class="booster-list">
-          <span>HILNZO</span> • <span>KAIROX</span> • <span>JACOB</span> • <span>MANZER</span> • <span>DAVID</span>
-        </div>
+    <!-- AGRADECIMIENTOS -->
+    <div class="boosters">
+      <h3>GRACIAS A NUESTROS BOOSTERS</h3>
+      <div class="booster-list">
+        <span>HILNZO</span> • <span>KAIROX</span> • <span>JACOB</span> • <span>MANZER</span> • <span>DAVID</span>
       </div>
     </div>
   </div>
@@ -160,6 +159,11 @@
       { titulo: "GIRLZ", autor: "JACOB", descargas: 1100, video: "https://youtube.com/embed/VsXBeqeQHbQ", descarga: "https://www.mediafire.com/file/l6dun8dkpstz1ks/GIRLZ.rar/file", contrasena: "NO TIENE" }
     ];
 
+    const todosAportes = [
+      ...tops,
+      // Puedes añadir más aquí si quieres
+    ];
+
     const staff = [
       { id: "hilnzo", nombre: "HILNZO", rol: "Owner", avatar: "https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif" },
       { id: "kalcor", nombre: "KALCOR", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1354865570880946176/a6e7ce488b0c3a8856e69184638319bb.png" },
@@ -172,19 +176,30 @@
 
     const aportesPorStaff = {
       hilnzo: [
-        { titulo: "TIFFANY", descripcion: "aporte para los demeros jodidos", incluye: "macros, barra de estamina, gamefixer...", contrasena: "tiffanyctmr", video: "https://youtube.com/embed/1Iq2YeDLVmM", descarga: "https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file" },
-        { titulo: "DRUKS", descripcion: "EXCLUSIVO INJERTOS MODS", incluye: "/MACROS - /HINFO - /PCMDS", contrasena: "hilnzodruks", video: "https://youtube.com/embed/FPXuZPFyCd8", descarga: "https://www.mediafire.com/file/6d06kpjwz836nu8/DRUKS.rar/file" }
+        { titulo: "TIFFANY", descripcion: "aporte para los demeros jodidos", incluye: "macros, barra de estamina...", contrasena: "tiffanyctmr", video: "https://youtube.com/embed/1Iq2YeDLVmM", descarga: "https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file" },
+        { titulo: "DRUKS", descripcion: "EXCLUSIVO", incluye: "/MACROS - /HINFO", contrasena: "hilnzodruks", video: "https://youtube.com/embed/FPXuZPFyCd8", descarga: "https://www.mediafire.com/file/6d06kpjwz836nu8/DRUKS.rar/file" }
       ],
       jacob: [
-        { titulo: "BRUTALITY", descripcion: "MATAR SIN PENSARLO", incluye: "armas, vehiculos, /sensa", contrasena: "fuemip", video: "https://youtube.com/embed/fmVS7-nTmD4", descarga: "https://www.mediafire.com/file/rj4hc064ibyu767/BRUTALITY.rar/file" },
-        { titulo: "GIRLZ", descripcion: "MATAR SIN PENSAR", incluye: "/macros - /sensa", contrasena: "NO TIENE", video: "https://youtube.com/embed/VsXBeqeQHbQ", descarga: "https://www.mediafire.com/file/l6dun8dkpstz1ks/GIRLZ.rar/file" }
+        { titulo: "BRUTALITY", descripcion: "MATAR SIN PENSARLO", incluye: "armas, /sensa", contrasena: "fuemip", video: "https://youtube.com/embed/fmVS7-nTmD4", descarga: "https://www.mediafire.com/file/rj4hc064ibyu767/BRUTALITY.rar/file" }
       ]
-      // Agrega más si quieres
     };
 
-    // === RENDER ===
+    // === VISTAS ===
+    function showView(view) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+
+      document.getElementById('top-view').hidden = view !== 'top';
+      document.getElementById('aportes-view').hidden = view !== 'aportes';
+      document.getElementById('staff-view').hidden = view !== 'staff';
+
+      if (view === 'top') renderTops();
+      if (view === 'aportes') renderAllAportes();
+      if (view === 'staff') renderStaff();
+    }
+
     function renderTops() {
-      document.getElementById('top-aportes').innerHTML = tops.map(a => `
+      document.getElementById('top-view').innerHTML = `<div class="top-grid">${tops.map(a => `
         <div class="aporte">
           <h3>${a.titulo}</h3>
           <p><b>CREADOR:</b> ${a.autor}</p>
@@ -192,23 +207,34 @@
           <div class="video-wrapper"><iframe src="${a.video}" allowfullscreen></iframe></div>
           <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
         </div>
-      `).join('');
+      `).join('')}</div>`;
+    }
+
+    function renderAllAportes() {
+      document.getElementById('aportes-view').innerHTML = `<div class="top-grid">${todosAportes.map(a => `
+        <div class="aporte">
+          <h3>${a.titulo}</h3>
+          <p><b>CREADOR:</b> ${a.autor}</p>
+          <div class="video-wrapper"><iframe src="${a.video}" allowfullscreen></iframe></div>
+          <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
+        </div>
+      `).join('')}</div>`;
     }
 
     function renderStaff() {
-      document.getElementById('staff-grid').innerHTML = staff.map(s => `
+      document.getElementById('staff-view').innerHTML = `<div class="staff-grid">${staff.map(s => `
         <div class="card" onclick="showAportesStaff('${s.id}')">
           <img src="${s.avatar}" alt="${s.nombre}">
           <p><b>${s.nombre}</b></p>
           <p class="role">${s.rol}</p>
         </div>
-      `).join('');
+      `).join('')}</div>`;
     }
 
     function showAportesStaff(id) {
       const data = aportesPorStaff[id] || [];
       const name = staff.find(s => s.id === id)?.nombre;
-      document.getElementById('top-aportes').innerHTML = data.map(a => `
+      document.getElementById('top-view').innerHTML = `<div class="top-grid">${data.map(a => `
         <div class="aporte">
           <h3>${a.titulo}</h3>
           <p><b>CREADOR:</b> ${name}</p>
@@ -218,7 +244,8 @@
           <div class="video-wrapper"><iframe src="${a.video}" allowfullscreen></iframe></div>
           <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
         </div>
-      `).join('');
+      `).join('')}</div>`;
+      showView('top');
     }
 
     // Música
@@ -251,12 +278,8 @@
       document.getElementById('intro-overlay').style.display = 'none';
       document.getElementById('mainContent').hidden = false;
       document.getElementById('bg-music').play().catch(() => {});
-      renderTops();
-      renderStaff();
+      showView('top');
     }
-
-    // Iniciar
-    window.onload = () => {};
   </script>
 </body>
 </html>
