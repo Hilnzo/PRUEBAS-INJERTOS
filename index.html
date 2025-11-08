@@ -76,7 +76,7 @@
 
   <script src="script.js"></script>
 </body>
-</html>
+        </html>
 /* === TU ESTILO ORIGINAL 100% === */
 body {
   margin: 0; font-family: Arial, Helvetica, sans-serif; color: white; text-align: center;
@@ -238,132 +238,7 @@ p {
     scroll-snap-type: x mandatory;
   }
   .card { flex: 0 0 auto; width: 130px; scroll-snap-align: start; }
-}
-let tops = [], staff = [], currentView = 'top';
-
-async function loadData() {
-  try {
-    tops = await fetchJSON('data/tops.json');
-    staff = await fetchJSON('data/staff.json');
-    render();
-  } catch (e) {
-    document.getElementById('aportes-central').innerHTML = '<p style="color:red;">Error al cargar datos.</p>';
-  }
-}
-
-async function fetchJSON(url) {
-  const res = await fetch(url + '?t=' + Date.now());
-  return await res.json();
-}
-
-function render() {
-  if (currentView === 'top') renderTops();
-  else if (currentView === 'staff') renderStaff();
-}
-
-function renderTops() {
-  const container = document.getElementById('aportes-central');
-  container.innerHTML = tops.map(a => `
-    <div class="aporte">
-      <h2>${a.titulo}</h2>
-      <p><b>CREADOR:</b> ${a.autor}</p>
-      <p><b>DESCARGAS:</b> ${a.descargas}</p>
-      <div class="video-wrapper"><iframe src="${a.video}" allowfullscreen></iframe></div>
-      <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR APORTE</a>
-    </div>
-  `).join('');
-  clearStaff();
-}
-
-function renderStaff() {
-  const left = document.getElementById('left-staff');
-  const right = document.getElementById('right-staff');
-  left.innerHTML = ''; right.innerHTML = '';
-
-  staff.forEach((s, i) => {
-    const col = i < Math.ceil(staff.length / 2) ? left : right;
-    col.innerHTML += `
-      <div class="card" onclick="loadStaffAportes('${s.id}')">
-        <img src="${s.avatar}" alt="${s.nombre}">
-        <p><b>${s.nombre}</b></p>
-        <p class="role">${s.rol}</p>
-      </div>
-    `;
-  });
-  document.getElementById('aportes-central').innerHTML = '';
-}
-
-async function loadStaffAportes(id) {
-  const data = await fetchJSON(`data/aportes/${id}.json`);
-  const name = staff.find(s => s.id === id)?.nombre || 'Staff';
-  document.getElementById('aportes-central').innerHTML = data.map(a => `
-    <div class="aporte">
-      <h2>${a.titulo}</h2>
-      <p><b>CREADOR:</b> ${name}</p>
-      <p><b>DESCRIPCIÓN:</b> ${a.descripcion}</p>
-      <p><b>INCLUYE:</b> ${a.incluye}</p>
-      <p><b>CONTRASEÑA:</b> <span style="color:red;font-weight:bold;">${a.contrasena}</span></p>
-      <div class="video-wrapper"><iframe src="${a.video}" allowfullscreen></iframe></div>
-      <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR APORTE</a>
-    </div>
-  `).join('');
-  clearStaff();
-}
-
-function clearStaff() {
-  document.getElementById('left-staff').innerHTML = '';
-  document.getElementById('right-staff').innerHTML = '';
-}
-
-// Filtros
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    currentView = btn.dataset.view;
-    render();
-  });
-});
-
-// Música
-function toggleMusic() {
-  const audio = document.getElementById('bg-music');
-  const btn = document.getElementById('musicToggle');
-  if (audio.paused) {
-    audio.play().catch(() => {});
-    btn.classList.replace('paused', 'playing');
-    btn.innerHTML = '<i class="fa-solid fa-pause"></i> apagar música';
-  } else {
-    audio.pause();
-    btn.classList.replace('playing', 'paused');
-    btn.innerHTML = '<i class="fa-solid fa-play"></i> encender música';
-  }
-}
-
-// Sharingan
-function activarSharingan() {
-  const overlay = document.getElementById('sharingan-overlay');
-  overlay.classList.add('active');
-  document.getElementById('sharingan-sound').play();
-  setTimeout(() => {
-    sessionStorage.setItem('sharingan', 'true');
-    window.location.href = 'aportes-exclusivos.html';
-  }, 3000);
-}
-function cerrarSharingan() {
-  document.getElementById('sharingan-overlay').classList.remove('active');
-}
-
-// Entrar
-function enterSite() {
-  document.getElementById('intro-overlay').style.display = 'none';
-  document.getElementById('mainContent').hidden = false;
-  document.getElementById('bg-music').play().catch(() => {});
-}
-
-// Iniciar
-loadData();
-     let tops = [], staff = [], currentView = 'top';
+}let tops = [], staff = [], currentView = 'top';
 
 async function loadData() {
   try {
