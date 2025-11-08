@@ -15,15 +15,11 @@
       position: relative;
     }
     .background-container {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: url('https://imgur.com/VcWPdTD.jpg') no-repeat center center;
-      background-size: cover;
-      z-index: -1;
-      filter: brightness(0.6);
+      background-size: cover; z-index: -1; filter: brightness(0.6);
     }
-    h1 { font-size: 3rem; margin-top: 20px; text-shadow: 2px 2px 8px red; z-index: 2; }
+    h1 { font-size: 3rem; margin: 20px 0; text-shadow: 2px 2px 8px red; z-index: 2; }
     p { font-size: 1.3rem; margin-bottom: 30px; font-weight: bold; z-index: 2; }
 
     /* Redes */
@@ -54,57 +50,81 @@
     #volumeSlider::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; background: red; border-radius: 50%; box-shadow: 0 0 10px red; }
     .volume-icon { font-size: 1.2rem; min-width: 20px; }
 
-    /* Layout */
-    .layout { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 20px; margin-top: 40px; }
-
-    /* Staff */
-    .staff-col { display: flex; flex-direction: column; gap: 20px; align-items: center; }
-    .card {
-      background: #111; padding: 15px; border-radius: 12px; width: 150px; text-align: center;
-      box-shadow: 0 0 10px red, 0 0 20px rgba(255,0,0,0.6); animation: glow 2s infinite alternate;
+    /* FILTROS */
+    .filters {
+      margin: 30px 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; z-index: 2;
     }
-    @keyframes glow { from { box-shadow: 0 0 10px red; } to { box-shadow: 0 0 25px red, 0 0 50px rgba(255,0,0,0.9); } }
-    .card img { border-radius: 50%; width: 80px; height: 80px; margin-bottom: 8px; border: 2px solid red; }
-    .card .role { font-size: 13px; color: #bbb; }
-
-    /* Aportes */
-    .aporte {
-      background: rgba(0,0,0,0.75); padding: 35px; border-radius: 18px; margin-bottom: 40px;
-      border: 2px solid red; box-shadow: 0 0 15px red, 0 0 30px red, 0 0 60px red, 0 0 90px rgba(255,0,0,0.8);
-      transition: 0.3s; z-index: 2; line-height: 1.9; text-align: left;
+    .filter-btn {
+      padding: 12px 25px; background: #111; border: 2px solid red; color: white;
+      border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1.1rem; transition: 0.3s;
     }
-    .aporte:hover { box-shadow: 0 0 25px red, 0 0 50px red, 0 0 100px red, 0 0 120px rgba(255,0,0,1); }
-    .aporte h2 { font-size: 2.2rem; color: red; margin-bottom: 18px; text-align: center; }
-    .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin: 20px 0; }
-    .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .filter-btn.active, .filter-btn:hover {
+      background: red; box-shadow: 0 0 20px red;
+    }
+
+    /* CONTENIDO */
+    .content { max-width: 1600px; margin: 0 auto; padding: 0 15px; z-index: 2; }
+    .grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; margin-top: 20px;
+    }
+    .aporte, .card {
+      background: rgba(0,0,0,0.78); padding: 35px; border-radius: 18px;
+      border: 2px solid red; box-shadow: 0 0 70px rgba(255,0,0,0.9); transition: 0.3s;
+      text-align: left; line-height: 1.9;
+    }
+    .aporte:hover, .card:hover {
+      box-shadow: 0 0 120px rgba(255,0,0,1.2); transform: translateY(-6px);
+    }
+    .aporte h3, .aporte h2 {
+      font-size: 2.2rem; color: red; text-align: center; margin-bottom: 18px;
+    }
+    .video-wrapper {
+      position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+      border-radius: 12px; margin: 20px 0;
+    }
+    .video-wrapper iframe {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    }
     .download-btn {
-      display: inline-block; margin-top: 20px; padding: 14px 30px; background: red; color: white;
-      font-weight: bold; border-radius: 14px; text-decoration: none; font-size: 1.3rem; transition: 0.3s;
-      box-shadow: 0 0 15px red, 0 0 30px red, 0 0 45px rgba(255,0,0,0.9);
+      display: inline-block; margin-top: 20px; padding: 14px 32px; background: red;
+      color: white; font-weight: bold; border-radius: 14px; text-decoration: none;
+      font-size: 1.3rem; transition: 0.3s; box-shadow: 0 0 30px rgba(255,0,0,0.9);
     }
-    .download-btn:hover { background: darkred; box-shadow: 0 0 25px red, 0 0 50px red, 0 0 70px red; }
+    .download-btn:hover { background: darkred; transform: scale(1.04); }
 
-    /* Sharingan - SIN FLASH EN ANDROID */
+    /* STAFF */
+    .card { text-align: center; cursor: default; }
+    .card img { border-radius: 50%; width: 90px; height: 90px; margin-bottom: 12px; border: 3px solid red; }
+    .role { font-size: 1rem; color: #ff6b6b; margin-top: 6px; }
+    @keyframes glow { from { box-shadow: 0 0 15px red; } to { box-shadow: 0 0 45px red; } }
+    .card { animation: glow 2s infinite alternate; }
+
+    /* Sharingan - SIN FLASH */
     .sharingan-btn {
-      position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; cursor: pointer; z-index: 1000;
+      position: fixed; bottom: 20px; right: 20px; width: 55px; height: 55px; cursor: pointer; z-index: 1000;
       outline: none; border: none; user-select: none; -webkit-tap-highlight-color: transparent;
       touch-action: manipulation; -webkit-user-select: none; -webkit-touch-callout: none;
     }
-    .sharingan-btn img { width: 100%; height: 100%; border-radius: 50%; animation: spin 4s linear infinite, glowRed 1.5s infinite alternate; }
-    .sharingan-btn:focus, .sharingan-btn:active { outline: none !important; box-shadow: none !important; background: transparent !important; }
+    .sharingan-btn img {
+      width: 100%; height: 100%; border-radius: 50%;
+      animation: spin 4s linear infinite, glowRed 1.5s infinite alternate;
+    }
+    .sharingan-btn:focus, .sharingan-btn:active {
+      outline: none !important; box-shadow: none !important; background: transparent !important;
+    }
     @media (hover: none) and (pointer: coarse) {
       .sharingan-btn { -webkit-tap-highlight-color: transparent !important; }
       .sharingan-btn::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent; border-radius: 50%; }
     }
     @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    @keyframes glowRed { from { box-shadow: 0 0 5px red; } to { box-shadow: 0 0 20px red, 0 0 40px red; } }
+    @keyframes glowRed { from { box-shadow: 0 0 5px red; } to { box-shadow: 0 0 40px red; } }
 
     #sharingan-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black;
       display: flex; align-items: center; justify-content: center; z-index: 2000;
       opacity: 0; visibility: hidden; transition: opacity 0.6s;
     }
-    #sharingan-overlay img { max-width: 80%; max-height: 80%; object-fit: contain; border-radius: 50%; }
+    #sharingan-overlay img { max-width: 80%; border-radius: 50%; }
     #sharingan-overlay.active { opacity: 1; visibility: visible; }
 
     /* Intro */
@@ -112,22 +132,24 @@
       position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black;
       display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 3000;
     }
-    #intro-overlay img { max-width: 100%; max-height: 80%; object-fit: contain; }
+    #intro-overlay img { max-width: 90%; max-height: 70%; }
     #intro-overlay button {
-      margin-top: 20px; padding: 12px 25px; font-size: 1.5rem; font-weight: bold;
-      color: white; background: red; border: none; border-radius: 12px; cursor: pointer;
-      box-shadow: 0 0 20px red, 0 0 40px red; transition: 0.3s; -webkit-tap-highlight-color: transparent;
+      margin-top: 25px; padding: 14px 30px; background: red; color: white; border: none;
+      border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1.6rem;
+      box-shadow: 0 0 40px red; -webkit-tap-highlight-color: transparent;
     }
-    #intro-overlay button:hover { background: darkred; box-shadow: 0 0 40px red, 0 0 60px red; }
 
     #mainContent { display: none; }
 
     @media (max-width: 768px) {
-      .layout { display: block; }
-      .staff-col { flex-direction: row; overflow-x: auto; gap: 15px; padding: 10px; scroll-snap-type: x mandatory; }
-      .card { flex: 0 0 auto; width: 130px; scroll-snap-align: start; }
+      .grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .filters { gap: 10px; }
+      .filter-btn { padding: 10px 16px; font-size: 0.9rem; }
       .music-player { bottom: 15px; left: 15px; padding: 8px 12px; gap: 8px; }
       #volumeSlider { width: 60px; }
+    }
+    @media (max-width: 480px) {
+      .grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -143,62 +165,36 @@
   <!-- Main -->
   <div id="mainContent">
     <h1>INJERTOS MODS HALLOWEEN</h1>
-    <p>"PAGINA EN MANTENIMIENTO"</p>
+    <p>"PÁGINA EN MANTENIMIENTO"</p>
 
     <!-- Redes -->
     <div class="socials">
-      <a href="https://open.spotify.com/user/31mtjz2i5m63xek4cp4pevznd74i" target="_blank" class="spotify"><i class="fa-brands fa-spotify"></i> Spotify</a>
-      <a href="https://steamcommunity.com/profiles/76561199805784382/" target="_blank" class="steam"><i class="fa-brands fa-steam"></i> Steam</a>
-      <a href="https://www.roblox.com/es/users/9207271059/profile" target="_blank" class="roblox"><i class="fa-solid fa-cube"></i> Roblox</a>
-      <a href="https://discordapp.com/users/1298301131641983019" target="_blank" class="discord"><i class="fa-brands fa-discord"></i> Discord</a>
-      <a href="https://discord.gg/rNJ7UaPBYa" target="_blank" class="discord"><i class="fa-brands fa-discord"></i> DC - INJERTOS MODS</a>
+      <a href="https://open.spotify.com/user/31mtjz2i5m63xek4cp4pevznd74i" target="_blank" class="spotify">Spotify</a>
+      <a href="https://steamcommunity.com/profiles/76561199805784382/" target="_blank" class="steam">Steam</a>
+      <a href="https://www.roblox.com/es/users/9207271059/profile" target="_blank" class="roblox">Roblox</a>
+      <a href="https://discordapp.com/users/1298301131641983019" target="_blank" class="discord">Discord</a>
+      <a href="https://discord.gg/rNJ7UaPBYa" target="_blank" class="discord">DC - INJERTOS MODS</a>
     </div>
 
     <!-- Reproductor Flotante -->
     <div class="music-player">
-      <button id="musicToggle" class="music-btn-small"><i class="fas fa-play"></i></button>
+      <button id="musicToggle" class="music-btn-small">Play</button>
       <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
       <span id="volumeIcon" class="volume-icon">volume up</span>
     </div>
 
-    <!-- Layout -->
-    <div class="layout">
-      <!-- Staff Izquierda -->
-      <div class="staff-col">
-        <div class="card"><img src="https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif"><p><b>HILNZO</b></p><p class="role">Owner</p></div>
-        <div class="card"><img src="https://cdn.discordapp.com/avatars/1354865570880946176/a6e7ce488b0c3a8856e69184638319bb.png"><p><b>KALCOR</b></p><p class="role">Owner</p></div>
-        <div class="card"><img src="https://cdn.discordapp.com/avatars/1246355878840631327/5a14e4c676a423d04acda0ff29bd225e.png"><p><b>KAIROX</b></p><p class="role">Owner</p></div>
-        <div class="card"><img src="https://cdn.discordapp.com/avatars/1221849688593137830/9df3e244543051e16ccb8cdab9a851c0.png"><p><b>JACOB</b></p><p class="role">Owner</p></div>
-        <div class="card"><img src="https://cdn.discordapp.com/avatars/1260353622001188875/aa9c8431623d1958d02e42f4f026efe3.png"><p><b>Maik</b></p><p class="role">Owner</p></div>
-        <div class="card"><img src="https://cdn.discordapp.com/avatars/1414075135350280234/c3b5512a81fe635e12eac2a25511b7ca.png"><p><b>MANZER</b></p><p class="role">Owner</p></div>
-        <div class="card"><img src="https://cdn.discordapp.com/avatars/1079142194071486574/c88ca46b136aeecebe37f49ea026cd77.png"><p><b>ISAAC</b></p><p class="role">Owner</p></div>
-      </div>
+    <!-- FILTROS -->
+    <div class="filters">
+      <button class="filter-btn active" onclick="showView('top')">TOP APORTES</button>
+      <button class="filter-btn" onclick="showView('aportes')">APORTES</button>
+      <button class="filter-btn" onclick="showView('staff')">STAFF</button>
+    </div>
 
-      <!-- Aportes -->
-      <div id="aportes">
-        <!-- Aportes hardcodeados -->
-        <div class="aporte">
-          <h2>TIFFANY</h2>
-          <p><b>DESCRIPCIÓN:</b> aporte para los demeros jodidos hecho por Hilnzo (@klenoz).</p>
-          <p>Si descargas este aporte por otro lugar que no sea mi discord de aportes o sampmods, es que no es mío y fue modificado.</p>
-          <p><b>INCLUYE:</b> macros, barra de estamina, gamefixer, hit maker, sonido de campana, efectos, armas y más.</p>
-          <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">tiffanyctmr</span></p>
-          <div class="video-wrapper"><iframe src="https://youtube.com/embed/1Iq2YeDLVmM?enablejsapi=1" allowfullscreen></iframe></div>
-          <a href="https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file" target="_blank" class="download-btn">DESCARGAR APORTE</a>
-        </div>
-        <!-- Más aportes... (todos los 8) -->
-        <div id="aportes-container"></div>
-      </div>
-
-      <!-- Staff Derecha -->
-      <div class="staff-col">
-        <div class="card"><img src="https://cdn.discordapp.com/avatars/1386421165052002366/ad60538bd141ab74a7029f32a0288fc2.png"><p><b>David</b></p><p class="role">SUB ENCARGADO</p></div>
-        <div class="card"><img src="https://cdn.discordapp.com/avatars/1297359221280739389/0c8e21345db6f35f607546e0dcbf4295.png"><p><b>Yerlin</b></p><p class="role">SUB ENCARGADO</p></div>
-        <div class="card"><img src="https://cdn.discordapp.com/avatars/1310311626737582223/064d6b85c2b423cbf18888e69e1fd7ed.png"><p><b>Tom</b></p><p class="role">MODERADOR</p></div>
-        <div class="card"><img src="https://cdn.discordapp.com/avatars/1353099301303095436/98e9b048bf35b997f1428b17d85211e3.png"><p><b>THOMAS</b></p><p class="role">MODERADOR</p></div>
-        <div class="card"><img src="https://cdn.discordapp.com/avatars/1024085595703746590/99f61e9990ad4db442b7e831328278b3.png"><p><b>JOHAN</b></p><p class="role">HELPER</p></div>
-        <div class="card"><img src="https://cdn.discordapp.com/avatars/1397628533626638428/99e743f3feed7c2e758f668ac42b2b0d.png"><p><b>TOMMY</b></p><p class="role">HELPER</p></div>
-      </div>
+    <!-- CONTENIDO -->
+    <div class="content">
+      <div id="top-view" class="view"></div>
+      <div id="aportes-view" class="view" hidden></div>
+      <div id="staff-view" class="view" hidden></div>
     </div>
   </div>
 
@@ -219,7 +215,91 @@
   </audio>
 
   <script>
-    // === CONTROL DE AUDIO (SIN FLASH) ===
+    // === DATOS ===
+    const tops = [
+      { titulo: "TIFFANY", autor: "HILNZO", descargas: 2847, video: "https://youtube.com/embed/1Iq2YeDLVmM", descarga: "https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file", contrasena: "tiffanyctmr" },
+      { titulo: "BRUTALITY", autor: "JACOB", descargas: 3201, video: "https://youtube.com/embed/fmVS7-nTmD4", descarga: "https://www.mediafire.com/file/rj4hc064ibyu767/BRUTALITY.rar/file", contrasena: "fuemip" },
+      { titulo: "DRUKS", autor: "HILNZO", descargas: 1923, video: "https://youtube.com/embed/FPXuZPFyCd8", descarga: "https://www.mediafire.com/file/6d06kpjwz836nu8/DRUKS.rar/file", contrasena: "hilnzodruks" },
+      { titulo: "DataBlue", autor: "MANZER", descargas: 1500, video: "https://youtube.com/embed/Tv7fyMCG0G0", descarga: "https://www.mediafire.com/file/12efvtjw3392v58/DataBlue%F0%9F%94%B5MR%24.zip/file", contrasena: "NO TIENE" },
+      { titulo: "VERSION R5", autor: "HILNZO", descargas: 1200, video: "https://youtube.com/embed/BywZG9Ckh9Q", descarga: "https://www.mediafire.com/file/wsgq5q0r3su9hzo/version_R5_injertos_mods.rar/file", contrasena: "injertosr5" },
+      { titulo: "GIRLZ", autor: "JACOB", descargas: 1100, video: "https://youtube.com/embed/VsXBeqeQHbQ", descarga: "https://www.mediafire.com/file/l6dun8dkpstz1ks/GIRLZ.rar/file", contrasena: "NO TIENE" }
+    ];
+
+    const staff = [
+      { id: "1298301131641983019", nombre: "HILNZO", rol: "Owner", avatar: "https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif" },
+      { id: "1354865570880946176", nombre: "KALCOR", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1354865570880946176/a6e7ce488b0c3a8856e69184638319bb.png" },
+      { id: "1246355878840631327", nombre: "KAIROX", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1246355878840631327/5a14e4c676a423d04acda0ff29bd225e.png" },
+      { id: "1221849688593137830", nombre: "JACOB", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1221849688593137830/9df3e244543051e16ccb8cdab9a851c0.png" },
+      { id: "1260353622001188875", nombre: "Maik", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1260353622001188875/aa9c8431623d1958d02e42f4f026efe3.png" },
+      { id: "1414075135350280234", nombre: "MANZER", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1414075135350280234/c3b5512a81fe635e12eac2a25511b7ca.png" },
+      { id: "1079142194071486574", nombre: "ISAAC", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1079142194071486574/c88ca46b136aeecebe37f49ea026cd77.png" },
+      { id: "1386421165052002366", nombre: "David", rol: "SUB ENCARGADO", avatar: "https://cdn.discordapp.com/avatars/1386421165052002366/ad60538bd141ab74a7029f32a0288fc2.png" },
+      { id: "1297359221280739389", nombre: "Yerlin", rol: "SUB ENCARGADO", avatar: "https://cdn.discordapp.com/avatars/1297359221280739389/0c8e21345db6f35f607546e0dcbf4295.png" },
+      { id: "1310311626737582223", nombre: "Tom", rol: "MODERADOR", avatar: "https://cdn.discordapp.com/avatars/1310311626737582223/064d6b85c2b423cbf18888e69e1fd7ed.png" },
+      { id: "1353099301303095436", nombre: "THOMAS", rol: "MODERADOR", avatar: "https://cdn.discordapp.com/avatars/1353099301303095436/98e9b048bf35b997f1428b17d85211e3.png" },
+      { id: "1024085595703746590", nombre: "JOHAN", rol: "HELPER", avatar: "https://cdn.discordapp.com/avatars/1024085595703746590/99f61e9990ad4db442b7e831328278b3.png" },
+      { id: "1397628533626638428", nombre: "TOMMY", rol: "HELPER", avatar: "https://cdn.discordapp.com/avatars/1397628533626638428/99e743f3feed7c2e758f668ac42b2b0d.png" }
+    ];
+
+    // === RENDER ===
+    function showView(view) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById('top-view').hidden = view !== 'top';
+      document.getElementById('aportes-view').hidden = view !== 'aportes';
+      document.getElementById('staff-view').hidden = view !== 'staff';
+
+      sessionStorage.setItem('currentView', view);
+      sessionStorage.setItem('siteEntered', 'true'); // Marca que ya entraste
+
+      if (view === 'top') renderTops();
+      if (view === 'aportes') renderAportes();
+      if (view === 'staff') renderStaff();
+    }
+
+    function renderTops() {
+      document.getElementById('top-view').innerHTML = `<div class="grid">${tops.map(a => `
+        <div class="aporte">
+          <h3>${a.titulo}</h3>
+          <p><b>CREADOR:</b> ${a.autor}</p>
+          <p><b>DESCARGAS:</b> ${a.descargas}</p>
+          <div class="video-wrapper"><iframe src="${a.video}?enablejsapi=1" allowfullscreen></iframe></div>
+          <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
+        </div>
+      `).join('')}</div>`;
+    }
+
+    async function renderAportes() {
+      try {
+        const res = await fetch('aportes.json?' + Date.now());
+        const aportes = await res.json();
+        document.getElementById('aportes-view').innerHTML = `<div class="grid">${aportes.map(a => `
+          <div class="aporte">
+            <h3>${a.titulo}</h3>
+            <p><b>CREADOR:</b> ${a.creador}</p>
+            <p><b>DESCRIPCIÓN:</b> ${a.descripcion}</p>
+            <p><b>INCLUYE:</b> ${a.incluye}</p>
+            <p><b>CONTRASEÑA:</b> <span style="color:red;font-weight:bold;">${a.contrasena}</span></p>
+            <div class="video-wrapper"><iframe src="${a.video}?enablejsapi=1" allowfullscreen></iframe></div>
+            <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
+          </div>
+        `).join('')}</div>`;
+      } catch (e) {
+        document.getElementById('aportes-view').innerHTML = '<p style="color:red;">Error al cargar aportes.json</p>';
+      }
+    }
+
+    function renderStaff() {
+      document.getElementById('staff-view').innerHTML = `<div class="grid">${staff.map(s => `
+        <div class="card">
+          <img src="${s.avatar}" alt="${s.nombre}">
+          <p><b>${s.nombre}</b></p>
+          <p class="role">${s.rol}</p>
+        </div>
+      `).join('')}</div>`;
+    }
+
+    // === AUDIO & SHARINGAN ===
     const audio = document.getElementById('bg-music');
     const sharinganSound = document.getElementById('sharingan-sound');
     const toggleBtn = document.getElementById('musicToggle');
@@ -241,8 +321,8 @@
 
     toggleBtn.addEventListener('click', () => {
       unlockAudio();
-      if (audio.paused) { audio.play(); toggleBtn.innerHTML = '<i class="fas fa-pause"></i>'; toggleBtn.classList.add('playing'); }
-      else { audio.pause(); toggleBtn.innerHTML = '<i class="fas fa-play"></i>'; toggleBtn.classList.remove('playing'); }
+      if (audio.paused) { audio.play(); toggleBtn.innerHTML = 'Pause'; toggleBtn.classList.add('playing'); }
+      else { audio.pause(); toggleBtn.innerHTML = 'Play'; toggleBtn.classList.remove('playing'); }
     });
 
     volumeSlider.addEventListener('input', (e) => {
@@ -255,7 +335,10 @@
     function activarSharingan() {
       document.getElementById('sharingan-overlay').classList.add('active');
       if (unlocked) { sharinganSound.currentTime = 0; sharinganSound.play().catch(() => {}); }
-      setTimeout(() => { sessionStorage.setItem("sharinganActivo", "true"); location.href = "aportes-exclusivos.html"; }, 3000);
+      setTimeout(() => {
+        sessionStorage.setItem("fromSharingan", "true");
+        location.href = "aportes-exclusivos.html";
+      }, 3000);
     }
 
     function cerrarSharingan() {
@@ -267,36 +350,33 @@
       unlockAudio();
       document.getElementById('intro-overlay').style.display = 'none';
       document.getElementById('mainContent').style.display = 'block';
-      if (!/Mobi|Android/i.test(navigator.userAgent)) audio.play().catch(() => {});
+      sessionStorage.setItem('siteEntered', 'true'); // Marca que ya entraste
+
+      const savedView = sessionStorage.getItem('currentView') || 'top';
+      showView(savedView);
+
       updateVolumeIcon();
-      cargarAportes();
       loadYouTubeAPI();
     }
 
-    // === CARGAR APORTES DINÁMICOS ===
-    async function cargarAportes() {
-      try {
-        const res = await fetch('aportes.json?' + Date.now());
-        const aportes = await res.json();
-        const cont = document.getElementById('aportes-container');
-        cont.innerHTML = '';
-        aportes.forEach(a => {
-          const div = document.createElement('div');
-          div.className = 'aporte';
-          div.innerHTML = `
-            <h2>${a.titulo}</h2>
-            <p><b>DESCRIPCIÓN:</b> ${a.descripcion}</p>
-            <p><b>CREADOR:</b> ${a.creador}</p>
-            <p><b>INCLUYE:</b> ${a.incluye}</p>
-            <p><b>CONTRASEÑA:</b> <span style="color: red; font-weight: bold;">${a.contrasena}</span></p>
-            <div class="video-wrapper"><iframe src="${a.video}?enablejsapi=1" allowfullscreen></iframe></div>
-            <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR APORTE</a>
-          `;
-          cont.appendChild(div);
-        });
-      } catch (e) { console.error(e); }
-    }
-    setInterval(cargarAportes, 15000);
+    // === AL CARGAR PÁGINA (volver atrás) ===
+    window.addEventListener('load', () => {
+      if (sessionStorage.getItem('siteEntered') === 'true') {
+        document.getElementById('intro-overlay').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+
+        const savedView = sessionStorage.getItem('currentView') || 'top';
+        showView(savedView);
+
+        if (sessionStorage.getItem("fromSharingan")) {
+          sessionStorage.removeItem("fromSharingan");
+          document.getElementById('sharingan-overlay').classList.remove('active');
+        }
+
+        updateVolumeIcon();
+        loadYouTubeAPI();
+      }
+    });
 
     // === YouTube API ===
     function loadYouTubeAPI() {
@@ -311,8 +391,8 @@
         new YT.Player(iframe, {
           events: {
             'onStateChange': (e) => {
-              if (e.data === 1 && !audio.paused) { audio.pause(); }
-              else if ((e.data === 0 || e.data === 2) && audio.paused && unlocked) { audio.play().catch(() => {}); }
+              if (e.data === 1 && !audio.paused) audio.pause();
+              else if ((e.data === 0 || e.data === 2) && audio.paused && unlocked) audio.play().catch(() => {});
             }
           }
         });
@@ -320,7 +400,7 @@
     }
 
     // Inicializar
-    toggleBtn.innerHTML = '<i class="fas fa-play"></i>';
+    toggleBtn.innerHTML = 'Play';
     updateVolumeIcon();
   </script>
 </body>
