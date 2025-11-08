@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>INJERTOS MODS</title>
 
-  <!-- FAVICON -->
+  <!-- FAVICON TEMPORAL (Sharingan) -->
   <link rel="icon" href="https://i.imgur.com/8gL0ZfK.png" type="image/png" />
   <link rel="shortcut icon" href="https://i.imgur.com/8gL0ZfK.png" type="image/png" />
 
@@ -38,14 +38,14 @@
     .aporte:hover { box-shadow: 0 0 100px rgba(255,0,0,1); transform: translateY(-5px); }
     .aporte h3 { font-size: 1.8rem; color: red; text-align: center; margin-bottom: 12px; }
 
-    /* VIDEO SIN BORDES BLANCOS */
+    /* VIDEO PERFECTO */
     .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin: 15px 0; background: #000; }
     .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 12px; }
 
     .download-btn { display: inline-block; margin-top: 15px; padding: 12px 28px; background: red; color: white; font-weight: bold; border-radius: 12px; text-decoration: none; font-size: 1.2rem; transition: 0.3s; box-shadow: 0 0 25px rgba(255,0,0,0.8); }
     .download-btn:hover { background: darkred; transform: scale(1.03); }
 
-    /* STAFF DESLIZABLE EN MÓVIL */
+    /* STAFF DESLIZABLE */
     .staff-container { margin-top: 20px; overflow-x: auto; white-space: nowrap; padding: 10px 0; scrollbar-width: none; }
     .staff-container::-webkit-scrollbar { display: none; }
     .staff-list { display: inline-flex; gap: 20px; padding: 0 10px; }
@@ -63,26 +63,41 @@
     .booster img { border-radius: 50%; width: 70px; height: 70px; border: 3px solid #ff69b4; margin-bottom: 8px; }
     .booster p { font-weight: bold; color: #ff69b4; }
 
-    /* REPRODUCTOR FLOTANTE */
+    /* REPRODUCTOR FLOTANTE MEJORADO */
     #music-player {
-      position: fixed; bottom: 20px; left: 20px; background: rgba(0,0,0,0.9); border: 2px solid red; border-radius: 16px; padding: 12px; width: 250px; z-index: 1000; box-shadow: 0 0 30px rgba(255,0,0,0.8); cursor: move; user-select: none;
+      position: fixed; bottom: 20px; left: 20px; background: rgba(0,0,0,0.9); border: 2px solid red; border-radius: 16px; padding: 12px; width: 250px; z-index: 1000; box-shadow: 0 0 30px rgba(255,0,0,0.8); cursor: move; user-select: none; touch-action: none;
     }
     #music-player.playing { animation: pulse 1.5s infinite alternate; }
     .player-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-    .player-title { font-size: 0.9rem; font-weight: bold; }
-    .player-controls { display: flex; align-items: center; gap: 8px; }
-    .volume-slider { -webkit-appearance: none; width: 80px; height: 5px; background: #333; border-radius: 5px; outline: none; }
-    .volume-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; background: red; border-radius: 50%; cursor: pointer; }
+    .player-title { font-size: 0.9rem; font-weight: bold; color: #fff; }
+    .player-controls { display: flex; align-items: center; gap: 10px; }
+    .volume-slider {
+      -webkit-appearance: none; appearance: none;
+      width: 80px; height: 6px; background: #333; border-radius: 5px; outline: none;
+      cursor: pointer;
+    }
+    .volume-slider::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none;
+      width: 16px; height: 16px; background: red; border-radius: 50%; cursor: pointer;
+    }
+    .volume-slider::-moz-range-thumb {
+      width: 16px; height: 16px; background: red; border-radius: 50%; cursor: pointer; border: none;
+    }
 
     /* Sharingan SIN FONDO BLANCO */
     .sharingan-btn { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; cursor: pointer; z-index: 1000; }
     .sharingan-btn img { width: 100%; border-radius: 50%; animation: spin 4s linear infinite, glowRed 1.5s infinite alternate; filter: drop-shadow(0 0 10px red); }
-    #sharingan-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: flex; align-items: center; justify-content: center; z-index: 2000; opacity: 0; visibility: hidden; transition: 0.6s; }
+    #sharingan-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.98); display: flex; align-items: center; justify-content: center;
+      z-index: 2000; opacity: 0; visibility: hidden; transition: opacity 0.6s ease;
+    }
     #sharingan-overlay.active { opacity: 1; visibility: visible; }
     #sharingan-overlay img { max-width: 80%; border-radius: 50%; filter: drop-shadow(0 0 20px red); }
 
     @keyframes spin { to { transform: rotate(360deg); } }
     @keyframes glowRed { from { filter: drop-shadow(0 0 10px red); } to { filter: drop-shadow(0 0 40px red); } }
+    @keyframes pulse { from { box-shadow: 0 0 10px red; } to { box-shadow: 0 0 40px red; } }
 
     /* Intro */
     #intro-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 3000; }
@@ -99,6 +114,7 @@
       h1 { font-size: 2.5rem; }
       .filter-btn { padding: 10px 16px; font-size: 0.9rem; }
       #music-player { width: 220px; }
+      .volume-slider { width: 70px; }
     }
     @media (max-width: 480px) {
       .aportes-grid { grid-template-columns: 1fr; }
@@ -156,8 +172,8 @@
     <div class="player-header">
       <div class="player-title">MÚSICA</div>
       <div class="player-controls">
-        <button onclick="togglePlay()" id="play-btn" style="background:none;border:none;color:white;font-size:1.2rem;cursor:pointer;">Play</button>
-        <input type="range" id="volume" class="volume-slider" min="0" max="100" value="70" onchange="setVolume(this.value)">
+        <button onclick="togglePlay()" id="play-btn" style="background:none;border:none;color:white;font-size:1.2rem;cursor:pointer;">Pause</button>
+        <input type="range" id="volume" class="volume-slider" min="0" max="100" value="70">
       </div>
     </div>
   </div>
@@ -179,7 +195,7 @@
   </audio>
 
   <script>
-    // === DATOS (FÁCIL DE EDITAR) ===
+    // === DATOS ===
     const staff = [
       { nombre: "HILNZO", rol: "Owner", avatar: "https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif" },
       { nombre: "KAIROX", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1246355878840631327/5a14e4c676a423d04acda0ff29bd225e.png" },
@@ -233,7 +249,7 @@
           <h3>${a.titulo}</h3>
           <p><b>CREADOR:</b> ${a.autor}</p>
           <p><b>DESCARGAS:</b> ${a.descargas}</p>
-          <div class="video-wrapper"><iframe src="${a.video}?rel=0&modestbranding=1&showinfo=0" allowfullscreen></iframe></div>
+          <div class="video-wrapper"><iframe src="${a.video}?rel=0&modestbranding=1&showinfo=0&controls=1" allowfullscreen></iframe></div>
           <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
         </div>
       `).join('')}</div>`;
@@ -244,7 +260,7 @@
         <div class="aporte">
           <h3>${a.titulo}</h3>
           <p><b>CREADOR:</b> ${a.autor}</p>
-          <div class="video-wrapper"><iframe src="${a.video}?rel=0&modestbranding=1&showinfo=0" allowfullscreen></iframe></div>
+          <div class="video-wrapper"><iframe src="${a.video}?rel=0&modestbranding=1&showinfo=0&controls=1" allowfullscreen></iframe></div>
           <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
         </div>
       `).join('')}</div>`;
@@ -274,7 +290,7 @@
           <p><b>DESCRIPCIÓN:</b> ${a.descripcion}</p>
           <p><b>INCLUYE:</b> ${a.incluye}</p>
           <p><b>CONTRASEÑA:</b> <span style="color:red;font-weight:bold;">${a.contrasena}</span></p>
-          <div class="video-wrapper"><iframe src="${a.video}?rel=0&modestbranding=1&showinfo=0" allowfullscreen></iframe></div>
+          <div class="video-wrapper"><iframe src="${a.video}?rel=0&modestbranding=1&showinfo=0&controls=1" allowfullscreen></iframe></div>
           <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
         </div>
       `).join('')}</div>`;
@@ -290,11 +306,52 @@
       `).join('');
     }
 
-    // === REPRODUCTOR FLOTANTE ===
+    // === REPRODUCTOR MEJORADO ===
     const audio = document.getElementById('bg-music');
     const player = document.getElementById('music-player');
     const playBtn = document.getElementById('play-btn');
     const volumeSlider = document.getElementById('volume');
+
+    let isDragging = false;
+    let offsetX, offsetY;
+
+    player.addEventListener('touchstart', e => {
+      if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'BUTTON') {
+        isDragging = true;
+        const touch = e.touches[0];
+        offsetX = touch.clientX - player.getBoundingClientRect().left;
+        offsetY = touch.clientY - player.getBoundingClientRect().top;
+      }
+    });
+
+    player.addEventListener('mousedown', e => {
+      if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'BUTTON') {
+        isDragging = true;
+        offsetX = e.clientX - player.getBoundingClientRect().left;
+        offsetY = e.clientY - player.getBoundingClientRect().top;
+      }
+    });
+
+    document.addEventListener('touchmove', e => {
+      if (isDragging) {
+        e.preventDefault();
+        const touch = e.touches[0];
+        player.style.left = (touch.clientX - offsetX) + 'px';
+        player.style.top = (touch.clientY - offsetY) + 'px';
+        player.style.bottom = 'auto';
+      }
+    });
+
+    document.addEventListener('mousemove', e => {
+      if (isDragging) {
+        player.style.left = (e.clientX - offsetX) + 'px';
+        player.style.top = (e.clientY - offsetY) + 'px';
+        player.style.bottom = 'auto';
+      }
+    });
+
+    document.addEventListener('touchend', () => { isDragging = false; });
+    document.addEventListener('mouseup', () => { isDragging = false; });
 
     function togglePlay() {
       if (audio.paused) {
@@ -308,41 +365,20 @@
       }
     }
 
-    function setVolume(val) {
-      audio.volume = val / 100;
-    }
-
-    // ARRASTRAR
-    let isDragging = false;
-    let currentX, currentY, initialX, initialY;
-
-    player.addEventListener('mousedown', e => {
-      if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'BUTTON') {
-        isDragging = true;
-        initialX = e.clientX - currentX;
-        initialY = e.clientY - currentY;
-      }
+    volumeSlider.addEventListener('input', () => {
+      audio.volume = volumeSlider.value / 100;
     });
-
-    document.addEventListener('mousemove', e => {
-      if (isDragging) {
-        e.preventDefault();
-        currentX = e.clientX - initialX;
-        currentY = e.clientY - initialY;
-        player.style.left = currentX + 'px';
-        player.style.bottom = 'auto';
-        player.style.top = currentY + 'px';
-      }
-    });
-
-    document.addEventListener('mouseup', () => { isDragging = false; });
 
     // === SHARINGAN ===
     function activarSharingan() {
-      document.getElementById('sharingan-overlay').classList.add('active');
+      const overlay = document.getElementById('sharingan-overlay');
+      overlay.classList.add('active');
       document.getElementById('sharingan-sound').play();
-      setTimeout(() => location.href = "aportes-exclusivos.html", 3000);
+      setTimeout(() => {
+        location.href = "aportes-exclusivos.html";
+      }, 3000);
     }
+
     function cerrarSharingan() {
       document.getElementById('sharingan-overlay').classList.remove('active');
     }
@@ -351,6 +387,7 @@
     function enterSite() {
       document.getElementById('intro-overlay').style.display = 'none';
       document.getElementById('mainContent').hidden = false;
+      audio.volume = 0.7;
       audio.play().catch(() => {});
       playBtn.innerHTML = 'Pause';
       player.classList.add('playing');
@@ -359,4 +396,4 @@
     }
   </script>
 </body>
-  </html>
+</html>
