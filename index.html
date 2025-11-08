@@ -242,6 +242,7 @@
   <audio id="sharingan-sound" preload="auto">
     <source src="https://files.catbox.moe/4dxgfn.mp3" type="audio/mpeg">
   </audio>
+
   <script>
     // === DATOS ===
     const staff = [
@@ -332,7 +333,7 @@
           <h3>${a.titulo}</h3>
           <p><b>CREADOR:</b> ${a.autor}</p>
           <p><b>DESCARGAS:</b> ${a.descargas}</p>
-          <div class="video-wrapper"><iframe src="${a.video}?enablejsapi=1" allowfullscreen></iframe></div>
+          <div class="video-wrapper"><iframe src="${a.video}?enablejsapi=:1" allowfullscreen></iframe></div>
           <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
         </div>
       `).join('')}</div>`;
@@ -392,7 +393,7 @@
 
     function cerrarSharingan() {
       document.getElementById('sharingan-overlay').classList.remove('active');
-      if (unlocked) sharinganSound.pause();
+           if (unlocked) sharinganSound.pause();
     }
 
     // === ENTRAR ===
@@ -403,10 +404,11 @@
       toggleBtn.classList.add('playing');
       document.getElementById('intro-overlay').style.display = 'none';
       document.getElementById('mainContent').style.display = 'block';
-      sessionStorage.setItem("siteEntered", "true");
+      
       const savedView = sessionStorage.getItem('currentView') || 'equipo';
       const btn = document.querySelector(`.filter-btn[onclick*="${savedView}"]`);
       if (btn) showView(savedView, btn);
+      
       updateVolumeIcon();
       loadYouTubeAPI();
     }
@@ -423,7 +425,6 @@
 
       document.getElementById(view + '-view').hidden = false;
 
-      // Pausar todos los videos
       document.querySelectorAll('iframe').forEach(iframe => {
         try {
           iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
@@ -438,33 +439,28 @@
       sessionStorage.setItem('currentView', view);
     }
 
-    // === CARGA INICIAL ===
+    // === AL CARGAR: SIEMPRE MOSTRAR INTRO ===
     window.addEventListener('load', () => {
-      const entered = sessionStorage.getItem("siteEntered") === "true";
       const fromSharingan = sessionStorage.getItem("fromSharingan");
-
-      if (entered && !fromSharingan) {
-        document.getElementById('intro-overlay').style.display = 'none';
-        document.getElementById('mainContent').style.display = 'block';
-        const savedView = sessionStorage.getItem('currentView') || 'equipo';
-        const btn = document.querySelector(`.filter-btn[onclick*="${savedView}"]`);
-        if (btn) showView(savedView, btn);
-        audio.play().catch(() => {});
-        toggleBtn.innerHTML = 'Pause';
-        toggleBtn.classList.add('playing');
-      }
 
       if (fromSharingan) {
         sessionStorage.removeItem("fromSharingan");
         document.getElementById('sharingan-overlay')?.classList.remove('active');
       }
+
+      document.getElementById('intro-overlay').style.display = 'flex';
+      document.getElementById('mainContent').style.display = 'none';
+      audio.pause();
+      toggleBtn.innerHTML = 'Play';
+      toggleBtn.classList.remove('playing');
     });
 
-    // Limpieza extra al volver
     window.addEventListener('pageshow', (e) => {
-      if (e.persisted || sessionStorage.getItem("fromSharingan")) {
-        sessionStorage.removeItem("fromSharingan");
+      if (e.persisted) {
         document.getElementById('sharingan-overlay')?.classList.remove('active');
+        document.getElementById('intro-overlay').style.display = 'flex';
+        document.getElementById('mainContent').style.display = 'none';
+        audio.pause();
       }
     });
 
@@ -492,7 +488,6 @@
       });
     };
 
-    // Desbloqueo en móviles
     document.body.addEventListener('touchstart', unlockAudio, { once: true });
     document.body.addEventListener('click', unlockAudio, { once: true });
 
