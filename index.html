@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>INJERTOS MODS</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <!-- FAVICON PARA TODOS LOS NAVEGADORES -->
+  <link rel="icon" href="https://i.imgur.com/abc123.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="https://i.imgur.com/abc123.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="https://i.imgur.com/abc123.png">
+  <link rel="shortcut icon" href="https://i.imgur.com/abc123.ico" type="image/x-icon">
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap');
     body {
@@ -12,9 +19,9 @@
       font-family: 'Orbitron', sans-serif;
       color: white;
       text-align: center;
+      background: #000;
       overflow-x: hidden;
       position: relative;
-      background: #000;
     }
     .background-container {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -23,6 +30,7 @@
     }
     h1 { font-size: 3.5rem; margin: 20px 0; text-shadow: 0 0 20px red, 0 0 40px #ff0000; color: #ff1a1a; }
     p { font-size: 1.3rem; margin-bottom: 30px; font-weight: bold; }
+    
     /* Redes */
     .socials { margin-top: 20px; }
     .socials a {
@@ -36,6 +44,7 @@
     .socials a.steam { background: #171A21; }
     .socials a.roblox { background: #FF4757; }
     .socials a.discord { background: #5865F2; }
+
     /* Reproductor */
     .music-player {
       position: fixed; bottom: 20px; left: 20px; background: rgba(0,0,0,0.85); padding: 10px 15px;
@@ -47,8 +56,9 @@
     .music-btn-small.playing { color: red; animation: pulse 1.5s infinite alternate; }
     @keyframes pulse { from { box-shadow: 0 0 10px red; } to { box-shadow: 0 0 40px red; } }
     #volumeSlider { width: 80px; -webkit-appearance: none; height: 5px; border-radius: 5px; background: #333; outline: none; }
-    #volumeSlider::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; background: red; border-radius: 50%; box-shadow: 0 0 10px red; }
+    #volumeSlider::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; background: red; border-radius: 50%; box-shadow: 0 0 15px red, 0 0 25px rgba(255,0,0,0.6); }
     .volume-icon { font-size: 1.2rem; min-width: 20px; }
+
     /* Filtros */
     .filters {
       margin: 30px 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;
@@ -60,6 +70,7 @@
     .filter-btn.active, .filter-btn:hover {
       background: red; box-shadow: 0 0 20px red;
     }
+
     /* Contenido */
     .content { max-width: 1600px; margin: 0 auto; padding: 0 15px; }
     .grid {
@@ -69,24 +80,37 @@
       background: rgba(0,0,0,0.78); padding: 35px; border-radius: 18px;
       border: 2px solid red; box-shadow: 0 0 70px rgba(255,0,0,0.9); transition: 0.3s;
       text-align: left; line-height: 1.9;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+      min-height: 580px !important;
+      height: 580px !important;
+      overflow: hidden !important;
     }
     .aporte:hover { box-shadow: 0 0 120px rgba(255,0,0,1.2); transform: translateY(-6px); }
-    .aporte h3 { font-size: 2.2rem; color: red; text-align: center; margin-bottom: 18px; }
-    /* Video */
+    .aporte h3 { font-size: 2.2rem; color: red; text-align: center; margin: 0 0 18px 0; flex-shrink: 0; }
     .video-wrapper {
-      position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
-      border-radius: 12px; margin: 20px 0; background: #000;
+      flex: 1 !important;
+      min-height: 200px !important;
+      height: 200px !important;
+      margin: 15px 0 !important;
+      padding-bottom: 0 !important;
+      background: #111;
+      border-radius: 10px;
+      overflow: hidden;
     }
     .video-wrapper iframe {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      border: none !important; outline: none !important;
+      border: none !important; outline: none !important; border-radius: 10px;
     }
     .download-btn {
-      display: inline-block; margin-top: 20px; padding: 14px 32px; background: red;
-      color: white; font-weight: bold; border-radius: 14px; text-decoration: none;
-      font-size: 1.3rem; transition: 0.3s; box-shadow: 0 0 30px rgba(255,0,0,0.9);
+      display: inline-block; margin-top: auto !important;
+      padding: 14px 32px; background: red; color: white; font-weight: bold;
+      border-radius: 14px; text-decoration: none; font-size: 1.3rem; transition: 0.3s;
+      box-shadow: 0 0 30px rgba(255,0,0,0.9); align-self: center; flex-shrink: 0;
     }
     .download-btn:hover { background: darkred; transform: scale(1.04); }
+
     /* EQUIPO ÉPICO */
     #equipo-view {
       background: linear-gradient(135deg, rgba(50,0,0,0.9), rgba(0,0,0,0.95));
@@ -146,6 +170,7 @@
       font-size: 3rem; color: #ff1a1a; text-shadow: 0 0 25px #ff0000;
       margin: 50px 0 30px; position: relative; z-index: 1;
     }
+
     /* Sharingan */
     .sharingan-btn {
       position: fixed; bottom: 20px; right: 20px; width: 55px; height: 55px; cursor: pointer; z-index: 1000;
@@ -164,6 +189,7 @@
     }
     #sharingan-overlay img { max-width: 80%; border-radius: 50%; }
     #sharingan-overlay.active { opacity: 1; visibility: visible; }
+
     /* Intro */
     #intro-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black;
@@ -176,24 +202,30 @@
       box-shadow: 0 0 40px red; -webkit-tap-highlight-color: transparent;
     }
     #mainContent { display: none; }
+
     @media (max-width: 768px) {
       .equipo-title { font-size: 2.8rem; }
       .boosters-title { font-size: 2.2rem; }
       .staff-card img, .booster-card img { width: 80px; height: 80px; }
+      .aporte { min-height: 520px !important; height: 520px !important; }
+      .video-wrapper { height: 180px !important; min-height: 180px !important; }
     }
   </style>
 </head>
 <body>
   <div class="background-container"></div>
+
   <!-- Intro -->
   <div id="intro-overlay">
     <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Intro">
     <button onclick="enterSite()">ENTRAR</button>
   </div>
+
   <!-- Main -->
   <div id="mainContent">
     <h1>INJERTOS MODS HALLOWEEN</h1>
     <p>"PÁGINA EN MANTENIMIENTO"</p>
+
     <!-- Redes -->
     <div class="socials">
       <a href="https://open.spotify.com/user/31mtjz2i5m63xek4cp4pevznd74i" target="_blank" class="spotify">Spotify</a>
@@ -201,12 +233,14 @@
       <a href="https://discordapp.com/users/1298301131641983019" target="_blank" class="discord">Discord</a>
       <a href="https://discord.gg/rNJ7UaPBYa" target="_blank" class="discord">DC - INJERTOS MODS</a>
     </div>
+
     <!-- Reproductor -->
     <div class="music-player">
       <button id="musicToggle" class="music-btn-small">Pause</button>
       <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
-      <span id="volumeIcon" class="volume-icon">volume up</span>
+      <i id="volumeIcon" class="volume-icon fas fa-volume-up"></i>
     </div>
+
     <!-- Filtros -->
     <div class="filters">
       <button class="filter-btn active" onclick="showView('equipo', this)">NUESTRO EQUIPO</button>
@@ -214,6 +248,7 @@
       <button class="filter-btn" onclick="showView('datas', this)">DATAS</button>
       <button class="filter-btn" onclick="showView('tops', this)">APORTES TOPS</button>
     </div>
+
     <!-- Contenido -->
     <div class="content">
       <div id="equipo-view" class="view">
@@ -227,6 +262,7 @@
       <div id="tops-view" class="view" hidden></div>
     </div>
   </div>
+
   <!-- Sharingan -->
   <div class="sharingan-btn" onclick="activarSharingan()">
     <img src="https://media0.giphy.com/media/AD9YKaY2vxTXO/giphy.gif" alt="Sharingan">
@@ -234,6 +270,7 @@
   <div id="sharingan-overlay" onclick="cerrarSharingan()">
     <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Sharingan">
   </div>
+
   <!-- Audio -->
   <audio id="bg-music" loop preload="auto">
     <source src="https://files.catbox.moe/nkwzd2.mp3" type="audio/mpeg">
@@ -260,7 +297,7 @@
       { nombre: "TOMMY", rol: "HELPER", avatar: "https://cdn.discordapp.com/avatars/1397628533626638428/99e743f3feed7c2e758f668ac42b2b0d.png?size=256" }
     ];
     const aportes = [
-      { titulo: "TIFFANY", creador: "HILNZO", contrasena: " tiffanyctmr", video: "https://youtube.com/embed/1Iq2YeDLVmM", descarga: "https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file" },
+      { titulo: "TIFFANY", creador: "HILNZO", contrasena: "tiffanyctmr", video: "https://youtube.com/embed/1Iq2YeDLVmM", descarga: "https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file" },
       { titulo: "SLICK SICK", creador: "HILNZO", contrasena: "elenfermo", video: "https://youtube.com/embed/7P_oX1rxsjs", descarga: "https://www.mediafire.com/file/l6ucin55qy23set/slick_sick.rar/file" },
       { titulo: "DRUKS", creador: "HILNZO", contrasena: "hilnzodruks", video: "https://www.youtube.com/embed/FPXuZPFyCd8?si", descarga: "https://www.mediafire.com/file/6d06kpjwz836nu8/DRUKS.rar/file" },
       { titulo: "BRUTALITY", creador: "JACOB", contrasena: "fuemip", video: "https://youtube.com/embed/fmVS7-nTmD4?enablejsapi=1", descarga: "https://www.mediafire.com/file/rj4hc064ibyu767/BRUTALITY.rar/file" },
@@ -330,7 +367,7 @@
           <h3>${a.titulo}</h3>
           <p><b>CREADOR:</b> ${a.autor}</p>
           <p><b>DESCARGAS:</b> ${a.descargas}</p>
-          <div class="video-wrapper"><iframe src="${a.video}?enablejsapi=:1" allowfullscreen></iframe></div>
+          <div class="video-wrapper"><iframe src="${a.video}?enablejsapi=1" allowfullscreen></iframe></div>
           <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
         </div>
       `).join('')}</div>`;
@@ -347,7 +384,13 @@
     audio.volume = volume;
 
     function updateVolumeIcon() {
-      volumeIcon.textContent = volume == 0 ? 'muted' : volume < 0.5 ? 'volume down' : 'volume up';
+      if (volume == 0) {
+        volumeIcon.className = 'volume-icon fas fa-volume-mute';
+      } else if (volume < 0.5) {
+        volumeIcon.className = 'volume-icon fas fa-volume-down';
+      } else {
+        volumeIcon.className = 'volume-icon fas fa-volume-up';
+      }
     }
 
     function unlockAudio() {
@@ -358,14 +401,14 @@
 
     toggleBtn.addEventListener('click', () => {
       unlockAudio();
-      if (audio.paused) { 
-        audio.play(); 
-        toggleBtn.innerHTML = 'Pause'; 
-        toggleBtn.classList.add('playing'); 
-      } else { 
-        audio.pause(); 
-        toggleBtn.innerHTML = 'Play'; 
-        toggleBtn.classList.remove('playing'); 
+      if (audio.paused) {
+        audio.play();
+        toggleBtn.innerHTML = 'Pause';
+        toggleBtn.classList.add('playing');
+      } else {
+        audio.pause();
+        toggleBtn.innerHTML = 'Play';
+        toggleBtn.classList.remove('playing');
       }
     });
 
@@ -378,9 +421,9 @@
 
     function activarSharingan() {
       document.getElementById('sharingan-overlay').classList.add('active');
-      if (unlocked) { 
-        sharinganSound.currentTime = 0; 
-        sharinganSound.play().catch(() => {}); 
+      if (unlocked) {
+        sharinganSound.currentTime = 0;
+        sharinganSound.play().catch(() => {});
       }
       setTimeout(() => {
         sessionStorage.setItem("fromSharingan", "true");
@@ -390,7 +433,7 @@
 
     function cerrarSharingan() {
       document.getElementById('sharingan-overlay').classList.remove('active');
-           if (unlocked) sharinganSound.pause();
+      if (unlocked) sharinganSound.pause();
     }
 
     // === ENTRAR ===
@@ -401,11 +444,11 @@
       toggleBtn.classList.add('playing');
       document.getElementById('intro-overlay').style.display = 'none';
       document.getElementById('mainContent').style.display = 'block';
-      
+     
       const savedView = sessionStorage.getItem('currentView') || 'equipo';
       const btn = document.querySelector(`.filter-btn[onclick*="${savedView}"]`);
       if (btn) showView(savedView, btn);
-      
+     
       updateVolumeIcon();
       loadYouTubeAPI();
     }
@@ -414,42 +457,36 @@
     function showView(view, btn) {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-
       document.getElementById('equipo-view').hidden = true;
       document.getElementById('aportes-view').hidden = true;
       document.getElementById('datas-view').hidden = true;
       document.getElementById('tops-view').hidden = true;
-
       document.getElementById(view + '-view').hidden = false;
-
       document.querySelectorAll('iframe').forEach(iframe => {
         try {
           iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
         } catch (e) {}
       });
-
       if (view === 'equipo') renderEquipo();
       if (view === 'aportes') renderAportes();
       if (view === 'datas') renderDatas();
       if (view === 'tops') renderTops();
-
       sessionStorage.setItem('currentView', view);
     }
 
-    // === AL CARGAR: SIEMPRE MOSTRAR INTRO ===
+    // === AL CARGAR ===
     window.addEventListener('load', () => {
       const fromSharingan = sessionStorage.getItem("fromSharingan");
-
       if (fromSharingan) {
         sessionStorage.removeItem("fromSharingan");
         document.getElementById('sharingan-overlay')?.classList.remove('active');
       }
-
       document.getElementById('intro-overlay').style.display = 'flex';
       document.getElementById('mainContent').style.display = 'none';
       audio.pause();
       toggleBtn.innerHTML = 'Play';
       toggleBtn.classList.remove('playing');
+      updateVolumeIcon();
     });
 
     window.addEventListener('pageshow', (e) => {
@@ -487,8 +524,6 @@
 
     document.body.addEventListener('touchstart', unlockAudio, { once: true });
     document.body.addEventListener('click', unlockAudio, { once: true });
-
-    updateVolumeIcon();
   </script>
 </body>
 </html>
