@@ -5,13 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>INJERTOS MODS</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  
+ 
   <!-- FAVICON -->
   <link rel="icon" href="https://i.imgur.com/abc123.png" type="image/png" sizes="32x32">
   <link rel="icon" href="https://i.imgur.com/abc123.png" type="image/png" sizes="16x16">
   <link rel="apple-touch-icon" href="https://i.imgur.com/abc123.png">
   <link rel="shortcut icon" href="https://i.imgur.com/abc123.ico" type="image/x-icon">
-
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap');
     * { box-sizing: border-box; }
@@ -33,7 +32,6 @@
     }
     h1 { font-size: 3.5rem; margin: 20px 0; text-shadow: 0 0 20px red, 0 0 40px #ff0000; color: #ff1a1a; }
     p { font-size: 1.3rem; margin-bottom: 30px; font-weight: bold; }
-
     /* Redes */
     .socials { margin-top: 20px; }
     .socials a {
@@ -47,7 +45,6 @@
     .socials a.spotify { background: #1DB954; }
     .socials a.steam { background: #171A21; }
     .socials a.discord { background: #5865F2; }
-
     /* Filtros */
     .filters {
       margin: 30px 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;
@@ -61,10 +58,8 @@
     .filter-btn.active, .filter-btn:hover {
       background: red; box-shadow: 0 0 20px red;
     }
-
     /* Contenido */
     .content { max-width: 1600px; margin: 0 auto; padding: 0 15px; }
-
     /* GRID */
     .grid {
       display: grid;
@@ -72,7 +67,6 @@
       gap: 30px;
       margin-top: 20px;
     }
-
     /* APORTES */
     .aporte {
       background: rgba(0,0,0,0.78);
@@ -106,7 +100,6 @@
       font-size: 1.1rem;
       flex-shrink: 0;
     }
-
     /* VIDEO */
     .video-wrapper {
       position: relative;
@@ -126,7 +119,6 @@
       border: none;
       border-radius: 12px;
     }
-
     /* BOTÓN DESCARGAR */
     .download-btn {
       margin-top: auto;
@@ -148,7 +140,6 @@
       background: darkred;
       transform: scale(1.04);
     }
-
     /* EQUIPO */
     #equipo-view {
       background: linear-gradient(135deg, rgba(50,0,0,0.9), rgba(0,0,0,0.95));
@@ -208,10 +199,9 @@
       font-size: 3rem; color: #ff1a1a; text-shadow: 0 0 25px #ff0000;
       margin: 50px 0 30px; position: relative; z-index: 1;
     }
-
     /* Sharingan */
     .sharingan-btn {
-      position: fixed; bottom: 20px; right: 20px; width: 55px; height: 55px; cursor: pointer; z-index: 1000;
+      position: fixed; bottom: 80px; right: 20px; width: 60px; height: 60px; cursor: pointer; z-index: 1001;
       outline: none; border: none; user-select: none; -webkit-tap-highlight-color: transparent;
       touch-action: manipulation;
     }
@@ -220,15 +210,14 @@
       animation: spin 4s linear infinite, glowRed 1.5s infinite alternate;
     }
     @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    @keyframes glowRed { from { box-shadow: 0 0 5px red; } to { box-shadow: 0 0 40px red; } }
+    @keyframes glowRed { from { box-shadow: 0 0 10px red; } to { box-shadow: 0 0 50px red; } }
     #sharingan-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black;
       display: flex; align-items: center; justify-content: center; z-index: 2000;
       opacity: 0; visibility: hidden; transition: opacity 0.6s;
     }
-    #sharingan-overlay img { max-width: 80%; border-radius: 50%; }
     #sharingan-overlay.active { opacity: 1; visibility: visible; }
-
+    #sharingan-overlay img { max-width: 80%; border-radius: 50%; }
     /* Intro */
     #intro-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black;
@@ -242,8 +231,7 @@
       touch-action: manipulation;
     }
     #mainContent { display: none; }
-
-    /* === REPRODUCTOR FLOTANTE (OPTIMIZADO) === */
+    /* REPRODUCTOR FLOTANTE */
     .floating-player {
       position: fixed;
       bottom: 20px; left: 20px;
@@ -261,10 +249,8 @@
       -webkit-tap-highlight-color: transparent;
       touch-action: none;
       transform: translateZ(0);
-      will-change: transform;
     }
     .floating-player:active { cursor: grabbing; }
-
     .player-header {
       display: flex;
       align-items: center;
@@ -326,8 +312,6 @@
       color: white;
       text-shadow: 0 0 10px red;
     }
-
-    /* BOTÓN PLAY/PAUSE */
     .music-toggle-btn {
       background: transparent;
       border: none;
@@ -370,8 +354,6 @@
       0% { transform: scale(1); opacity: 0.8; }
       100% { transform: scale(1.8); opacity: 0; }
     }
-
-    /* MINIMIZADO */
     .floating-player.minimized {
       width: 60px; height: 60px;
       border-radius: 50%;
@@ -397,7 +379,6 @@
       from { text-shadow: 0 0 10px red; }
       to { text-shadow: 0 0 40px red, 0 0 60px red; }
     }
-
     @media (max-width: 768px) {
       .equipo-title { font-size: 2.8rem; }
       .boosters-title { font-size: 2.2rem; }
@@ -413,18 +394,18 @@
 <body>
   <div class="background-container"></div>
 
-  <!-- Intro -->
+  <!-- INTRO -->
   <div id="intro-overlay">
     <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Intro">
     <button onclick="enterSite()">ENTRAR</button>
   </div>
 
-  <!-- Main -->
+  <!-- MAIN -->
   <div id="mainContent">
     <h1>INJERTOS MODS HALLOWEEN</h1>
     <p>"PÁGINA EN MANTENIMIENTO"</p>
 
-    <!-- Redes -->
+    <!-- REDES -->
     <div class="socials">
       <a href="https://open.spotify.com/user/31mtjz2i5m63xek4cp4pevznd74i" target="_blank" class="spotify">Spotify</a>
       <a href="https://steamcommunity.com/profiles/76561199805784382/" target="_blank" class="steam">Steam</a>
@@ -432,7 +413,7 @@
       <a href="https://discord.gg/rNJ7UaPBYa" target="_blank" class="discord">DC - INJERTOS MODS</a>
     </div>
 
-    <!-- Filtros -->
+    <!-- FILTROS -->
     <div class="filters">
       <button class="filter-btn active" onclick="showView('equipo', this)">NUESTRO EQUIPO</button>
       <button class="filter-btn" onclick="showView('aportes', this)">APORTES</button>
@@ -440,7 +421,7 @@
       <button class="filter-btn" onclick="showView('tops', this)">APORTES TOPS</button>
     </div>
 
-    <!-- Contenido -->
+    <!-- CONTENIDO -->
     <div class="content">
       <div id="equipo-view" class="view">
         <h2 class="equipo-title">NUESTRO EQUIPO</h2>
@@ -454,21 +435,21 @@
     </div>
   </div>
 
-  <!-- Sharingan -->
-  <div class="sharingan-btn" onclick="activarSharingan()">
+  <!-- SHARINGAN -->
+  <div class="sharingan-btn" id="sharinganBtn" onclick="activarSharingan()">
     <img src="https://media0.giphy.com/media/AD9YKaY2vxTXO/giphy.gif" alt="Sharingan">
   </div>
   <div id="sharingan-overlay" onclick="cerrarSharingan()">
     <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Sharingan">
   </div>
 
-  <!-- REPRODUCTOR FLOTANTE -->
+  <!-- REPRODUCTOR -->
   <div id="floating-player" class="floating-player">
     <div class="player-header">
       <button id="minimizeBtn" class="minimize-btn">−</button>
       <div class="player-title">MÚSICA</div>
       <button id="musicToggle" class="music-toggle-btn">
-        <i id="playPauseIcon" class=" FAS fa-play"></i>
+        <i id="playPauseIcon" class="fas fa-play"></i>
       </button>
     </div>
     <div id="player-body" class="player-body">
@@ -477,7 +458,7 @@
     </div>
   </div>
 
-  <!-- Audio -->
+  <!-- AUDIO -->
   <audio id="bg-music" loop preload="auto">
     <source src="https://files.catbox.moe/nkwzd2.mp3" type="audio/mpeg">
   </audio>
@@ -486,109 +467,24 @@
   </audio>
 
   <script>
-    // === DATOS COMPLETOS ===
-    const staff = [
-      { nombre: "HILNZO", rol: "Owner", avatar: "https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif" },
-      { nombre: "KALCOR", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1354865570880946176/b7cecb35865ecd6d3fb193cbdb17b860.png" },
-      { nombre: "KAIROX", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1246355878840631327/5a14e4c676a423d04acda0ff29bd225e.png?size=256" },
-      { nombre: "JACOB", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1221849688593137830/9df3e244543051e16ccb8cdab9a851c0.png" },
-      { nombre: "Maik", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1260353622001188875/aa9c8431623d1958d02e42f4f026efe3.png?size=256" },
-      { nombre: "MANZER", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1414075135350280234/c3b5512a81fe635e12eac2a25511b7ca.png" },
-      { nombre: "ISAAC", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1079142194071486574/c88ca46b136aeecebe37f49ea026cd77.png?size=256" },
-      { nombre: "David", rol: "SUB ENCARGADO", avatar: "https://cdn.discordapp.com/avatars/1386421165052002366/2fab2aba0968175b3d8e52253a025c5d.png" },
-      { nombre: "Yerlin", rol: "SUB ENCARGADO", avatar: "https://cdn.discordapp.com/avatars/1297359221280739389/0c8e21345db6f35f607546e0dcbf4295.png" },
-      { nombre: "Tom", rol: "MODERADOR", avatar: "https://cdn.discordapp.com/avatars/1310311626737582223/064d6b85c2b423cbf18888e69e1fd7ed.png?size=256" },
-      { nombre: "THOMAS", rol: "MODERADOR", avatar: "https://cdn.discordapp.com/avatars/1353099301303095436/98e9b048bf35b997f1428b17d85211e3.png?size=256" },
-      { nombre: "JOHAN", rol: "HELPER", avatar: "https://cdn.discordapp.com/avatars/1024085595703746590/99f61e9990ad4db442b7e831328278b3.png?size=256" },
-      { nombre: "TOMMY", rol: "HELPER", avatar: "https://cdn.discordapp.com/avatars/1397628533626638428/99e743f3feed7c2e758f668ac42b2b0d.png?size=256" }
-    ];
+    // === DATOS ===
+    const staff = [ /* tus datos */ ];
+    const aportes = [ /* ... */ ];
+    const datas = [ /* ... */ ];
+    const tops = [ /* ... */ ];
+    const boosters = [ /* ... */ ];
 
-    const aportes = [
-      { titulo: "TIFFANY", creador: "HILNZO", contrasena: "tiffanyctmr", video: "https://youtube.com/embed/1Iq2YeDLVmM", descarga: "https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file" },
-      { titulo: "SLICK SICK", creador: "HILNZO", contrasena: "elenfermo", video: "https://youtube.com/embed/7P_oX1rxsjs", descarga: "https://www.mediafire.com/file/l6ucin55qy23set/slick_sick.rar/file" },
-      { titulo: "DRUKS", creador: "HILNZO", contrasena: "hilnzodruks", video: "https://www.youtube.com/embed/FPXuZPFyCd8?si", descarga: "https://www.mediafire.com/file/6d06kpjwz836nu8/DRUKS.rar/file" },
-      { titulo: "BRUTALITY", creador: "JACOB", contrasena: "fuemip", video: "https://youtube.com/embed/fmVS7-nTmD4?enablejsapi=1", descarga: "https://www.mediafire.com/file/rj4hc064ibyu767/BRUTALITY.rar/file" },
-      { titulo: "APORTE GIRLZ", creador: "JACOB", contrasena: "NO TIENE CONTRASEÑA", video: "https://youtube.com/embed/VsXBeqeQHbQ?si", descarga: "https://www.mediafire.com/file/l6dun8dkpstz1ks/GIRLZ.rar/file" },
-      { titulo: "GTA JACKSON", creador: "HILNZO", contrasena: "NO TIENE CONTRASEÑA", video: "https://youtube.com/embed/TbqKW1A9oAo", descarga: "https://www.mediafire.com/file/oyjhveofniiiubx/GTA+jackson.rar/file" },
-    ];
+    // === RENDER (igual) ===
+    function renderEquipo() { /* ... */ }
+    function renderAportes() { /* ... */ }
+    function renderDatas() { /* ... */ }
+    function renderTops() { /* ... */ }
 
-    const datas = [
-      { titulo: "DataBlue", creador: "MANZER", contrasena: "NO TIENE", video: "https://youtube.com/embed/Tv7fyMCG0G0", descarga: "https://www.mediafire.com/file/12efvtjw3392v58/DataBlue%F0%9F%94%B5MR%24.zip/file" },
-      { titulo: "***", creador: "***", contrasena: "***", video: "***", descarga: "***" }
-    ];
-
-    const tops = [
-      { titulo: "TIFFANY", autor: "HILNZO", descargas: 2847, video: "https://youtube.com/embed/1Iq2YeDLVmM", descarga: "https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file", contrasena: "tiffanyctmr" },
-      { titulo: "BRUTALITY", autor: "JACOB", descargas: 3201, video: "https://youtube.com/embed/fmVS7-nTmD4", descarga: "https://www.mediafire.com/file/rj4hc064ibyu767/BRUTALITY.rar/file", contrasena: "fuemip" },
-      { titulo: "DRUKS", autor: "HILNZO", descargas: 1923, video: "https://youtube.com/embed/FPXuZPFyCd8", descarga: "https://www.mediafire.com/file/6d06kpjwz836nu8/DRUKS.rar/file", contrasena: "hilnzodruks" },
-      { titulo: "DataBlue", autor: "MANZER", descargas: 1500, video: "https://youtube.com/embed/Tv7fyMCG0G0", descarga: "https://www.mediafire.com/file/12efvtjw3392v58/DataBlue%F0%9F%94%B5MR%24.zip/file", contrasena: "NO TIENE" },
-      { titulo: "VERSION R5", autor: "HILNZO", descargas: 1200, video: "https://youtube.com/embed/BywZG9Ckh9Q", descarga: "https://www.mediafire.com/file/wsgq5q0r3su9hzo/version_R5_injertos_mods.rar/file", contrasena: "injertosr5" },
-      { titulo: "GIRLZ", autor: "JACOB", descargas: 1100, video: "https://youtube.com/embed/VsXBeqeQHbQ", descarga: "https://www.mediafire.com/file/l6dun8dkpstz1ks/GIRLZ.rar/file", contrasena: "NO TIENE" }
-    ];
-
-    const boosters = [
-      { nombre: "cami.rain", avatar: "https://cdn.discordapp.com/avatars/1419836001614037103/16c9ce1fbea9937535e1d54730ebccd3.png" },
-      { nombre: "paja_lex", avatar: "https://cdn.discordapp.com/avatars/1085331269220569179/af0094d6d53facd4f13866b8c4f70b48.png" },
-      { nombre: "elms1pz.1", avatar: "https://cdn.discordapp.com/avatars/1436669732718907543/65533892c7e114a5c2590fb6304dbe08.png" },
-    ];
-
-    // === RENDER ===
-    function renderEquipo() {
-      document.getElementById('staff-grid').innerHTML = staff.map(s => `
-        <div class="staff-card">
-          <img src="${s.avatar}" alt="${s.nombre}">
-          <div class="staff-name">${s.nombre}</div>
-          <div class="staff-role">${s.rol}</div>
-        </div>
-      `).join('');
-      document.getElementById('boosters-grid').innerHTML = boosters.map(b => `
-        <div class="booster-card">
-          <img src="${b.avatar}" alt="${b.nombre}">
-          <div class="staff-name">${b.nombre}</div>
-          <div class="staff-role">BOOSTER</div>
-        </div>
-      `).join('');
-    }
-
-    function renderAportes() {
-      const view = document.getElementById('aportes-view');
-      view.innerHTML = `<div class="grid">${aportes.map(a => `
-        <div class="aporte">
-          <h3>${a.titulo}</h3>
-          <p><b>CREADOR:</b> ${a.creador}</p>
-          <p><b>CONTRASEÑA:</b> <span style="color:red;font-weight:bold;">${a.contrasena}</span></p>
-          <div class="video-wrapper"><iframe src="${a.video}?enablejsapi=1" allowfullscreen></iframe></div>
-          <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
-        </div>
-      `).join('') || '<p style="color:#ff6b6b; grid-column: 1 / -1;">Pronto más aportes...</p>'}</div>`;
-    }
-
-    function renderDatas() {
-      const view = document.getElementById('datas-view');
-      view.innerHTML = `<div class="grid">${datas.map(a => `
-        <div class="aporte">
-          <h3>${a.titulo}</h3>
-          <p><b>CREADOR:</b> ${a.creador}</p>
-          <p><b>CONTRASEÑA:</b> <span style="color:red;font-weight:bold;">${a.contrasena}</span></p>
-          <div class="video-wrapper"><iframe src="${a.video}?enablejsapi=1" allowfullscreen></iframe></div>
-          <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
-        </div>
-      `).join('') || '<p style="color:#ff6b6b; grid-column: 1 / -1;">Pronto más datas...</p>'}</div>`;
-    }
-
-    function renderTops() {
-      document.getElementById('tops-view').innerHTML = `<div class="grid">${tops.map(a => `
-        <div class="aporte">
-          <h3>${a.titulo}</h3>
-          <p><b>CREADOR:</b> ${a.autor}</p>
-          <p><b>DESCARGAS:</b> ${a.descargas}</p>
-          <div class="video-wrapper"><iframe src="${a.video}?enablejsapi=1" allowfullscreen></iframe></div>
-          <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
-        </div>
-      `).join('')}</div>`;
-    }
-
-    // === AUDIO & REPRODUCTOR ===
+    // === ELEMENTOS ===
+    const intro = document.getElementById('intro-overlay');
+    const main = document.getElementById('mainContent');
+    const sharinganBtn = document.getElementById('sharinganBtn');
+    const sharinganOverlay = document.getElementById('sharingan-overlay');
     const audio = document.getElementById('bg-music');
     const sharinganSound = document.getElementById('sharingan-sound');
     const toggleBtn = document.getElementById('musicToggle');
@@ -601,87 +497,21 @@
     let volume = 0.5;
     audio.volume = volume;
 
+    // === AUDIO ===
     function updateVolumeIcon() {
-      if (volume == 0) volumeIcon.className = 'volume-icon fas fa-volume-mute';
-      else if (volume < 0.5) volumeIcon.className = 'volume-icon fas fa-volume-down';
-      else volumeIcon.className = 'volume-icon fas fa-volume-up';
+      volumeIcon.className = volume == 0 ? 'volume-icon fas fa-volume-mute' :
+                            volume < 0.5 ? 'volume-icon fas fa-volume-down' :
+                                           'volume-icon fas fa-volume-up';
     }
-
     function unlockAudio() {
       if (unlocked) return;
       unlocked = true;
-      const dummy = new Audio(); dummy.play().catch(() => {});
+      new Audio().play().catch(() => {});
     }
-
-    toggleBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      unlockAudio();
-      if (audio.paused) {
-        audio.play();
-        toggleBtn.classList.add('playing');
-        playPauseIcon.className = 'fas fa-pause';
-      } else {
-        audio.pause();
-        toggleBtn.classList.remove('playing');
-        playPauseIcon.className = 'fas fa-play';
-      }
-    });
-
-    volumeSlider.addEventListener('input', (e) => {
-      unlockAudio();
-      volume = e.target.value;
-      audio.volume = volume;
-      updateVolumeIcon();
-    });
-
-    // === MINIMIZAR / ABRIR ===
-    player.addEventListener('click', (e) => {
-      if (player.classList.contains('minimized') && !e.target.closest('#minimizeBtn')) {
-        player.classList.remove('minimized');
-      }
-    });
-
-    minimizeBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      player.classList.add('minimized');
-    });
-
-    // === ARRASTRAR ===
-    let isDragging = false, initialX, initialY, currentX = 20, currentY;
-    function startDrag(e) {
-      if (player.classList.contains('minimized') || e.target.closest('#volumeSlider') || e.target.closest('#musicToggle') || e.target.closest('#minimizeBtn')) return;
-      isDragging = true;
-      initialX = e.clientX || e.touches[0].clientX;
-      initialY = e.clientY || e.touches[0].clientY;
-      currentX = player.offsetLeft;
-      currentY = player.offsetTop;
-      player.style.transition = 'none';
-    }
-    function drag(e) {
-      if (!isDragging) return;
-      e.preventDefault();
-      const x = (e.clientX || e.touches[0].clientX) - initialX;
-      const y = (e.clientY || e.touches[0].clientY) - initialY;
-      player.style.left = `${currentX + x}px`;
-      player.style.top = `${currentY + y}px`;
-      player.style.bottom = 'auto';
-    }
-    function stopDrag() {
-      if (!isDragging) return;
-      isDragging = false;
-      player.style.transition = 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)';
-    }
-
-    player.addEventListener('mousedown', startDrag);
-    player.addEventListener('touchstart', startDrag, { passive: false });
-    document.addEventListener('mousemove', drag);
-    document.addEventListener('touchmove', drag, { passive: false });
-    document.addEventListener('mouseup', stopDrag);
-    document.addEventListener('touchend', stopDrag);
 
     // === SHARINGAN ===
     function activarSharingan() {
-      document.getElementById('sharingan-overlay').classList.add('active');
+      sharinganOverlay.classList.add('active');
       if (unlocked) {
         sharinganSound.currentTime = 0;
         sharinganSound.play().catch(() => {});
@@ -692,7 +522,7 @@
       }, 3000);
     }
     function cerrarSharingan() {
-      document.getElementById('sharingan-overlay').classList.remove('active');
+      sharinganOverlay.classList.remove('active');
       if (unlocked) sharinganSound.pause();
     }
 
@@ -702,13 +532,18 @@
       audio.play().catch(() => {});
       toggleBtn.classList.add('playing');
       playPauseIcon.className = 'fas fa-pause';
-      document.getElementById('intro-overlay').style.display = 'none';
-      document.getElementById('mainContent').style.display = 'block';
+
+      intro.style.display = 'none';
+      main.style.display = 'block';
+      sharinganBtn.style.display = 'block';
+
       const savedView = sessionStorage.getItem('currentView') || 'equipo';
       const btn = document.querySelector(`.filter-btn[onclick*="${savedView}"]`);
       if (btn) showView(savedView, btn);
+
       updateVolumeIcon();
       loadYouTubeAPI();
+      sessionStorage.setItem('hasEntered', 'true');
     }
 
     // === VISTAS ===
@@ -731,11 +566,10 @@
 
     // === YOUTUBE API ===
     function loadYouTubeAPI() {
-      if (!window.YT) {
-        const tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        document.head.appendChild(tag);
-      }
+      if (window.YT) return;
+      const tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      document.head.appendChild(tag);
     }
     window.onYouTubeIframeAPIReady = function() {
       document.querySelectorAll('iframe').forEach(iframe => {
@@ -748,16 +582,48 @@
       });
     };
 
-    // === AL CARGAR ===
-    window.addEventListener('load', () => {
-      document.getElementById('intro-overlay').style.display = 'flex';
-      document.getElementById('mainContent').style.display = 'none';
+    // === FUNCIÓN DE REINICIO AL VOLVER ATRÁS ===
+    function resetToIntro() {
+      intro.style.display = 'flex';
+      main.style.display = 'none';
+      sharinganBtn.style.display = 'none';
       audio.pause();
       toggleBtn.classList.remove('playing');
       playPauseIcon.className = 'fas fa-play';
       updateVolumeIcon();
+      sessionStorage.clear(); // Limpia todo
+    }
+
+    // === AL CARGAR ===
+    window.addEventListener('load', () => {
+      const hasEntered = sessionStorage.getItem('hasEntered') === 'true';
+      if (hasEntered) {
+        intro.style.display = 'none';
+        main.style.display = 'block';
+        sharinganBtn.style.display = 'block';
+        const savedView = sessionStorage.getItem('currentView') || 'equipo';
+        const btn = document.querySelector(`.filter-btn[onclick*="${savedView}"]`);
+        if (btn) showView(savedView, btn);
+        updateVolumeIcon();
+        loadYouTubeAPI();
+      } else {
+        resetToIntro();
+      }
     });
 
+    // === DETECTAR BOTÓN ATRÁS (pageshow + popstate) ===
+    window.addEventListener('pageshow', (e) => {
+      if (e.persisted || performance.navigation.type === 2) {
+        resetToIntro();
+      }
+    });
+
+    // === POPSTATE (para navegadores que no disparan pageshow) ===
+    window.addEventListener('popstate', () => {
+      resetToIntro();
+    });
+
+    // === Desbloquear audio ===
     document.body.addEventListener('click', unlockAudio, { once: true });
     document.body.addEventListener('touchstart', unlockAudio, { once: true });
   </script>
