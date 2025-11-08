@@ -6,7 +6,7 @@
   <title>INJERTOS MODS</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   
-  <!-- FAVICON PARA TODOS LOS NAVEGADORES -->
+  <!-- FAVICON (REEMPLAZA CON TU IMAGEN) -->
   <link rel="icon" href="https://i.imgur.com/abc123.png" type="image/png" sizes="32x32">
   <link rel="icon" href="https://i.imgur.com/abc123.png" type="image/png" sizes="16x16">
   <link rel="apple-touch-icon" href="https://i.imgur.com/abc123.png">
@@ -44,20 +44,6 @@
     .socials a.steam { background: #171A21; }
     .socials a.discord { background: #5865F2; }
 
-    /* Reproductor */
-    .music-player {
-      position: fixed; bottom: 20px; left: 20px; background: rgba(0,0,0,0.85); padding: 10px 15px;
-      border-radius: 50px; display: flex; align-items: center; gap: 12px; z-index: 999;
-      border: 2px solid red; box-shadow: 0 0 20px rgba(255,0,0,0.6); backdrop-filter: blur(8px);
-    }
-    .music-btn-small { background: transparent; border: none; color: white; font-size: 1.4rem; cursor: pointer; }
-    .music-btn-small:hover { transform: scale(1.15); }
-    .music-btn-small.playing { color: red; animation: pulse 1.5s infinite alternate; }
-    @keyframes pulse { from { box-shadow: 0 0 10px red; } to { box-shadow: 0 0 40px red; } }
-    #volumeSlider { width: 80px; -webkit-appearance: none; height: 5px; border-radius: 5px; background: #333; outline: none; }
-    #volumeSlider::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; background: red; border-radius: 50%; box-shadow: 0 0 15px red, 0 0 25px rgba(255,0,0,0.6); }
-    .volume-icon { font-size: 1.2rem; min-width: 20px; }
-
     /* Filtros */
     .filters {
       margin: 30px 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;
@@ -81,7 +67,7 @@
       margin-top: 20px;
     }
 
-    /* APORTES UNIFORMES Y RESPONSIVOS */
+    /* APORTES UNIFORMES */
     .aporte {
       background: rgba(0,0,0,0.78);
       padding: 30px;
@@ -91,11 +77,9 @@
       transition: all 0.3s ease;
       text-align: left;
       line-height: 1.9;
-
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-
       min-height: 500px;
       height: auto;
       overflow: hidden;
@@ -117,12 +101,12 @@
       flex-shrink: 0;
     }
 
-    /* VIDEO 16:9 PERFECTO */
+    /* VIDEO 16:9 */
     .video-wrapper {
       position: relative;
       width: 100%;
       height: 0;
-      padding-bottom: 56.25%; /* 16:9 */
+      padding-bottom: 56.25%;
       margin: 18px 0;
       background: #000;
       border-radius: 12px;
@@ -137,7 +121,7 @@
       border-radius: 12px;
     }
 
-    /* BOTÓN SIEMPRE AL FINAL */
+    /* BOTÓN DESCARGAR */
     .download-btn {
       margin-top: auto;
       align-self: center;
@@ -157,7 +141,7 @@
       transform: scale(1.04);
     }
 
-    /* EQUIPO ÉPICO */
+    /* EQUIPO */
     #equipo-view {
       background: linear-gradient(135deg, rgba(50,0,0,0.9), rgba(0,0,0,0.95));
       padding: 50px 20px; border-radius: 25px; margin: 20px 0;
@@ -227,7 +211,7 @@
       animation: spin 4s linear infinite, glowRed 1.5s infinite alternate;
     }
     @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    @ pólkeyframes glowRed { from { box-shadow: 0 0 5px red; } to { box-shadow: 0 0 40px red; } }
+    @keyframes glowRed { from { box-shadow: 0 0 5px red; } to { box-shadow: 0 0 40px red; } }
     #sharingan-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black;
       display: flex; align-items: center; justify-content: center; z-index: 2000;
@@ -249,6 +233,148 @@
     }
     #mainContent { display: none; }
 
+    /* === REPRODUCTOR FLOTANTE ARRASTRABLE === */
+    .floating-player {
+      position: fixed;
+      bottom: 20px; left: 20px;
+      width: 240px;
+      background: rgba(15, 0, 0, 0.95);
+      border: 2px solid red;
+      border-radius: 16px;
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      z-index: 999;
+      transition: all 0.3s ease;
+      cursor: grab;
+      user-select: none;
+      font-family: 'Orbitron', sans-serif;
+    }
+    .floating-player:active { cursor: grabbing; }
+
+    .player-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      background: rgba(100, 0, 0, 0.5);
+      border-radius: 14px 14px 0 0;
+      font-size: 0.9rem;
+      color: #ff4d4d;
+      font-weight: bold;
+    }
+    .minimize-btn {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 1.3rem;
+      cursor: pointer;
+      padding: 0 8px;
+      transition: 0.2s;
+    }
+    .minimize-btn:hover { color: red; transform: scale(1.2); }
+    .player-title {
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px red;
+    }
+    .player-body {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 15px;
+      transition: all 0.3s ease;
+    }
+    #volumeSlider {
+      flex: 1;
+      -webkit-appearance: none;
+      height: 6px;
+      border-radius: 3px;
+      background: #333;
+      outline: none;
+      cursor: pointer;
+    }
+    #volumeSlider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px; height: 18px;
+      background: red;
+      border-radius: 50%;
+      box-shadow: 0 0 15px red, 0 0 25px rgba(255,0,0,0.6);
+      cursor: grab;
+    }
+    .volume-icon {
+      font-size: 1.3rem;
+      min-width: 24px;
+      color: white;
+      text-shadow: 0 0 10px red;
+    }
+
+    /* BOTÓN PLAY/PAUSE ÉPICO */
+    .music-toggle-btn {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .music-toggle-btn:hover {
+      transform: scale(1.15);
+      color: red;
+    }
+    .music-toggle-btn.playing {
+      color: red;
+      animation: pulseBtn 1.5s infinite alternate;
+    }
+    .music-toggle-btn.playing::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 2px solid red;
+      border-radius: 50%;
+      animation: ripple 1.5s infinite;
+      opacity: 0;
+    }
+    @keyframes pulseBtn {
+      from { box-shadow: 0 0 10px red; }
+      to { box-shadow: 0 0 30px red, 0 0 50px rgba(255,0,0,0.6); }
+    }
+    @keyframes ripple {
+      0% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(1.8); opacity: 0; }
+    }
+
+    /* MINIMIZADO */
+    .floating-player.minimized {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .floating-player.minimized .player-header,
+    .floating-player.minimized .player-body {
+      display: none;
+    }
+    .floating-player.minimized::after {
+      content: "♪";
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.8rem;
+      color: red;
+      text-shadow: 0 0 20px red;
+      animation: pulse 1.5s infinite alternate;
+    }
+    @keyframes pulse {
+      from { text-shadow: 0 0 10px red; }
+      to { text-shadow: 0 0 40px red, 0 0 60px red; }
+    }
+
     @media (max-width: 768px) {
       .equipo-title { font-size: 2.8rem; }
       .boosters-title { font-size: 2.2rem; }
@@ -256,6 +382,7 @@
       .aporte { min-height: 480px; padding: 20px; }
       .aporte h3 { font-size: 1.8rem; }
       .download-btn { font-size: 1.2rem; padding: 12px 28px; }
+      .floating-player { width: 200px; }
     }
   </style>
 </head>
@@ -281,19 +408,12 @@
       <a href="https://discord.gg/rNJ7UaPBYa" target="_blank" class="discord">DC - INJERTOS MODS</a>
     </div>
 
-    <!-- Reproductor -->
-    <div class="music-player">
-      <button id="musicToggle" class="music-btn-small">Pause</button>
-      <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
-      <i id="volumeIcon" class="volume-icon fas fa-volume-up"></i>
-    </div>
-
     <!-- Filtros -->
     <div class="filters">
       <button class="filter-btn active" onclick="showView('equipo', this)">NUESTRO EQUIPO</button>
       <button class="filter-btn" onclick="showView('aportes', this)">APORTES</button>
       <button class="filter-btn" onclick="showView('datas', this)">DATAS</button>
-      <button class="filter-btn" onclick="showView('tops', this)">APORTES TOPS</button>
+      <button class="filter,filter-btn" onclick="showView('tops', this)">APORTES TOPS</button>
     </div>
 
     <!-- Contenido -->
@@ -316,6 +436,21 @@
   </div>
   <div id="sharingan-overlay" onclick="cerrarSharingan()">
     <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Sharingan">
+  </div>
+
+  <!-- REPRODUCTOR FLOTANTE -->
+  <div id="floating-player" class="floating-player">
+    <div class="player-header">
+      <button id="minimizeBtn" class="minimize-btn">−</button>
+      <div class="player-title">MÚSICA</div>
+      <button id="musicToggle" class="music-toggle-btn playing">
+        <i id="playPauseIcon" class="fas fa-pause"></i>
+      </button>
+    </div>
+    <div id="player-body" class="player-body">
+      <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
+      <i id="volumeIcon" class="volume-icon fas fa-volume-up"></i>
+    </div>
   </div>
 
   <!-- Audio -->
@@ -424,6 +559,7 @@
     const audio = document.getElementById('bg-music');
     const sharinganSound = document.getElementById('sharingan-sound');
     const toggleBtn = document.getElementById('musicToggle');
+    const playPauseIcon = document.getElementById('playPauseIcon');
     const volumeSlider = document.getElementById('volumeSlider');
     const volumeIcon = document.getElementById('volumeIcon');
     let unlocked = false;
@@ -450,12 +586,12 @@
       unlockAudio();
       if (audio.paused) {
         audio.play();
-        toggleBtn.innerHTML = 'Pause';
         toggleBtn.classList.add('playing');
+        playPauseIcon.className = 'fas fa-pause';
       } else {
         audio.pause();
-        toggleBtn.innerHTML = 'Play';
         toggleBtn.classList.remove('playing');
+        playPauseIcon.className = 'fas fa-play';
       }
     });
 
@@ -487,8 +623,8 @@
     function enterSite() {
       unlockAudio();
       audio.play().catch(() => {});
-      toggleBtn.innerHTML = 'Pause';
       toggleBtn.classList.add('playing');
+      playPauseIcon.className = 'fas fa-pause';
       document.getElementById('intro-overlay').style.display = 'none';
       document.getElementById('mainContent').style.display = 'block';
      
@@ -531,8 +667,8 @@
       document.getElementById('intro-overlay').style.display = 'flex';
       document.getElementById('mainContent').style.display = 'none';
       audio.pause();
-      toggleBtn.innerHTML = 'Play';
       toggleBtn.classList.remove('playing');
+      playPauseIcon.className = 'fas fa-play';
       updateVolumeIcon();
     });
 
@@ -542,6 +678,8 @@
         document.getElementById('intro-overlay').style.display = 'flex';
         document.getElementById('mainContent').style.display = 'none';
         audio.pause();
+        toggleBtn.classList.remove('playing');
+        playPauseIcon.className = 'fas fa-play';
       }
     });
 
@@ -568,6 +706,54 @@
         });
       });
     };
+
+    // === REPRODUCTOR FLOTANTE ARRASTRABLE ===
+    const player = document.getElementById('floating-player');
+    const minimizeBtn = document.getElementById('minimizeBtn');
+    let isDragging = false;
+    let currentX, currentY, initialX, initialY;
+
+    function startDrag(e) {
+      if (e.target.closest('#volumeSlider') || e.target.closest('#musicToggle')) return;
+      isDragging = true;
+      initialX = e.clientX || e.touches[0].clientX;
+      initialY = e.clientY || e.touches[0].clientY;
+      currentX = player.offsetLeft;
+      currentY = player.offsetTop;
+      player.style.transition = 'none';
+    }
+
+    function drag(e) {
+      if (!isDragging) return;
+      e.preventDefault();
+      const x = (e.clientX || e.touches[0].clientX) - initialX;
+      const y = (e.clientY || e.touches[0].clientY) - initialY;
+      player.style.left = `${currentX + x}px`;
+      player.style.top = `${currentY + y}px`;
+      player.style.bottom = 'auto';
+    }
+
+    function stopDrag() {
+      if (!isDragging) return;
+      isDragging = false;
+      player.style.transition = 'all 0.3s ease';
+    }
+
+    minimizeBtn.addEventListener('click', () => {
+      player.classList.toggle('minimized');
+      if (!player.classList.contains('minimized')) {
+        player.style.width = '240px';
+        player.style.height = 'auto';
+        player.style.borderRadius = '16px';
+      }
+    });
+
+    player.addEventListener('mousedown', startDrag);
+    player.addEventListener('touchstart', startDrag, { passive: false });
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('touchmove', drag, { passive: false });
+    document.addEventListener('mouseup', stopDrag);
+    document.addEventListener('touchend', stopDrag);
 
     document.body.addEventListener('touchstart', unlockAudio, { once: true });
     document.body.addEventListener('click', unlockAudio, { once: true });
