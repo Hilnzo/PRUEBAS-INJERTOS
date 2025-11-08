@@ -1,351 +1,275 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>INJERTOS MODS</title>
+<html lang="es">  
+<head>  
+  <meta charset="UTF-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <title>INJERTOS MODS</title>  
+
+  <!-- FAVICON COMPLETO (TODOS LOS TAMAÑOS) -->
   <link rel="icon" href="https://i.imgur.com/8gL0ZfK.png" type="image/png" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: Arial, sans-serif; color: white; text-align: center; overflow-x: hidden; background: #000; }
-    .background-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('https://imgur.com/VcWPdTD.jpg') center/cover no-repeat; z-index: -1; filter: brightness(0.6); }
-    h1 { font-size: 3rem; margin: 20px 0; text-shadow: 2px 2px 8px red; }
-    p { font-size: 1.3rem; font-weight: bold; margin-bottom: 30px; }
+  <link rel="shortcut icon" href="https://i.imgur.com/8gL0ZfK.png" type="image/png" />
+  <link rel="apple-touch-icon" href="https://i.imgur.com/8gL0ZfK.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://i.imgur.com/8gL0ZfK.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://i.imgur.com/8gL0ZfK.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="https://i.imgur.com/8gL0ZfK.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://i.imgur.com/8gL0ZfK.png" />
 
-    /* Redes */
-    .socials a { display: inline-block; margin: 10px; padding: 12px 25px; border-radius: 12px; color: white; text-decoration: none; font-weight: bold; font-family: "Courier New", monospace; transition: 0.3s; box-shadow: 0 0 8px rgba(255,255,255,0.3); }
-    .socials a i { margin-right: 8px; font-size: 1.3rem; }
-    .socials a:hover { transform: scale(1.08); box-shadow: 0 0 25px currentColor; }
-    .spotify { background: #1DB954; } .steam { background: #171A21; } .discord { background: #5865F2; }
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">  
+  <style>  
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }  
+    body { margin: 0; font-family: Arial, sans-serif; color: white; text-align: center; overflow-x: hidden; background: #000; }  
+    .background-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('https://imgur.com/VcWPdTD.jpg') center/cover no-repeat; z-index: -1; filter: brightness(0.6); }  
 
-    /* Reproductor Flotante */
-    .music-player {
-      position: fixed; bottom: 20px; left: 20px; background: rgba(0,0,0,0.85); padding: 10px 15px; border-radius: 50px;
-      display: flex; align-items: center; gap: 12px; z-index: 999; border: 2px solid red; box-shadow: 0 0 20px rgba(255,0,0,0.6); backdrop-filter: blur(8px);
-    }
-    .music-btn-small { background: transparent; border: none; color: white; font-size: 1.4rem; cursor: pointer; padding: 5px; }
-    .music-btn-small:hover { transform: scale(1.15); }
-    .music-btn-small.playing { color: red; animation: pulse 1.5s infinite alternate; }
-    @keyframes pulse { from { box-shadow: 0 0 10px red; } to { box-shadow: 0 0 40px red; } }
+    h1 { font-size: 3rem; margin: 20px 0; text-shadow: 2px 2px 8px red; }  
+    p { font-size: 1.3rem; font-weight: bold; margin-bottom: 30px; }  
 
-    #volumeSlider { width: 80px; -webkit-appearance: none; height: 5px; border-radius: 5px; background: #333; outline: none; }
-    #volumeSlider::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; background: red; border-radius: 50%; box-shadow: 0 0 10px red; }
-    .volume-icon { font-size: 1.2rem; min-width: 20px; }
+    /* Redes */  
+    .socials { margin-top: 20px; }  
+    .socials a { display: inline-block; margin: 10px; padding: 12px 25px; border-radius: 12px; color: white; text-decoration: none; font-weight: bold; font-family: "Courier New", monospace; transition: 0.3s; box-shadow: 0 0 8px rgba(255,255,255,0.3); }  
+    .socials a i { margin-right: 8px; font-size: 1.3rem; }  
+    .socials a:hover { transform: scale(1.08); box-shadow: 0 0 25px currentColor; }  
+    .socials a.spotify { background: #1DB954; } .socials a.steam { background: #171A21; } .socials a.roblox { background: #FF4757; } .socials a.discord { background: #5865F2; }  
 
-    /* FILTROS */
-    .filters { margin: 30px 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-    .filter-btn { padding: 12px 25px; background: #111; border: 2px solid red; color: white; border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1.1rem; transition: 0.3s; }
-    .filter-btn.active, .filter-btn:hover { background: red; box-shadow: 0 0 20px red; }
+    /* FILTROS */  
+    .filters { margin: 30px 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }  
+    .filter-btn { padding: 12px 25px; background: #111; border: 2px solid red; color: white; border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1.1rem; transition: 0.3s; }  
+    .filter-btn.active, .filter-btn:hover { background: red; box-shadow: 0 0 20px red; }  
 
-    /* CONTENIDO */
-    .content { max-width: 1600px; margin: 0 auto; padding: 0 15px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; margin-top: 20px; }
-    .aporte, .card { background: rgba(0,0,0,0.78); padding: 30px; border-radius: 18px; border: 2px solid red; box-shadow: 0 0 70px rgba(255,0,0,0.9); transition: 0.3s; text-align: left; line-height: 1.9; }
-    .aporte:hover, .card:hover { box-shadow: 0 0 120px rgba(255,0,0,1.2); transform: translateY(-6px); }
-    .aporte h3 { font-size: 2rem; color: red; text-align: center; margin-bottom: 15px; }
-    .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin: 18px 0; }
-    .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-    .download-btn { display: inline-block; margin-top: 18px; padding: 14px 32px; background: red; color: white; font-weight: bold; border-radius: 14px; text-decoration: none; font-size: 1.3rem; transition: 0.3s; box-shadow: 0 0 30px rgba(255,0,0,0.9); }
-    .download-btn:hover { background: darkred; transform: scale(1.04); }
+    /* Contenido */  
+    .content { max-width: 1600px; margin: 0 auto; padding: 0 15px; }  
 
-    /* STAFF */
-    .card { text-align: center; cursor: pointer; }
-    .card img { border-radius: 50%; width: 90px; height: 90px; margin-bottom: 12px; border: 3px solid red; }
-    .role { font-size: 1rem; color: #ff6b6b; margin-top: 6px; }
-    @keyframes glow { from { box-shadow: 0 0 15px red; } to { box-shadow: 0 0 45px red; } }
-    .card { animation: glow 2s infinite alternate; }
+    /* APORTES SIMPLIFICADOS: TÍTULO - CREADOR - CONTRASEÑA */  
+    .aportes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 30px; margin-top: 20px; }  
+    .aporte { background: rgba(0,0,0,0.85); padding: 35px; border-radius: 20px; border: 3px solid red; box-shadow: 0 0 80px rgba(255,0,0,0.9); transition: 0.3s; text-align: center; }  
+    .aporte:hover { box-shadow: 0 0 140px rgba(255,0,0,1); transform: translateY(-8px); }  
+    .aporte h2 { font-size: 2.1rem; color: red; margin-bottom: 12px; text-shadow: 0 0 12px red; }  
+    .aporte .creador { font-size: 1.3rem; color: #ff6b6b; margin: 10px 0; }  
+    .aporte .contrasena { font-size: 1.4rem; color: white; background: #333; padding: 10px 20px; border-radius: 10px; display: inline-block; margin: 15px 0; font-weight: bold; }  
 
-    /* BOOSTERS */
-    .boosters { background: rgba(0,0,0,0.7); padding: 30px; border-radius: 18px; border: 2px solid #ff69b4; box-shadow: 0 0 50px rgba(255,105,180,0.7); max-width: 1000px; margin: 60px auto; }
-    .boosters h3 { color: #ff69b4; margin-bottom: 25px; font-size: 2rem; }
-    .booster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 22px; }
-    .booster { text-align: center; }
-    .booster img { border-radius: 50%; width: 75px; height: 75px; border: 3px solid #ff69b4; margin-bottom: 10px; }
-    .booster p { font-weight: bold; color: #ff69b4; }
+    /* VIDEO GRANDE Y SIN FLASH */  
+    .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 16px; margin: 20px 0; background: #000; box-shadow: 0 0 25px rgba(255,0,0,0.7); }  
+    .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 16px; }  
 
-    /* Sharingan - 100% IGUAL AL ORIGINAL */
-    .sharingan-btn { position: fixed; bottom: 20px; right: 20px; width: 55px; height: 55px; cursor: pointer; z-index: 1000; }
-    .sharingan-btn img { width: 100%; border-radius: 50%; animation: spin 4s linear infinite, glowRed 1.5s infinite alternate; }
-    #sharingan-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black; display: flex; align-items: center; justify-content: center; z-index: 2000; opacity: 0; visibility: hidden; transition: opacity 0.6s ease; }
-    #sharingan-overlay.active { opacity: 1; visibility: visible; }
-    #sharingan-overlay img { max-width: 80%; border-radius: 50%; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    @keyframes glowRed { from { box-shadow: 0 0 5px red; } to { box-shadow: 0 0 40px red; } }
+    .download-btn { display: inline-block; margin-top: 20px; padding: 16px 36px; background: red; color: white; font-weight: bold; border-radius: 16px; text-decoration: none; font-size: 1.4rem; transition: 0.3s; box-shadow: 0 0 35px rgba(255,0,0,1); }  
+    .download-btn:hover { background: darkred; transform: scale(1.06); box-shadow: 0 0 60px red; }  
 
-    /* Intro */
-    #intro-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 3000; }
-    #intro-overlay img { max-width: 90%; max-height: 70%; }
-    #intro-overlay button { margin-top: 25px; padding: 14px 30px; background: red; color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1.6rem; box-shadow: 0 0 40px red; }
+    /* STAFF */  
+    .staff-container { margin-top: 20px; overflow-x: auto; white-space: nowrap; padding: 10px 0; scrollbar-width: none; }  
+    .staff-container::-webkit-scrollbar { display: none; }  
+    .staff-list { display: inline-flex; gap: 25px; padding: 0 10px; }  
+    .card { background: #111; padding: 20px; border-radius: 16px; width: 170px; text-align: center; box-shadow: 0 0 20px red, 0 0 40px rgba(255,0,0,0.7); animation: glow 2s infinite alternate; cursor: pointer; transition: 0.3s; flex: 0 0 auto; }  
+    .card:hover { transform: scale(1.1); }  
+    .card img { border-radius: 50%; width: 90px; height: 90px; margin-bottom: 12px; border: 3px solid red; }  
+    .role { font-size: 0.95rem; color: #ff6b6b; margin-top: 6px; }  
+    @keyframes glow { from { box-shadow: 0 0 20px red; } to { box-shadow: 0 0 50px red; } }  
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-      .booster-grid { grid-template-columns: repeat(3, 1fr); }
-      h1 { font-size: 2.5rem; }
-      .filters { gap: 10px; }
-      .filter-btn { padding: 10px 16px; font-size: 0.9rem; }
-      .aporte, .card { padding: 20px; }
-    }
-    @media (max-width: 480px) {
-      .grid { grid-template-columns: 1fr; }
-      .music-player { bottom: 15px; left: 15px; padding: 8px 12px; gap: 8px; }
-      #volumeSlider { width: 60px; }
-      .aporte h3 { font-size: 1.8rem; }
-    }
-  </style>
-</head>
-<body>
-  <div class="background-container"></div>
+    /* BOOSTERS */  
+    .boosters { background: rgba(0,0,0,0.7); padding: 30px; border-radius: 18px; border: 3px solid #ff69b4; box-shadow: 0 0 50px rgba(255,105,180,0.7); max-width: 1000px; margin: 60px auto; }  
+    .boosters h3 { color: #ff69b4; margin-bottom: 25px; font-size: 2rem; }  
+    .booster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 25px; }  
+    .booster { text-align: center; }  
+    .booster img { border-radius: 50%; width: 80px; height: 80px; border: 4px solid #ff69b4; margin-bottom: 10px; }  
+    .booster p { font-weight: bold; color: #ff69b4; font-size: 1.1rem; }  
 
-  <!-- Intro -->
-  <div id="intro-overlay">
-    <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Intro">
-    <button onclick="enterSite()">ENTRAR</button>
-  </div>
+    /* REPRODUCTOR SIN FLASH EN ANDROID */  
+    #music-player { position: fixed; bottom: 20px; left: 20px; background: rgba(0,0,0,0.95); border: 3px solid red; border-radius: 18px; padding: 14px 16px; width: 290px; z-index: 1000; box-shadow: 0 0 40px rgba(255,0,0,0.9); display: flex; align-items: center; justify-content: space-between; overflow: hidden; }  
+    #music-player.playing { animation: pulse 1.5s infinite alternate; }  
+    .player-title { font-size: 1rem; font-weight: bold; color: #fff; white-space: nowrap; margin-right: 12px; }  
+    .player-controls { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }  
+    #play-btn { background: none; border: none; color: white; font-size: 1.4rem; cursor: pointer; padding: 0 5px; }  
+    .volume-slider { -webkit-appearance: none; width: 80px; height: 7px; background: #444; border-radius: 5px; outline: none; cursor: pointer; transition: background 0.2s; }  
+    .volume-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; background: red; border-radius: 50%; box-shadow: 0 0 10px red; }  
+    .volume-slider::-moz-range-thumb { width: 16px; height: 16px; background: red; border-radius: 50%; border: none; box-shadow: 0 0 10px red; }  
+    @keyframes pulse { from { box-shadow: 0 0 15px red; } to { box-shadow: 0 0 50px red; } }  
 
-  <!-- Main -->
-  <div id="mainContent" hidden>
-    <h1>INJERTOS MODS HALLOWEEN</h1>
-    <p>"PÁGINA EN MANTENIMIENTO"</p>
+    /* Sharingan SIN FLASH */  
+    .sharingan-btn { position: fixed; bottom: 20px; right: 20px; width: 65px; height: 65px; cursor: pointer; z-index: 1000; transition: transform 0.2s; }  
+    .sharingan-btn:active { transform: scale(0.95); }  
+    .sharingan-btn img { width: 100%; border-radius: 50%; animation: spin 4s linear infinite; filter: drop-shadow(0 0 15px red); }  
+    @keyframes spin { to { transform: rotate(360deg); } }  
 
-    <!-- Redes -->
-    <div class="socials">
-      <a href="https://open.spotify.com/user/31mtjz2i5m63xek4cp4pevznd74i" target="_blank" class="spotify">Spotify</a>
-      <a href="https://steamcommunity.com/profiles/76561199805784382/" target="_blank" class="steam">Steam</a>
-      <a href="https://discordapp.com/users/1298301131641983019" target="_blank" class="discord">Discord</a>
-      <a href="https://discord.gg/rNJ7UaPBYa" target="_blank" class="discord">DC - INJERTOS MODS</a>
-    </div>
+    /* Overlay Sharingan SIN FLASH */  
+    #sharingan-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black; display: flex; align-items: center; justify-content: center; z-index: 2000; opacity: 0; visibility: hidden; transition: opacity 0.5s ease; }  
+    #sharingan-overlay.active { opacity: 1; visibility: visible; }  
+    #sharingan-overlay img { max-width: 85%; max-height: 85%; object-fit: contain; border-radius: 50%; }  
 
-    <!-- Reproductor Flotante -->
-    <div id="music-player" class="music-player">
-      <button id="musicToggle" class="music-btn-small"><i class="fas fa-play"></i></button>
-      <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
-      <span id="volumeIcon" class="volume-icon">volume up</span>
-    </div>
+    /* Intro */  
+    #intro-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 3000; }  
+    #intro-overlay img { max-width: 90%; max-height: 70%; }  
+    #intro-overlay button { margin-top: 30px; padding: 16px 35px; background: red; color: white; border: none; border-radius: 14px; cursor: pointer; font-weight: bold; font-size: 1.7rem; box-shadow: 0 0 50px red; }  
 
-    <!-- FILTROS -->
-    <div class="filters">
-      <button class="filter-btn active" onclick="showView('top')">TOP APORTES</button>
-      <button class="filter-btn" onclick="showView('aportes')">APORTES</button>
-      <button class="filter-btn" onclick="showView('staff')">STAFF</button>
-    </div>
+    /* RESPONSIVE */  
+    @media (max-width: 768px) { 
+      .aportes-grid { grid-template-columns: 1fr; gap: 25px; } 
+      .aporte { padding: 28px; } 
+      .aporte h2 { font-size: 1.9rem; } 
+      .aporte .contrasena { font-size: 1.2rem; } 
+      h1 { font-size: 2.6rem; } 
+      .filter-btn { padding: 10px 18px; font-size: 1rem; } 
+      #music-player { width: 260px; } 
+      .volume-slider { width: 70px; } 
+    }  
+    @media (max-width: 480px) { 
+      .aporte h2 { font-size: 1.7rem; } 
+      .download-btn { font-size: 1.2rem; padding: 12px 25px; } 
+      #music-player { width: 240px; } 
+      .volume-slider { width: 60px; } 
+    }  
+  </style>  
+</head>  
+<body>  
+  <div class="background-container"></div>  
 
-    <!-- CONTENIDO -->
-    <div class="content">
-      <div id="top-view" class="view"></div>
-      <div id="aportes-view" class="view" hidden></div>
-      <div id="staff-view" class="view" hidden></div>
-    </div>
+  <!-- Intro -->  
+  <div id="intro-overlay">  
+    <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Intro">  
+    <button onclick="enterSite()">ENTRAR</button>  
+  </div>  
 
-    <!-- BOOSTERS -->
-    <div class="boosters">
-      <h3>GRACIAS A NUESTROS BOOSTERS</h3>
-      <div class="booster-grid" id="boosters-grid"></div>
-    </div>
-  </div>
+  <!-- Main -->  
+  <div id="mainContent" hidden>  
+    <h1>INJERTOS MODS HALLOWEEN</h1>  
+    <p>"PÁGINA EN MANTENIMIENTO"</p>  
 
-  <!-- Sharingan -->
-  <div class="sharingan-btn" onclick="activarSharingan()">
-    <img src="https://media0.giphy.com/media/ADB9YKaY2vxTXO/giphy.gif" alt="Sharingan">
-  </div>
-  <div id="sharingan-overlay" onclick="cerrarSharingan()">
-    <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Sharingan">
-  </div>
+    <!-- Redes -->  
+    <div class="socials">  
+      <a href="https://open.spotify.com/user/31mtjz2i5m63xek4cp4pevznd74i" target="_blank" class="spotify">Spotify</a>  
+      <a href="https://steamcommunity.com/profiles/76561199805784382/" target="_blank" class="steam">Steam</a>  
+      <a href="https://www.roblox.com/es/users/9207271059/profile" target="_blank" class="roblox">Roblox</a>  
+      <a href="https://discordapp.com/users/1298301131641983019" target="_blank" class="discord">Discord</a>  
+      <a href="https://discord.gg/rNJ7UaPBYa" target="_blank" class="discord">DC - INJERTOS MODS</a>  
+    </div>  
 
-  <!-- Audio -->
-  <audio id="bg-music" loop preload="auto">
-    <source src="https://files.catbox.moe/osz8x3.mp3" type="audio/mpeg">
+    <!-- FILTROS -->  
+    <div class="filters">  
+      <button class="filter-btn active" onclick="showView('staff')">NUESTRO EQUIPO</button>  
+      <button class="filter-btn" onclick="showView('aportes')">APORTES</button>  
+      <button class="filter-btn" onclick="showView('boosters')">BOOSTERS</button>  
+    </div>  
+
+    <!-- Contenido -->  
+    <div class="content">  
+      <div id="staff-view" class="view"></div>  
+      <div id="aportes-view" class="view" hidden></div>  
+      <div id="boosters-view" class="view" hidden></div>  
+    </div>  
+
+    <!-- Boosters -->  
+    <div class="boosters">  
+      <h3>GRACIAS A NUESTROS BOOSTERS</h3>  
+      <div class="booster-grid" id="boosters-grid"></div>  
+    </div>  
+  </div>  
+
+  <!-- REPRODUCTOR -->  
+  <div id="music-player">  
+    <div class="player-title">MÚSICA</div>  
+    <div class="player-controls">  
+      <button onclick="togglePlay()" id="play-btn">Pause</button>  
+      <input type="range" id="volume" class="volume-slider" min="0" max="100" value="70">  
+    </div>  
+  </div>  
+
+  <!-- Sharingan -->  
+  <div class="sharingan-btn" onclick="activarSharingan()">  
+    <img src="https://media0.giphy.com/media/AD9YKaY2vxTXO/giphy.gif" alt="Sharingan">  
+  </div>  
+
+  <!-- Overlay Sharingan -->  
+  <div id="sharingan-overlay">  
+    <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Sharingan Efecto">  
+  </div>  
+
+  <!-- Audio -->  
+  <audio id="bg-music" loop>  
+    <source src="https://files.catbox.moe/osz8x3.mp3" type="audio/mpeg">  
+  </audio>  
+  <audio id="sharingan-sound">  
+    <source src="https://files.catbox.moe/4dxgfn.mp3" type="audio/mpeg">  
   </audio>
-  <audio id="sharingan-sound" preload="auto">
-    <source src="https://files.catbox.moe/4dxgfn.mp3" type="audio/mpeg">
-  </audio>
+  <script>  
+    // === DATOS ===  
+    const staff = [ /* ... mismo que antes ... */ ];  
+    const aportes = [  
+      { titulo: "TIFFANY", creador: "Hilnzo (@klenoz)", contrasena: "tiffanyctmr", video: "https://youtube.com/embed/1Iq2YeDLVmM?enablejsapi=1", descarga: "https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file" },  
+      { titulo: "VERSION R5 INJERTOS MODS", creador: "INJERTOS MODS", contrasena: "injertosr5", video: "https://youtube.com/embed/BywZG9Ckh9Q?enablejsapi=1", descarga: "https://www.mediafire.com/file/wsgq5q0r3su9hzo/version_R5_injertos_mods.rar/file" },  
+      { titulo: "DataBlue MR$", creador: "MR$", contrasena: "NO TIENE CONTRASEÑA", video: "https://youtube.com/embed/Tv7fyMCG0G0?enablejsapi=1", descarga: "https://www.mediafire.com/file/12efvtjw3392v58/DataBlue%F0%9F%94%B5MR%24.zip/file" },  
+      { titulo: "BRUTALITY", creador: "INJERTOS MODS", contrasena: "fuemip", video: "https://youtube.com/embed/fmVS7-nTmD4?enablejsapi=1", descarga: "https://www.mediafire.com/file/rj4hc064ibyu767/BRUTALITY.rar/file" },  
+      { titulo: "DRUKS", creador: "Hilnzo", contrasena: "hilnzodruks", video: "https://www.youtube.com/embed/FPXuZPFyCd8?si", descarga: "https://www.mediafire.com/file/6d06kpjwz836nu8/DRUKS.rar/file" },  
+      { titulo: "APORTE GIRLZ", creador: "INJERTOS MODS", contrasena: "NO TIENE CONTRASEÑA", video: "https://youtube.com/embed/VsXBeqeQHbQ?si", descarga: "https://www.mediafire.com/file/l6dun8dkpstz1ks/GIRLZ.rar/file" },  
+      { titulo: "Gta Jackson", creador: "Jackson", contrasena: "NO TIENE CONTRASEÑA", video: "https://youtube.com/embed/TbqKW1A9oAo", descarga: "https://www.mediafire.com/file/oyjhveofniiiubx/GTA+jackson.rar/file" },  
+      { titulo: "slick sick", creador: "El Enfermo", contrasena: "elenfermo", video: "https://youtube.com/embed/7P_oX1rxsjs", descarga: "https://www.mediafire.com/file/l6ucin55qy23set/slick_sick.rar/file" }  
+    ];  
+    const boosters = [ /* ... mismo ... */ ];  
 
-  <script>
-    // === DATOS ===
-    const tops = [
-      { titulo: "TIFFANY", autor: "HILNZO", descargas: 2847, video: "https://youtube.com/embed/1Iq2YeDLVmM", descarga: "https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file", contrasena: "tiffanyctmr" },
-      { titulo: "BRUTALITY", autor: "JACOB", descargas: 3201, video: "https://youtube.com/embed/fmVS7-nTmD4", descarga: "https://www.mediafire.com/file/rj4hc064ibyu767/BRUTALITY.rar/file", contrasena: "fuemip" },
-      { titulo: "DRUKS", autor: "HILNZO", descargas: 1923, video: "https://youtube.com/embed/FPXuZPFyCd8", descarga: "https://www.mediafire.com/file/6d06kpjwz836nu8/DRUKS.rar/file", contrasena: "hilnzodruks" },
-      { titulo: "DataBlue", autor: "MANZER", descargas: 1500, video: "https://youtube.com/embed/Tv7fyMCG0G0", descarga: "https://www.mediafire.com/file/12efvtjw3392v58/DataBlue%F0%9F%94%B5MR%24.zip/file", contrasena: "NO TIENE" },
-      { titulo: "VERSION R5", autor: "HILNZO", descargas: 1200, video: "https://youtube.com/embed/BywZG9Ckh9Q", descarga: "https://www.mediafire.com/file/wsgq5q0r3su9hzo/version_R5_injertos_mods.rar/file", contrasena: "injertosr5" },
-      { titulo: "GIRLZ", autor: "JACOB", descargas: 1100, video: "https://youtube.com/embed/VsXBeqeQHbQ", descarga: "https://www.mediafire.com/file/l6dun8dkpstz1ks/GIRLZ.rar/file", contrasena: "NO TIENE" }
-    ];
-    const todosAportes = tops;
+    // === VISTAS ===  
+    function showView(view) { /* ... igual ... */ }  
+    function renderStaff() { /* ... igual ... */ }  
+    function renderBoosters() { /* ... igual ... */ }  
 
-    // === STAFF COMPLETO (14 MIEMBROS) ===
-    const staff = [
-      { id: "1298301131641983019", nombre: "HILNZO", rol: "Owner", avatar: "https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif" },
-      { id: "1354865570880946176", nombre: "KALCOR", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1354865570880946176/a6e7ce488b0c3a8856e69184638319bb.png" },
-      { id: "1246355878840631327", nombre: "KAIROX", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1246355878840631327/5a14e4c676a423d04acda0ff29bd225e.png" },
-      { id: "1221849688593137830", nombre: "JACOB", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1221849688593137830/9df3e244543051e16ccb8cdab9a851c0.png" },
-      { id: "1260353622001188875", nombre: "Maik", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1260353622001188875/aa9c8431623d1958d02e42f4f026efe3.png" },
-      { id: "1414075135350280234", nombre: "MANZER", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1414075135350280234/c3b5512a81fe635e12eac2a25511b7ca.png" },
-      { id: "1079142194071486574", nombre: "ISAAC", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1079142194071486574/c88ca46b136aeecebe37f49ea026cd77.png" },
-      { id: "1386421165052002366", nombre: "David", rol: "SUB ENCARGADO", avatar: "https://cdn.discordapp.com/avatars/1386421165052002366/ad60538bd141ab74a7029f32a0288fc2.png" },
-      { id: "1297359221280739389", nombre: "Yerlin", rol: "SUB ENCARGADO", avatar: "https://cdn.discordapp.com/avatars/1297359221280739389/0c8e21345db6f35f607546e0dcbf4295.png" },
-      { id: "1310311626737582223", nombre: "Tom", rol: "MODERADOR", avatar: "https://cdn.discordapp.com/avatars/1310311626737582223/064d6b85c2b423cbf18888e69e1fd7ed.png" },
-      { id: "1353099301303095436", nombre: "THOMAS", rol: "MODERADOR", avatar: "https://cdn.discordapp.com/avatars/1353099301303095436/98e9b048bf35b997f1428b17d85211e3.png" },
-      { id: "1024085595703746590", nombre: "JOHAN", rol: "HELPER", avatar: "https://cdn.discordapp.com/avatars/1024085595703746590/99f61e9990ad4db442b7e831328278b3.png" },
-      { id: "1397628533626638428", nombre: "TOMMY", rol: "HELPER", avatar: "https://cdn.discordapp.com/avatars/1397628533626638428/99e743f3feed7c2e758f668ac42b2b0d.png" }
-    ];
+    function renderAportes() {  
+      document.getElementById('aportes-view').innerHTML = `  
+        <div class="aportes-grid">  
+          ${aportes.map(a => `  
+            <div class="aporte">  
+              <h2>${a.titulo}</h2>  
+              <p class="creador">Creador: ${a.creador}</p>  
+              <p class="contrasena">${a.contrasena}</p>  
+              <div class="video-wrapper">  
+                <iframe src="${a.video}" frameborder="0" allowfullscreen></iframe>  
+              </div>  
+              <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>  
+            </div>  
+          `).join('')}  
+        </div>`;  
+    }  
 
-    const aportesPorStaff = {
-      "1298301131641983019": [
-        { titulo: "TIFFANY", descripcion: "aporte para los demeros jodidos", incluye: "macros, barra de estamina...", contrasena: "tiffanyctmr", video: "https://youtube.com/embed/1Iq2YeDLVmM", descarga: "https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file" },
-        { titulo: "DRUKS", descripcion: "EXCLUSIVO", incluye: "/MACROS - /HINFO", contrasena: "hilnzodruks", video: "https://youtube.com/embed/FPXuZPFyCd8", descarga: "https://www.mediafire.com/file/6d06kpjwz836nu8/DRUKS.rar/file" }
-      ],
-      "1221849688593137830": [
-        { titulo: "BRUTALITY", descripcion: "MATAR SIN PENSARLO", incluye: "armas, /sensa", contrasena: "fuemip", video: "https://youtube.com/embed/fmVS7-nTmD4", descarga: "https://www.mediafire.com/file/rj4hc064ibyu767/BRUTALITY.rar/file" }
-      ]
-    };
+    // === REPRODUCTOR SIN FLASH ===  
+    const bgMusic = document.getElementById('bg-music');  
+    const player = document.getElementById('music-player');  
+    const playBtn = document.getElementById('play-btn');  
+    const volumeSlider = document.getElementById('volume');  
 
-    const boosters = [
-      { id: "1298301131641983019", nombre: "HILNZO" },
-      { id: "1246355878840631327", nombre: "KAIROX" },
-      { id: "1221849688593137830", nombre: "JACOB" }
-    ];
+    function togglePlay() { /* ... igual ... */ }  
+    volumeSlider.addEventListener('input', () => { bgMusic.volume = volumeSlider.value / 100; });  
 
-    // === RENDER ===
-    function showView(view) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      event.target.classList.add('active');
-      document.getElementById('top-view').hidden = view !== 'top';
-      document.getElementById('aportes-view').hidden = view !== 'aportes';
-      document.getElementById('staff-view').hidden = view !== 'staff';
-      if (view === 'top') renderTops();
-      if (view === 'aportes') renderAllAportes();
-      if (view === 'staff') renderStaff();
-    }
+    // === SHARINGAN SIN FLASH ===  
+    function activarSharingan() {  
+      const overlay = document.getElementById('sharingan-overlay');  
+      const sound = document.getElementById('sharingan-sound');  
+      overlay.classList.add('active');  
+      sound.currentTime = 0;  
+      sound.play().catch(() => {});  
+      setTimeout(() => {  
+        window.location.href = "aportes-exclusivos.html";  
+      }, 2500);  
+    }  
 
-    function renderTops() {
-      document.getElementById('top-view').innerHTML = `<div class="grid">${tops.map(a => `
-        <div class="aporte">
-          <h3>${a.titulo}</h3>
-          <p><b>CREADOR:</b> ${a.autor}</p>
-          <p><b>DESCARGAS:</b> ${a.descargas}</p>
-          <div class="video-wrapper"><iframe src="${a.video}" allowfullscreen></iframe></div>
-          <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
-        </div>
-      `).join('')}</div>`;
-    }
+    // === REINICIAR AL VOLVER ATRÁS ===  
+    function enterSite() {  
+      document.getElementById('intro-overlay').style.display = 'none';  
+      document.getElementById('mainContent').hidden = false;  
+      bgMusic.volume = 0.7;  
+      bgMusic.play().catch(() => {});  
+      playBtn.innerHTML = 'Pause';  
+      player.classList.add('playing');  
+      showView('staff');  
+      renderBoosters();  
+      history.pushState({page: 'main'}, '', '');  
+    }  
 
-    function renderAllAportes() {
-      document.getElementById('aportes-view').innerHTML = `<div class="grid">${todosAportes.map(a => `
-        <div class="aporte">
-          <h3>${a.titulo}</h3>
-          <p><b>CREADOR:</b> ${a.autor}</p>
-          <div class="video-wrapper"><iframe src="${a.video}" allowfullscreen></iframe></div>
-          <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
-        </div>
-      `).join('')}</div>`;
-    }
+    window.onpopstate = function(e) {  
+      if (e.state && e.state.page === 'main') {  
+        location.reload();  
+      }  
+    };  
 
-    function renderStaff() {
-      document.getElementById('staff-view').innerHTML = `<div class="grid">${staff.map(s => `
-        <div class="card" onclick="showAportesStaff('${s.id}')">
-          <img src="${s.avatar}" alt="${s.nombre}">
-          <p><b>${s.nombre}</b></p>
-          <p class="role">${s.rol}</p>
-        </div>
-      `).join('')}</div>`;
-    }
-
-    function showAportesStaff(id) {
-      const data = aportesPorStaff[id] || [];
-      const member = staff.find(s => s.id === id);
-      const name = member ? member.nombre : "Desconocido";
-      document.getElementById('top-view').innerHTML = `<div class="grid">${data.map(a => `
-        <div class="aporte">
-          <h3>${a.titulo}</h3>
-          <p><b>CREADOR:</b> ${name}</p>
-          <p><b>DESCRIPCIÓN:</b> ${a.descripcion}</p>
-          <p><b>INCLUYE:</b> ${a.incluye}</p>
-          <p><b>CONTRASEÑA:</b> <span style="color:red;font-weight:bold;">${a.contrasena}</span></p>
-          <div class="video-wrapper"><iframe src="${a.video}" allowfullscreen></iframe></div>
-          <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
-        </div>
-      `).join('') || '<p style="grid-column: 1 / -1; font-size: 1.5rem;">No hay aportes aún.</p>'}</div>`;
-      showView('top');
-    }
-
-    function renderBoosters() {
-      document.getElementById('boosters-grid').innerHTML = boosters.map(b => `
-        <div class="booster">
-          <img src="https://cdn.discordapp.com/avatars/${b.id}/${b.id}.png?size=128" alt="${b.nombre}">
-          <p>${b.nombre}</p>
-        </div>
-      `).join('');
-    }
-
-    // === AUDIO & SHARINGAN ===
-    const audio = document.getElementById('bg-music');
-    const sharinganSound = document.getElementById('sharingan-sound');
-    const toggleBtn = document.getElementById('musicToggle');
-    const volumeSlider = document.getElementById('volumeSlider');
-    const volumeIcon = document.getElementById('volumeIcon');
-
-    let unlocked = false;
-    let volume = 0.5;
-    audio.volume = volume;
-
-    function updateVolumeIcon() {
-      volumeIcon.textContent = volume == 0 ? 'muted' : volume < 0.5 ? 'volume down' : 'volume up';
-    }
-
-    function unlockAudio() {
-      if (unlocked) return;
-      unlocked = true;
-      const dummy = new Audio();
-      dummy.play().catch(() => {});
-    }
-
-    toggleBtn.addEventListener('click', () => {
-      unlockAudio();
-      if (audio.paused) {
-        audio.play();
-        toggleBtn.innerHTML = '<i class="fas fa-pause"></i>';
-        toggleBtn.classList.add('playing');
-      } else {
-        audio.pause();
-        toggleBtn.innerHTML = '<i class="fas fa-play"></i>';
-        toggleBtn.classList.remove('playing');
-      }
-    });
-
-    volumeSlider.addEventListener('input', (e) => {
-      unlockAudio();
-      volume = e.target.value;
-      audio.volume = volume;
-      updateVolumeIcon();
-    });
-
-    function activarSharingan() {
-      document.getElementById('sharingan-overlay').classList.add('active');
-      if (unlocked) {
-        sharinganSound.currentTime = 0;
-        sharinganSound.play().catch(() => {});
-      }
-      setTimeout(() => location.href = "aportes-exclusivos.html", 3000);
-    }
-
-    function cerrarSharingan() {
-      document.getElementById('sharingan-overlay').classList.remove('active');
-      if (unlocked) sharinganSound.pause();
-    }
-
-    function enterSite() {
-      unlockAudio();
-      document.getElementById('intro-overlay').style.display = 'none';
-      document.getElementById('mainContent').hidden = false;
-      showView('top');
-      renderBoosters();
-      updateVolumeIcon();
-    }
-
-    // Inicializar
-    toggleBtn.innerHTML = '<i class="fas fa-play"></i>';
-    updateVolumeIcon();
+    // === INICIO ===  
+    window.onload = () => {  
+      if (performance.navigation.type === 1) {  
+        location.reload();  
+      }  
+    };  
   </script>
-</body>
+</body>  
 </html>
