@@ -15,8 +15,8 @@
     body { font-family: Arial, sans-serif; color: white; text-align: center; overflow-x: hidden; background: #000; }
     .background-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('https://imgur.com/VcWPdTD.jpg') center/cover no-repeat; z-index: -1; filter: brightness(0.6); }
 
-    h1 { font-size: 3rem; margin: 20px 0; text-shadow: 2px 2px 8px red; position: relative; z-index: 2; }
-    p { font-size: 1.3rem; font-weight: bold; margin-bottom: 30px; position: relative; z-index: 2; }
+    h1 { font-size: 3rem; margin: 20px 0; text-shadow: 2px 2px 8px red; }
+    p { font-size: 1.3rem; font-weight: bold; margin-bottom: 30px; }
 
     /* Redes */
     .socials a { display: inline-block; margin: 10px; padding: 12px 25px; border-radius: 12px; color: white; text-decoration: none; font-weight: bold; font-family: "Courier New", monospace; transition: 0.3s; box-shadow: 0 0 8px rgba(255,255,255,0.3); }
@@ -38,12 +38,9 @@
     .aporte:hover { box-shadow: 0 0 100px rgba(255,0,0,1); transform: translateY(-5px); }
     .aporte h3 { font-size: 1.8rem; color: red; text-align: center; margin-bottom: 12px; }
 
-    /* VIDEO - LAZY LOADING (RÁPIDO) */
+    /* VIDEO */
     .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin: 15px 0; background: #000; }
-    .video-thumbnail { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; cursor: pointer; position: absolute; top: 0; left: 0; }
-    .play-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; cursor: pointer; border-radius: 12px; }
-    .play-btn { font-size: 4rem; color: red; }
-    .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 12px; display: none; }
+    .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 12px; }
 
     .download-btn { display: inline-block; margin-top: 15px; padding: 12px 28px; background: red; color: white; font-weight: bold; border-radius: 12px; text-decoration: none; font-size: 1.2rem; transition: 0.3s; box-shadow: 0 0 25px rgba(255,0,0,0.8); }
     .download-btn:hover { background: darkred; transform: scale(1.03); }
@@ -56,7 +53,7 @@
     .data-card .creator { color: #00ff00; font-weight: bold; }
     .data-card .password { color: red; font-weight: bold; }
 
-    /* STAFF DESLIZABLE */
+    /* STAFF */
     .staff-container { margin-top: 20px; overflow-x: auto; white-space: nowrap; padding: 10px 0; scrollbar-width: none; }
     .staff-container::-webkit-scrollbar { display: none; }
     .staff-list { display: inline-flex; gap: 20px; padding: 0 10px; }
@@ -74,21 +71,15 @@
     .booster img { border-radius: 50%; width: 70px; height: 70px; border: 3px solid #ff69b4; margin-bottom: 8px; }
     .booster p { font-weight: bold; color: #ff69b4; }
 
-    /* REPRODUCTOR - SIN CÍRCULO AZUL */
+    /* REPRODUCTOR - SOLO SONIDO */
     #music-player {
       position: fixed; bottom: 20px; left: 20px; background: rgba(0,0,0,0.9); border: 2px solid red; border-radius: 16px; 
       padding: 12px 14px; width: 270px; z-index: 1000; box-shadow: 0 0 30px rgba(255,0,0,0.8); 
       display: flex; align-items: center; justify-content: space-between; overflow: hidden;
     }
     #music-player.playing { animation: pulse 1.5s infinite alternate; }
-
-    .drag-area {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-      cursor: move; user-select: none; z-index: 1;
-    }
-
-    .player-title { font-size: 0.95rem; font-weight: bold; color: #fff; white-space: nowrap; margin-right: 10px; position: relative; z-index: 2; }
-    .player-controls { display: flex; align-items: center; gap: 8px; flex-shrink: 0; position: relative; z-index: 2; }
+    .player-title { font-size: 0.95rem; font-weight: bold; color: #fff; white-space: nowrap; margin-right: 10px; }
+    .player-controls { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
     #play-btn { background: none; border: none; color: white; font-size: 1.3rem; cursor: pointer; padding: 0 4px; }
     .volume-slider {
       -webkit-appearance: none; appearance: none;
@@ -114,16 +105,6 @@
     #intro-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 3000; }
     #intro-overlay img { max-width: 90%; max-height: 70%; }
     #intro-overlay button { margin-top: 25px; padding: 14px 30px; background: red; color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1.6rem; box-shadow: 0 0 40px red; }
-
-    /* CONTRASEÑA EXCLUSIVA (COMO TU ORIGINAL) */
-    .password-section {
-      background: rgba(0,0,0,0.8); padding: 25px; border-radius: 16px; border: 2px solid red; 
-      box-shadow: 0 0 60px rgba(255,0,0,0.8); max-width: 500px; margin: 40px auto; text-align: center;
-    }
-    .password-section h3 { color: red; font-size: 1.8rem; margin-bottom: 15px; }
-    .password-input { width: 80%; padding: 12px; font-size: 1.1rem; border: 2px solid red; border-radius: 8px; background: #111; color: white; text-align: center; margin-bottom: 15px; }
-    .password-btn { padding: 12px 30px; background: red; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1.1rem; transition: 0.3s; }
-    .password-btn:hover { background: darkred; box-shadow: 0 0 20px red; }
 
     /* Responsive */
     @media (min-width: 769px) {
@@ -184,14 +165,6 @@
       <div id="datas-view" class="view" hidden></div>
     </div>
 
-    <!-- CONTRASEÑA EXCLUSIVA -->
-    <div class="password-section">
-      <h3>ACCESO EXCLUSIVO</h3>
-      <p>Ingresa la contraseña para la siguiente página:</p>
-      <input type="password" id="exclusive-pass" class="password-input" placeholder="Contraseña aquí">
-      <button class="password-btn" onclick="checkExclusive()">ACCEDER</button>
-    </div>
-
     <!-- Boosters -->
     <div class="boosters">
       <h3>GRACIAS A NUESTROS BOOSTERS</h3>
@@ -201,7 +174,6 @@
 
   <!-- REPRODUCTOR -->
   <div id="music-player">
-    <div class="drag-area"></div>
     <div class="player-title">MÚSICA</div>
     <div class="player-controls">
       <button onclick="togglePlay()" id="play-btn">Pause</button>
@@ -222,7 +194,7 @@
     <source src="https://files.catbox.moe/4dxgfn.mp3" type="audio/mpeg">
   </audio>
   <script>
-    // === STAFF ===
+    // === STAFF, TOPS, APORTES, DATAS, BOOSTERS === (TU CÓDIGO ORIGINAL)
     const staff = [
       { nombre: "HILNZO", rol: "Owner", avatar: "https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif" },
       { nombre: "KAIROX", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1246355878840631327/5a14e4c676a423d04acda0ff29bd225e.png" },
@@ -231,7 +203,6 @@
       { nombre: "DAVID", rol: "SUB ENCARGADO", avatar: "https://cdn.discordapp.com/avatars/1386421165052002366/ad60538bd141ab74a7029f32a0288fc2.png" },
     ];
 
-    // === TOP APORTES ===
     const tops = [
       { titulo: "TIFFANY", autor: "HILNZO", descargas: 2847, video: "1Iq2YeDLVmM", descarga: "https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file", contrasena: "tiffanyctmr" },
       { titulo: "BRUTALITY", autor: "JACOB", descargas: 3201, video: "fmVS7-nTmD4", descarga: "https://www.mediafire.com/file/rj4hc064ibyu767/BRUTALITY.rar/file", contrasena: "fuemip" },
@@ -241,7 +212,6 @@
       { titulo: "GIRLZ", autor: "JACOB", descargas: 1100, video: "VsXBeqeQHbQ", descarga: "https://www.mediafire.com/file/l6dun8dkpstz1ks/GIRLZ.rar/file", contrasena: "NO TIENE" },
     ];
 
-    // === APORTES POR STAFF ===
     const aportesPorStaff = {
       "HILNZO": [
         { titulo: "TIFFANY", descripcion: "aporte para los demeros jodidos", incluye: "macros, barra de estamina...", contrasena: "tiffanyctmr", video: "1Iq2YeDLVmM", descarga: "https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file" },
@@ -252,7 +222,6 @@
       ],
     };
 
-    // === DATAS ===
     const datas = [
       { titulo: "HILNZO_DATA", creador: "HILNZO", contrasena: "hilnzo123" },
       { titulo: "KAIROX_DATA", creador: "KAIROX", contrasena: "kairox2025" },
@@ -261,7 +230,6 @@
       { titulo: "DAVID_DATA", creador: "DAVID", contrasena: "davidsub" },
     ];
 
-    // === BOOSTERS ===
     const boosters = [
       { nombre: "HILNZO", avatar: "https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif" },
       { nombre: "KAIROX", avatar: "https://cdn.discordapp.com/avatars/1246355878840631327/5a14e4c676a423d04acda0ff29bd225e.png" },
@@ -289,9 +257,7 @@
           <p><b>CREADOR:</b> ${a.autor}</p>
           <p><b>DESCARGAS:</b> ${a.descargas}</p>
           <div class="video-wrapper">
-            <img src="https://img.youtube.com/vi/${a.video}/maxresdefault.jpg" class="video-thumbnail" data-video="${a.video}" alt="Thumbnail">
-            <div class="play-overlay"><i class="fas fa-play play-btn"></i></div>
-            <iframe></iframe>
+            <iframe src="https://www.youtube.com/embed/${a.video}?rel=0&modestbranding=1" allowfullscreen></iframe>
           </div>
           <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
         </div>
@@ -304,9 +270,7 @@
           <h3>${a.titulo}</h3>
           <p><b>CREADOR:</b> ${a.autor}</p>
           <div class="video-wrapper">
-            <img src="https://img.youtube.com/vi/${a.video}/maxresdefault.jpg" class="video-thumbnail" data-video="${a.video}" alt="Thumbnail">
-            <div class="play-overlay"><i class="fas fa-play play-btn"></i></div>
-            <iframe></iframe>
+            <iframe src="https://www.youtube.com/embed/${a.video}?rel=0&modestbranding=1" allowfullscreen></iframe>
           </div>
           <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
         </div>
@@ -338,9 +302,7 @@
           <p><b>INCLUYE:</b> ${a.incluye}</p>
           <p><b>CONTRASEÑA:</b> <span style="color:red;font-weight:bold;">${a.contrasena}</span></p>
           <div class="video-wrapper">
-            <img src="https://img.youtube.com/vi/${a.video}/maxresdefault.jpg" class="video-thumbnail" data-video="${a.video}" alt="Thumbnail">
-            <div class="play-overlay"><i class="fas fa-play play-btn"></i></div>
-            <iframe></iframe>
+            <iframe src="https://www.youtube.com/embed/${a.video}?rel=0&modestbranding=1" allowfullscreen></iframe>
           </div>
           <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
         </div>
@@ -368,106 +330,43 @@
       `).join('');
     }
 
-    // === VIDEO LAZY LOADING ===
-    function loadVideo(wrapper, videoId) {
-      const iframe = wrapper.querySelector('iframe');
-      iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=1`;
-      iframe.style.display = 'block';
-      wrapper.querySelector('.video-thumbnail').style.display = 'none';
-      wrapper.querySelector('.play-overlay').style.display = 'none';
-    }
-
-    // === CONTRASEÑA ===
-    function checkExclusive() {
-      const input = document.getElementById('exclusive-pass').value.trim();
-      if (input === "injertos2025") {
-        location.href = "pagina-exclusiva.html";
-      } else {
-        alert("Contraseña incorrecta.");
-      }
-    }
-
-    // === REPRODUCTOR ===
+    // === SONIDO NUEVO ===
     const audio = document.getElementById('bg-music');
     const player = document.getElementById('music-player');
-    const dragArea = player.querySelector('.drag-area');
     const playBtn = document.getElementById('play-btn');
     const volumeSlider = document.getElementById('volume');
 
-    let isDragging = false;
-    let offsetX, offsetY;
-
-    dragArea.addEventListener('touchstart', e => {
-      isDragging = true;
-      document.body.style.cursor = 'move';
-      const touch = e.touches[0];
-      offsetX = touch.clientX - player.getBoundingClientRect().left;
-      offsetY = touch.clientY - player.getBoundingClientRect().top;
-    });
-    dragArea.addEventListener('mousedown', e => {
-      isDragging = true;
-      document.body.style.cursor = 'move';
-      offsetX = e.clientX - player.getBoundingClientRect().left;
-      offsetY = e.clientY - player.getBoundingClientRect().top;
-    });
-
-    document.addEventListener('touchmove', e => {
-      if (isDragging) {
-        e.preventDefault();
-        const touch = e.touches[0];
-        player.style.left = (touch.clientX - offsetX) + 'px';
-        player.style.top = (touch.clientY - offsetY) + 'px';
-        player.style.bottom = 'auto';
-      }
-    });
-    document.addEventListener('mousemove', e => {
-      if (isDragging) {
-        player.style.left = (e.clientX - offsetX) + 'px';
-        player.style.top = (e.clientY - offsetY) + 'px';
-        player.style.bottom = 'auto';
-      }
-    });
-
-    const resetCursor = () => {
-      isDragging = false;
-      document.body.style.cursor = 'default';
-    };
-    document.addEventListener('touchend', resetCursor);
-    document.addEventListener('mouseup', resetCursor);
-
     function togglePlay() {
-      if (audio.paused) { audio.play(); playBtn.innerHTML = 'Pause'; player.classList.add('playing'); }
-      else { audio.pause(); playBtn.innerHTML = 'Play'; player.classList.remove('playing'); }
+      if (audio.paused) {
+        audio.play();
+        playBtn.innerHTML = 'Pause';
+        player.classList.add('playing');
+      } else {
+        audio.pause();
+        playBtn.innerHTML = 'Play';
+        player.classList.remove('playing');
+      }
     }
 
-    volumeSlider.addEventListener('input', () => { audio.volume = volumeSlider.value / 100; });
+    volumeSlider.addEventListener('input', () => {
+      audio.volume = volumeSlider.value / 100;
+    });
 
-    // === SHARINGAN ===
     function activarSharingan() {
       document.getElementById('sharingan-sound').play();
       setTimeout(() => location.href = "aportes-exclusivos.html", 2000);
     }
 
-    // === INICIO ===
     function enterSite() {
       document.getElementById('intro-overlay').style.display = 'none';
       document.getElementById('mainContent').hidden = false;
-      audio.volume = 0.7; audio.play().catch(() => {});
-      playBtn.innerHTML = 'Pause'; player.classList.add('playing');
-      showView('staff'); renderBoosters();
-
-      // Lazy load videos
-      setTimeout(() => {
-        document.querySelectorAll('.video-wrapper').forEach(wrapper => {
-          const thumb = wrapper.querySelector('.video-thumbnail');
-          const overlay = wrapper.querySelector('.play-overlay');
-          const videoId = thumb.dataset.video;
-          const clickHandler = () => loadVideo(wrapper, videoId);
-          thumb.onclick = clickHandler;
-          overlay.onclick = clickHandler;
-        });
-      }, 500);
+      audio.volume = 0.7;
+      audio.play().catch(() => {});
+      playBtn.innerHTML = 'Pause';
+      player.classList.add('playing');
+      showView('staff');
+      renderBoosters();
     }
   </script>
 </body>
-  </html>
+</html>
