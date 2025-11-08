@@ -50,7 +50,7 @@
     #volumeSlider::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; background: red; border-radius: 50%; box-shadow: 0 0 10px red; }
     .volume-icon { font-size: 1.2rem; min-width: 20px; }
 
-    /* FILTROS - NUEVOS */
+    /* FILTROS */
     .filters {
       margin: 30px 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; z-index: 2;
     }
@@ -79,7 +79,7 @@
       font-size: 2.2rem; color: red; text-align: center; margin-bottom: 18px;
     }
 
-    /* VIDEO SIN BORDE BLANCO - PERFECTO */
+    /* VIDEO PERFECTO */
     .video-wrapper {
       position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
       border-radius: 12px; margin: 20px 0; background: #000;
@@ -96,14 +96,14 @@
     }
     .download-btn:hover { background: darkred; transform: scale(1.04); }
 
-    /* STAFF & BOOSTERS */
+    /* STAFF & BOOSTERS (solo en equipo) */
     .card { text-align: center; cursor: default; }
     .card img { border-radius: 50%; width: 90px; height: 90px; margin-bottom: 12px; border: 3px solid red; }
     .role { font-size: 1rem; color: #ff6b6b; margin-top: 6px; }
     @keyframes glow { from { box-shadow: 0 0 15px red; } to { box-shadow: 0 0 45px red; } }
     .card { animation: glow 2s infinite alternate; }
 
-    /* BOOSTERS */
+    /* BOOSTERS - SOLO EN EQUIPO */
     .boosters {
       margin: 50px auto; max-width: 1200px; padding: 30px;
       background: linear-gradient(135deg, rgba(255,0,0,0.2), rgba(0,0,0,0.8));
@@ -146,13 +146,6 @@
     .sharingan-btn img {
       width: 100%; height: 100%; border-radius: 50%;
       animation: spin 4s linear infinite, glowRed 1.5s infinite alternate;
-    }
-    .sharingan-btn:focus, .sharingan-btn:active {
-      outline: none !important; box-shadow: none !important; background: transparent !important;
-    }
-    @media (hover: none) and (pointer: coarse) {
-      .sharingan-btn { -webkit-tap-highlight-color: transparent !important; }
-      .sharingan-btn::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent; border-radius: 50%; }
     }
     @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     @keyframes glowRed { from { box-shadow: 0 0 5px red; } to { box-shadow: 0 0 40px red; } }
@@ -224,7 +217,7 @@
       <span id="volumeIcon" class="volume-icon">volume up</span>
     </div>
 
-    <!-- FILTROS NUEVOS -->
+    <!-- FILTROS -->
     <div class="filters">
       <button class="filter-btn active" onclick="showView('equipo')">NUESTRO EQUIPO</button>
       <button class="filter-btn" onclick="showView('aportes')">APORTES</button>
@@ -234,18 +227,22 @@
 
     <!-- CONTENIDO -->
     <div class="content">
-      <div id="equipo-view" class="view"></div>
+      <div id="equipo-view" class="view">
+        <!-- STAFF -->
+        <div class="grid" id="staff-grid"></div>
+
+        <!-- BOOSTERS SOLO AQUÍ -->
+        <div class="boosters">
+          <h2>GRACIAS A NUESTROS BOOSTERS</h2>
+          <p>¡Gracias por apoyar con Nitro Boost!</p>
+          <p>Su apoyo nos hace más fuertes</p>
+          <div class="grid" id="boosters-grid"></div>
+        </div>
+      </div>
+
       <div id="aportes-view" class="view" hidden></div>
       <div id="datas-view" class="view" hidden></div>
       <div id="tops-view" class="view" hidden></div>
-
-      <!-- BOOSTERS -->
-      <div class="boosters">
-        <h2>GRACIAS A NUESTROS BOOSTERS</h2>
-        <p>¡Gracias por apoyar con Nitro Boost!</p>
-        <p>Su apoyo nos hace más fuertes</p>
-        <div class="grid" id="boosters-grid"></div>
-      </div>
     </div>
   </div>
 
@@ -268,31 +265,32 @@
   <script>
     // === DATOS ===
     const staff = [
-      { id: "1298301131641983019", nombre: "HILNZO", rol: "Owner", avatar: "https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif" },
-      { id: "1354865570880946176", nombre: "KALCOR", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1354865570880946176/a6e7ce488b0c3a8856e69184638319bb.png" },
-      { id: "1246355878840631327", nombre: "KAIROX", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1246355878840631327/5a14e4c676a423d04acda0ff29bd225e.png" },
-      { id: "1221849688593137830", nombre: "JACOB", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1221849688593137830/9df3e244543051e16ccb8cdab9a851c0.png" },
-      { id: "1260353622001188875", nombre: "Maik", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1260353622001188875/aa9c8431623d1958d02e42f4f026efe3.png" },
-      { id: "1414075135350280234", nombre: "MANZER", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1414075135350280234/c3b5512a81fe635e12eac2a25511b7ca.png" },
-      { id: "1079142194071486574", nombre: "ISAAC", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1079142194071486574/c88ca46b136aeecebe37f49ea026cd77.png" },
-      { id: "1386421165052002366", nombre: "David", rol: "SUB ENCARGADO", avatar: "https://cdn.discordapp.com/avatars/1386421165052002366/ad60538bd141ab74a7029f32a0288fc2.png" },
-      { id: "1297359221280739389", nombre: "Yerlin", rol: "SUB ENCARGADO", avatar: "https://cdn.discordapp.com/avatars/1297359221280739389/0c8e21345db6f35f607546e0dcbf4295.png" },
-      { id: "1310311626737582223", nombre: "Tom", rol: "MODERADOR", avatar: "https://cdn.discordapp.com/avatars/1310311626737582223/064d6b85c2b423cbf18888e69e1fd7ed.png" },
-      { id: "1353099301303095436", nombre: "THOMAS", rol: "MODERADOR", avatar: "https://cdn.discordapp.com/avatars/1353099301303095436/98e9b048bf35b997f1428b17d85211e3.png" },
-      { id: "1024085595703746590", nombre: "JOHAN", rol: "HELPER", avatar: "https://cdn.discordapp.com/avatars/1024085595703746590/99f61e9990ad4db442b7e831328278b3.png" },
-      { id: "1397628533626638428", nombre: "TOMMY", rol: "HELPER", avatar: "https://cdn.discordapp.com/avatars/1397628533626638428/99e743f3feed7c2e758f668ac42b2b0d.png" }
+      { nombre: "HILNZO", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1298301131641983019/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif?size=256" },
+      { nombre: "KALCOR", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1354865570880946176/a6e7ce488b0c3a8856e69184638319bb.png?size=256" },
+      { nombre: "KAIROX", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1246355878840631327/5a14e4c676a423d04acda0ff29bd225e.png?size=256" },
+      { nombre: "JACOB", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1221849688593137830/9df3e244543051e16ccb8cdab9a851c0.png?size=256" },
+      { nombre: "Maik", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1260353622001188875/aa9c8431623d1958d02e42f4f026efe3.png?size=256" },
+      { nombre: "MANZER", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1414075135350280234/c3b5512a81fe635e12eac2a25511b7ca.png?size=256" },
+      { nombre: "ISAAC", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1079142194071486574/c88ca46b136aeecebe37f49ea026cd77.png?size=256" },
+      { nombre: "David", rol: "SUB ENCARGADO", avatar: "https://cdn.discordapp.com/avatars/1386421165052002366/ad60538bd141ab74a7029f32a0288fc2.png?size=256" },
+      { nombre: "Yerlin", rol: "SUB ENCARGADO", avatar: "https://cdn.discordapp.com/avatars/1297359221280739389/0c8e21345db6f35f607546e0dcbf4295.png?size=256" },
+      { nombre: "Tom", rol: "MODERADOR", avatar: "https://cdn.discordapp.com/avatars/1310311626737582223/064d6b85c2b423cbf18888e69e1fd7ed.png?size=256" },
+      { nombre: "THOMAS", rol: "MODERADOR", avatar: "https://cdn.discordapp.com/avatars/1353099301303095436/98e9b048bf35b997f1428b17d85211e3.png?size=256" },
+      { nombre: "JOHAN", rol: "HELPER", avatar: "https://cdn.discordapp.com/avatars/1024085595703746590/99f61e9990ad4db442b7e831328278b3.png?size=256" },
+      { nombre: "TOMMY", rol: "HELPER", avatar: "https://cdn.discordapp.com/avatars/1397628533626638428/99e743f3feed7c2e758f668ac42b2b0d.png?size=256" }
     ];
 
+    // === AGREGA TODOS LOS APORTES QUE QUIERAS AQUÍ ===
     const aportes = [
       { titulo: "TIFFANY", creador: "HILNZO", contrasena: "tiffanyctmr", video: "https://youtube.com/embed/1Iq2YeDLVmM", descarga: "https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file" },
       { titulo: "BRUTALITY", creador: "JACOB", contrasena: "fuemip", video: "https://youtube.com/embed/fmVS7-nTmD4", descarga: "https://www.mediafire.com/file/rj4hc064ibyu767/BRUTALITY.rar/file" },
-      { titulo: "DRUKS", creador: "HILNZO", contrasena: "hilnzodruks", video: "https://youtube.com/embed/FPXuZPFyCd8", descarga: "https://www.mediafire.com/file/6d06kpjwz836nu8/DRUKS.rar/file" }
-      // AGREGA MÁS APORTES AQUÍ
+      { titulo: "DRUKS", creador: "HILNZO", contrasena: "hilnzodruks", video: "https://youtube.com/embed/FPXuZPFyCd8", descarga: "https://www.mediafire.com/file/6d06kpjwz836nu8/DRUKS.rar/file" },
+      // AGREGA MÁS: { titulo: "...", creador: "...", contrasena: "...", video: "...", descarga: "..." },
     ];
 
     const datas = [
       { titulo: "DataBlue", creador: "MANZER", contrasena: "NO TIENE", video: "https://youtube.com/embed/Tv7fyMCG0G0", descarga: "https://www.mediafire.com/file/12efvtjw3392v58/DataBlue%F0%9F%94%B5MR%24.zip/file" },
-      { titulo: "VERSION R5", creador: "HILNZO", contrasena: "injertosr5", video: "https://youtube.com/embed/BywZG9Ckh9Q", descarga: "https://www.mediafire.com/file/wsgq5q0r3su9hzo/version_R5_injertos_mods.rar/file" }
+      { titulo: "VERSION R5", creador: "HILNZO", contrasena: "injertosr5", video: "https://youtube.com/embed/BywZG9Ckh9Q", descarga: "https://www.mediafire.com/file/wsgq5q0r3su9hzo/version_R5_injertos_mods.rar/file" },
       // AGREGA MÁS DATAS
     ];
 
@@ -302,7 +300,8 @@
       { titulo: "DRUKS", autor: "HILNZO", descargas: 1923, video: "https://youtube.com/embed/FPXuZPFyCd8", descarga: "https://www.mediafire.com/file/6d06kpjwz836nu8/DRUKS.rar/file", contrasena: "hilnzodruks" },
       { titulo: "DataBlue", autor: "MANZER", descargas: 1500, video: "https://youtube.com/embed/Tv7fyMCG0G0", descarga: "https://www.mediafire.com/file/12efvtjw3392v58/DataBlue%F0%9F%94%B5MR%24.zip/file", contrasena: "NO TIENE" },
       { titulo: "VERSION R5", autor: "HILNZO", descargas: 1200, video: "https://youtube.com/embed/BywZG9Ckh9Q", descarga: "https://www.mediafire.com/file/wsgq5q0r3su9hzo/version_R5_injertos_mods.rar/file", contrasena: "injertosr5" },
-      { titulo: "GIRLZ", autor: "JACOB", descargas: 1100, video: "https://youtube.com/embed/VsXBeqeQHbQ", descarga: "https://www.mediafire.com/file/l6dun8dkpstz1ks/GIRLZ.rar/file", contrasena: "NO TIENE" }
+      { titulo: "GIRLZ", autor: "JACOB", descargas: 1100, video: "https://youtube.com/embed/VsXBeqeQHbQ", descarga: "https://www.mediafire.com/file/l6dun8dkpstz1ks/GIRLZ.rar/file", contrasena: "NO TIENE" },
+      // AGREGA MÁS TOPS
     ];
 
     const boosters = [
@@ -334,13 +333,21 @@
     }
 
     function renderEquipo() {
-      document.getElementById('equipo-view').innerHTML = `<div class="grid">${staff.map(s => `
+      document.getElementById('staff-grid').innerHTML = staff.map(s => `
         <div class="card">
-          <img src="${s.avatar}?size=256" alt="${s.nombre}">
+          <img src="${s.avatar}" alt="${s.nombre}">
           <p><b>${s.nombre}</b></p>
           <p class="role">${s.rol}</p>
         </div>
-      `).join('')}</div>`;
+      `).join('');
+
+      document.getElementById('boosters-grid').innerHTML = boosters.map(b => `
+        <div class="card">
+          <img src="${b.avatar}" alt="${b.nombre}">
+          <p><b>${b.nombre}</b></p>
+          <p class="role">BOOSTER</p>
+        </div>
+      `).join('');
     }
 
     function renderAportes() {
@@ -377,16 +384,6 @@
           <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
         </div>
       `).join('')}</div>`;
-    }
-
-    function renderBoosters() {
-      document.getElementById('boosters-grid').innerHTML = boosters.map(b => `
-        <div class="card">
-          <img src="${b.avatar}" alt="${b.nombre}">
-          <p><b>${b.nombre}</b></p>
-          <p class="role">BOOSTER</p>
-        </div>
-      `).join('');
     }
 
     // === AUDIO & SHARINGAN ===
@@ -447,12 +444,12 @@
 
       const savedView = sessionStorage.getItem('currentView') || 'equipo';
       showView(savedView);
-      renderBoosters();
 
       updateVolumeIcon();
       loadYouTubeAPI();
     }
 
+    // AL REGRESAR: MUESTRA "ENTRAR"
     window.addEventListener('load', () => {
       if (sessionStorage.getItem("fromSharingan")) {
         sessionStorage.removeItem("fromSharingan");
