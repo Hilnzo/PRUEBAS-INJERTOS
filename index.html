@@ -39,29 +39,29 @@
     .filter-btn.active, .filter-btn:hover { background: red; box-shadow: 0 0 20px red; }
 
     /* CONTENIDO */
-    .content { max-width: 1400px; margin: 0 auto; padding: 0 15px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; margin-top: 20px; }
-    .aporte, .card { background: rgba(0,0,0,0.75); padding: 25px; border-radius: 16px; border: 2px solid red; box-shadow: 0 0 60px rgba(255,0,0,0.8); transition: 0.3s; text-align: left; line-height: 1.8; }
-    .aporte:hover, .card:hover { box-shadow: 0 0 100px rgba(255,0,0,1); transform: translateY(-5px); }
-    .aporte h3 { font-size: 1.8rem; color: red; text-align: center; margin-bottom: 12px; }
-    .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; margin: 15px 0; }
+    .content { max-width: 1600px; margin: 0 auto; padding: 0 15px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; margin-top: 20px; }
+    .aporte, .card { background: rgba(0,0,0,0.78); padding: 30px; border-radius: 18px; border: 2px solid red; box-shadow: 0 0 70px rgba(255,0,0,0.9); transition: 0.3s; text-align: left; line-height: 1.9; }
+    .aporte:hover, .card:hover { box-shadow: 0 0 120px rgba(255,0,0,1.2); transform: translateY(-6px); }
+    .aporte h3 { font-size: 2rem; color: red; text-align: center; margin-bottom: 15px; }
+    .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin: 18px 0; }
     .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-    .download-btn { display: inline-block; margin-top: 15px; padding: 12px 28px; background: red; color: white; font-weight: bold; border-radius: 12px; text-decoration: none; font-size: 1.2rem; transition: 0.3s; box-shadow: 0 0 25px rgba(255,0,0,0.8); }
-    .download-btn:hover { background: darkred; transform: scale(1.03); }
+    .download-btn { display: inline-block; margin-top: 18px; padding: 14px 32px; background: red; color: white; font-weight: bold; border-radius: 14px; text-decoration: none; font-size: 1.3rem; transition: 0.3s; box-shadow: 0 0 30px rgba(255,0,0,0.9); }
+    .download-btn:hover { background: darkred; transform: scale(1.04); }
 
     /* STAFF */
     .card { text-align: center; cursor: pointer; }
-    .card img { border-radius: 50%; width: 80px; height: 80px; margin-bottom: 10px; border: 3px solid red; }
-    .role { font-size: 0.9rem; color: #ff6b6b; margin-top: 5px; }
-    @keyframes glow { from { box-shadow: 0 0 15px red; } to { box-shadow: 0 0 40px red; } }
+    .card img { border-radius: 50%; width: 90px; height: 90px; margin-bottom: 12px; border: 3px solid red; }
+    .role { font-size: 1rem; color: #ff6b6b; margin-top: 6px; }
+    @keyframes glow { from { box-shadow: 0 0 15px red; } to { box-shadow: 0 0 45px red; } }
     .card { animation: glow 2s infinite alternate; }
 
     /* BOOSTERS */
-    .boosters { background: rgba(0,0,0,0.7); padding: 25px; border-radius: 16px; border: 2px solid #ff69b4; box-shadow: 0 0 40px rgba(255,105,180,0.6); max-width: 900px; margin: 50px auto; }
-    .boosters h3 { color: #ff69b4; margin-bottom: 20px; font-size: 1.8rem; }
-    .booster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 20px; }
+    .boosters { background: rgba(0,0,0,0.7); padding: 30px; border-radius: 18px; border: 2px solid #ff69b4; box-shadow: 0 0 50px rgba(255,105,180,0.7); max-width: 1000px; margin: 60px auto; }
+    .boosters h3 { color: #ff69b4; margin-bottom: 25px; font-size: 2rem; }
+    .booster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 22px; }
     .booster { text-align: center; }
-    .booster img { border-radius: 50%; width: 70px; height: 70px; border: 3px solid #ff69b4; margin-bottom: 8px; }
+    .booster img { border-radius: 50%; width: 75px; height: 75px; border: 3px solid #ff69b4; margin-bottom: 10px; }
     .booster p { font-weight: bold; color: #ff69b4; }
 
     /* Sharingan - 100% IGUAL AL ORIGINAL */
@@ -80,16 +80,18 @@
 
     /* Responsive */
     @media (max-width: 768px) {
-      .grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+      .grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
       .booster-grid { grid-template-columns: repeat(3, 1fr); }
       h1 { font-size: 2.5rem; }
       .filters { gap: 10px; }
       .filter-btn { padding: 10px 16px; font-size: 0.9rem; }
+      .aporte, .card { padding: 20px; }
     }
     @media (max-width: 480px) {
       .grid { grid-template-columns: 1fr; }
       .music-player { bottom: 15px; left: 15px; padding: 8px 12px; gap: 8px; }
       #volumeSlider { width: 60px; }
+      .aporte h3 { font-size: 1.8rem; }
     }
   </style>
 </head>
@@ -145,7 +147,7 @@
 
   <!-- Sharingan -->
   <div class="sharingan-btn" onclick="activarSharingan()">
-    <img src="https://media0.giphy.com/media/AD9YKaY2vxTXO/giphy.gif" alt="Sharingan">
+    <img src="https://media0.giphy.com/media/ADB9YKaY2vxTXO/giphy.gif" alt="Sharingan">
   </div>
   <div id="sharingan-overlay" onclick="cerrarSharingan()">
     <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Sharingan">
@@ -170,13 +172,24 @@
       { titulo: "GIRLZ", autor: "JACOB", descargas: 1100, video: "https://youtube.com/embed/VsXBeqeQHbQ", descarga: "https://www.mediafire.com/file/l6dun8dkpstz1ks/GIRLZ.rar/file", contrasena: "NO TIENE" }
     ];
     const todosAportes = tops;
+
+    // === STAFF COMPLETO (14 MIEMBROS) ===
     const staff = [
-      { id: "1298301131641983019", nombre: "HILNZO", rol: "Owner" },
-      { id: "1246355878840631327", nombre: "KAIROX", rol: "Owner" },
-      { id: "1221849688593137830", nombre: "JACOB", rol: "Owner" },
-      { id: "1414075135350280234", nombre: "MANZER", rol: "Owner" },
-      { id: "1386421165052002366", nombre: "DAVID", rol: "SUB ENCARGADO" }
+      { id: "1298301131641983019", nombre: "HILNZO", rol: "Owner", avatar: "https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif" },
+      { id: "1354865570880946176", nombre: "KALCOR", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1354865570880946176/a6e7ce488b0c3a8856e69184638319bb.png" },
+      { id: "1246355878840631327", nombre: "KAIROX", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1246355878840631327/5a14e4c676a423d04acda0ff29bd225e.png" },
+      { id: "1221849688593137830", nombre: "JACOB", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1221849688593137830/9df3e244543051e16ccb8cdab9a851c0.png" },
+      { id: "1260353622001188875", nombre: "Maik", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1260353622001188875/aa9c8431623d1958d02e42f4f026efe3.png" },
+      { id: "1414075135350280234", nombre: "MANZER", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1414075135350280234/c3b5512a81fe635e12eac2a25511b7ca.png" },
+      { id: "1079142194071486574", nombre: "ISAAC", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1079142194071486574/c88ca46b136aeecebe37f49ea026cd77.png" },
+      { id: "1386421165052002366", nombre: "David", rol: "SUB ENCARGADO", avatar: "https://cdn.discordapp.com/avatars/1386421165052002366/ad60538bd141ab74a7029f32a0288fc2.png" },
+      { id: "1297359221280739389", nombre: "Yerlin", rol: "SUB ENCARGADO", avatar: "https://cdn.discordapp.com/avatars/1297359221280739389/0c8e21345db6f35f607546e0dcbf4295.png" },
+      { id: "1310311626737582223", nombre: "Tom", rol: "MODERADOR", avatar: "https://cdn.discordapp.com/avatars/1310311626737582223/064d6b85c2b423cbf18888e69e1fd7ed.png" },
+      { id: "1353099301303095436", nombre: "THOMAS", rol: "MODERADOR", avatar: "https://cdn.discordapp.com/avatars/1353099301303095436/98e9b048bf35b997f1428b17d85211e3.png" },
+      { id: "1024085595703746590", nombre: "JOHAN", rol: "HELPER", avatar: "https://cdn.discordapp.com/avatars/1024085595703746590/99f61e9990ad4db442b7e831328278b3.png" },
+      { id: "1397628533626638428", nombre: "TOMMY", rol: "HELPER", avatar: "https://cdn.discordapp.com/avatars/1397628533626638428/99e743f3feed7c2e758f668ac42b2b0d.png" }
     ];
+
     const aportesPorStaff = {
       "1298301131641983019": [
         { titulo: "TIFFANY", descripcion: "aporte para los demeros jodidos", incluye: "macros, barra de estamina...", contrasena: "tiffanyctmr", video: "https://youtube.com/embed/1Iq2YeDLVmM", descarga: "https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file" },
@@ -186,15 +199,14 @@
         { titulo: "BRUTALITY", descripcion: "MATAR SIN PENSARLO", incluye: "armas, /sensa", contrasena: "fuemip", video: "https://youtube.com/embed/fmVS7-nTmD4", descarga: "https://www.mediafire.com/file/rj4hc064ibyu767/BRUTALITY.rar/file" }
       ]
     };
+
     const boosters = [
       { id: "1298301131641983019", nombre: "HILNZO" },
       { id: "1246355878840631327", nombre: "KAIROX" },
       { id: "1221849688593137830", nombre: "JACOB" }
     ];
 
-    // === FUNCIONES DE RENDER ===
-    function getAvatar(id) { return `https://cdn.discordapp.com/avatars/${id}/${id}.png?size=128`; }
-
+    // === RENDER ===
     function showView(view) {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       event.target.classList.add('active');
@@ -232,7 +244,7 @@
     function renderStaff() {
       document.getElementById('staff-view').innerHTML = `<div class="grid">${staff.map(s => `
         <div class="card" onclick="showAportesStaff('${s.id}')">
-          <img src="${getAvatar(s.id)}" alt="${s.nombre}">
+          <img src="${s.avatar}" alt="${s.nombre}">
           <p><b>${s.nombre}</b></p>
           <p class="role">${s.rol}</p>
         </div>
@@ -241,7 +253,8 @@
 
     function showAportesStaff(id) {
       const data = aportesPorStaff[id] || [];
-      const name = staff.find(s => s.id === id)?.nombre || "Desconocido";
+      const member = staff.find(s => s.id === id);
+      const name = member ? member.nombre : "Desconocido";
       document.getElementById('top-view').innerHTML = `<div class="grid">${data.map(a => `
         <div class="aporte">
           <h3>${a.titulo}</h3>
@@ -252,14 +265,14 @@
           <div class="video-wrapper"><iframe src="${a.video}" allowfullscreen></iframe></div>
           <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
         </div>
-      `).join('')}</div>`;
+      `).join('') || '<p style="grid-column: 1 / -1; font-size: 1.5rem;">No hay aportes aún.</p>'}</div>`;
       showView('top');
-     }
+    }
 
     function renderBoosters() {
       document.getElementById('boosters-grid').innerHTML = boosters.map(b => `
         <div class="booster">
-          <img src="${getAvatar(b.id)}" alt="${b.nombre}">
+          <img src="https://cdn.discordapp.com/avatars/${b.id}/${b.id}.png?size=128" alt="${b.nombre}">
           <p>${b.nombre}</p>
         </div>
       `).join('');
