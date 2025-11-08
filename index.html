@@ -50,7 +50,7 @@
     #volumeSlider::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; background: red; border-radius: 50%; box-shadow: 0 0 10px red; }
     .volume-icon { font-size: 1.2rem; min-width: 20px; }
 
-    /* FILTROS */
+    /* FILTROS - NUEVOS */
     .filters {
       margin: 30px 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; z-index: 2;
     }
@@ -75,16 +75,20 @@
     .aporte:hover, .card:hover {
       box-shadow: 0 0 120px rgba(255,0,0,1.2); transform: translateY(-6px);
     }
-    .aporte h3, .aporte h2 {
+    .aporte h3 {
       font-size: 2.2rem; color: red; text-align: center; margin-bottom: 18px;
     }
+
+    /* VIDEO SIN BORDE BLANCO - PERFECTO */
     .video-wrapper {
       position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
-      border-radius: 12px; margin: 20px 0;
+      border-radius: 12px; margin: 20px 0; background: #000;
     }
     .video-wrapper iframe {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      border: none !important; outline: none !important;
     }
+
     .download-btn {
       display: inline-block; margin-top: 20px; padding: 14px 32px; background: red;
       color: white; font-weight: bold; border-radius: 14px; text-decoration: none;
@@ -99,7 +103,7 @@
     @keyframes glow { from { box-shadow: 0 0 15px red; } to { box-shadow: 0 0 45px red; } }
     .card { animation: glow 2s infinite alternate; }
 
-    /* BOOSTERS - CON FOTO Y NOMBRE */
+    /* BOOSTERS */
     .boosters {
       margin: 50px auto; max-width: 1200px; padding: 30px;
       background: linear-gradient(135deg, rgba(255,0,0,0.2), rgba(0,0,0,0.8));
@@ -133,7 +137,7 @@
     }
     @keyframes pulseBoost { from { box-shadow: 0 0 60px rgba(255,0,0,0.8); } to { box-shadow: 0 0 100px red; } }
 
-    /* Sharingan - SIN FLASH */
+    /* Sharingan */
     .sharingan-btn {
       position: fixed; bottom: 20px; right: 20px; width: 55px; height: 55px; cursor: pointer; z-index: 1000;
       outline: none; border: none; user-select: none; -webkit-tap-highlight-color: transparent;
@@ -220,20 +224,22 @@
       <span id="volumeIcon" class="volume-icon">volume up</span>
     </div>
 
-    <!-- FILTROS -->
+    <!-- FILTROS NUEVOS -->
     <div class="filters">
-      <button class="filter-btn active" onclick="showView('top')">TOP APORTES</button>
+      <button class="filter-btn active" onclick="showView('equipo')">NUESTRO EQUIPO</button>
       <button class="filter-btn" onclick="showView('aportes')">APORTES</button>
-      <button class="filter-btn" onclick="showView('staff')">STAFF</button>
+      <button class="filter-btn" onclick="showView('datas')">DATAS</button>
+      <button class="filter-btn" onclick="showView('tops')">APORTES TOPS</button>
     </div>
 
     <!-- CONTENIDO -->
     <div class="content">
-      <div id="top-view" class="view"></div>
+      <div id="equipo-view" class="view"></div>
       <div id="aportes-view" class="view" hidden></div>
-      <div id="staff-view" class="view" hidden></div>
+      <div id="datas-view" class="view" hidden></div>
+      <div id="tops-view" class="view" hidden></div>
 
-      <!-- BOOSTERS CON FOTO Y NOMBRE -->
+      <!-- BOOSTERS -->
       <div class="boosters">
         <h2>GRACIAS A NUESTROS BOOSTERS</h2>
         <p>¡Gracias por apoyar con Nitro Boost!</p>
@@ -260,18 +266,7 @@
   </audio>
 
   <script>
-    // === DATOS ESTÁTICOS ===
-    const tops = [
-      { titulo: "TIFFANY", autor: "HILNZO", descargas: 2847, video: "https://youtube.com/embed/1Iq2YeDLVmM", descarga: "https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file", contrasena: "tiffanyctmr" },
-      { titulo: "BRUTALITY", autor: "JACOB", descargas: 3201, video: "https://youtube.com/embed/fmVS7-nTmD4", descarga: "https://www.mediafire.com/file/rj4hc064ibyu767/BRUTALITY.rar/file", contrasena: "fuemip" },
-      { titulo: "DRUKS", autor: "HILNZO", descargas: 1923, video: "https://youtube.com/embed/FPXuZPFyCd8", descarga: "https://www.mediafire.com/file/6d06kpjwz836nu8/DRUKS.rar/file", contrasena: "hilnzodruks" },
-      { titulo: "DataBlue", autor: "MANZER", descargas: 1500, video: "https://youtube.com/embed/Tv7fyMCG0G0", descarga: "https://www.mediafire.com/file/12efvtjw3392v58/DataBlue%F0%9F%94%B5MR%24.zip/file", contrasena: "NO TIENE" },
-      { titulo: "VERSION R5", autor: "HILNZO", descargas: 1200, video: "https://youtube.com/embed/BywZG9Ckh9Q", descarga: "https://www.mediafire.com/file/wsgq5q0r3su9hzo/version_R5_injertos_mods.rar/file", contrasena: "injertosr5" },
-      { titulo: "GIRLZ", autor: "JACOB", descargas: 1100, video: "https://youtube.com/embed/VsXBeqeQHbQ", descarga: "https://www.mediafire.com/file/l6dun8dkpstz1ks/GIRLZ.rar/file", contrasena: "NO TIENE" }
-    ];
-
-    const aportes = [];
-
+    // === DATOS ===
     const staff = [
       { id: "1298301131641983019", nombre: "HILNZO", rol: "Owner", avatar: "https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif" },
       { id: "1354865570880946176", nombre: "KALCOR", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1354865570880946176/a6e7ce488b0c3a8856e69184638319bb.png" },
@@ -288,7 +283,28 @@
       { id: "1397628533626638428", nombre: "TOMMY", rol: "HELPER", avatar: "https://cdn.discordapp.com/avatars/1397628533626638428/99e743f3feed7c2e758f668ac42b2b0d.png" }
     ];
 
-    // === BOOSTERS CON FOTO Y NOMBRE (AGREGA MÁS AQUÍ) ===
+    const aportes = [
+      { titulo: "TIFFANY", creador: "HILNZO", contrasena: "tiffanyctmr", video: "https://youtube.com/embed/1Iq2YeDLVmM", descarga: "https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file" },
+      { titulo: "BRUTALITY", creador: "JACOB", contrasena: "fuemip", video: "https://youtube.com/embed/fmVS7-nTmD4", descarga: "https://www.mediafire.com/file/rj4hc064ibyu767/BRUTALITY.rar/file" },
+      { titulo: "DRUKS", creador: "HILNZO", contrasena: "hilnzodruks", video: "https://youtube.com/embed/FPXuZPFyCd8", descarga: "https://www.mediafire.com/file/6d06kpjwz836nu8/DRUKS.rar/file" }
+      // AGREGA MÁS APORTES AQUÍ
+    ];
+
+    const datas = [
+      { titulo: "DataBlue", creador: "MANZER", contrasena: "NO TIENE", video: "https://youtube.com/embed/Tv7fyMCG0G0", descarga: "https://www.mediafire.com/file/12efvtjw3392v58/DataBlue%F0%9F%94%B5MR%24.zip/file" },
+      { titulo: "VERSION R5", creador: "HILNZO", contrasena: "injertosr5", video: "https://youtube.com/embed/BywZG9Ckh9Q", descarga: "https://www.mediafire.com/file/wsgq5q0r3su9hzo/version_R5_injertos_mods.rar/file" }
+      // AGREGA MÁS DATAS
+    ];
+
+    const tops = [
+      { titulo: "TIFFANY", autor: "HILNZO", descargas: 2847, video: "https://youtube.com/embed/1Iq2YeDLVmM", descarga: "https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file", contrasena: "tiffanyctmr" },
+      { titulo: "BRUTALITY", autor: "JACOB", descargas: 3201, video: "https://youtube.com/embed/fmVS7-nTmD4", descarga: "https://www.mediafire.com/file/rj4hc064ibyu767/BRUTALITY.rar/file", contrasena: "fuemip" },
+      { titulo: "DRUKS", autor: "HILNZO", descargas: 1923, video: "https://youtube.com/embed/FPXuZPFyCd8", descarga: "https://www.mediafire.com/file/6d06kpjwz836nu8/DRUKS.rar/file", contrasena: "hilnzodruks" },
+      { titulo: "DataBlue", autor: "MANZER", descargas: 1500, video: "https://youtube.com/embed/Tv7fyMCG0G0", descarga: "https://www.mediafire.com/file/12efvtjw3392v58/DataBlue%F0%9F%94%B5MR%24.zip/file", contrasena: "NO TIENE" },
+      { titulo: "VERSION R5", autor: "HILNZO", descargas: 1200, video: "https://youtube.com/embed/BywZG9Ckh9Q", descarga: "https://www.mediafire.com/file/wsgq5q0r3su9hzo/version_R5_injertos_mods.rar/file", contrasena: "injertosr5" },
+      { titulo: "GIRLZ", autor: "JACOB", descargas: 1100, video: "https://youtube.com/embed/VsXBeqeQHbQ", descarga: "https://www.mediafire.com/file/l6dun8dkpstz1ks/GIRLZ.rar/file", contrasena: "NO TIENE" }
+    ];
+
     const boosters = [
       { nombre: "HILNZO", avatar: "https://cdn.discordapp.com/avatars/1298301131641983019/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif?size=256" },
       { nombre: "JACOB", avatar: "https://cdn.discordapp.com/avatars/1221849688593137830/9df3e244543051e16ccb8cdab9a851c0.png?size=256" },
@@ -298,56 +314,67 @@
       { nombre: "Yerlin", avatar: "https://cdn.discordapp.com/avatars/1297359221280739389/0c8e21345db6f35f607546e0dcbf4295.png?size=256" },
       { nombre: "David", avatar: "https://cdn.discordapp.com/avatars/1386421165052002366/ad60538bd141ab74a7029f32a0288fc2.png?size=256" },
       { nombre: "Tom", avatar: "https://cdn.discordapp.com/avatars/1310311626737582223/064d6b85c2b423cbf18888e69e1fd7ed.png?size=256" }
-      // AGREGA MÁS ASÍ: { nombre: "NOMBRE", avatar: "URL_DEL_AVATAR" },
     ];
 
     // === RENDER ===
     function showView(view) {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       event.target.classList.add('active');
-      document.getElementById('top-view').hidden = view !== 'top';
+      document.getElementById('equipo-view').hidden = view !== 'equipo';
       document.getElementById('aportes-view').hidden = view !== 'aportes';
-      document.getElementById('staff-view').hidden = view !== 'staff';
+      document.getElementById('datas-view').hidden = view !== 'datas';
+      document.getElementById('tops-view').hidden = view !== 'tops';
 
       sessionStorage.setItem('currentView', view);
 
-      if (view === 'top') renderTops();
+      if (view === 'equipo') renderEquipo();
       if (view === 'aportes') renderAportes();
-      if (view === 'staff') renderStaff();
+      if (view === 'datas') renderDatas();
+      if (view === 'tops') renderTops();
+    }
+
+    function renderEquipo() {
+      document.getElementById('equipo-view').innerHTML = `<div class="grid">${staff.map(s => `
+        <div class="card">
+          <img src="${s.avatar}?size=256" alt="${s.nombre}">
+          <p><b>${s.nombre}</b></p>
+          <p class="role">${s.rol}</p>
+        </div>
+      `).join('')}</div>`;
+    }
+
+    function renderAportes() {
+      document.getElementById('aportes-view').innerHTML = `<div class="grid">${aportes.map(a => `
+        <div class="aporte">
+          <h3>${a.titulo}</h3>
+          <p><b>CREADOR:</b> ${a.creador}</p>
+          <p><b>CONTRASEÑA:</b> <span style="color:red;font-weight:bold;">${a.contrasena}</span></p>
+          <div class="video-wrapper"><iframe src="${a.video}?enablejsapi=1" allowfullscreen></iframe></div>
+          <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
+        </div>
+      `).join('') || '<p style="color:#ff6b6b;">Pronto más aportes...</p>'}</div>`;
+    }
+
+    function renderDatas() {
+      document.getElementById('datas-view').innerHTML = `<div class="grid">${datas.map(a => `
+        <div class="aporte">
+          <h3>${a.titulo}</h3>
+          <p><b>CREADOR:</b> ${a.creador}</p>
+          <p><b>CONTRASEÑA:</b> <span style="color:red;font-weight:bold;">${a.contrasena}</span></p>
+          <div class="video-wrapper"><iframe src="${a.video}?enablejsapi=1" allowfullscreen></iframe></div>
+          <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
+        </div>
+      `).join('') || '<p style="color:#ff6b6b;">Pronto más datas...</p>'}</div>`;
     }
 
     function renderTops() {
-      document.getElementById('top-view').innerHTML = `<div class="grid">${tops.map(a => `
+      document.getElementById('tops-view').innerHTML = `<div class="grid">${tops.map(a => `
         <div class="aporte">
           <h3>${a.titulo}</h3>
           <p><b>CREADOR:</b> ${a.autor}</p>
           <p><b>DESCARGAS:</b> ${a.descargas}</p>
           <div class="video-wrapper"><iframe src="${a.video}?enablejsapi=1" allowfullscreen></iframe></div>
           <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
-        </div>
-      `).join('')}</div>`;
-    }
-
-    function renderAportes() {
-      document.getElementById('aportes-view').innerHTML = `<div class="grid">${aportes.length ? aportes.map(a => `
-        <div class="aporte">
-          <h3>${a.titulo}</h3>
-          <p><b>CREADOR:</b> ${a.creador}</p>
-          <p><b>DESCRIPCIÓN:</b> ${a.descripcion}</p>
-          <p><b>INCLUYE:</b> ${a.incluye}</p>
-          <p><b>CONTRASEÑA:</b> <span style="color:red;font-weight:bold;">${a.contrasena}</span></p>
-          <div class="video-wrapper"><iframe src="${a.video}?enablejsapi=1" allowfullscreen></iframe></div>
-          <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
-        </div>
-      `).join('') : '<p style="color: #ff6b6b; font-size: 1.5rem;">Pronto más aportes...</p>'}</div>`;
-    }
-
-    function renderStaff() {
-      document.getElementById('staff-view').innerHTML = `<div class="grid">${staff.map(s => `
-        <div class="card">
-          <img src="${s.avatar}?size=256" alt="${s.nombre}">
-          <p><b>${s.nombre}</b></p>
-          <p class="role">${s.rol}</p>
         </div>
       `).join('')}</div>`;
     }
@@ -418,9 +445,9 @@
       document.getElementById('intro-overlay').style.display = 'none';
       document.getElementById('mainContent').style.display = 'block';
 
-      const savedView = sessionStorage.getItem('currentView') || 'top';
+      const savedView = sessionStorage.getItem('currentView') || 'equipo';
       showView(savedView);
-      renderBoosters(); // Renderiza boosters
+      renderBoosters();
 
       updateVolumeIcon();
       loadYouTubeAPI();
