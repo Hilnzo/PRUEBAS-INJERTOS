@@ -250,7 +250,6 @@
       document.getElementById('staff-view').hidden = view !== 'staff';
 
       sessionStorage.setItem('currentView', view);
-      sessionStorage.setItem('siteEntered', 'true'); // Marca que ya entraste
 
       if (view === 'top') renderTops();
       if (view === 'aportes') renderAportes();
@@ -350,7 +349,6 @@
       unlockAudio();
       document.getElementById('intro-overlay').style.display = 'none';
       document.getElementById('mainContent').style.display = 'block';
-      sessionStorage.setItem('siteEntered', 'true'); // Marca que ya entraste
 
       const savedView = sessionStorage.getItem('currentView') || 'top';
       showView(savedView);
@@ -361,20 +359,11 @@
 
     // === AL CARGAR PÁGINA (volver atrás) ===
     window.addEventListener('load', () => {
-      if (sessionStorage.getItem('siteEntered') === 'true') {
-        document.getElementById('intro-overlay').style.display = 'none';
-        document.getElementById('mainContent').style.display = 'block';
-
-        const savedView = sessionStorage.getItem('currentView') || 'top';
-        showView(savedView);
-
-        if (sessionStorage.getItem("fromSharingan")) {
-          sessionStorage.removeItem("fromSharingan");
-          document.getElementById('sharingan-overlay').classList.remove('active');
-        }
-
-        updateVolumeIcon();
-        loadYouTubeAPI();
+      // SI VIENE DEL SHARINGAN → MUESTRA EL BOTÓN "ENTRAR" OTRA VEZ
+      if (sessionStorage.getItem("fromSharingan")) {
+        sessionStorage.removeItem("fromSharingan");
+        document.getElementById('intro-overlay').style.display = 'flex';
+        document.getElementById('mainContent').style.display = 'none';
       }
     });
 
