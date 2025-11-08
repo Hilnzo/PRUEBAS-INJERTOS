@@ -92,16 +92,16 @@
     }
     .download-btn:hover { background: darkred; transform: scale(1.04); }
 
-    /* STAFF */
+    /* STAFF & BOOSTERS */
     .card { text-align: center; cursor: default; }
     .card img { border-radius: 50%; width: 90px; height: 90px; margin-bottom: 12px; border: 3px solid red; }
     .role { font-size: 1rem; color: #ff6b6b; margin-top: 6px; }
     @keyframes glow { from { box-shadow: 0 0 15px red; } to { box-shadow: 0 0 45px red; } }
     .card { animation: glow 2s infinite alternate; }
 
-    /* BOOSTERS */
+    /* BOOSTERS - CON FOTO Y NOMBRE */
     .boosters {
-      margin: 50px auto; max-width: 1000px; padding: 30px;
+      margin: 50px auto; max-width: 1200px; padding: 30px;
       background: linear-gradient(135deg, rgba(255,0,0,0.2), rgba(0,0,0,0.8));
       border: 3px solid red; border-radius: 20px; box-shadow: 0 0 60px rgba(255,0,0,0.8);
       text-align: center; animation: pulseBoost 3s infinite alternate;
@@ -112,16 +112,24 @@
     .boosters p {
       font-size: 1.4rem; margin: 15px 0; color: #ff9999;
     }
-    .boosters .names {
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 25px;
+    .boosters .grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 25px; margin-top: 30px;
     }
-    .boosters .names span {
-      background: rgba(255,0,0,0.3); padding: 10px 20px; border-radius: 12px;
-      border: 1px solid red; font-weight: bold; color: #fff; font-size: 1.2rem;
-      box-shadow: 0 0 15px rgba(255,0,0,0.6); transition: 0.3s;
+    .boosters .card {
+      background: rgba(255,0,0,0.15); padding: 20px; border-radius: 16px;
+      border: 2px solid red; transition: 0.3s;
     }
-    .boosters .names span:hover {
-      background: red; transform: scale(1.1); box-shadow: 0 0 30px red;
+    .boosters .card:hover {
+      background: rgba(255,0,0,0.4); transform: translateY(-5px);
+    }
+    .boosters .card img {
+      width: 80px; height: 80px; border: 3px solid #ff4d4d; box-shadow: 0 0 20px rgba(255,77,77,0.6);
+    }
+    .boosters .card p {
+      margin: 10px 0 5px; font-weight: bold; color: #fff;
+    }
+    .boosters .card .role {
+      color: #ff9999; font-size: 0.9rem;
     }
     @keyframes pulseBoost { from { box-shadow: 0 0 60px rgba(255,0,0,0.8); } to { box-shadow: 0 0 100px red; } }
 
@@ -174,10 +182,11 @@
       .music-player { bottom: 15px; left: 15px; padding: 8px 12px; gap: 8px; }
       #volumeSlider { width: 60px; }
       .boosters h2 { font-size: 2rem; }
-      .boosters .names span { font-size: 1rem; padding: 8px 14px; }
+      .boosters .grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 480px) {
       .grid { grid-template-columns: 1fr; }
+      .boosters .grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -224,21 +233,12 @@
       <div id="aportes-view" class="view" hidden></div>
       <div id="staff-view" class="view" hidden></div>
 
-      <!-- AGRADECIMIENTO A BOOSTERS -->
+      <!-- BOOSTERS CON FOTO Y NOMBRE -->
       <div class="boosters">
         <h2>GRACIAS A NUESTROS BOOSTERS</h2>
-        <p>¡Gracias por apoyar al servidor con Nitro Boost!</p>
-        <p>Su apoyo nos permite seguir creciendo y mejorando</p>
-        <div class="names">
-          <span>HILNZO</span>
-          <span>JACOB</span>
-          <span>MANZER</span>
-          <span>KAIROX</span>
-          <span>ISAAC</span>
-          <span>Yerlin</span>
-          <span>David</span>
-          <span>Tom</span>
-        </div>
+        <p>¡Gracias por apoyar con Nitro Boost!</p>
+        <p>Su apoyo nos hace más fuertes</p>
+        <div class="grid" id="boosters-grid"></div>
       </div>
     </div>
   </div>
@@ -270,9 +270,7 @@
       { titulo: "GIRLZ", autor: "JACOB", descargas: 1100, video: "https://youtube.com/embed/VsXBeqeQHbQ", descarga: "https://www.mediafire.com/file/l6dun8dkpstz1ks/GIRLZ.rar/file", contrasena: "NO TIENE" }
     ];
 
-    const aportes = [
-      // Tus aportes aquí (o vacíos si usas bot)
-    ];
+    const aportes = [];
 
     const staff = [
       { id: "1298301131641983019", nombre: "HILNZO", rol: "Owner", avatar: "https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif" },
@@ -282,12 +280,25 @@
       { id: "1260353622001188875", nombre: "Maik", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1260353622001188875/aa9c8431623d1958d02e42f4f026efe3.png" },
       { id: "1414075135350280234", nombre: "MANZER", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1414075135350280234/c3b5512a81fe635e12eac2a25511b7ca.png" },
       { id: "1079142194071486574", nombre: "ISAAC", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1079142194071486574/c88ca46b136aeecebe37f49ea026cd77.png" },
-      { id: "1386421165052002366", nombre: "David", rol: "SUB ENCARGADO", avatar: "https://cdn.discordapp.com/avatars/138642116505/avatars/1386421165052002366/ad60538bd141ab74a7029f32a0288fc2.png" },
+      { id: "1386421165052002366", nombre: "David", rol: "SUB ENCARGADO", avatar: "https://cdn.discordapp.com/avatars/1386421165052002366/ad60538bd141ab74a7029f32a0288fc2.png" },
       { id: "1297359221280739389", nombre: "Yerlin", rol: "SUB ENCARGADO", avatar: "https://cdn.discordapp.com/avatars/1297359221280739389/0c8e21345db6f35f607546e0dcbf4295.png" },
       { id: "1310311626737582223", nombre: "Tom", rol: "MODERADOR", avatar: "https://cdn.discordapp.com/avatars/1310311626737582223/064d6b85c2b423cbf18888e69e1fd7ed.png" },
       { id: "1353099301303095436", nombre: "THOMAS", rol: "MODERADOR", avatar: "https://cdn.discordapp.com/avatars/1353099301303095436/98e9b048bf35b997f1428b17d85211e3.png" },
       { id: "1024085595703746590", nombre: "JOHAN", rol: "HELPER", avatar: "https://cdn.discordapp.com/avatars/1024085595703746590/99f61e9990ad4db442b7e831328278b3.png" },
       { id: "1397628533626638428", nombre: "TOMMY", rol: "HELPER", avatar: "https://cdn.discordapp.com/avatars/1397628533626638428/99e743f3feed7c2e758f668ac42b2b0d.png" }
+    ];
+
+    // === BOOSTERS CON FOTO Y NOMBRE (AGREGA MÁS AQUÍ) ===
+    const boosters = [
+      { nombre: "HILNZO", avatar: "https://cdn.discordapp.com/avatars/1298301131641983019/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif?size=256" },
+      { nombre: "JACOB", avatar: "https://cdn.discordapp.com/avatars/1221849688593137830/9df3e244543051e16ccb8cdab9a851c0.png?size=256" },
+      { nombre: "MANZER", avatar: "https://cdn.discordapp.com/avatars/1414075135350280234/c3b5512a81fe635e12eac2a25511b7ca.png?size=256" },
+      { nombre: "KAIROX", avatar: "https://cdn.discordapp.com/avatars/1246355878840631327/5a14e4c676a423d04acda0ff29bd225e.png?size=256" },
+      { nombre: "ISAAC", avatar: "https://cdn.discordapp.com/avatars/1079142194071486574/c88ca46b136aeecebe37f49ea026cd77.png?size=256" },
+      { nombre: "Yerlin", avatar: "https://cdn.discordapp.com/avatars/1297359221280739389/0c8e21345db6f35f607546e0dcbf4295.png?size=256" },
+      { nombre: "David", avatar: "https://cdn.discordapp.com/avatars/1386421165052002366/ad60538bd141ab74a7029f32a0288fc2.png?size=256" },
+      { nombre: "Tom", avatar: "https://cdn.discordapp.com/avatars/1310311626737582223/064d6b85c2b423cbf18888e69e1fd7ed.png?size=256" }
+      // AGREGA MÁS ASÍ: { nombre: "NOMBRE", avatar: "URL_DEL_AVATAR" },
     ];
 
     // === RENDER ===
@@ -334,11 +345,21 @@
     function renderStaff() {
       document.getElementById('staff-view').innerHTML = `<div class="grid">${staff.map(s => `
         <div class="card">
-          <img src="${s.avatar}" alt="${s.nombre}">
+          <img src="${s.avatar}?size=256" alt="${s.nombre}">
           <p><b>${s.nombre}</b></p>
           <p class="role">${s.rol}</p>
         </div>
       `).join('')}</div>`;
+    }
+
+    function renderBoosters() {
+      document.getElementById('boosters-grid').innerHTML = boosters.map(b => `
+        <div class="card">
+          <img src="${b.avatar}" alt="${b.nombre}">
+          <p><b>${b.nombre}</b></p>
+          <p class="role">BOOSTER</p>
+        </div>
+      `).join('');
     }
 
     // === AUDIO & SHARINGAN ===
@@ -388,7 +409,6 @@
       if (unlocked) sharinganSound.pause();
     }
 
-    // === ENTRAR + MÚSICA AUTOMÁTICA ===
     function enterSite() {
       unlockAudio();
       audio.play().catch(() => {});
@@ -400,12 +420,12 @@
 
       const savedView = sessionStorage.getItem('currentView') || 'top';
       showView(savedView);
+      renderBoosters(); // Renderiza boosters
 
       updateVolumeIcon();
       loadYouTubeAPI();
     }
 
-    // === AL REGRESAR: MUESTRA "ENTRAR" OTRA VEZ ===
     window.addEventListener('load', () => {
       if (sessionStorage.getItem("fromSharingan")) {
         sessionStorage.removeItem("fromSharingan");
@@ -417,7 +437,6 @@
       }
     });
 
-    // === YouTube API ===
     function loadYouTubeAPI() {
       if (!window.YT) {
         const tag = document.createElement('script');
@@ -438,7 +457,6 @@
       });
     }
 
-    // Inicializar
     updateVolumeIcon();
   </script>
 </body>
