@@ -71,30 +71,31 @@
     .booster img { border-radius: 50%; width: 70px; height: 70px; border: 3px solid #ff69b4; margin-bottom: 8px; }
     .booster p { font-weight: bold; color: #ff69b4; }
 
-    /* REPRODUCTOR FLOTANTE */
+    /* REPRODUCTOR FLOTANTE - BARRA DENTRO DEL RECUADRO */
     #music-player {
       position: fixed; bottom: 20px; left: 20px; background: rgba(0,0,0,0.9); border: 2px solid red; border-radius: 16px; 
-      padding: 14px 16px; width: 260px; z-index: 1000; box-shadow: 0 0 30px rgba(255,0,0,0.8); 
+      padding: 12px 14px; width: 270px; z-index: 1000; box-shadow: 0 0 30px rgba(255,0,0,0.8); 
       cursor: move; user-select: none; touch-action: none; display: flex; align-items: center; justify-content: space-between;
+      overflow: hidden;
     }
     #music-player.playing { animation: pulse 1.5s infinite alternate; }
-    .player-title { font-size: 0.95rem; font-weight: bold; color: #fff; margin-right: 12px; }
-    .player-controls { display: flex; align-items: center; gap: 10px; }
-    #play-btn { background: none; border: none; color: white; font-size: 1.3rem; cursor: pointer; padding: 0 6px; }
+    .player-title { font-size: 0.95rem; font-weight: bold; color: #fff; white-space: nowrap; margin-right: 10px; }
+    .player-controls { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    #play-btn { background: none; border: none; color: white; font-size: 1.3rem; cursor: pointer; padding: 0 4px; }
     .volume-slider {
       -webkit-appearance: none; appearance: none;
-      width: 80px; height: 6px; background: #333; border-radius: 5px; outline: none;
-      cursor: pointer;
+      width: 70px; height: 6px; background: #333; border-radius: 5px; outline: none;
+      cursor: pointer; flex-shrink: 0;
     }
     .volume-slider::-webkit-slider-thumb {
       -webkit-appearance: none; appearance: none;
-      width: 16px; height: 16px; background: red; border-radius: 50%; cursor: pointer;
+      width: 14px; height: 14px; background: red; border-radius: 50%; cursor: pointer;
     }
     .volume-slider::-moz-range-thumb {
-      width: 16px; height: 16px; background: red; border-radius: 50%; cursor: pointer; border: none;
+      width: 14px; height: 14px; background: red; border-radius: 50%; cursor: pointer; border: none;
     }
 
-    /* Sharingan */
+    /* Sharingan con animación */
     .sharingan-btn { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; cursor: pointer; z-index: 1000; }
     .sharingan-btn img { width: 100%; border-radius: 50%; animation: spin 4s linear infinite; filter: drop-shadow(0 0 10px red); }
 
@@ -115,12 +116,13 @@
       .aportes-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
       h1 { font-size: 2.5rem; }
       .filter-btn { padding: 10px 16px; font-size: 0.9rem; }
-      #music-player { width: 240px; padding: 12px 14px; }
-      .volume-slider { width: 70px; }
+      #music-player { width: 250px; padding: 10px 12px; }
+      .volume-slider { width: 60px; }
     }
     @media (max-width: 480px) {
       .aportes-grid { grid-template-columns: 1fr; }
-      #music-player { width: 220px; }
+      #music-player { width: 230px; }
+      .volume-slider { width: 55px; }
     }
   </style>
 </head>
@@ -148,19 +150,19 @@
       <a href="https://discord.gg/rNJ7UaPBYa" target="_blank" class="discord">DC - INJERTOS MODS</a>
     </div>
 
-    <!-- Filtros -->
+    <!-- Filtros - ORDEN CORREGIDO -->
     <div class="filters">
-      <button class="filter-btn active" onclick="showView('top')">TOP APORTES</button>
+      <button class="filter-btn active" onclick="showView('staff')">NUESTRO EQUIPO DE TRABAJO</button>
+      <button class="filter-btn" onclick="showView('top')">APORTES TOPS</button>
       <button class="filter-btn" onclick="showView('aportes')">APORTES</button>
-      <button class="filter-btn" onclick="showView('staff')">STAFF</button>
       <button class="filter-btn" onclick="showView('datas')">DATAS</button>
     </div>
 
     <!-- Contenido -->
     <div class="content">
-      <div id="top-view" class="view"></div>
+      <div id="staff-view" class="view"></div>
+      <div id="top-view" class="view" hidden></div>
       <div id="aportes-view" class="view" hidden></div>
-      <div id="staff-view" class="view" hidden></div>
       <div id="datas-view" class="view" hidden></div>
     </div>
 
@@ -171,7 +173,7 @@
     </div>
   </div>
 
-  <!-- REPRODUCTOR -->
+  <!-- REPRODUCTOR FLOTANTE -->
   <div id="music-player">
     <div class="player-title">MÚSICA</div>
     <div class="player-controls">
@@ -191,8 +193,8 @@
   </audio>
   <audio id="sharingan-sound">
     <source src="https://files.catbox.moe/4dxgfn.mp3" type="audio/mpeg">
-  </audio>
-  <script>
+        </audio>
+        <script>
     // === STAFF (TODOS DEL ORIGINAL) ===
     const staff = [
       { nombre: "HILNZO", rol: "Owner", avatar: "https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif" },
@@ -239,17 +241,17 @@
       { nombre: "JACOB", avatar: "https://cdn.discordapp.com/avatars/1221849688593137830/9df3e244543051e16ccb8cdab9a851c0.png" },
     ];
 
-    // === VISTAS ===
+    // === VISTAS - ORDEN CORREGIDO ===
     function showView(view) {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       event.target.classList.add('active');
+      document.getElementById('staff-view').hidden = view !== 'staff';
       document.getElementById('top-view').hidden = view !== 'top';
       document.getElementById('aportes-view').hidden = view !== 'aportes';
-      document.getElementById('staff-view').hidden = view !== 'staff';
       document.getElementById('datas-view').hidden = view !== 'datas';
+      if (view === 'staff') renderStaff();
       if (view === 'top') renderTops();
       if (view === 'aportes') renderAllAportes();
-      if (view === 'staff') renderStaff();
       if (view === 'datas') renderDatas();
     }
 
@@ -350,7 +352,7 @@
 
     volumeSlider.addEventListener('input', () => { audio.volume = volumeSlider.value / 100; });
 
-    // === SHARINGAN (ORIGINAL) ===
+    // === SHARINGAN (ORIGINAL + ANIMACIÓN) ===
     function activarSharingan() {
       document.getElementById('sharingan-sound').play();
       setTimeout(() => location.href = "aportes-exclusivos.html", 2000);
@@ -362,8 +364,8 @@
       document.getElementById('mainContent').hidden = false;
       audio.volume = 0.7; audio.play().catch(() => {});
       playBtn.innerHTML = 'Pause'; player.classList.add('playing');
-      showView('top'); renderBoosters();
+      showView('staff'); renderBoosters();
     }
   </script>
 </body>
-</html>
+  </html>
