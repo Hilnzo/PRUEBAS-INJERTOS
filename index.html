@@ -5,24 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>INJERTOS MODS</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
- 
-  <!-- FAVICON -->
   <link rel="icon" href="https://i.imgur.com/abc123.png" type="image/png" sizes="32x32">
   <link rel="icon" href="https://i.imgur.com/abc123.png" type="image/png" sizes="16x16">
   <link rel="apple-touch-icon" href="https://i.imgur.com/abc123.png">
   <link rel="shortcut icon" href="https://i.imgur.com/abc123.ico" type="image/x-icon">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap');
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0;
       font-family: 'Orbitron', sans-serif;
       color: white;
       text-align: center;
       background: #000;
       overflow-x: hidden;
-      position: relative;
-      -webkit-font-smoothing: antialiased;
       -webkit-tap-highlight-color: transparent;
     }
     .background-container {
@@ -32,19 +27,20 @@
     }
     h1 { font-size: 3.5rem; margin: 20px 0; text-shadow: 0 0 20px red, 0 0 40px #ff0000; color: #ff1a1a; }
     p { font-size: 1.3rem; margin-bottom: 30px; font-weight: bold; }
+
     /* Redes */
     .socials { margin-top: 20px; }
     .socials a {
       display: inline-block; margin: 10px; padding: 12px 25px; border-radius: 12px;
       color: white; text-decoration: none; font-size: 1.2rem; font-weight: bold;
       font-family: "Courier New", monospace; transition: 0.3s; box-shadow: 0 0 8px rgba(255,255,255,0.3);
-      -webkit-tap-highlight-color: transparent;
     }
     .socials a i { margin-right: 8px; font-size: 1.3rem; }
     .socials a:hover { transform: scale(1.08); box-shadow: 0 0 15px rgba(255,255,255,0.7), 0 0 25px currentColor; }
     .socials a.spotify { background: #1DB954; }
     .socials a.steam { background: #171A21; }
     .socials a.discord { background: #5865F2; }
+
     /* Filtros */
     .filters {
       margin: 30px 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;
@@ -52,14 +48,15 @@
     .filter-btn {
       padding: 12px 25px; background: #111; border: 2px solid red; color: white;
       border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1.1rem; transition: 0.3s;
-      -webkit-tap-highlight-color: transparent; outline: none;
-      touch-action: manipulation;
+      outline: none; touch-action: manipulation;
     }
     .filter-btn.active, .filter-btn:hover {
       background: red; box-shadow: 0 0 20px red;
     }
+
     /* Contenido */
     .content { max-width: 1600px; margin: 0 auto; padding: 0 15px; }
+
     /* GRID */
     .grid {
       display: grid;
@@ -67,6 +64,7 @@
       gap: 30px;
       margin-top: 20px;
     }
+
     /* APORTES */
     .aporte {
       background: rgba(0,0,0,0.78);
@@ -81,7 +79,6 @@
       flex-direction: column;
       justify-content: flex-start;
       min-height: 500px;
-      height: auto;
       overflow: hidden;
     }
     .aporte:hover {
@@ -100,6 +97,7 @@
       font-size: 1.1rem;
       flex-shrink: 0;
     }
+
     /* VIDEO */
     .video-wrapper {
       position: relative;
@@ -119,6 +117,7 @@
       border: none;
       border-radius: 12px;
     }
+
     /* BOTÓN DESCARGAR */
     .download-btn {
       margin-top: auto;
@@ -133,13 +132,13 @@
       transition: 0.3s;
       box-shadow: 0 0 30px rgba(255,0,0,0.9);
       flex-shrink: 0;
-      -webkit-tap-highlight-color: transparent;
       touch-action: manipulation;
     }
     .download-btn:hover {
       background: darkred;
       transform: scale(1.04);
     }
+
     /* EQUIPO */
     #equipo-view {
       background: linear-gradient(135deg, rgba(50,0,0,0.9), rgba(0,0,0,0.95));
@@ -199,11 +198,11 @@
       font-size: 3rem; color: #ff1a1a; text-shadow: 0 0 25px #ff0000;
       margin: 50px 0 30px; position: relative; z-index: 1;
     }
+
     /* Sharingan */
     .sharingan-btn {
       position: fixed; bottom: 80px; right: 20px; width: 60px; height: 60px; cursor: pointer; z-index: 1001;
-      outline: none; border: none; user-select: none; -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
+      outline: none; border: none; user-select: none; touch-action: manipulation;
     }
     .sharingan-btn img {
       width: 100%; height: 100%; border-radius: 50%;
@@ -211,6 +210,7 @@
     }
     @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     @keyframes glowRed { from { box-shadow: 0 0 10px red; } to { box-shadow: 0 0 50px red; } }
+
     #sharingan-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black;
       display: flex; align-items: center; justify-content: center; z-index: 2000;
@@ -218,6 +218,7 @@
     }
     #sharingan-overlay.active { opacity: 1; visibility: visible; }
     #sharingan-overlay img { max-width: 80%; border-radius: 50%; }
+
     /* Intro */
     #intro-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black;
@@ -227,158 +228,68 @@
     #intro-overlay button {
       margin-top: 25px; padding: 14px 30px; background: red; color: white; border: none;
       border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1.6rem;
-      box-shadow: 0 0 40px red; -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
+      box-shadow: 0 0 40px red; touch-action: manipulation;
     }
     #mainContent { display: none; }
-    /* REPRODUCTOR FLOTANTE */
+
+    /* REPRODUCTOR */
     .floating-player {
-      position: fixed;
-      bottom: 20px; left: 20px;
-      width: 240px;
-      background: rgba(15, 0, 0, 0.95);
-      border: 2px solid red;
-      border-radius: 16px;
-      box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
-      backdrop-filter: blur(10px);
-      z-index: 999;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: grab;
-      user-select: none;
-      font-family: 'Orbitron', sans-serif;
-      -webkit-tap-highlight-color: transparent;
-      touch-action: none;
-      transform: translateZ(0);
+      position: fixed; bottom: 20px; left: 20px; width: 240px;
+      background: rgba(15, 0, 0, 0.95); border: 2px solid red; border-radius: 16px;
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.8); backdrop-filter: blur(10px);
+      z-index: 999; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: grab; user-select: none; font-family: 'Orbitron', sans-serif;
+      touch-action: none; transform: translateZ(0);
     }
     .floating-player:active { cursor: grabbing; }
     .player-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 8px 12px;
-      background: rgba(100, 0, 0, 0.5);
-      border-radius: 14px 14px 0 0;
-      font-size: 0.9rem;
-      color: #ff4d4d;
-      font-weight: bold;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 12px; background: rgba(100, 0, 0, 0.5);
+      border-radius: 14px 14px 0 0; font-size: 0.9rem; color: #ff4d4d; font-weight: bold;
     }
     .minimize-btn {
-      background: transparent;
-      border: none;
-      color: white;
-      font-size: 1.3rem;
-      cursor: pointer;
-      padding: 0 8px;
-      transition: 0.2s;
-      -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
+      background: transparent; border: none; color: white; font-size: 1.3rem;
+      cursor: pointer; padding: 0 8px; transition: 0.2s; touch-action: manipulation;
     }
     .minimize-btn:hover { color: red; transform: scale(1.2); }
-    .player-title {
-      font-size: 0.85rem;
-      letter-spacing: 1px;
-      text-shadow: 0 0 10px red;
-    }
-    .player-body {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 15px;
-      transition: all 0.25s ease;
-    }
+    .player-title { font-size: 0.85rem; letter-spacing: 1px; text-shadow: 0 0 10px red; }
+    .player-body { display: flex; align-items: center; gap: 10px; padding: 10px 15px; }
     #volumeSlider {
-      flex: 1;
-      -webkit-appearance: none;
-      height: 6px;
-      border-radius: 3px;
-      background: #333;
-      outline: none;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-      transform: translateZ(0);
+      flex: 1; -webkit-appearance: none; height: 6px; border-radius: 3px;
+      background: #333; outline: none; cursor: pointer; transform: translateZ(0);
     }
     #volumeSlider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 18px; height: 18px;
-      background: red;
-      border-radius: 50%;
-      box-shadow: 0 0 15px red, 0 0 25px rgba(255,0,0,0.6);
-      cursor: grab;
-      transform: translateZ(0);
+      -webkit-appearance: none; width: 18px; height: 18px;
+      background: red; border-radius: 50%; box-shadow: 0 0 15px red, 0 0 25px rgba(255,0,0,0.6);
+      cursor: grab; transform: translateZ(0);
     }
-    .volume-icon {
-      font-size: 1.3rem;
-      min-width: 24px;
-      color: white;
-      text-shadow: 0 0 10px red;
-    }
+    .volume-icon { font-size: 1.3rem; min-width: 24px; color: white; text-shadow: 0 0 10px red; }
     .music-toggle-btn {
-      background: transparent;
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      cursor: pointer;
-      padding: 8px;
-      border-radius: 50%;
-      transition: all 0.25s ease;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      -webkit-tap-highlight-color: transparent;
+      background: transparent; border: none; color: white; font-size: 1.5rem;
+      cursor: pointer; padding: 8px; border-radius: 50%; transition: all 0.25s ease;
+      position: relative; display: flex; align-items: center; justify-content: center;
       touch-action: manipulation;
     }
-    .music-toggle-btn:hover {
-      transform: scale(1.15);
-      color: red;
-    }
-    .music-toggle-btn.playing {
-      color: red;
-      animation: pulseBtn 1.5s infinite alternate;
-    }
+    .music-toggle-btn:hover { transform: scale(1.15); color: red; }
+    .music-toggle-btn.playing { color: red; animation: pulseBtn 1.5s infinite alternate; }
     .music-toggle-btn.playing::before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border: 2px solid red;
-      border-radius: 50%;
-      animation: ripple 1.5s infinite;
-      opacity: 0;
+      content: ''; position: absolute; width: 100%; height: 100%;
+      border: 2px solid red; border-radius: 50%; animation: ripple 1.5s infinite; opacity: 0;
     }
-    @keyframes pulseBtn {
-      from { box-shadow: 0 0 10px red; }
-      to { box-shadow: 0 0 30px red, 0 0 50px rgba(255,0,0,0.6); }
-    }
-    @keyframes ripple {
-      0% { transform: scale(1); opacity: 0.8; }
-      100% { transform: scale(1.8); opacity: 0; }
-    }
+    @keyframes pulseBtn { from { box-shadow: 0 0 10px red; } to { box-shadow: 0 0 30px red, 0 0 50px rgba(255,0,0,0.6); } }
+    @keyframes ripple { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(1.8); opacity: 0; } }
     .floating-player.minimized {
-      width: 60px; height: 60px;
-      border-radius: 50%;
-      overflow: hidden;
-      cursor: pointer;
-      touch-action: manipulation;
+      width: 60px; height: 60px; border-radius: 50%; overflow: hidden; cursor: pointer;
     }
     .floating-player.minimized .player-header,
-    .floating-player.minimized .player-body {
-      display: none;
-    }
+    .floating-player.minimized .player-body { display: none; }
     .floating-player.minimized::after {
-      content: "♪";
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 1.8rem;
-      color: red;
-      text-shadow: 0 0 20px red;
-      animation: pulse 1.5s infinite alternate;
+      content: "♪"; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%); font-size: 1.8rem; color: red;
+      text-shadow: 0 0 20px red; animation: pulse 1.5s infinite alternate;
     }
-    @keyframes pulse {
-      from { text-shadow: 0 0 10px red; }
-      to { text-shadow: 0 0 40px red, 0 0 60px red; }
-    }
+    @keyframes pulse { from { text-shadow: 0 0 10px red; } to { text-shadow: 0 0 40px red, 0 0 60px red; } }
+
     @media (max-width: 768px) {
       .equipo-title { font-size: 2.8rem; }
       .boosters-title { font-size: 2.2rem; }
@@ -436,6 +347,7 @@
   </div>
 
   <!-- SHARINGAN -->
+ 
   <div class="sharingan-btn" id="sharinganBtn" onclick="activarSharingan()">
     <img src="https://media0.giphy.com/media/AD9YKaY2vxTXO/giphy.gif" alt="Sharingan">
   </div>
@@ -468,14 +380,28 @@
 
   <script>
     // === DATOS ===
-    const staff = [ /* tus datos */ ];
-    const aportes = [ /* ... */ ];
+    const staff = [
+      { nombre: "HILNZO", rol: "Owner", avatar: "https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif" },
+      { nombre: "KALCOR", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1354865570880946176/b7cecb35865ecd6d3fb193cbdb17b860.png" },
+      { nombre: "KAIROX", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1246355878840631327/5a14e4c676a423d04acda0ff29bd225e.png?size=256" },
+      { nombre: "JACOB", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1221849688593137830/9df3e244543051e16ccb8cdab9a851c0.png" },
+      { nombre: "Maik", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1260353622001188875/aa9c8431623d1958d02e42f4f026efe3.png?size=256" },
+      { nombre: "MANZER", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1414075135350280234/c3b5512a81fe635e12eac2a25511b7ca.png" },
+      { nombre: "ISAAC", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1079142194071486574/c88ca46b136aeecebe37f49ea026cd77.png?size=256" },
+      { nombre: "David", rol: "SUB ENCARGADO", avatar: "https://cdn.discordapp.com/avatars/1386421165052002366/2fab2aba0968175b3d8e52253a025c5d.png" },
+      { nombre: "Yerlin", rol: "SUB ENCARGADO", avatar: "https://cdn.discordapp.com/avatars/1297359221280739389/0c8e21345db6f35f607546e0dcbf4295.png" },
+      { nombre: "Tom", rol: "MODERADOR", avatar: "https://cdn.discordapp.com/avatars/1310311626737582223/064d6b85c2b423cbf18888e69e1fd7ed.png?size=256" },
+      { nombre: "THOMAS", rol: "MODERADOR", avatar: "https://cdn.discordapp.com/avatars/1353099301303095436/98e9b048bf35b997f1428b17d85211e3.png?size=256" },
+      { nombre: "JOHAN", rol: "HELPER", avatar: "https://cdn.discordapp.com/avatars/1024085595703746590/99f61e9990ad4db442b7e831328278b3.png?size=256" },
+      { nombre: "TOMMY", rol: "HELPER", avatar: "https://cdn.discordapp.com/avatars/1397628533626638428/99e743f3feed7c2e758f668ac42b2b0d.png?size=256" }
+    ];
+    const aportes = [ /* tus datos */ ];
     const datas = [ /* ... */ ];
     const tops = [ /* ... */ ];
     const boosters = [ /* ... */ ];
 
     // === RENDER (igual) ===
-    function renderEquipo() { /* ... */ }
+    function renderEquipo() { /* ... igual que antes ... */ }
     function renderAportes() { /* ... */ }
     function renderDatas() { /* ... */ }
     function renderTops() { /* ... */ }
@@ -532,15 +458,12 @@
       audio.play().catch(() => {});
       toggleBtn.classList.add('playing');
       playPauseIcon.className = 'fas fa-pause';
-
       intro.style.display = 'none';
       main.style.display = 'block';
       sharinganBtn.style.display = 'block';
-
       const savedView = sessionStorage.getItem('currentView') || 'equipo';
       const btn = document.querySelector(`.filter-btn[onclick*="${savedView}"]`);
       if (btn) showView(savedView, btn);
-
       updateVolumeIcon();
       loadYouTubeAPI();
       sessionStorage.setItem('hasEntered', 'true');
@@ -582,7 +505,7 @@
       });
     };
 
-    // === FUNCIÓN DE REINICIO AL VOLVER ATRÁS ===
+    // === REINICIAR AL VOLVER ATRÁS ===
     function resetToIntro() {
       intro.style.display = 'flex';
       main.style.display = 'none';
@@ -591,13 +514,12 @@
       toggleBtn.classList.remove('playing');
       playPauseIcon.className = 'fas fa-play';
       updateVolumeIcon();
-      sessionStorage.clear(); // Limpia todo
+      sessionStorage.clear();
     }
 
-    // === AL CARGAR ===
+    // === CARGAR / VOLVER ===
     window.addEventListener('load', () => {
-      const hasEntered = sessionStorage.getItem('hasEntered') === 'true';
-      if (hasEntered) {
+      if (sessionStorage.getItem('hasEntered') === 'true') {
         intro.style.display = 'none';
         main.style.display = 'block';
         sharinganBtn.style.display = 'block';
@@ -611,19 +533,13 @@
       }
     });
 
-    // === DETECTAR BOTÓN ATRÁS (pageshow + popstate) ===
     window.addEventListener('pageshow', (e) => {
-      if (e.persisted || performance.navigation.type === 2) {
-        resetToIntro();
-      }
+      if (e.persisted) resetToIntro();
     });
 
-    // === POPSTATE (para navegadores que no disparan pageshow) ===
-    window.addEventListener('popstate', () => {
-      resetToIntro();
-    });
+    window.addEventListener('popstate', resetToIntro);
 
-    // === Desbloquear audio ===
+    // Desbloquear audio
     document.body.addEventListener('click', unlockAudio, { once: true });
     document.body.addEventListener('touchstart', unlockAudio, { once: true });
   </script>
