@@ -4,33 +4,71 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>INJERTOS MODS</title>
-
   <!-- FAVICON SHARINGAN -->
   <link rel="icon" href="https://i.imgur.com/8gL0ZfK.png" type="image/png" />
   <link rel="shortcut icon" href="https://i.imgur.com/8gL0ZfK.png" type="image/png" />
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     /* === ESTILO ORIGINAL MEJORADO === */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: Arial, sans-serif; color: white; text-align: center; overflow-x: hidden; background: #000; }
     .background-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('https://imgur.com/VcWPdTD.jpg') center/cover no-repeat; z-index: -1; filter: brightness(0.6); }
-
     h1 { font-size: 3rem; margin: 20px 0; text-shadow: 2px 2px 8px red; z-index: 2; position: relative; }
     p { font-size: 1.3rem; font-weight: bold; margin-bottom: 30px; z-index: 2; position: relative; }
-
     /* Redes */
     .socials a { display: inline-block; margin: 10px; padding: 12px 25px; border-radius: 12px; color: white; text-decoration: none; font-weight: bold; font-family: "Courier New", monospace; transition: 0.3s; box-shadow: 0 0 8px rgba(255,255,255,0.3); }
     .socials a i { margin-right: 8px; font-size: 1.3rem; }
     .socials a:hover { transform: scale(1.08); box-shadow: 0 0 25px currentColor; }
     .spotify { background: #1DB954; } .steam { background: #171A21; } .discord { background: #5865F2; }
 
-    /* Música */
-    .music-btn { margin: 30px auto; padding: 10px 20px; border: 2px solid white; border-radius: 10px; background: transparent; color: white; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2; transition: 0.3s; }
-    .music-btn i { margin-right: 8px; }
-    .music-btn:hover { transform: scale(1.05); }
-    .music-btn.playing { background: red; border-color: red; box-shadow: 0 0 10px red, 0 0 20px rgba(255,0,0,0.8); animation: pulse 1.5s infinite alternate; }
+    /* Reproductor Flotante */
+    .music-player {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 10px 15px;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 999;
+      border: 2px solid red;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
+    }
+    .music-btn-small {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 1.4rem;
+      cursor: pointer;
+      padding: 5px;
+      transition: 0.3s;
+    }
+    .music-btn-small:hover { transform: scale(1.1); }
+    .music-btn-small.playing { color: red; animation: pulse 1.5s infinite alternate; }
     @keyframes pulse { from { box-shadow: 0 0 10px red; } to { box-shadow: 0 0 40px red; } }
+
+    #volumeSlider {
+      width: 80px;
+      -webkit-appearance: none;
+      height: 5px;
+      border-radius: 5px;
+      background: #333;
+      outline: none;
+      cursor: pointer;
+    }
+    #volumeSlider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      background: red;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 10px red;
+    }
+    .volume-icon { font-size: 1.2rem; min-width: 20px; }
 
     /* FILTROS */
     .filters { margin: 30px 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
@@ -39,12 +77,9 @@
 
     /* CONTENIDO */
     .content { max-width: 1400px; margin: 0 auto; padding: 0 15px; }
-
-    /* GRID UNIFORME (PC Y MÓVIL) */
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; margin-top: 20px; }
     .aporte, .card { background: rgba(0,0,0,0.75); padding: 25px; border-radius: 16px; border: 2px solid red; box-shadow: 0 0 60px rgba(255,0,0,0.8); transition: 0.3s; text-align: left; line-height: 1.8; }
     .aporte:hover, .card:hover { box-shadow: 0 0 100px rgba(255,0,0,1); transform: translateY(-5px); }
-
     .aporte h3 { font-size: 1.8rem; color: red; text-align: center; margin-bottom: 12px; }
     .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; margin: 15px 0; }
     .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
@@ -58,7 +93,7 @@
     @keyframes glow { from { box-shadow: 0 0 15px red; } to { box-shadow: 0 0 40px red; } }
     .card { animation: glow 2s infinite alternate; }
 
-    /* BOOSTERS CON FOTO POR ID */
+    /* BOOSTERS */
     .boosters { background: rgba(0,0,0,0.7); padding: 25px; border-radius: 16px; border: 2px solid #ff69b4; box-shadow: 0 0 40px rgba(255,105,180,0.6); max-width: 900px; margin: 50px auto; }
     .boosters h3 { color: #ff69b4; margin-bottom: 20px; font-size: 1.8rem; }
     .booster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 20px; }
@@ -71,7 +106,7 @@
     .sharingan-btn img { width: 100%; border-radius: 50%; animation: spin 4s linear infinite, glowRed 1.5s infinite alternate; }
     #sharingan-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black; display: flex; align-items: center; justify-content: center; z-index: 2000; opacity: 0; visibility: hidden; transition: 0.6s; }
     #sharingan-overlay.active { opacity: 1; visibility: visible; }
-    #sharingan-overlay img { max-width: 80%; border-radius: 50%; }
+    #sharingan-overlay img { max-width: 80%; border-radius: 50%; animation: spin 1.5s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
     @keyframes glowRed { from { box-shadow: 0 0 5px red; } to { box-shadow: 0 0 40px red; } }
 
@@ -80,7 +115,7 @@
     #intro-overlay img { max-width: 90%; max-height: 70%; }
     #intro-overlay button { margin-top: 25px; padding: 14px 30px; background: red; color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1.6rem; box-shadow: 0 0 40px red; }
 
-    /* RESPONSIVE (CUADRÍCULA EN MÓVIL) */
+    /* RESPONSIVE */
     @media (max-width: 768px) {
       .grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
       .booster-grid { grid-template-columns: repeat(3, 1fr); }
@@ -90,11 +125,12 @@
     }
     @media (max-width: 480px) {
       .grid { grid-template-columns: 1fr; }
+      .music-player { bottom: 15px; left: 15px; padding: 8px 12px; gap: 8px; }
+      #volumeSlider { width: 60px; }
     }
   </style>
 </head>
 <body>
-
   <!-- Fondo -->
   <div class="background-container"></div>
 
@@ -117,11 +153,14 @@
       <a href="https://discord.gg/rNJ7UaPBYa" target="_blank" class="discord">DC - INJERTOS MODS</a>
     </div>
 
-    <!-- Música -->
-    <audio id="bg-music" loop>
-      <source src="https://files.catbox.moe/osz8x3.mp3" type="audio/mpeg">
-    </audio>
-    <button id="musicToggle" class="music-btn paused" onclick="toggleMusic()">encender música</button>
+    <!-- Reproductor Flotante -->
+    <div id="music-player" class="music-player">
+      <button id="musicToggle" class="music-btn-small" onclick="toggleMusic()">
+        <i class="fas fa-play"></i>
+      </button>
+      <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
+      <span id="volumeIcon" class="volume-icon">volume up</span>
+    </div>
 
     <!-- FILTROS -->
     <div class="filters">
@@ -149,9 +188,14 @@
     <img src="https://media0.giphy.com/media/AD9YKaY2vxTXO/giphy.gif" alt="Sharingan">
   </div>
   <div id="sharingan-overlay" onclick="cerrarSharingan()">
-    <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Sharingan">
+    <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif"43" alt="Sharingan">
   </div>
-  <audio id="sharingan-sound">
+
+  <!-- Audio -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="https://files.catbox.moe/osz8x3.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="sharingan-sound" preload="auto">
     <source src="https://files.catbox.moe/4dxgfn.mp3" type="audio/mpeg">
   </audio>
 
@@ -165,9 +209,7 @@
       { titulo: "VERSION R5", autor: "HILNZO", descargas: 1200, video: "https://youtube.com/embed/BywZG9Ckh9Q", descarga: "https://www.mediafire.com/file/wsgq5q0r3su9hzo/version_R5_injertos_mods.rar/file", contrasena: "injertosr5" },
       { titulo: "GIRLZ", autor: "JACOB", descargas: 1100, video: "https://youtube.com/embed/VsXBeqeQHbQ", descarga: "https://www.mediafire.com/file/l6dun8dkpstz1ks/GIRLZ.rar/file", contrasena: "NO TIENE" }
     ];
-
-    const todosAportes = tops; // Aquí puedes añadir más si quieres
-
+    const todosAportes = tops;
     const staff = [
       { id: "1298301131641983019", nombre: "HILNZO", rol: "Owner" },
       { id: "1246355878840631327", nombre: "KAIROX", rol: "Owner" },
@@ -175,7 +217,6 @@
       { id: "1414075135350280234", nombre: "MANZER", rol: "Owner" },
       { id: "1386421165052002366", nombre: "DAVID", rol: "SUB ENCARGADO" }
     ];
-
     const aportesPorStaff = {
       "1298301131641983019": [
         { titulo: "TIFFANY", descripcion: "aporte para los demeros jodidos", incluye: "macros, barra de estamina...", contrasena: "tiffanyctmr", video: "https://youtube.com/embed/1Iq2YeDLVmM", descarga: "https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file" },
@@ -185,8 +226,6 @@
         { titulo: "BRUTALITY", descripcion: "MATAR SIN PENSARLO", incluye: "armas, /sensa", contrasena: "fuemip", video: "https://youtube.com/embed/fmVS7-nTmD4", descarga: "https://www.mediafire.com/file/rj4hc064ibyu767/BRUTALITY.rar/file" }
       ]
     };
-
-    // BOOSTERS CON FOTO POR ID
     const boosters = [
       { id: "1298301131641983019", nombre: "HILNZO" },
       { id: "1246355878840631327", nombre: "KAIROX" },
@@ -197,7 +236,6 @@
     function getAvatar(id) {
       return `https://cdn.discordapp.com/avatars/${id}/${id}.png?size=128`;
     }
-
     function showView(view) {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       event.target.classList.add('active');
@@ -208,7 +246,6 @@
       if (view === 'aportes') renderAllAportes();
       if (view === 'staff') renderStaff();
     }
-
     function renderTops() {
       document.getElementById('top-view').innerHTML = `<div class="grid">${tops.map(a => `
         <div class="aporte">
@@ -220,7 +257,6 @@
         </div>
       `).join('')}</div>`;
     }
-
     function renderAllAportes() {
       document.getElementById('aportes-view').innerHTML = `<div class="grid">${todosAportes.map(a => `
         <div class="aporte">
@@ -231,7 +267,6 @@
         </div>
       `).join('')}</div>`;
     }
-
     function renderStaff() {
       document.getElementById('staff-view').innerHTML = `<div class="grid">${staff.map(s => `
         <div class="card" onclick="showAportesStaff('${s.id}')">
@@ -241,7 +276,6 @@
         </div>
       `).join('')}</div>`;
     }
-
     function showAportesStaff(id) {
       const data = aportesPorStaff[id] || [];
       const name = staff.find(s => s.id === id)?.nombre;
@@ -258,7 +292,6 @@
       `).join('')}</div>`;
       showView('top');
     }
-
     function renderBoosters() {
       document.getElementById('boosters-grid').innerHTML = boosters.map(b => `
         <div class="booster">
@@ -268,39 +301,74 @@
       `).join('');
     }
 
-    // Música
+    // === MÚSICA Y SHARINGAN ===
+    const audio = document.getElementById('bg-music');
+    const sharinganSound = document.getElementById('sharingan-sound');
+    const toggleBtn = document.getElementById('musicToggle');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const volumeIcon = document.getElementById('volumeIcon');
+    const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    let volume = 0.5;
+    audio.volume = volume;
+    volumeSlider.value = volume;
+
+    function updateVolumeIcon() {
+      if (volume === 0) volumeIcon.textContent = 'muted';
+      else if (volume < 0.5) volumeIcon.textContent = 'volume down';
+      else volumeIcon.textContent = 'volume up';
+    }
+
     function toggleMusic() {
-      const audio = document.getElementById('bg-music');
-      const btn = document.getElementById('musicToggle');
       if (audio.paused) {
-        audio.play();
-        btn.classList.replace('paused', 'playing');
-        btn.innerHTML = 'apagar música';
+        audio.play().catch(() => {
+          alert("Toca de nuevo para activar el sonido (requerido en móviles)");
+        });
+        toggleBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        toggleBtn.classList.add('playing');
       } else {
         audio.pause();
-        btn.classList.replace('playing', 'paused');
-        btn.innerHTML = 'encender música';
+        toggleBtn.innerHTML = '<i class="fas fa-play"></i>';
+        toggleBtn.classList.remove('playing');
       }
     }
 
-    // Sharingan
+    volumeSlider.addEventListener('input', (e) => {
+      volume = e.target.value;
+      audio.volume = volume;
+      updateVolumeIcon();
+    });
+
     function activarSharingan() {
       document.getElementById('sharingan-overlay').classList.add('active');
-      document.getElementById('sharingan-sound').play();
-      setTimeout(() => location.href = "aportes-exclusivos.html", 3000);
-    }
-    function cerrarSharingan() {
-      document.getElementById('sharingan-overlay').classList.remove('active');
+      sharinganSound.currentTime = 0;
+      sharinganSound.play().catch(() => {}); // Siempre intenta reproducir
+      setTimeout(() => {
+        location.href = "aportes-exclusivos.html";
+      }, 3000);
     }
 
-    // Entrar
+    function cerrarSharingan() {
+      document.getElementById('sharingan-overlay').classList.remove('active');
+      sharinganSound.pause();
+    }
+
     function enterSite() {
       document.getElementById('intro-overlay').style.display = 'none';
       document.getElementById('mainContent').hidden = false;
-      document.getElementById('bg-music').play().catch(() => {});
+
+      if (!isMobile) {
+        audio.play().catch(() => {});
+      }
+
       showView('top');
       renderBoosters();
+      updateVolumeIcon();
     }
+
+    // Inicializar
+    toggleBtn.innerHTML = '<i class="fas fa-play"></i>';
+    updateVolumeIcon();
   </script>
 </body>
 </html>
