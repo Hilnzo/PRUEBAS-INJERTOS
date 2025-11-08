@@ -42,7 +42,6 @@
     .socials a:hover { transform: scale(1.08); box-shadow: 0 0 15px rgba(255,255,255,0.7), 0 0 25px currentColor; }
     .socials a.spotify { background: #1DB954; }
     .socials a.steam { background: #171A21; }
-    .socials a.roblox { background: #FF4757; }
     .socials a.discord { background: #5865F2; }
 
     /* Reproductor */
@@ -73,43 +72,90 @@
 
     /* Contenido */
     .content { max-width: 1600px; margin: 0 auto; padding: 0 15px; }
+
+    /* GRID RESPONSIVO */
     .grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 30px;
+      margin-top: 20px;
     }
+
+    /* APORTES UNIFORMES Y RESPONSIVOS */
     .aporte {
-      background: rgba(0,0,0,0.78); padding: 35px; border-radius: 18px;
-      border: 2px solid red; box-shadow: 0 0 70px rgba(255,0,0,0.9); transition: 0.3s;
-      text-align: left; line-height: 1.9;
-      display: flex !important;
-      flex-direction: column !important;
-      justify-content: space-between !important;
-      min-height: 580px !important;
-      height: 580px !important;
-      overflow: hidden !important;
-    }
-    .aporte:hover { box-shadow: 0 0 120px rgba(255,0,0,1.2); transform: translateY(-6px); }
-    .aporte h3 { font-size: 2.2rem; color: red; text-align: center; margin: 0 0 18px 0; flex-shrink: 0; }
-    .video-wrapper {
-      flex: 1 !important;
-      min-height: 200px !important;
-      height: 200px !important;
-      margin: 15px 0 !important;
-      padding-bottom: 0 !important;
-      background: #111;
-      border-radius: 10px;
+      background: rgba(0,0,0,0.78);
+      padding: 30px;
+      border-radius: 18px;
+      border: 2px solid red;
+      box-shadow: 0 0 70px rgba(255,0,0,0.9);
+      transition: all 0.3s ease;
+      text-align: left;
+      line-height: 1.9;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+
+      min-height: 500px;
+      height: auto;
       overflow: hidden;
     }
+    .aporte:hover {
+      box-shadow: 0 0 120px rgba(255,0,0,1.2);
+      transform: translateY(-6px);
+    }
+    .aporte h3 {
+      font-size: 2.1rem;
+      color: red;
+      text-align: center;
+      margin: 0 0 16px 0;
+      flex-shrink: 0;
+    }
+    .aporte p {
+      margin: 8px 0;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    /* VIDEO 16:9 PERFECTO */
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-bottom: 56.25%; /* 16:9 */
+      margin: 18px 0;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
     .video-wrapper iframe {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      border: none !important; outline: none !important; border-radius: 10px;
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+      border-radius: 12px;
     }
+
+    /* BOTÓN SIEMPRE AL FINAL */
     .download-btn {
-      display: inline-block; margin-top: auto !important;
-      padding: 14px 32px; background: red; color: white; font-weight: bold;
-      border-radius: 14px; text-decoration: none; font-size: 1.3rem; transition: 0.3s;
-      box-shadow: 0 0 30px rgba(255,0,0,0.9); align-self: center; flex-shrink: 0;
+      margin-top: auto;
+      align-self: center;
+      padding: 14px 32px;
+      background: red;
+      color: white;
+      font-weight: bold;
+      border-radius: 14px;
+      text-decoration: none;
+      font-size: 1.3rem;
+      transition: 0.3s;
+      box-shadow: 0 0 30px rgba(255,0,0,0.9);
+      flex-shrink: 0;
     }
-    .download-btn:hover { background: darkred; transform: scale(1.04); }
+    .download-btn:hover {
+      background: darkred;
+      transform: scale(1.04);
+    }
 
     /* EQUIPO ÉPICO */
     #equipo-view {
@@ -181,7 +227,7 @@
       animation: spin 4s linear infinite, glowRed 1.5s infinite alternate;
     }
     @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    @keyframes glowRed { from { box-shadow: 0 0 5px red; } to { box-shadow: 0 0 40px red; } }
+    @ pólkeyframes glowRed { from { box-shadow: 0 0 5px red; } to { box-shadow: 0 0 40px red; } }
     #sharingan-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black;
       display: flex; align-items: center; justify-content: center; z-index: 2000;
@@ -207,8 +253,9 @@
       .equipo-title { font-size: 2.8rem; }
       .boosters-title { font-size: 2.2rem; }
       .staff-card img, .booster-card img { width: 80px; height: 80px; }
-      .aporte { min-height: 520px !important; height: 520px !important; }
-      .video-wrapper { height: 180px !important; min-height: 180px !important; }
+      .aporte { min-height: 480px; padding: 20px; }
+      .aporte h3 { font-size: 1.8rem; }
+      .download-btn { font-size: 1.2rem; padding: 12px 28px; }
     }
   </style>
 </head>
