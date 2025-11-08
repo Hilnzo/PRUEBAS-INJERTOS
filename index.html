@@ -243,7 +243,7 @@
     }
     #mainContent { display: none; }
 
-    /* === REPRODUCTOR FLOTANTE (OPTIMIZADO) === */
+    /* === REPRODUCTOR FLOTANTE === */
     .floating-player {
       position: fixed;
       bottom: 20px; left: 20px;
@@ -384,7 +384,7 @@
       display: none;
     }
     .floating-player.minimized::after {
-      content: "♪";
+      content: "Music Note";
       position: absolute;
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
@@ -455,7 +455,7 @@
   </div>
 
   <!-- Sharingan -->
-  <div class="sharingan-btn" onclick="activarSharingan()">
+  <div class="sharingan-btn" id="sharinganBtn" onclick="activarSharingan()">
     <img src="https://media0.giphy.com/media/AD9YKaY2vxTXO/giphy.gif" alt="Sharingan">
   </div>
   <div id="sharingan-overlay" onclick="cerrarSharingan()">
@@ -468,7 +468,7 @@
       <button id="minimizeBtn" class="minimize-btn">−</button>
       <div class="player-title">MÚSICA</div>
       <button id="musicToggle" class="music-toggle-btn">
-        <i id="playPauseIcon" class=" FAS fa-play"></i>
+        <i id="playPauseIcon" class="fas fa-play"></i>
       </button>
     </div>
     <div id="player-body" class="player-body">
@@ -532,6 +532,22 @@
       { nombre: "elms1pz.1", avatar: "https://cdn.discordapp.com/avatars/1436669732718907543/65533892c7e114a5c2590fb6304dbe08.png" },
     ];
 
+    // === ELEMENTOS ===
+    const introOverlay = document.getElementById('intro-overlay');
+    const mainContent = document.getElementById('mainContent');
+    const sharinganBtn = document.getElementById('sharinganBtn');
+    const audio = document.getElementById('bg-music');
+    const sharinganSound = document.getElementById('sharingan-sound');
+    const toggleBtn = document.getElementById('musicToggle');
+    const playPauseIcon = document.getElementById('playPauseIcon');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const volumeIcon = document.getElementById('volumeIcon');
+    const player = document.getElementById('floating-player');
+    const minimizeBtn = document.getElementById('minimizeBtn');
+    let unlocked = false;
+    let volume = 0.5;
+    audio.volume = volume;
+
     // === RENDER ===
     function renderEquipo() {
       document.getElementById('staff-grid').innerHTML = staff.map(s => `
@@ -549,7 +565,6 @@
         </div>
       `).join('');
     }
-
     function renderAportes() {
       const view = document.getElementById('aportes-view');
       view.innerHTML = `<div class="grid">${aportes.map(a => `
@@ -562,7 +577,6 @@
         </div>
       `).join('') || '<p style="color:#ff6b6b; grid-column: 1 / -1;">Pronto más aportes...</p>'}</div>`;
     }
-
     function renderDatas() {
       const view = document.getElementById('datas-view');
       view.innerHTML = `<div class="grid">${datas.map(a => `
@@ -575,7 +589,6 @@
         </div>
       `).join('') || '<p style="color:#ff6b6b; grid-column: 1 / -1;">Pronto más datas...</p>'}</div>`;
     }
-
     function renderTops() {
       document.getElementById('tops-view').innerHTML = `<div class="grid">${tops.map(a => `
         <div class="aporte">
@@ -588,19 +601,7 @@
       `).join('')}</div>`;
     }
 
-    // === AUDIO & REPRODUCTOR ===
-    const audio = document.getElementById('bg-music');
-    const sharinganSound = document.getElementById('sharingan-sound');
-    const toggleBtn = document.getElementById('musicToggle');
-    const playPauseIcon = document.getElementById('playPauseIcon');
-    const volumeSlider = document.getElementById('volumeSlider');
-    const volumeIcon = document.getElementById('volumeIcon');
-    const player = document.getElementById('floating-player');
-    const minimizeBtn = document.getElementById('minimizeBtn');
-    let unlocked = false;
-    let volume = 0.5;
-    audio.volume = volume;
-
+    // === AUDIO ===
     function updateVolumeIcon() {
       if (volume == 0) volumeIcon.className = 'volume-icon fas fa-volume-mute';
       else if (volume < 0.5) volumeIcon.className = 'volume-icon fas fa-volume-down';
@@ -691,6 +692,7 @@
         location.href = "aportes-exclusivos.html";
       }, 3000);
     }
+
     function cerrarSharingan() {
       document.getElementById('sharingan-overlay').classList.remove('active');
       if (unlocked) sharinganSound.pause();
@@ -702,13 +704,18 @@
       audio.play().catch(() => {});
       toggleBtn.classList.add('playing');
       playPauseIcon.className = 'fas fa-pause';
-      document.getElementById('intro-overlay').style.display = 'none';
-      document.getElementById('mainContent').style.display = 'block';
+
+      introOverlay.style.display = 'none';
+      mainContent.style.display = 'block';
+
       const savedView = sessionStorage.getItem('currentView') || 'equipo';
       const btn = document.querySelector(`.filter-btn[onclick*="${savedView}"]`);
       if (btn) showView(savedView, btn);
+
       updateVolumeIcon();
       loadYouTubeAPI();
+
+      sessionStorage.setItem('hasEntered', 'true');
     }
 
     // === VISTAS ===
@@ -748,14 +755,44 @@
       });
     };
 
-    // === AL CARGAR ===
+    // === AL CARGAR / VOLVER ATRÁS ===
     window.addEventListener('load', () => {
-      document.getElementById('intro-overlay').style.display = 'flex';
-      document.getElementById('mainContent').style.display = 'none';
-      audio.pause();
-      toggleBtn.classList.remove('playing');
-      playPauseIcon.className = 'fas fa-play';
-      updateVolumeIcon();
+      const hasEntered = sessionStorage.getItem('hasEntered') === 'true';
+      const fromSharingan = sessionStorage.getItem('fromSharingan') === 'true';
+
+      if (!hasEntered || fromSharingan) {
+        introOverlay.style.display = 'flex';
+        mainContent.style.display = 'none';
+        sharinganBtn.style.visibility = 'hidden';
+        audio.pause();
+        toggleBtn.classList.remove('playing');
+        playPauseIcon.className = 'fas fa-play';
+        updateVolumeIcon();
+        sessionStorage.removeItem('fromSharingan');
+        sessionStorage.removeItem('hasEntered');
+      } else {
+        introOverlay.style.display = 'none';
+        mainContent.style.display = 'block';
+        sharinganBtn.style.visibility = 'visible';
+        const savedView = sessionStorage.getItem('currentView') || 'equipo';
+        const btn = document.querySelector(`.filter-btn[onclick*="${savedView}"]`);
+        if (btn) showView(savedView, btn);
+        updateVolumeIcon();
+        loadYouTubeAPI();
+      }
+    });
+
+    window.addEventListener('pageshow', (e) => {
+      if (e.persisted) {
+        const fromSharingan = sessionStorage.getItem('fromSharingan') === 'true';
+        if (fromSharingan) {
+          introOverlay.style.display = 'flex';
+          mainContent.style.display = 'none';
+          sharinganBtn.style.visibility = 'hidden';
+          sessionStorage.removeItem('fromSharingan');
+          sessionStorage.removeItem('hasEntered');
+        }
+      }
     });
 
     document.body.addEventListener('click', unlockAudio, { once: true });
