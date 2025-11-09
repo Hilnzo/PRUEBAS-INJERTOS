@@ -34,7 +34,7 @@
     .socials a {
       display: inline-block; margin: 10px; padding: 12px 25px; border-radius: 12px;
       color: white; text-decoration: none; font-size: 1.2rem; font-weight: bold;
-      font-family: "Courier New", monospace; transition: 0.3s; box-box-shadow: 0 0 8px rgba(255,255,255,0.3);
+      font-family: "Courier New", monospace; transition: 0.3s; box-shadow: 0 0 8px rgba(255,255,255,0.3);
       -webkit-tap-highlight-color: transparent;
     }
     .socials a i { margin-right: 8px; font-size: 1.3rem; }
@@ -42,7 +42,6 @@
     .socials a.spotify { background: #1DB954; }
     .socials a.steam { background: #171A21; }
     .socials a.discord { background: #5865F2; }
-
     .filters {
       margin: 30px 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;
     }
@@ -55,7 +54,6 @@
     .filter-btn.active, .filter-btn:hover {
       background: red; box-shadow: 0 0 20px red;
     }
-
     .content { max-width: 1600px; margin: 0 auto; padding: 0 15px; }
     .grid {
       display: grid;
@@ -63,7 +61,6 @@
       gap: 30px;
       margin-top: 20px;
     }
-
     .aporte {
       background: rgba(0,0,0,0.78);
       padding: 30px;
@@ -134,7 +131,6 @@
       background: darkred;
       transform: scale(1.04);
     }
-
     #equipo-view {
       background: linear-gradient(135deg, rgba(50,0,0,0.9), rgba(0,0,0,0.95));
       padding: 50px 20px; border-radius: 25px; margin: 20px 0;
@@ -193,7 +189,6 @@
       font-size: 3rem; color: #ff1a1a; text-shadow: 0 0 25px #ff0000;
       margin: 50px 0 30px; position: relative; z-index: 1;
     }
-
     .sharingan-btn {
       position: fixed; bottom: 20px; right: 20px; width: 55px; height: 55px; cursor: pointer; z-index: 1000;
       outline: none; border: none; user-select: none; -webkit-tap-highlight-color: transparent;
@@ -212,7 +207,6 @@
     }
     #sharingan-overlay img { max-width: 80%; border-radius: 50%; }
     #sharingan-overlay.active { opacity: 1; visibility: visible; }
-
     #intro-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black;
       display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 3000;
@@ -225,7 +219,6 @@
       touch-action: manipulation;
     }
     #mainContent { display: none; }
-
     .floating-player {
       position: fixed;
       bottom: 20px; left: 20px;
@@ -388,18 +381,15 @@
 </head>
 <body>
   <div class="background-container"></div>
-
   <!-- Intro -->
   <div id="intro-overlay">
     <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Intro">
     <button onclick="enterSite()">ENTRAR</button>
   </div>
-
   <!-- Main -->
   <div id="mainContent">
-    <h1>INJERTOS MODS HALLOWEEN</h1>
+    <h1>INJERTOS MODS</h1>
     <p>"PÁGINA EN MANTENIMIENTO"</p>
-
     <!-- Redes -->
     <div class="socials">
       <a href="https://open.spotify.com/user/31mtjz2i5m63xek4cp4pevznd74i" target="_blank" class="spotify">Spotify</a>
@@ -407,7 +397,6 @@
       <a href="https://discordapp.com/users/1298301131641983019" target="_blank" class="discord">Discord</a>
       <a href="https://discord.gg/rNJ7UaPBYa" target="_blank" class="discord">DC - INJERTOS MODS</a>
     </div>
-
     <!-- Filtros -->
     <div class="filters">
       <button class="filter-btn active" onclick="showView('equipo', this)">NUESTRO EQUIPO</button>
@@ -415,7 +404,6 @@
       <button class="filter-btn" onclick="showView('datas', this)">DATAS</button>
       <button class="filter-btn" onclick="showView('tops', this)">APORTES TOPS</button>
     </div>
-
     <!-- Contenido -->
     <div class="content">
       <div id="equipo-view" class="view">
@@ -429,7 +417,6 @@
       <div id="tops-view" class="view" hidden></div>
     </div>
   </div>
-
   <!-- Sharingan -->
   <div class="sharingan-btn" onclick="activarSharingan()">
     <img src="https://media0.giphy.com/media/AD9YKaY2vxTXO/giphy.gif" alt="Sharingan">
@@ -437,9 +424,8 @@
   <div id="sharingan-overlay" onclick="cerrarSharingan()">
     <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Sharingan">
   </div>
-
   <!-- REPRODUCTOR FLOTANTE -->
-  <div id="floating-player" class="floating-player">
+  < divin id="floating-player" class="floating-player">
     <div class="player-header">
       <button id="minimizeBtn" class="minimize-btn">−</button>
       <div class="player-title">MÚSICA</div>
@@ -452,7 +438,6 @@
       <i id="volumeIcon" class="volume-icon fas fa-volume-up"></i>
     </div>
   </div>
-
   <!-- Audio -->
   <audio id="bg-music" loop preload="auto">
     <source src="https://files.catbox.moe/nkwzd2.mp3" type="audio/mpeg">
@@ -655,7 +640,6 @@
         location.href = "aportes-exclusivos.html";
       }, 3000);
     }
-
     function cerrarSharingan() {
       document.getElementById('sharingan-overlay').classList.remove('active');
       if (unlocked) sharinganSound.pause();
@@ -669,14 +653,11 @@
       playPauseIcon.className = 'fas fa-pause';
       document.getElementById('intro-overlay').style.display = 'none';
       document.getElementById('mainContent').style.display = 'block';
-
       sessionStorage.setItem('hasEntered', 'true');
       sessionStorage.setItem('musicPlaying', 'true');
-
       const savedView = sessionStorage.getItem('currentView') || 'equipo';
       const btn = document.querySelector(`.filter-btn[onclick*="${savedView}"]`);
       if (btn) showView(savedView, btn);
-
       updateVolumeIcon();
       loadYouTubeAPI();
     }
@@ -722,35 +703,39 @@
       });
     };
 
-    // === AL CARGAR / VOLVER ATRÁS (bfcache) ===
+    // === AL CARGAR / VOLVER ATRÁS (CORREGIDO) ===
     window.addEventListener('pageshow', (event) => {
       const hasEntered = sessionStorage.getItem('hasEntered') === 'true';
       const musicOn = sessionStorage.getItem('musicPlaying') === 'true';
 
-      // Restaurar intro
-      if (hasEntered || event.persisted) {
+      // SI ES RECARGA MANUAL O PRIMERA VEZ → MOSTRAR INTRO
+      if (!event.persisted && !hasEntered) {
+        document.getElementById('intro-overlay').style.display = 'flex';
+        document.getElementById('mainContent').style.display = 'none';
+        audio.pause();
+        toggleBtn.classList.remove('playing');
+        playPauseIcon.className = 'fas fa-play';
+      } else {
         document.getElementById('intro-overlay').style.display = 'none';
         document.getElementById('mainContent').style.display = 'block';
       }
 
-      // Restaurar música
-      if (musicOn && audio.paused) {
+      // Restaurar música solo si ya se desbloqueó
+      if (musicOn && hasEntered) {
+        audio.volume = volume;
         audio.play().catch(() => {});
         toggleBtn.classList.add('playing');
         playPauseIcon.className = 'fas fa-pause';
-      } else if (!musicOn && !audio.paused) {
-        audio.pause();
+      } else {
         toggleBtn.classList.remove('playing');
         playPauseIcon.className = 'fas fa-play';
       }
 
-      // === ARREGLAR SHARINGAN AL VOLVER ===
-      if (sessionStorage.getItem('sharinganActivo') === 'true' || event.persisted) {
+      if (sessionStorage.getItem('sharinganActivo') === 'true') {
         document.getElementById('sharingan-overlay').classList.remove('active');
         sessionStorage.removeItem('sharinganActivo');
       }
 
-      // Restaurar vista
       const savedView = sessionStorage.getItem('currentView') || 'equipo';
       const btn = document.querySelector(`.filter-btn[onclick*="${savedView}"]`);
       if (btn && hasEntered) showView(savedView, btn);
