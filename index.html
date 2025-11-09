@@ -5,13 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>INJERTOS MODS</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  
-  <!-- FAVICON -->
   <link rel="icon" href="https://i.imgur.com/abc123.png" type="image/png" sizes="32x32">
   <link rel="icon" href="https://i.imgur.com/abc123.png" type="image/png" sizes="16x16">
   <link rel="apple-touch-icon" href="https://i.imgur.com/abc123.png">
   <link rel="shortcut icon" href="https://i.imgur.com/abc123.ico" type="image/x-icon">
-
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap');
     * { box-sizing: border-box; }
@@ -33,13 +30,11 @@
     }
     h1 { font-size: 3.5rem; margin: 20px 0; text-shadow: 0 0 20px red, 0 0 40px #ff0000; color: #ff1a1a; }
     p { font-size: 1.3rem; margin-bottom: 30px; font-weight: bold; }
-
-    /* Redes */
     .socials { margin-top: 20px; }
     .socials a {
       display: inline-block; margin: 10px; padding: 12px 25px; border-radius: 12px;
       color: white; text-decoration: none; font-size: 1.2rem; font-weight: bold;
-      font-family: "Courier New", monospace; transition: 0.3s; box-shadow: 0 0 8px rgba(255,255,255,0.3);
+      font-family: "Courier New", monospace; transition: 0.3s; box-box-shadow: 0 0 8px rgba(255,255,255,0.3);
       -webkit-tap-highlight-color: transparent;
     }
     .socials a i { margin-right: 8px; font-size: 1.3rem; }
@@ -48,7 +43,6 @@
     .socials a.steam { background: #171A21; }
     .socials a.discord { background: #5865F2; }
 
-    /* Filtros */
     .filters {
       margin: 30px 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;
     }
@@ -62,10 +56,7 @@
       background: red; box-shadow: 0 0 20px red;
     }
 
-    /* Contenido */
     .content { max-width: 1600px; margin: 0 auto; padding: 0 15px; }
-
-    /* GRID */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -73,7 +64,6 @@
       margin-top: 20px;
     }
 
-    /* APORTES */
     .aporte {
       background: rgba(0,0,0,0.78);
       padding: 30px;
@@ -106,8 +96,6 @@
       font-size: 1.1rem;
       flex-shrink: 0;
     }
-
-    /* VIDEO */
     .video-wrapper {
       position: relative;
       width: 100%;
@@ -126,8 +114,6 @@
       border: none;
       border-radius: 12px;
     }
-
-    /* BOTÓN DESCARGAR */
     .download-btn {
       margin-top: auto;
       align-self: center;
@@ -149,7 +135,6 @@
       transform: scale(1.04);
     }
 
-    /* EQUIPO */
     #equipo-view {
       background: linear-gradient(135deg, rgba(50,0,0,0.9), rgba(0,0,0,0.95));
       padding: 50px 20px; border-radius: 25px; margin: 20px 0;
@@ -209,7 +194,6 @@
       margin: 50px 0 30px; position: relative; z-index: 1;
     }
 
-    /* Sharingan */
     .sharingan-btn {
       position: fixed; bottom: 20px; right: 20px; width: 55px; height: 55px; cursor: pointer; z-index: 1000;
       outline: none; border: none; user-select: none; -webkit-tap-highlight-color: transparent;
@@ -229,7 +213,6 @@
     #sharingan-overlay img { max-width: 80%; border-radius: 50%; }
     #sharingan-overlay.active { opacity: 1; visibility: visible; }
 
-    /* Intro */
     #intro-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black;
       display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 3000;
@@ -243,7 +226,6 @@
     }
     #mainContent { display: none; }
 
-    /* === REPRODUCTOR FLOTANTE (OPTIMIZADO) === */
     .floating-player {
       position: fixed;
       bottom: 20px; left: 20px;
@@ -264,7 +246,6 @@
       will-change: transform;
     }
     .floating-player:active { cursor: grabbing; }
-
     .player-header {
       display: flex;
       align-items: center;
@@ -326,8 +307,6 @@
       color: white;
       text-shadow: 0 0 10px red;
     }
-
-    /* BOTÓN PLAY/PAUSE */
     .music-toggle-btn {
       background: transparent;
       border: none;
@@ -370,8 +349,6 @@
       0% { transform: scale(1); opacity: 0.8; }
       100% { transform: scale(1.8); opacity: 0; }
     }
-
-    /* MINIMIZADO */
     .floating-player.minimized {
       width: 60px; height: 60px;
       border-radius: 50%;
@@ -397,7 +374,6 @@
       from { text-shadow: 0 0 10px red; }
       to { text-shadow: 0 0 40px red, 0 0 60px red; }
     }
-
     @media (max-width: 768px) {
       .equipo-title { font-size: 2.8rem; }
       .boosters-title { font-size: 2.2rem; }
@@ -468,7 +444,7 @@
       <button id="minimizeBtn" class="minimize-btn">−</button>
       <div class="player-title">MÚSICA</div>
       <button id="musicToggle" class="music-toggle-btn">
-        <i id="playPauseIcon" class=" FAS fa-play"></i>
+        <i id="playPauseIcon" class="fas fa-play"></i>
       </button>
     </div>
     <div id="player-body" class="player-body">
@@ -502,7 +478,6 @@
       { nombre: "JOHAN", rol: "HELPER", avatar: "https://cdn.discordapp.com/avatars/1024085595703746590/99f61e9990ad4db442b7e831328278b3.png?size=256" },
       { nombre: "TOMMY", rol: "HELPER", avatar: "https://cdn.discordapp.com/avatars/1397628533626638428/99e743f3feed7c2e758f668ac42b2b0d.png?size=256" }
     ];
-
     const aportes = [
       { titulo: "TIFFANY", creador: "HILNZO", contrasena: "tiffanyctmr", video: "https://youtube.com/embed/1Iq2YeDLVmM", descarga: "https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file" },
       { titulo: "SLICK SICK", creador: "HILNZO", contrasena: "elenfermo", video: "https://youtube.com/embed/7P_oX1rxsjs", descarga: "https://www.mediafire.com/file/l6ucin55qy23set/slick_sick.rar/file" },
@@ -511,12 +486,9 @@
       { titulo: "APORTE GIRLZ", creador: "JACOB", contrasena: "NO TIENE CONTRASEÑA", video: "https://youtube.com/embed/VsXBeqeQHbQ?si", descarga: "https://www.mediafire.com/file/l6dun8dkpstz1ks/GIRLZ.rar/file" },
       { titulo: "GTA JACKSON", creador: "HILNZO", contrasena: "NO TIENE CONTRASEÑA", video: "https://youtube.com/embed/TbqKW1A9oAo", descarga: "https://www.mediafire.com/file/oyjhveofniiiubx/GTA+jackson.rar/file" },
     ];
-
     const datas = [
       { titulo: "DataBlue", creador: "MANZER", contrasena: "NO TIENE", video: "https://youtube.com/embed/Tv7fyMCG0G0", descarga: "https://www.mediafire.com/file/12efvtjw3392v58/DataBlue%F0%9F%94%B5MR%24.zip/file" },
-      { titulo: "***", creador: "***", contrasena: "***", video: "***", descarga: "***" }
     ];
-
     const tops = [
       { titulo: "TIFFANY", autor: "HILNZO", descargas: 2847, video: "https://youtube.com/embed/1Iq2YeDLVmM", descarga: "https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file", contrasena: "tiffanyctmr" },
       { titulo: "BRUTALITY", autor: "JACOB", descargas: 3201, video: "https://youtube.com/embed/fmVS7-nTmD4", descarga: "https://www.mediafire.com/file/rj4hc064ibyu767/BRUTALITY.rar/file", contrasena: "fuemip" },
@@ -525,7 +497,6 @@
       { titulo: "VERSION R5", autor: "HILNZO", descargas: 1200, video: "https://youtube.com/embed/BywZG9Ckh9Q", descarga: "https://www.mediafire.com/file/wsgq5q0r3su9hzo/version_R5_injertos_mods.rar/file", contrasena: "injertosr5" },
       { titulo: "GIRLZ", autor: "JACOB", descargas: 1100, video: "https://youtube.com/embed/VsXBeqeQHbQ", descarga: "https://www.mediafire.com/file/l6dun8dkpstz1ks/GIRLZ.rar/file", contrasena: "NO TIENE" }
     ];
-
     const boosters = [
       { nombre: "cami.rain", avatar: "https://cdn.discordapp.com/avatars/1419836001614037103/16c9ce1fbea9937535e1d54730ebccd3.png" },
       { nombre: "paja_lex", avatar: "https://cdn.discordapp.com/avatars/1085331269220569179/af0094d6d53facd4f13866b8c4f70b48.png" },
@@ -549,7 +520,6 @@
         </div>
       `).join('');
     }
-
     function renderAportes() {
       const view = document.getElementById('aportes-view');
       view.innerHTML = `<div class="grid">${aportes.map(a => `
@@ -562,7 +532,6 @@
         </div>
       `).join('') || '<p style="color:#ff6b6b; grid-column: 1 / -1;">Pronto más aportes...</p>'}</div>`;
     }
-
     function renderDatas() {
       const view = document.getElementById('datas-view');
       view.innerHTML = `<div class="grid">${datas.map(a => `
@@ -575,7 +544,6 @@
         </div>
       `).join('') || '<p style="color:#ff6b6b; grid-column: 1 / -1;">Pronto más datas...</p>'}</div>`;
     }
-
     function renderTops() {
       document.getElementById('tops-view').innerHTML = `<div class="grid">${tops.map(a => `
         <div class="aporte">
@@ -620,10 +588,12 @@
         audio.play();
         toggleBtn.classList.add('playing');
         playPauseIcon.className = 'fas fa-pause';
+        sessionStorage.setItem('musicPlaying', 'true');
       } else {
         audio.pause();
         toggleBtn.classList.remove('playing');
         playPauseIcon.className = 'fas fa-play';
+        sessionStorage.setItem('musicPlaying', 'false');
       }
     });
 
@@ -640,7 +610,6 @@
         player.classList.remove('minimized');
       }
     });
-
     minimizeBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       player.classList.add('minimized');
@@ -671,7 +640,6 @@
       isDragging = false;
       player.style.transition = 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)';
     }
-
     player.addEventListener('mousedown', startDrag);
     player.addEventListener('touchstart', startDrag, { passive: false });
     document.addEventListener('mousemove', drag);
@@ -686,11 +654,12 @@
         sharinganSound.currentTime = 0;
         sharinganSound.play().catch(() => {});
       }
+      sessionStorage.setItem("sharinganActivo", "true");
       setTimeout(() => {
-        sessionStorage.setItem("fromSharingan", "true");
         location.href = "aportes-exclusivos.html";
       }, 3000);
     }
+
     function cerrarSharingan() {
       document.getElementById('sharingan-overlay').classList.remove('active');
       if (unlocked) sharinganSound.pause();
@@ -704,9 +673,14 @@
       playPauseIcon.className = 'fas fa-pause';
       document.getElementById('intro-overlay').style.display = 'none';
       document.getElementById('mainContent').style.display = 'block';
+
+      sessionStorage.setItem('hasEntered', 'true');
+      sessionStorage.setItem('musicPlaying', 'true');
+
       const savedView = sessionStorage.getItem('currentView') || 'equipo';
       const btn = document.querySelector(`.filter-btn[onclick*="${savedView}"]`);
       if (btn) showView(savedView, btn);
+
       updateVolumeIcon();
       loadYouTubeAPI();
     }
@@ -741,14 +715,54 @@
       document.querySelectorAll('iframe').forEach(iframe => {
         new YT.Player(iframe, {
           events: { 'onStateChange': e => {
-            if (e.data === 1 && !audio.paused) audio.pause();
-            else if ((e.data === 0 || e.data === 2) && audio.paused && unlocked) audio.play().catch(() => {});
+            if (e.data === 1 && !audio.paused) {
+              audio.pause();
+              sessionStorage.setItem('musicPlaying', 'false');
+            } else if ((e.data === 0 || e.data === 2) && audio.paused && sessionStorage.getItem('musicPlaying') === 'true') {
+              audio.play().catch(() => {});
+            }
           }}
         });
       });
     };
 
-    // === AL CARGAR ===
+    // === AL CARGAR / VOLVER ATRÁS (bfcache) ===
+    window.addEventListener('pageshow', (event) => {
+      const hasEntered = sessionStorage.getItem('hasEntered') === 'true';
+      const musicOn = sessionStorage.getItem('musicPlaying') === 'true';
+
+      // Restaurar intro
+      if (hasEntered || event.persisted) {
+        document.getElementById('intro-overlay').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+      }
+
+      // Restaurar música
+      if (musicOn && audio.paused) {
+        audio.play().catch(() => {});
+        toggleBtn.classList.add('playing');
+        playPauseIcon.className = 'fas fa-pause';
+      } else if (!musicOn && !audio.paused) {
+        audio.pause();
+        toggleBtn.classList.remove('playing');
+        playPauseIcon.className = 'fas fa-play';
+      }
+
+      // === ARREGLAR SHARINGAN AL VOLVER ===
+      if (sessionStorage.getItem('sharinganActivo') === 'true' || event.persisted) {
+        document.getElementById('sharingan-overlay').classList.remove('active');
+        sessionStorage.removeItem('sharinganActivo');
+      }
+
+      // Restaurar vista
+      const savedView = sessionStorage.getItem('currentView') || 'equipo';
+      const btn = document.querySelector(`.filter-btn[onclick*="${savedView}"]`);
+      if (btn && hasEntered) showView(savedView, btn);
+
+      updateVolumeIcon();
+    });
+
+    // === AL CARGAR POR PRIMERA VEZ ===
     window.addEventListener('load', () => {
       document.getElementById('intro-overlay').style.display = 'flex';
       document.getElementById('mainContent').style.display = 'none';
