@@ -217,7 +217,7 @@
     }
     #mainContent { display: none; }
 
-    /* REPRODUCTOR FLOTANTE MEJORADO */
+    /* REPRODUCTOR FLOTANTE */
     .floating-player {
       position: fixed;
       bottom: 20px; left: 20px;
@@ -386,31 +386,28 @@
 <body>
   <div class="background-container"></div>
 
-  <!-- Intro -->
+  <!-- INTRO (OBLIGATORIO AL RECARGAR) -->
   <div id="intro-overlay">
     <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Intro">
     <button onclick="enterSite()">ENTRAR</button>
   </div>
 
-  <!-- Main -->
+  <!-- MAIN (OCULTO HASTA ENTRAR) -->
   <div id="mainContent">
     <h1>INJERTOS MODS</h1>
     <p>"PÁGINA EN MANTENIMIENTO"</p>
-    <!-- Redes -->
     <div class="socials">
       <a href="https://open.spotify.com/user/31mtjz2i5m63xek4cp4pevznd74i" target="_blank" class="spotify">Spotify</a>
       <a href="https://steamcommunity.com/profiles/76561199805784382/" target="_blank" class="steam">Steam</a>
       <a href="https://discordapp.com/users/1298301131641983019" target="_blank" class="discord">Discord</a>
       <a href="https://discord.gg/rNJ7UaPBYa" target="_blank" class="discord">DC - INJERTOS MODS</a>
     </div>
-    <!-- Filtros -->
     <div class="filters">
       <button class="filter-btn active" onclick="showView('equipo', this)">NUESTRO EQUIPO</button>
       <button class="filter-btn" onclick="showView('aportes', this)">APORTES</button>
       <button class="filter-btn" onclick="showView('datas', this)">DATAS</button>
       <button class="filter-btn" onclick="showView('tops', this)">APORTES TOPS</button>
     </div>
-    <!-- Contenido -->
     <div class="content">
       <div id="equipo-view" class="view">
         <h2 class="equipo-title">NUESTRO EQUIPO</h2>
@@ -456,7 +453,7 @@
   </audio>
 
   <script>
-    // === DATOS COMPLETOS ===
+    // === DATOS ===
     const staff = [
       { nombre: "HILNZO", rol: "Owner", avatar: "https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif" },
       { nombre: "KALCOR", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1354865570880946176/b7cecb35865ecd6d3fb193cbdb17b860.png" },
@@ -605,7 +602,7 @@
       player.classList.add('minimized');
     });
 
-    // === ARRASTRAR FLOTANTE (MEJORADO) ===
+    // === ARRASTRAR ===
     let isDragging = false, initialX, initialY, currentX = 20, currentY;
     function startDrag(e) {
       if (player.classList.contains('minimized') || e.target.closest('#volumeSlider') || e.target.closest('#musicToggle') || e.target.closest('#minimizeBtn')) return;
@@ -637,24 +634,7 @@
     document.addEventListener('mouseup', stopDrag);
     document.addEventListener('touchend', stopDrag);
 
-    // === SHARINGAN ===
-    function activarSharingan() {
-      document.getElementById('sharingan-overlay').classList.add('active');
-      if (unlocked) {
-        sharinganSound.currentTime = 0;
-        sharinganSound.play().catch(() => {});
-      }
-      sessionStorage.setItem("sharinganActivo", "true");
-      setTimeout(() => {
-        location.href = "aportes-exclusivos.html";
-      }, 3000);
-    }
-    function cerrarSharingan() {
-      document.getElementById('sharingan-overlay').classList.remove('active');
-      if (unlocked) sharinganSound.pause();
-    }
-
-    // === ENTRAR ===
+    // === ENTRAR (OBLIGATORIO) ===
     function enterSite() {
       unlockAudio();
       audio.play().catch(() => {});
@@ -712,44 +692,7 @@
       });
     };
 
-    // === AL CARGAR / VOLVER ATRÁS ===
-    window.addEventListener('pageshow', (event) => {
-      const hasEntered = sessionStorage.getItem('hasEntered') === 'true';
-      const musicOn = sessionStorage.getItem('musicPlaying') === 'true';
-
-      if (!event.persisted && !hasEntered) {
-        document.getElementById('intro-overlay').style.display = 'flex';
-        document.getElementById('mainContent').style.display = 'none';
-        audio.pause();
-        toggleBtn.classList.remove('playing');
-        playPauseIcon.className = 'fas fa-play';
-      } else {
-        document.getElementById('intro-overlay').style.display = 'none';
-        document.getElementById('mainContent').style.display = 'block';
-      }
-
-      if (musicOn && hasEntered) {
-        audio.volume = volume;
-        audio.play().catch(() => {});
-        toggleBtn.classList.add('playing');
-        playPauseIcon.className = 'fas fa-pause';
-      } else {
-        toggleBtn.classList.remove('playing');
-        playPauseIcon.className = 'fas fa-play';
-      }
-
-      if (sessionStorage.getItem('sharinganActivo') === 'true') {
-        document.getElementById('sharingan-overlay').classList.remove('active');
-        sessionStorage.removeItem('sharinganActivo');
-      }
-
-      const savedView = sessionStorage.getItem('currentView') || 'equipo';
-      const btn = document.querySelector(`.filter-btn[onclick*="${savedView}"]`);
-      if (btn && hasEntered) showView(savedView, btn);
-
-      updateVolumeIcon();
-    });
-
+    // === AL CARGAR / REFRESCAR: SIEMPRE MOSTRAR INTRO ===
     window.addEventListener('load', () => {
       document.getElementById('intro-overlay').style.display = 'flex';
       document.getElementById('mainContent').style.display = 'none';
@@ -758,6 +701,36 @@
       playPauseIcon.className = 'fas fa-play';
       updateVolumeIcon();
     });
+
+    // === PAGESHOW (para volver atrás) ===
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted && sessionStorage.getItem('hasEntered') === 'true') {
+        document.getElementById('intro-overlay').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+        if (sessionStorage.getItem('musicPlaying') === 'true') {
+          audio.play().catch(() => {});
+          toggleBtn.classList.add('playing');
+          playPauseIcon.className = 'fas fa-pause';
+        }
+      }
+    });
+
+    // === SHARINGAN ===
+    function activarSharingan() {
+      document.getElementById('sharingan-overlay').classList.add('active');
+      if (unlocked) {
+        sharinganSound.currentTime = 0;
+        sharinganSound.play().catch(() => {});
+      }
+      sessionStorage.setItem("sharinganActivo", "true");
+      setTimeout(() => {
+        location.href = "aportes-exclusivos.html";
+      }, 3000);
+    }
+    function cerrarSharingan() {
+      document.getElementById('sharingan-overlay').classList.remove('active');
+      if (unlocked) sharinganSound.pause();
+    }
 
     document.body.addEventListener('click', unlockAudio, { once: true });
     document.body.addEventListener('touchstart', unlockAudio, { once: true });
