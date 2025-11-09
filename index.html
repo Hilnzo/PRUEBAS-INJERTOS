@@ -11,15 +11,13 @@
   <link rel="shortcut icon" href="https://i.imgur.com/abc123.ico" type="image/x-icon">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap');
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0;
       font-family: 'Orbitron', sans-serif;
       color: white;
       text-align: center;
       background: #000;
       overflow-x: hidden;
-      position: relative;
       -webkit-font-smoothing: antialiased;
       -webkit-tap-highlight-color: transparent;
     }
@@ -48,8 +46,7 @@
     .filter-btn {
       padding: 12px 25px; background: #111; border: 2px solid red; color: white;
       border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1.1rem; transition: 0.3s;
-      -webkit-tap-highlight-color: transparent; outline: none;
-      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent; outline: none; touch-action: manipulation;
     }
     .filter-btn.active, .filter-btn:hover {
       background: red; box-shadow: 0 0 20px red;
@@ -219,6 +216,8 @@
       touch-action: manipulation;
     }
     #mainContent { display: none; }
+
+    /* REPRODUCTOR FLOTANTE MEJORADO */
     .floating-player {
       position: fixed;
       bottom: 20px; left: 20px;
@@ -351,7 +350,12 @@
     }
     .floating-player.minimized .player-header,
     .floating-player.minimized .player-body {
-      display: none;
+      display: none !important;
+      visibility: hidden;
+      height: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      overflow: hidden;
     }
     .floating-player.minimized::after {
       content: "♪";
@@ -381,11 +385,13 @@
 </head>
 <body>
   <div class="background-container"></div>
+
   <!-- Intro -->
   <div id="intro-overlay">
     <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Intro">
     <button onclick="enterSite()">ENTRAR</button>
   </div>
+
   <!-- Main -->
   <div id="mainContent">
     <h1>INJERTOS MODS</h1>
@@ -417,6 +423,7 @@
       <div id="tops-view" class="view" hidden></div>
     </div>
   </div>
+
   <!-- Sharingan -->
   <div class="sharingan-btn" onclick="activarSharingan()">
     <img src="https://media0.giphy.com/media/AD9YKaY2vxTXO/giphy.gif" alt="Sharingan">
@@ -424,8 +431,9 @@
   <div id="sharingan-overlay" onclick="cerrarSharingan()">
     <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Sharingan">
   </div>
+
   <!-- REPRODUCTOR FLOTANTE -->
-  < divin id="floating-player" class="floating-player">
+  <div id="floating-player" class="floating-player">
     <div class="player-header">
       <button id="minimizeBtn" class="minimize-btn">−</button>
       <div class="player-title">MÚSICA</div>
@@ -438,6 +446,7 @@
       <i id="volumeIcon" class="volume-icon fas fa-volume-up"></i>
     </div>
   </div>
+
   <!-- Audio -->
   <audio id="bg-music" loop preload="auto">
     <source src="https://files.catbox.moe/nkwzd2.mp3" type="audio/mpeg">
@@ -596,7 +605,7 @@
       player.classList.add('minimized');
     });
 
-    // === ARRASTRAR ===
+    // === ARRASTRAR FLOTANTE (MEJORADO) ===
     let isDragging = false, initialX, initialY, currentX = 20, currentY;
     function startDrag(e) {
       if (player.classList.contains('minimized') || e.target.closest('#volumeSlider') || e.target.closest('#musicToggle') || e.target.closest('#minimizeBtn')) return;
@@ -703,12 +712,11 @@
       });
     };
 
-    // === AL CARGAR / VOLVER ATRÁS (CORREGIDO) ===
+    // === AL CARGAR / VOLVER ATRÁS ===
     window.addEventListener('pageshow', (event) => {
       const hasEntered = sessionStorage.getItem('hasEntered') === 'true';
       const musicOn = sessionStorage.getItem('musicPlaying') === 'true';
 
-      // SI ES RECARGA MANUAL O PRIMERA VEZ → MOSTRAR INTRO
       if (!event.persisted && !hasEntered) {
         document.getElementById('intro-overlay').style.display = 'flex';
         document.getElementById('mainContent').style.display = 'none';
@@ -720,7 +728,6 @@
         document.getElementById('mainContent').style.display = 'block';
       }
 
-      // Restaurar música solo si ya se desbloqueó
       if (musicOn && hasEntered) {
         audio.volume = volume;
         audio.play().catch(() => {});
@@ -743,7 +750,6 @@
       updateVolumeIcon();
     });
 
-    // === AL CARGAR POR PRIMERA VEZ ===
     window.addEventListener('load', () => {
       document.getElementById('intro-overlay').style.display = 'flex';
       document.getElementById('mainContent').style.display = 'none';
