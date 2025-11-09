@@ -386,7 +386,7 @@
 <body>
   <div class="background-container"></div>
 
-  <!-- INTRO (OBLIGATORIO AL RECARGAR) -->
+  <!-- INTRO (OBLIGATORIO AL CARGAR O VOLVER ATRÁS) -->
   <div id="intro-overlay">
     <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Intro">
     <button onclick="enterSite()">ENTRAR</button>
@@ -692,26 +692,24 @@
       });
     };
 
-    // === AL CARGAR / REFRESCAR: SIEMPRE MOSTRAR INTRO ===
-    window.addEventListener('load', () => {
+    // === RESET A INTRO (AL CARGAR O VOLVER ATRÁS) ===
+    function resetToIntro() {
       document.getElementById('intro-overlay').style.display = 'flex';
       document.getElementById('mainContent').style.display = 'none';
+      document.getElementById('sharingan-overlay').classList.remove('active');
       audio.pause();
       toggleBtn.classList.remove('playing');
       playPauseIcon.className = 'fas fa-play';
       updateVolumeIcon();
-    });
+      sessionStorage.removeItem('hasEntered');
+      sessionStorage.removeItem('musicPlaying');
+      sessionStorage.removeItem('currentView');
+    }
 
-    // === PAGESHOW (para volver atrás) ===
+    window.addEventListener('load', resetToIntro);
     window.addEventListener('pageshow', (event) => {
-      if (event.persisted && sessionStorage.getItem('hasEntered') === 'true') {
-        document.getElementById('intro-overlay').style.display = 'none';
-        document.getElementById('mainContent').style.display = 'block';
-        if (sessionStorage.getItem('musicPlaying') === 'true') {
-          audio.play().catch(() => {});
-          toggleBtn.classList.add('playing');
-          playPauseIcon.className = 'fas fa-pause';
-        }
+      if (event.persisted) {
+        resetToIntro();
       }
     });
 
@@ -722,7 +720,6 @@
         sharinganSound.currentTime = 0;
         sharinganSound.play().catch(() => {});
       }
-      sessionStorage.setItem("sharinganActivo", "true");
       setTimeout(() => {
         location.href = "aportes-exclusivos.html";
       }, 3000);
