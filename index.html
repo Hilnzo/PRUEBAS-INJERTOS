@@ -4,14 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>INJERTOS MODS</title>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="icon" href="https://i.imgur.com/abc123.png" type="image/png" sizes="32x32">
   <link rel="icon" href="https://i.imgur.com/abc123.png" type="image/png" sizes="16x16">
   <link rel="apple-touch-icon" href="https://i.imgur.com/abc123.png">
   <link rel="shortcut icon" href="https://i.imgur.com/abc123.ico" type="image/x-icon">
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap');
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
       font-family: 'Orbitron', sans-serif;
       color: white;
@@ -21,43 +25,85 @@
       -webkit-font-smoothing: antialiased;
       -webkit-tap-highlight-color: transparent;
     }
+
     .background-container {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: url('https://imgur.com/VcWPdTD.jpg') no-repeat center center;
-      background-size: cover; z-index: -1; filter: brightness(0.6);
+      background-size: cover;
+      z-index: -1;
+      filter: brightness(0.6);
     }
-    h1 { font-size: 3.5rem; margin: 20px 0; text-shadow: 0 0 20px red, 0 0 40px #ff0000; color: #ff1a1a; }
+
+    h1 {
+      font-size: 3.5rem;
+      margin: 20px 0;
+      text-shadow: 0 0 20px red, 0 0 40px #ff0000;
+      color: #ff1a1a;
+    }
+
     p { font-size: 1.3rem; margin-bottom: 30px; font-weight: bold; }
+
     .socials { margin-top: 20px; }
     .socials a {
-      display: inline-block; margin: 10px; padding: 12px 25px; border-radius: 12px;
-      color: white; text-decoration: none; font-size: 1.2rem; font-weight: bold;
-      font-family: "Courier New", monospace; transition: 0.3s; box-shadow: 0 0 8px rgba(255,255,255,0.3);
-      -webkit-tap-highlight-color: transparent;
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 25px;
+      border-radius: 12px;
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+      font-family: "Courier New", monospace;
+      transition: 0.3s;
+      box-shadow: 0 0 8px rgba(255,255,255,0.3);
     }
-    .socials a i { margin-right: 8px; font-size: 1.3rem; }
-    .socials a:hover { transform: scale(1.08); box-shadow: 0 0 15px rgba(255,255,255,0.7), 0 0 25px currentColor; }
+
     .socials a.spotify { background: #1DB954; }
     .socials a.steam { background: #171A21; }
     .socials a.discord { background: #5865F2; }
+
     .filters {
-      margin: 30px 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;
+      margin: 30px 0;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
     }
+
     .filter-btn {
-      padding: 12px 25px; background: #111; border: 2px solid red; color: white;
-      border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1.1rem; transition: 0.3s;
-      -webkit-tap-highlight-color: transparent; outline: none; touch-action: manipulation;
+      padding: 12px 25px;
+      background: #111;
+      border: 2px solid red;
+      color: white;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: 0.3s;
     }
+
     .filter-btn.active, .filter-btn:hover {
-      background: red; box-shadow: 0 0 20px red;
+      background: red;
+      box-shadow: 0 0 20px red;
     }
-    .content { max-width: 1600px; margin: 0 auto; padding: 0 15px; }
+
+    .content {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    /* GRID GENERAL */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 30px;
       margin-top: 20px;
     }
+
+    /* TARJETAS */
     .aporte {
       background: rgba(0,0,0,0.78);
       padding: 30px;
@@ -67,29 +113,14 @@
       transition: all 0.3s ease;
       text-align: left;
       line-height: 1.9;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
       min-height: 500px;
-      height: auto;
-      overflow: hidden;
     }
+
     .aporte:hover {
       box-shadow: 0 0 120px rgba(255,0,0,1.2);
       transform: translateY(-6px);
     }
-    .aporte h3 {
-      font-size: 2.1rem;
-      color: red;
-      text-align: center;
-      margin: 0 0 16px 0;
-      flex-shrink: 0;
-    }
-    .aporte p {
-      margin: 8px 0;
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
+
     .video-wrapper {
       position: relative;
       width: 100%;
@@ -99,15 +130,15 @@
       background: #000;
       border-radius: 12px;
       overflow: hidden;
-      flex-shrink: 0;
     }
+
     .video-wrapper iframe {
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
       border: none;
-      border-radius: 12px;
     }
+
     .download-btn {
       margin-top: auto;
       align-self: center;
@@ -118,619 +149,646 @@
       border-radius: 14px;
       text-decoration: none;
       font-size: 1.3rem;
-      transition: 0.3s;
-      box-shadow: 0 0 30px rgba(255,0,0,0.9);
-      flex-shrink: 0;
-      -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
     }
-    .download-btn:hover {
-      background: darkred;
-      transform: scale(1.04);
-    }
+
+    /* STAFF */
     #equipo-view {
       background: linear-gradient(135deg, rgba(50,0,0,0.9), rgba(0,0,0,0.95));
-      padding: 50px 20px; border-radius: 25px; margin: 20px 0;
-      border: 3px solid #ff0000; box-shadow: 0 0 80px rgba(255,0,0,0.7);
-      position: relative; overflow: hidden;
+      padding: 50px 20px;
+      border-radius: 25px;
+      border: 3px solid #ff0000;
+      box-shadow: 0 0 80px rgba(255,0,0,0.7);
     }
-    #equipo-view::before {
-      content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-      background: radial-gradient(circle, rgba(255,0,0,0.2) 0%, transparent 70%);
-      animation: fireMist 8s infinite linear; z-index: 0; pointer-events: none;
-    }
-    @keyframes fireMist { 0% { transform: translate(0, 0) rotate(0deg); } 100% { transform: translate(20%, 20%) rotate(360deg); } }
-    .equipo-title {
-      font-size: 4rem; font-weight: 900; color: #ff1a1a;
-      text-shadow: 0 0 30px #ff0000, 0 0 60px #ff0000, 0 0 90px #ff0000;
-      margin-bottom: 40px; letter-spacing: 3px; animation: fireGlow 2s infinite alternate;
-      position: relative; z-index: 1;
-    }
-    @keyframes fireGlow {
-      from { text-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000; }
-      to { text-shadow: 0 0 40px #ff0000, 0 0 80px #ff0000, 0 0 120px #ff0000; }
-    }
-    .staff-card, .booster-card {
-      background: rgba(20,0,0,0.8); padding: 25px; border-radius: 20px;
-      border: 2px solid #ff3333; box-shadow: 0 0 50px rgba(255,0,0,0.8);
-      transition: all 0.4s; position: relative; overflow: hidden; z-index: 1;
-    }
-    .staff-card:hover, .booster-card:hover {
-      transform: translateY(-15px) scale(1.05); box-shadow: 0 0 100px rgba(255,0,0,1);
-      border-color: #ff0000;
-    }
-    .staff-card::after, .booster-card::after {
-      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background: radial-gradient(circle at center, rgba(255,0,0,0.3) 0%, transparent 70%);
-      opacity: 0; transition: opacity 0.4s;
-    }
-    .staff-card:hover::after, .booster-card:hover::after { opacity: 1; }
-    .staff-card img, .booster-card img {
-      width: 100px; height: 100px; border-radius: 50%; border: 4px solid #ff0000;
-      box-shadow: 0 0 30px rgba(255,0,0,0.8); margin-bottom: 15px;
-      transition: 0.4s;
-    }
-    .staff-card:hover img, .booster-card:hover img {
-      box-shadow: 0 0 50px #ff0000, 0 0 80px #ff0000; transform: scale(1.1);
-    }
-    .staff-name {
-      font-size: 1.6rem; font-weight: 900; color: #ff4d4d; margin: 10px 0;
-      text-shadow: 0 0 15px #ff0000;
-    }
-    .staff-role {
-      font-size: 1.1rem; color: #ff9999; font-weight: bold;
-      background: rgba(255,0,0,0.3); padding: 5px 15px; border-radius: 20px;
-      display: inline-block; margin-top: 8px; box-shadow: 0 0 20px rgba(255,0,0,0.5);
-    }
-    .boosters-title {
-      font-size: 3rem; color: #ff1a1a; text-shadow: 0 0 25px #ff0000;
-      margin: 50px 0 30px; position: relative; z-index: 1;
-    }
-    .sharingan-btn {
-      position: fixed; bottom: 20px; right: 20px; width: 55px; height: 55px; cursor: pointer; z-index: 1000;
-      outline: none; border: none; user-select: none; -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
-    }
-    .sharingan-btn img {
-      width: 100%; height: 100%; border-radius: 50%;
-      animation: spin 4s linear infinite, glowRed 1.5s infinite alternate;
-    }
-    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    @keyframes glowRed { from { box-shadow: 0 0 5px red; } to { box-shadow: 0 0 40px red; } }
-    #sharingan-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black;
-      display: flex; align-items: center; justify-content: center; z-index: 2000;
-      opacity: 0; visibility: hidden; transition: opacity 0.6s;
-    }
-    #sharingan-overlay img { max-width: 80%; border-radius: 50%; }
-    #sharingan-overlay.active { opacity: 1; visibility: visible; }
-    #intro-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black;
-      display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 3000;
-    }
-    #intro-overlay img { max-width: 90%; max-height: 70%; }
-    #intro-overlay button {
-      margin-top: 25px; padding: 14px 30px; background: red; color: white; border: none;
-      border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1.6rem;
-      box-shadow: 0 0 40px red; -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
-    }
-    #mainContent { display: none; }
 
-    /* REPRODUCTOR FLOTANTE */
-    .floating-player {
-      position: fixed;
-      bottom: 20px; left: 20px;
-      width: 240px;
-      background: rgba(15, 0, 0, 0.95);
-      border: 2px solid red;
-      border-radius: 16px;
-      box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
-      backdrop-filter: blur(10px);
-      z-index: 999;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: grab;
-      user-select: none;
-      font-family: 'Orbitron', sans-serif;
-      -webkit-tap-highlight-color: transparent;
-      touch-action: none;
-      transform: translateZ(0);
-      will-change: transform;
+    .equipo-title {
+      font-size: 4rem;
+      color: #ff1a1a;
+      text-shadow: 0 0 60px #ff0000;
+      margin-bottom: 40px;
     }
-    .floating-player:active { cursor: grabbing; }
-    .player-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 8px 12px;
-      background: rgba(100, 0, 0, 0.5);
-      border-radius: 14px 14px 0 0;
-      font-size: 0.9rem;
-      color: #ff4d4d;
-      font-weight: bold;
-    }
-    .minimize-btn {
-      background: transparent;
-      border: none;
-      color: white;
-      font-size: 1.3rem;
-      cursor: pointer;
-      padding: 0 8px;
-      transition: 0.2s;
-      -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
-    }
-    .minimize-btn:hover { color: red; transform: scale(1.2); }
-    .player-title {
-      font-size: 0.85rem;
-      letter-spacing: 1px;
-      text-shadow: 0 0 10px red;
-    }
-    .player-body {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 15px;
-      transition: all 0.25s ease;
-    }
-    #volumeSlider {
-      flex: 1;
-      -webkit-appearance: none;
-      height: 6px;
-      border-radius: 3px;
-      background: #333;
-      outline: none;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-      transform: translateZ(0);
-    }
-    #volumeSlider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 18px; height: 18px;
-      background: red;
-      border-radius: 50%;
-      box-shadow: 0 0 15px red, 0 0 25px rgba(255,0,0,0.6);
-      cursor: grab;
-      transform: translateZ(0);
-    }
-    .volume-icon {
-      font-size: 1.3rem;
-      min-width: 24px;
-      color: white;
-      text-shadow: 0 0 10px red;
-    }
-    .music-toggle-btn {
-      background: transparent;
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      cursor: pointer;
-      padding: 8px;
-      border-radius: 50%;
-      transition: all 0.25s ease;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
-    }
-    .music-toggle-btn:hover {
-      transform: scale(1.15);
-      color: red;
-    }
-    .music-toggle-btn.playing {
-      color: red;
-      animation: pulseBtn 1.5s infinite alternate;
-    }
-    .music-toggle-btn.playing::before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border: 2px solid red;
-      border-radius: 50%;
-      animation: ripple 1.5s infinite;
-      opacity: 0;
-    }
-    @keyframes pulseBtn {
-      from { box-shadow: 0 0 10px red; }
-      to { box-shadow: 0 0 30px red, 0 0 50px rgba(255,0,0,0.6); }
-    }
-    @keyframes ripple {
-      0% { transform: scale(1); opacity: 0.8; }
-      100% { transform: scale(1.8); opacity: 0; }
-    }
-    .floating-player.minimized {
-      width: 60px; height: 60px;
-      border-radius: 50%;
-      overflow: hidden;
-      cursor: pointer;
-      touch-action: manipulation;
-    }
-    .floating-player.minimized .player-header,
-    .floating-player.minimized .player-body {
-      display: none !important;
-      visibility: hidden;
-      height: 0 !important;
-      padding: 0 !important;
-      margin: 0 !important;
-      overflow: hidden;
-    }
-    .floating-player.minimized::after {
-      content: "♪";
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 1.8rem;
-      color: red;
-      text-shadow: 0 0 20px red;
-      animation: pulse 1.5s infinite alternate;
-    }
-    @keyframes pulse {
-      from { text-shadow: 0 0 10px red; }
-      to { text-shadow: 0 0 40px red, 0 0 60px red; }
-    }
-    @media (max-width: 768px) {
-      .equipo-title { font-size: 2.8rem; }
-      .boosters-title { font-size: 2.2rem; }
-      .staff-card img, .booster-card img { width: 80px; height: 80px; }
-      .aporte { min-height: 480px; padding: 20px; }
-      .aporte h3 { font-size: 1.8rem; }
-      .download-btn { font-size: 1.2rem; padding: 12px 28px; }
-      .floating-player { width: 200px; }
-      .floating-player.minimized { width: 50px; height: 50px; }
+
+    .staff-card, .booster-card {
+      background: rgba(20,0,0,0.8);
+      padding: 25px;
+      border-radius: 20px;
+      border: 2px solid #ff3333;
+      box-shadow: 0 0 50px rgba(255,0,0,0.8);
+      transition: all 0.4s;
     }
   </style>
+
 </head>
+
 <body>
-  <div class="background-container"></div>
 
-  <!-- INTRO (OBLIGATORIO AL CARGAR O VOLVER ATRÁS) -->
-  <div id="intro-overlay">
-    <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Intro">
-    <button onclick="enterSite()">ENTRAR</button>
+<!-- LUCES NAVIDEÑAS -->
+<div id="xmas-lights-container"></div>
+
+<!-- FONDO -->
+<div class="background-container"></div>
+
+<!-- INTRO -->
+<div id="intro-overlay">
+  <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Intro">
+  <button onclick="enterSite()">ENTRAR</button>
+</div>
+
+<!-- CONTENIDO PRINCIPAL -->
+<div id="mainContent" style="display:none;">
+
+  <h1>INJERTOS MODS</h1>
+  <p>"PÁGINA EN MANTENIMIENTO"</p>
+
+  <div class="socials">
+    <a class="spotify" target="_blank" href="https://open.spotify.com/user/31mtjz2i5m63xek4cp4pevznd74i">Spotify</a>
+    <a class="steam" target="_blank" href="https://steamcommunity.com/profiles/76561199805784382/">Steam</a>
+    <a class="discord" target="_blank" href="https://discordapp.com/users/1298301131641983019">Discord</a>
+    <a class="discord" target="_blank" href="https://discord.gg/rNJ7UaPBYa">DC - INJERTOS MODS</a>
   </div>
 
-  <!-- MAIN (OCULTO HASTA ENTRAR) -->
-  <div id="mainContent">
-    <h1>INJERTOS MODS</h1>
-    <p>"PÁGINA EN MANTENIMIENTO"</p>
-    <div class="socials">
-      <a href="https://open.spotify.com/user/31mtjz2i5m63xek4cp4pevznd74i" target="_blank" class="spotify">Spotify</a>
-      <a href="https://steamcommunity.com/profiles/76561199805784382/" target="_blank" class="steam">Steam</a>
-      <a href="https://discordapp.com/users/1298301131641983019" target="_blank" class="discord">Discord</a>
-      <a href="https://discord.gg/rNJ7UaPBYa" target="_blank" class="discord">DC - INJERTOS MODS</a>
-    </div>
-    <div class="filters">
-      <button class="filter-btn active" onclick="showView('equipo', this)">NUESTRO EQUIPO</button>
-      <button class="filter-btn" onclick="showView('aportes', this)">APORTES</button>
-      <button class="filter-btn" onclick="showView('datas', this)">DATAS</button>
-      <button class="filter-btn" onclick="showView('tops', this)">APORTES TOPS</button>
-    </div>
-    <div class="content">
-      <div id="equipo-view" class="view">
-        <h2 class="equipo-title">NUESTRO EQUIPO</h2>
-        <div class="grid" id="staff-grid"></div>
-        <h2 class="boosters-title">GRACIAS A NUESTROS BOOSTERS</h2>
-        <div class="grid" id="boosters-grid"></div>
-      </div>
-      <div id="aportes-view" class="view" hidden></div>
-      <div id="datas-view" class="view" hidden></div>
-      <div id="tops-view" class="view" hidden></div>
-    </div>
+  <div class="filters">
+    <button class="filter-btn active" onclick="showView('equipo', this)">NUESTRO EQUIPO</button>
+    <button class="filter-btn" onclick="showView('aportes', this)">APORTES</button>
+    <button class="filter-btn" onclick="showView('datas', this)">DATAS</button>
+    <button class="filter-btn" onclick="showView('tops', this)">APORTES TOPS</button>
   </div>
 
-  <!-- Sharingan -->
-  <div class="sharingan-btn" onclick="activarSharingan()">
-    <img src="https://media0.giphy.com/media/AD9YKaY2vxTXO/giphy.gif" alt="Sharingan">
-  </div>
-  <div id="sharingan-overlay" onclick="cerrarSharingan()">
-    <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Sharingan">
-  </div>
-
-  <!-- REPRODUCTOR FLOTANTE -->
-  <div id="floating-player" class="floating-player">
-    <div class="player-header">
-      <button id="minimizeBtn" class="minimize-btn">−</button>
-      <div class="player-title">MÚSICA</div>
-      <button id="musicToggle" class="music-toggle-btn">
-        <i id="playPauseIcon" class="fas fa-play"></i>
-      </button>
-    </div>
-    <div id="player-body" class="player-body">
-      <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
-      <i id="volumeIcon" class="volume-icon fas fa-volume-up"></i>
-    </div>
+  <div class="content">
+    <div id="equipo-view" class="view"></div>
+    <div id="aportes-view" class="view" hidden></div>
+    <div id="datas-view" class="view" hidden></div>
+    <div id="tops-view" class="view" hidden></div>
   </div>
 
-  <!-- Audio -->
-  <audio id="bg-music" loop preload="auto">
-    <source src="https://files.catbox.moe/nkwzd2.mp3" type="audio/mpeg">
-  </audio>
-  <audio id="sharingan-sound" preload="auto">
-    <source src="https://files.catbox.moe/4dxgfn.mp3" type="audio/mpeg">
-  </audio>
+</div>
+<!-- REPRODUCTOR FLOTANTE -->
+<div id="floating-player">
+  <button id="musicToggle"><i id="playPauseIcon" class="fas fa-play"></i></button>
 
-  <script>
-    // === DATOS ===
-    const staff = [
-      { nombre: "HILNZO", rol: "Owner", avatar: "https://cdn.discordapp.com/guilds/1387892493860999319/users/1298301131641983019/avatars/a_1e3d8f261e5560ab8bec9d9277b77f0d.gif" },
-      { nombre: "KALCOR", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1354865570880946176/b7cecb35865ecd6d3fb193cbdb17b860.png" },
-      { nombre: "KAIROX", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1246355878840631327/5a14e4c676a423d04acda0ff29bd225e.png?size=256" },
-      { nombre: "JACOB", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1221849688593137830/9df3e244543051e16ccb8cdab9a851c0.png" },
-      { nombre: "Maik", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1260353622001188875/aa9c8431623d1958d02e42f4f026efe3.png?size=256" },
-      { nombre: "MANZER", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1414075135350280234/c3b5512a81fe635e12eac2a25511b7ca.png" },
-      { nombre: "ISAAC", rol: "Owner", avatar: "https://cdn.discordapp.com/avatars/1079142194071486574/c88ca46b136aeecebe37f49ea026cd77.png?size=256" },
-      { nombre: "David", rol: "SUB ENCARGADO", avatar: "https://cdn.discordapp.com/avatars/1386421165052002366/2fab2aba0968175b3d8e52253a025c5d.png" },
-      { nombre: "Yerlin", rol: "SUB ENCARGADO", avatar: "https://cdn.discordapp.com/avatars/1297359221280739389/0c8e21345db6f35f607546e0dcbf4295.png" },
-      { nombre: "Tom", rol: "MODERADOR", avatar: "https://cdn.discordapp.com/avatars/1310311626737582223/064d6b85c2b423cbf18888e69e1fd7ed.png?size=256" },
-      { nombre: "THOMAS", rol: "MODERADOR", avatar: "https://cdn.discordapp.com/avatars/1353099301303095436/98e9b048bf35b997f1428b17d85211e3.png?size=256" },
-      { nombre: "JOHAN", rol: "HELPER", avatar: "https://cdn.discordapp.com/avatars/1024085595703746590/99f61e9990ad4db442b7e831328278b3.png?size=256" },
-      { nombre: "TOMMY", rol: "HELPER", avatar: "https://cdn.discordapp.com/avatars/1397628533626638428/99e743f3feed7c2e758f668ac42b2b0d.png?size=256" }
-    ];
-    const aportes = [
-      { titulo: "TIFFANY", creador: "HILNZO", contrasena: "tiffanyctmr", video: "https://youtube.com/embed/1Iq2YeDLVmM", descarga: "https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file" },
-      { titulo: "SLICK SICK", creador: "HILNZO", contrasena: "elenfermo", video: "https://youtube.com/embed/7P_oX1rxsjs", descarga: "https://www.mediafire.com/file/l6ucin55qy23set/slick_sick.rar/file" },
-      { titulo: "DRUKS", creador: "HILNZO", contrasena: "hilnzodruks", video: "https://www.youtube.com/embed/FPXuZPFyCd8?si", descarga: "https://www.mediafire.com/file/6d06kpjwz836nu8/DRUKS.rar/file" },
-      { titulo: "BRUTALITY", creador: "JACOB", contrasena: "fuemip", video: "https://youtube.com/embed/fmVS7-nTmD4?enablejsapi=1", descarga: "https://www.mediafire.com/file/rj4hc064ibyu767/BRUTALITY.rar/file" },
-      { titulo: "APORTE GIRLZ", creador: "JACOB", contrasena: "NO TIENE CONTRASEÑA", video: "https://youtube.com/embed/VsXBeqeQHbQ?si", descarga: "https://www.mediafire.com/file/l6dun8dkpstz1ks/GIRLZ.rar/file" },
-      { titulo: "GTA JACKSON", creador: "ZENOM", contrasena: "NO TIENE CONTRASEÑA", video: "https://youtube.com/embed/TbqKW1A9oAo", descarga: "https://www.mediafire.com/file/oyjhveofniiiubx/GTA+jackson.rar/file" },
-    ];
-    const datas = [
-      { titulo: "DataBlue", creador: "MANZER", contrasena: "NO TIENE", video: "https://youtube.com/embed/Tv7fyMCG0G0", descarga: "https://www.mediafire.com/file/12efvtjw3392v58/DataBlue%F0%9F%94%B5MR%24.zip/file" },
-    ];
-    const tops = [
-      { titulo: "SLICK SICK", autor: "HILNZO", descargas: 66, video: "https://youtube.com/embed/7P_oX1rxsjs", descarga: "https://www.mediafire.com/file/l6ucin55qy23set/slick_sick.rar/file" },
-      { titulo: "DRUKS", autor: "HILNZO", descargas: 377, video: "https://youtube.com/embed/FPXuZPFyCd8", descarga: "https://www.mediafire.com/file/6d06kpjwz836nu8/DRUKS.rar/file", contrasena: "hilnzodruks" },
-    ];
-    const boosters = [
-      { nombre: "cami.rain", avatar: "https://cdn.discordapp.com/avatars/1419836001614037103/16c9ce1fbea9937535e1d54730ebccd3.png" },
-      { nombre: "paja_lex", avatar: "https://cdn.discordapp.com/avatars/1085331269220569179/af0094d6d53facd4f13866b8c4f70b48.png" },
-      { nombre: "elms1pz.1", avatar: "https://cdn.discordapp.com/avatars/1436669732718907543/65533892c7e114a5c2590fb6304dbe08.png" },
-    ];
+  <div class="volume-container">
+    <i id="volumeIcon" class="volume-icon fas fa-volume-up"></i>
+    <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
+  </div>
 
-    // === RENDER ===
-    function renderEquipo() {
-      document.getElementById('staff-grid').innerHTML = staff.map(s => `
+  <button id="minimizeBtn" class="minimize-btn"><i class="fas fa-window-minimize"></i></button>
+</div>
+
+<!-- SHARINGAN -->
+<div id="sharingan-overlay">
+  <img src="https://i.pinimg.com/originals/93/9f/96/939f964f2c7d21f8684315e5f611f318.gif">
+</div>
+
+<!-- AUDIO -->
+<audio id="bg-music" loop>
+  <source src="https://cdn.discordapp.com/attachments/1315872636883869708/1332867023472035970/SHIVA_-_INJERTOS_MODS_OFFICIAL_THEME.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="sharingan-sound">
+  <source src="https://cdn.discordapp.com/attachments/1315872636883869708/1332866277260806286/215159__otisjay__sharingan.mp3" type="audio/mpeg">
+</audio>
+<script>
+/* ============================
+   STAFF Y BOOSTERS
+============================ */
+const staff = [
+  { nombre: "Shiva", rol: "FUNDADOR / OWNER", avatar: "https://cdn.discordapp.com/avatars/1298301131641983019/a_96a723ba14e1c6761bb0d8a8b15d7e46.gif" },
+  { nombre: "Joshep", rol: "CO-DUEÑO", avatar: "https://cdn.discordapp.com/avatars/1331636020569643018/a_9d83bb3d0e22db260631c6f96e0d8d94.gif" },
+  { nombre: "Cami", rol: "ADMINISTRADORA", avatar: "https://cdn.discordapp.com/avatars/1419836001614037103/16c9ce1fbea9937535e1d54730ebccd3.png" },
+  { nombre: "Elms", rol: "MODERADOR", avatar: "https://cdn.discordapp.com/avatars/1436669732718907543/65533892c7e114a5c2590fb6304dbe08.png" }
+];
+
+const boosters = [
+  { nombre: "cami.rain", avatar: "https://cdn.discordapp.com/avatars/1419836001614037103/16c9ce1fbea9937535e1d54730ebccd3.png" },
+  { nombre: "paja_lex", avatar: "https://cdn.discordapp.com/avatars/1085331269220569179/af0094d6d53facd4f13866b8c4f70b48.png" },
+  { nombre: "elms1pz.1", avatar: "https://cdn.discordapp.com/avatars/1436669732718907543/65533892c7e114a5c2590fb6304dbe08.png" }
+];
+
+/* ========== APORTES - DATAS - TOPS (VACÍO POR AHORA) ========== */
+const aportes = [];
+const datas = [];
+const tops = [];
+
+/* =============================
+   RENDERIZAR EQUIPOS Y APARTADOS
+============================= */
+function renderEquipo() {
+  document.getElementById('equipo-view').innerHTML = `
+    <h2 class="equipo-title">NUESTRO EQUIPO</h2>
+
+    <div class="grid">
+      ${staff.map(s => `
         <div class="staff-card">
-          <img src="${s.avatar}" alt="${s.nombre}">
-          <div class="staff-name">${s.nombre}</div>
-          <div class="staff-role">${s.rol}</div>
+          <img src="${s.avatar}" style="width:130px; height:130px; border-radius:50%; border:3px solid red;">
+          <h3 style="margin-top:18px;">${s.nombre}</h3>
+          <p style="color:#ff6666; font-weight:bold;">${s.rol}</p>
         </div>
-      `).join('');
-      document.getElementById('boosters-grid').innerHTML = boosters.map(b => `
+      `).join('')}
+    </div>
+
+    <h2 class="equipo-title" style="margin-top:60px;">BOOSTERS</h2>
+    <div class="grid">
+      ${boosters.map(b => `
         <div class="booster-card">
-          <img src="${b.avatar}" alt="${b.nombre}">
-          <div class="staff-name">${b.nombre}</div>
-          <div class="staff-role">BOOSTER</div>
+          <img src="${b.avatar}" style="width:110px; height:110px; border-radius:50%; border:2px solid #ffaa00;">
+          <h3 style="margin-top:18px;">${b.nombre}</h3>
+          <p style="color:#ffaa00; font-weight:bold;">BOOSTER</p>
         </div>
-      `).join('');
-    }
-    function renderAportes() {
-      const view = document.getElementById('aportes-view');
-      view.innerHTML = `<div class="grid">${aportes.map(a => `
-        <div class="aporte">
-          <h3>${a.titulo}</h3>
-          <p><b>CREADOR:</b> ${a.creador}</p>
-          <p><b>CONTRASEÑA:</b> <span style="color:red;font-weight:bold;">${a.contrasena}</span></p>
-          <div class="video-wrapper"><iframe src="${a.video}?enablejsapi=1" allowfullscreen></iframe></div>
-          <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
-        </div>
-      `).join('') || '<p style="color:#ff6b6b; grid-column: 1 / -1;">Pronto más aportes...</p>'}</div>`;
-    }
-    function renderDatas() {
-      const view = document.getElementById('datas-view');
-      view.innerHTML = `<div class="grid">${datas.map(a => `
-        <div class="aporte">
-          <h3>${a.titulo}</h3>
-          <p><b>CREADOR:</b> ${a.creador}</p>
-          <p><b>CONTRASEÑA:</b> <span style="color:red;font-weight:bold;">${a.contrasena}</span></p>
-          <div class="video-wrapper"><iframe src="${a.video}?enablejsapi=1" allowfullscreen></iframe></div>
-          <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
-        </div>
-      `).join('') || '<p style="color:#ff6b6b; grid-column: 1 / -1;">Pronto más datas...</p>'}</div>`;
-    }
-    function renderTops() {
-      document.getElementById('tops-view').innerHTML = `<div class="grid">${tops.map(a => `
-        <div class="aporte">
-          <h3>${a.titulo}</h3>
-          <p><b>CREADOR:</b> ${a.autor}</p>
-          <p><b>DESCARGAS:</b> ${a.descargas}</p>
-          <div class="video-wrapper"><iframe src="${a.video}?enablejsapi=1" allowfullscreen></iframe></div>
-          <a href="${a.descarga}" target="_blank" class="download-btn">DESCARGAR</a>
-        </div>
-      `).join('')}</div>`;
-    }
+      `).join('')}
+    </div>
+  `;
+}
 
-    // === AUDIO & REPRODUCTOR ===
-    const audio = document.getElementById('bg-music');
-    const sharinganSound = document.getElementById('sharingan-sound');
-    const toggleBtn = document.getElementById('musicToggle');
-    const playPauseIcon = document.getElementById('playPauseIcon');
-    const volumeSlider = document.getElementById('volumeSlider');
-    const volumeIcon = document.getElementById('volumeIcon');
-    const player = document.getElementById('floating-player');
-    const minimizeBtn = document.getElementById('minimizeBtn');
-    let unlocked = false;
-    let volume = 0.5;
-    audio.volume = volume;
+function renderAportes() {
+  const view = document.getElementById('aportes-view');
+  view.innerHTML = `<div class="grid">${
+    aportes.map(a => `
+      <div class="aporte">
+        <h3>${a.titulo}</h3>
+        <p><b>CREADOR:</b> ${a.creador}</p>
+        <p><b>CONTRASEÑA:</b> <span style="color:red;font-weight:bold;">${a.contrasena}</span></p>
+        <div class="video-wrapper"><iframe src="${a.video}?enablejsapi=1"></iframe></div>
+        <a href="${a.descarga}" class="download-btn" target="_blank">DESCARGAR</a>
+      </div>
+    `).join('')
+  }</div>` || '<p style="color:#ff6b6b;">Pronto más aportes...</p>';
+}
 
-    function updateVolumeIcon() {
-      if (volume == 0) volumeIcon.className = 'volume-icon fas fa-volume-mute';
-      else if (volume < 0.5) volumeIcon.className = 'volume-icon fas fa-volume-down';
-      else volumeIcon.className = 'volume-icon fas fa-volume-up';
-    }
+function renderDatas() {
+  const view = document.getElementById('datas-view');
+  view.innerHTML = `<div class="grid">${
+    datas.map(a => `
+      <div class="aporte">
+        <h3>${a.titulo}</h3>
+        <p><b>CREADOR:</b> ${a.creador}</p>
+        <p><b>CONTRASEÑA:</b> <span style="color:red;font-weight:bold;">${a.contrasena}</span></p>
+        <div class="video-wrapper"><iframe src="${a.video}?enablejsapi=1"></iframe></div>
+        <a href="${a.descarga}" class="download-btn" target="_blank">DESCARGAR</a>
+      </div>
+    `).join('')
+  }</div>` || '<p style="color:#ff6b6b;">Pronto más datas...</p>';
+}
 
-    function unlockAudio() {
-      if (unlocked) return;
-      unlocked = true;
-      const dummy = new Audio(); dummy.play().catch(() => {});
-    }
+function renderTops() {
+  document.getElementById('tops-view').innerHTML = `<div class="grid">
+    ${tops.map(a => `
+      <div class="aporte">
+        <h3>${a.titulo}</h3>
+        <p><b>CREADOR:</b> ${a.autor}</p>
+        <p><b>DESCARGAS:</b> ${a.descargas}</p>
+        <div class="video-wrapper"><iframe src="${a.video}?enablejsapi=1"></iframe></div>
+        <a href="${a.descarga}" class="download-btn" target="_blank">DESCARGAR</a>
+      </div>
+    `).join('')}
+  </div>`;
+}
 
-    toggleBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      unlockAudio();
-      if (audio.paused) {
-        audio.play();
-        toggleBtn.classList.add('playing');
-        playPauseIcon.className = 'fas fa-pause';
-        sessionStorage.setItem('musicPlaying', 'true');
+/* ============================
+   AUDIO + REPRODUCTOR FLOTANTE
+============================ */
+const audio = document.getElementById('bg-music');
+const sharinganSound = document.getElementById('sharingan-sound');
+
+const toggleBtn = document.getElementById('musicToggle');
+const playPauseIcon = document.getElementById('playPauseIcon');
+const volumeSlider = document.getElementById('volumeSlider');
+const volumeIcon = document.getElementById('volumeIcon');
+const player = document.getElementById('floating-player');
+
+let unlocked = false;
+let volume = 0.5;
+
+audio.volume = volume;
+
+function updateVolumeIcon() {
+  if (volume == 0) volumeIcon.className = 'fas fa-volume-mute';
+  else if (volume < 0.5) volumeIcon.className = 'fas fa-volume-down';
+  else volumeIcon.className = 'fas fa-volume-up';
+}
+
+function unlockAudio() {
+  if (unlocked) return;
+  unlocked = true;
+  const dummy = new Audio();
+  dummy.play().catch(()=>{});
+}
+
+toggleBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  unlockAudio();
+
+  if (audio.paused) {
+    audio.play();
+    toggleBtn.classList.add('playing');
+    playPauseIcon.className = 'fas fa-pause';
+    sessionStorage.setItem('musicPlaying', 'true');
+  } else {
+    audio.pause();
+    toggleBtn.classList.remove('playing');
+    playPauseIcon.className = 'fas fa-play';
+    sessionStorage.setItem('musicPlaying', 'false');
+  }
+});
+
+volumeSlider.addEventListener('input', e => {
+  unlockAudio();
+  volume = e.target.value;
+  audio.volume = volume;
+  updateVolumeIcon();
+});
+
+/* ============================
+   MINIMIZAR / ARRASTRAR PLAYER
+============================ */
+let isDragging = false, initialX, initialY, currentX, currentY;
+
+player.addEventListener('mousedown', startDrag);
+player.addEventListener('touchstart', startDrag, { passive:false });
+
+function startDrag(e) {
+  if (e.target.closest('#volumeSlider') || e.target.closest('#musicToggle') || e.target.closest('#minimizeBtn')) return;
+
+  isDragging = true;
+  initialX = e.clientX || e.touches[0].clientX;
+  initialY = e.clientY || e.touches[0].clientY;
+  currentX = player.offsetLeft;
+  currentY = player.offsetTop;
+
+  player.style.transition = "none";
+}
+
+document.addEventListener('mousemove', drag);
+document.addEventListener('touchmove', drag, { passive:false });
+document.addEventListener('mouseup', stopDrag);
+document.addEventListener('touchend', stopDrag);
+
+function drag(e) {
+  if (!isDragging) return;
+  e.preventDefault();
+
+  const x = (e.clientX || e.touches[0].clientX) - initialX;
+  const y = (e.clientY || e.touches[0].clientY) - initialY;
+
+  player.style.left = `${currentX + x}px`;
+  player.style.top = `${currentY + y}px`;
+  player.style.bottom = "auto";
+}
+
+function stopDrag() {
+  isDragging = false;
+  player.style.transition = "all .25s";
+}
+
+/* ============================
+       INTRO (ENTRAR)
+============================ */
+function enterSite() {
+  unlockAudio();
+  audio.play().catch(()=>{});
+
+  toggleBtn.classList.add('playing');
+  playPauseIcon.className = 'fas fa-pause';
+
+  document.getElementById("intro-overlay").style.display = "none";
+  document.getElementById("mainContent").style.display = "block";
+
+  sessionStorage.setItem('hasEntered', 'true');
+  sessionStorage.setItem('musicPlaying', 'true');
+
+  const savedView = sessionStorage.getItem('currentView') || 'equipo';
+  const btn = document.querySelector(`.filter-btn[onclick*="${savedView}"]`);
+  if (btn) showView(savedView, btn);
+
+  updateVolumeIcon();
+}
+
+/* ============================
+         VISTAS
+============================ */
+function showView(view, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  ['equipo','aportes','datas','tops'].forEach(v => {
+    document.getElementById(v+'-view').hidden = true;
+  });
+
+  document.getElementById(view+'-view').hidden = false;
+
+  if (view === 'equipo') renderEquipo();
+  if (view === 'aportes') renderAportes();
+  if (view === 'datas') renderDatas();
+  if (view === 'tops') renderTops();
+
+  sessionStorage.setItem('currentView', view);
+}
+
+/* ============================
+        SHARINGAN
+============================ */
+function activarSharingan() {
+  const overlay = document.getElementById("sharingan-overlay");
+  overlay.classList.add("active");
+
+  if (unlocked) {
+    sharinganSound.currentTime = 0;
+    sharinganSound.play().catch(()=>{});
+  }
+
+  setTimeout(()=>{
+    location.href = "aportes-exclusivos.html";
+  }, 3000);
+}
+
+function cerrarSharingan() {
+  document.getElementById("sharingan-overlay").classList.remove("active");
+  if (unlocked) sharinganSound.pause();
+}
+
+/* ============================
+        YOUTUBE API
+============================ */
+function loadYouTubeAPI() {
+  if (!window.YT) {
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.head.appendChild(tag);
+  }
+}
+
+window.onYouTubeIframeAPIReady = function() {
+  document.querySelectorAll("iframe").forEach(iframe => {
+    new YT.Player(iframe, {
+      events: {
+        'onStateChange': e => {
+          if (e.data === 1 && !audio.paused) {
+            audio.pause();
+            sessionStorage.setItem('musicPlaying', 'false');
+          } else if ((e.data === 0 || e.data === 2) && sessionStorage.getItem('musicPlaying') === 'true') {
+            audio.play().catch(()=>{});
+          }
+        }
+      }
+    });
+  });
+};
+
+/* ============================
+     RESETEAR INTRO AL VOLVER
+============================ */
+function resetToIntro() {
+  document.getElementById('intro-overlay').style.display = 'flex';
+  document.getElementById('mainContent').style.display = 'none';
+
+  audio.pause();
+  toggleBtn.classList.remove('playing');
+  playPauseIcon.className = 'fas fa-play';
+
+  updateVolumeIcon();
+
+  sessionStorage.removeItem('hasEntered');
+  sessionStorage.removeItem('musicPlaying');
+  sessionStorage.removeItem('currentView');
+}
+
+window.addEventListener('load', resetToIntro);
+window.addEventListener('pageshow', e => {
+  if (e.persisted) resetToIntro();
+});
+<script>
+/* ============================
+   LUCES NAVIDEÑAS (CSS INJECT)
+   - Añadimos estilos dinámicamente para evitar problemas con orden de estilos.
+============================ */
+(function injectLightStyles(){
+  const css = `
+  /* LUCES NAVIDEÑAS */
+  #xmas-lights-container { position: fixed; inset: 0; pointer-events: none; z-index: 99999; }
+  .xmas-light { position: absolute; width: 14px; height: 14px; border-radius: 50%;
+                box-shadow: 0 0 8px rgba(255,255,255,0.15), 0 0 12px rgba(0,0,0,0.25) inset;
+                transform: translate(-50%,-50%); }
+  .xmas-light.red { background: #ff3b3b; filter: drop-shadow(0 0 8px #ff5b5b); }
+  .xmas-light.green { background: #33ff88; filter: drop-shadow(0 0 8px #66ffaa); }
+  .xmas-light.yellow { background: #fff36b; filter: drop-shadow(0 0 8px #fff99a); }
+  .xmas-light.blue { background: #4da6ff; filter: drop-shadow(0 0 8px #7fcaff); }
+  .xmas-light.cyan { background: #2ef0e6; filter: drop-shadow(0 0 8px #7ff7f3); }
+  .xmas-light.magenta { background: #ff6bff; filter: drop-shadow(0 0 8px #ff95ff); }
+
+  @keyframes xmasBlink {
+    0% { opacity: 0.18; transform: translate(-50%,-50%) scale(0.86); }
+    50% { opacity: 1; transform: translate(-50%,-50%) scale(1.06); }
+    100% { opacity: 0.18; transform: translate(-50%,-50%) scale(0.86); }
+  }`;
+  const s = document.createElement('style');
+  s.appendChild(document.createTextNode(css));
+  document.head.appendChild(s);
+})();
+
+/* ============================
+   GENERADOR DE LUCES (con regeneración on resize)
+============================ */
+(function generateLights(){
+  const container = document.getElementById('xmas-lights-container');
+  if(!container) return;
+
+  const colorClasses = ['red','green','yellow','blue','cyan','magenta'];
+
+  // crea las luces alrededor del borde - usa porcentaje para que se adapten al redimensionar
+  function buildLights(count = 72) {
+    container.innerHTML = ''; // limpiar
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+
+    for (let i = 0; i < count; i++) {
+      const el = document.createElement('div');
+      el.className = 'xmas-light ' + colorClasses[i % colorClasses.length];
+
+      // Distribución por perímetro (0..1)
+      const per = i / count;
+      // cada cara del rectángulo recibe 1/4 de las luces
+      if (per < 0.25) {
+        // top edge
+        const x = (per / 0.25) * 100;
+        el.style.left = x + '%';
+        el.style.top = '0%';
+      } else if (per < 0.5) {
+        // right edge
+        const y = ((per - 0.25) / 0.25) * 100;
+        el.style.left = '100%';
+        el.style.top = y + '%';
+      } else if (per < 0.75) {
+        // bottom edge (right->left)
+        const x = (1 - ((per - 0.5) / 0.25)) * 100;
+        el.style.left = x + '%';
+        el.style.top = '100%';
       } else {
-        audio.pause();
-        toggleBtn.classList.remove('playing');
-        playPauseIcon.className = 'fas fa-play';
-        sessionStorage.setItem('musicPlaying', 'false');
+        // left edge (bottom->top)
+        const y = (1 - ((per - 0.75) / 0.25)) * 100;
+        el.style.left = '0%';
+        el.style.top = y + '%';
       }
-    });
 
-    volumeSlider.addEventListener('input', (e) => {
-      unlockAudio();
-      volume = e.target.value;
-      audio.volume = volume;
-      updateVolumeIcon();
-    });
-
-    // === MINIMIZAR / ABRIR ===
-    player.addEventListener('click', (e) => {
-      if (player.classList.contains('minimized') && !e.target.closest('#minimizeBtn')) {
-        player.classList.remove('minimized');
+      // ligera "colgadura" vertical (top/bottom) o horizontal (left/right)
+      // para que no queden exactamente pegadas al borde, desplazamos un poco dentro
+      const offset = (Math.random() * 8) + 6; // 6..14 px
+      const isTopOrBottom = (el.style.top === '0%' || el.style.top === '100%');
+      if (isTopOrBottom) {
+        // mover hacia dentro en px en Y
+        el.style.transform += ` translateY(${el.style.top==='0%'?offset+'px':-offset+'px'})`;
+      } else {
+        el.style.transform += ` translateX(${el.style.left==='0%'?offset+'px':-offset+'px'})`;
       }
-    });
-    minimizeBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      player.classList.add('minimized');
-    });
 
-    // === ARRASTRAR ===
-    let isDragging = false, initialX, initialY, currentX = 20, currentY;
-    function startDrag(e) {
-      if (player.classList.contains('minimized') || e.target.closest('#volumeSlider') || e.target.closest('#musicToggle') || e.target.closest('#minimizeBtn')) return;
-      isDragging = true;
-      initialX = e.clientX || e.touches[0].clientX;
-      initialY = e.clientY || e.touches[0].clientY;
-      currentX = player.offsetLeft;
-      currentY = player.offsetTop;
-      player.style.transition = 'none';
-    }
-    function drag(e) {
-      if (!isDragging) return;
-      e.preventDefault();
-      const x = (e.clientX || e.touches[0].clientX) - initialX;
-      const y = (e.clientY || e.touches[0].clientY) - initialY;
-      player.style.left = `${currentX + x}px`;
-      player.style.top = `${currentY + y}px`;
-      player.style.bottom = 'auto';
-    }
-    function stopDrag() {
-      if (!isDragging) return;
-      isDragging = false;
-      player.style.transition = 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)';
-    }
-    player.addEventListener('mousedown', startDrag);
-    player.addEventListener('touchstart', startDrag, { passive: false });
-    document.addEventListener('mousemove', drag);
-    document.addEventListener('touchmove', drag, { passive: false });
-    document.addEventListener('mouseup', stopDrag);
-    document.addEventListener('touchend', stopDrag);
+      // animación desordenada
+      el.style.animation = `xmasBlink ${1.2 + Math.random()*1.4}s infinite`;
+      el.style.animationDelay = `${Math.random()*1.5}s`;
 
-    // === ENTRAR (OBLIGATORIO) ===
-    function enterSite() {
-      unlockAudio();
-      audio.play().catch(() => {});
-      toggleBtn.classList.add('playing');
-      playPauseIcon.className = 'fas fa-pause';
-      document.getElementById('intro-overlay').style.display = 'none';
-      document.getElementById('mainContent').style.display = 'block';
-      sessionStorage.setItem('hasEntered', 'true');
-      sessionStorage.setItem('musicPlaying', 'true');
-      const savedView = sessionStorage.getItem('currentView') || 'equipo';
-      const btn = document.querySelector(`.filter-btn[onclick*="${savedView}"]`);
-      if (btn) showView(savedView, btn);
-      updateVolumeIcon();
-      loadYouTubeAPI();
+      container.appendChild(el);
     }
+  }
 
-    // === VISTAS ===
-    function showView(view, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      ['equipo', 'aportes', 'datas', 'tops'].forEach(v => {
-        document.getElementById(v + '-view').hidden = true;
-      });
-      document.getElementById(view + '-view').hidden = false;
-      document.querySelectorAll('iframe').forEach(iframe => {
-        try { iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*'); } catch (e) {}
-      });
-      if (view === 'equipo') renderEquipo();
-      if (view === 'aportes') renderAportes();
-      if (view === 'datas') renderDatas();
-      if (view === 'tops') renderTops();
-      sessionStorage.setItem('currentView', view);
+  // Inicial
+  buildLights(80);
+
+  // Regenerar suavemente al redimensionar (debounce)
+  let to; window.addEventListener('resize', () => {
+    clearTimeout(to);
+    to = setTimeout(() => buildLights( Math.max(40, Math.round((window.innerWidth + window.innerHeight)/40)) ), 180);
+  });
+})();
+
+/* ============================
+   NIEVE REALISTA (CANVAS)
+============================ */
+(function snowModule(){
+  // evita re-inicializaciones accidentalmente si el script se pega dos veces
+  if (window.__snowInjected) return;
+  window.__snowInjected = true;
+
+  // crear canvas si no existe (en caso de pegar dos veces)
+  let canvas = document.getElementById('snow-canvas');
+  if (!canvas) {
+    canvas = document.createElement('canvas');
+    canvas.id = 'snow-canvas';
+    document.body.appendChild(canvas);
+  }
+  const ctx = canvas.getContext('2d');
+
+  // estilo del canvas (arriba de todo pero sin bloquear eventos)
+  Object.assign(canvas.style, {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    pointerEvents: 'none',
+    zIndex: 8000
+  });
+
+  let DPR = Math.max(1, window.devicePixelRatio || 1);
+  let W = 0, H = 0;
+  function resize() {
+    DPR = Math.max(1, window.devicePixelRatio || 1);
+    W = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    H = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+    canvas.width = Math.floor(W * DPR);
+    canvas.height = Math.floor(H * DPR);
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  // partículas
+  const flakes = [];
+  const NUM = Math.round((W * H) / (1280 * 720) * 200) || 160; // escala con tamaño de pantalla
+
+  class Flake {
+    constructor(first = false){
+      this.reset(first);
     }
+    reset(first = false){
+      this.x = Math.random() * W;
+      this.y = first ? Math.random() * H : -10 - Math.random()*H*0.1;
+      this.baseSize = Math.random() * 3.6 + 0.8; // 0.8 .. 4.4
+      this.size = this.baseSize;
+      this.depth = Math.random() * 0.9 + 0.1; // 0.1 .. 1.0
+      this.speed = (0.3 + this.depth * 1.8) * (0.6 + Math.random()*0.8);
+      this.wind = (Math.random() * 0.8 - 0.4); // -0.4 .. 0.4
+      this.angle = Math.random() * Math.PI * 2;
+      this.spin = (Math.random() * 0.04 - 0.02);
+      this.opacity = 0.35 + Math.random() * 0.7;
+    }
+    update(dt, time){
+      // gravedad + oscilación sutil
+      this.angle += this.spin;
+      this.y += this.speed;
+      // parallax x movement
+      this.x += Math.sin(time * 0.0005 + this.angle) * (0.3 * (1/this.depth)) + this.wind;
 
-    // === YOUTUBE API ===
-    function loadYouTubeAPI() {
-      if (!window.YT) {
-        const tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        document.head.appendChild(tag);
+      // ligero cambio de tamaño por "pulso"
+      this.size = this.baseSize * (0.9 + Math.sin(this.angle*2)*0.12);
+
+      if (this.y > H + 10 || this.x < -30 || this.x > W + 30) {
+        this.reset();
       }
     }
-    window.onYouTubeIframeAPIReady = function() {
-      document.querySelectorAll('iframe').forEach(iframe => {
-        new YT.Player(iframe, {
-          events: { 'onStateChange': e => {
-            if (e.data === 1 && !audio.paused) {
-              audio.pause();
-              sessionStorage.setItem('musicPlaying', 'false');
-            } else if ((e.data === 0 || e.data === 2) && audio.paused && sessionStorage.getItem('musicPlaying') === 'true') {
-              audio.play().catch(() => {});
-            }
-          }}
-        });
-      });
-    };
+    draw(ctx){
+      ctx.save();
+      ctx.globalAlpha = Math.min(1, this.opacity);
+      // desenfoque sutil: dibujar 2 círculos, uno grande con baja alpha, uno pequeño más definido
+      ctx.beginPath();
+      ctx.fillStyle = 'rgba(255,255,255,0.18)';
+      ctx.arc(this.x, this.y, this.size*1.8, 0, Math.PI*2);
+      ctx.fill();
 
-    // === RESET A INTRO (AL CARGAR O VOLVER ATRÁS) ===
-    function resetToIntro() {
-      document.getElementById('intro-overlay').style.display = 'flex';
-      document.getElementById('mainContent').style.display = 'none';
-      document.getElementById('sharingan-overlay').classList.remove('active');
-      audio.pause();
-      toggleBtn.classList.remove('playing');
-      playPauseIcon.className = 'fas fa-play';
-      updateVolumeIcon();
-      sessionStorage.removeItem('hasEntered');
-      sessionStorage.removeItem('musicPlaying');
-      sessionStorage.removeItem('currentView');
+      ctx.beginPath();
+      ctx.fillStyle = 'rgba(255,255,255,0.95)';
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  // poblar
+  function initFlakes(){
+    flakes.length = 0;
+    const count = Math.max(80, Math.min(260, Math.round(NUM)));
+    for (let i=0;i<count;i++) flakes.push(new Flake(true));
+  }
+  initFlakes();
+
+  // animación
+  let last = performance.now();
+  function loop(now){
+    const dt = now - last;
+    last = now;
+
+    ctx.clearRect(0,0,W,H);
+
+    // ordena por tamaño (profundidad visual)
+    flakes.sort((a,b)=> a.baseSize - b.baseSize);
+
+    for (let f of flakes){
+      f.update(dt, now);
+      f.draw(ctx);
     }
 
-    window.addEventListener('load', resetToIntro);
-    window.addEventListener('pageshow', (event) => {
-      if (event.persisted) {
-        resetToIntro();
-      }
-    });
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
 
-    // === SHARINGAN ===
-    function activarSharingan() {
-      document.getElementById('sharingan-overlay').classList.add('active');
-      if (unlocked) {
-        sharinganSound.currentTime = 0;
-        sharinganSound.play().catch(() => {});
-      }
-      setTimeout(() => {
-        location.href = "aportes-exclusivos.html";
-      }, 3000);
-    }
-    function cerrarSharingan() {
-      document.getElementById('sharingan-overlay').classList.remove('active');
-      if (unlocked) sharinganSound.pause();
-    }
+  // reiniciar si redimensiona mucho (recalcular NUM y reiniciar)
+  let rto;
+  window.addEventListener('resize', () => {
+    clearTimeout(rto);
+    rto = setTimeout(()=> {
+      resize();
+      initFlakes();
+    }, 160);
+  });
+})();
+</script>
 
-    document.body.addEventListener('click', unlockAudio, { once: true });
-    document.body.addEventListener('touchstart', unlockAudio, { once: true });
-  </script>
 </body>
 </html>
