@@ -2,792 +2,377 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <title>INJERTOS MODS</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="icon" href="https://i.imgur.com/abc123.png" type="image/png" sizes="32x32">
-  <link rel="icon" href="https://i.imgur.com/abc123.png" type="image/png" sizes="16x16">
-  <link rel="apple-touch-icon" href="https://i.imgur.com/abc123.png">
-  <link rel="shortcut icon" href="https://i.imgur.com/abc123.ico" type="image/x-icon">
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap');
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
+    * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      font-family: 'Orbitron', sans-serif;
-      color: white;
-      text-align: center;
-      background: #000;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-      -webkit-tap-highlight-color: transparent;
+      background:black;
+      color:white;
+      font-family: Arial, sans-serif;
+      overflow-x:hidden;
     }
 
+    /* Fondo */
     .background-container {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: url('https://imgur.com/VcWPdTD.jpg') no-repeat center center;
-      background-size: cover;
-      z-index: -1;
-      filter: brightness(0.6);
+      position:fixed;
+      top:0; left:0;
+      width:100%; height:100%;
+      background:url('https://imgur.com/VcWPdTD.jpg') no-repeat center;
+      background-size:cover;
+      filter:brightness(0.6);
+      z-index:-5;
     }
 
-    h1 {
-      font-size: 3.5rem;
-      margin: 20px 0;
-      text-shadow: 0 0 20px red, 0 0 40px #ff0000;
-      color: #ff1a1a;
+    /* Luces navideñas */
+    #xmas-lights-container {
+      position:fixed;
+      top:0; left:0;
+      width:100%; height:100%;
+      z-index:9999;
+      pointer-events:none;
+    }
+    .xmas-light {
+      position:absolute;
+      width:14px; height:14px;
+      border-radius:50%;
+      animation:blink 1s infinite alternate;
+    }
+    @keyframes blink { from{opacity:0.4;} to{opacity:1;} }
+
+    /* Nieve */
+    #snowCanvas {
+      position:fixed;
+      top:0; left:0;
+      width:100%; height:100%;
+      z-index:5000;
+      pointer-events:none;
     }
 
-    p { font-size: 1.3rem; margin-bottom: 30px; font-weight: bold; }
-
-    .socials { margin-top: 20px; }
-    .socials a {
-      display: inline-block;
-      margin: 10px;
-      padding: 12px 25px;
-      border-radius: 12px;
-      color: white;
-      text-decoration: none;
-      font-size: 1.2rem;
-      font-weight: bold;
-      font-family: "Courier New", monospace;
-      transition: 0.3s;
-      box-shadow: 0 0 8px rgba(255,255,255,0.3);
+    /* INTRO */
+    #intro-overlay {
+      position:fixed;
+      top:0; left:0;
+      width:100%; height:100%;
+      background:black;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      z-index:99999;
+    }
+    #intro-overlay button {
+      margin-top:20px;
+      padding:14px 25px;
+      background:red;
+      color:white;
+      border:none;
+      border-radius:12px;
+      font-size:1.4rem;
+      cursor:pointer;
     }
 
-    .socials a.spotify { background: #1DB954; }
-    .socials a.steam { background: #171A21; }
-    .socials a.discord { background: #5865F2; }
+    /* CONTENIDO */
+    #mainContent { display:none; padding:40px 10px; text-align:center; }
 
-    .filters {
-      margin: 30px 0;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
+    /* Vistas */
+    .filters { margin:20px 0; display:flex; justify-content:center; gap:15px; }
     .filter-btn {
-      padding: 12px 25px;
-      background: #111;
-      border: 2px solid red;
-      color: white;
-      border-radius: 12px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 1.1rem;
-      transition: 0.3s;
+      padding:10px 25px;
+      border:2px solid red;
+      background:black;
+      color:white;
+      cursor:pointer;
+      border-radius:10px;
     }
+    .filter-btn.active { background:red; }
 
-    .filter-btn.active, .filter-btn:hover {
-      background: red;
-      box-shadow: 0 0 20px red;
-    }
-
-    .content {
-      max-width: 1600px;
-      margin: 0 auto;
-      padding: 0 15px;
-    }
-
-    /* GRID GENERAL */
+    .view { margin-top:30px; }
     .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 30px;
-      margin-top: 20px;
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+      gap:25px;
+      max-width:1000px;
+      margin:auto;
     }
 
-    /* TARJETAS */
-    .aporte {
-      background: rgba(0,0,0,0.78);
-      padding: 30px;
-      border-radius: 18px;
-      border: 2px solid red;
-      box-shadow: 0 0 70px rgba(255,0,0,0.9);
-      transition: all 0.3s ease;
-      text-align: left;
-      line-height: 1.9;
-      min-height: 500px;
+    /* Tarjetas */
+    .card {
+      background:rgba(0,0,0,0.7);
+      border:2px solid red;
+      border-radius:18px;
+      padding:20px;
+      text-align:center;
+      box-shadow:0 0 25px red;
     }
-
-    .aporte:hover {
-      box-shadow: 0 0 120px rgba(255,0,0,1.2);
-      transform: translateY(-6px);
+    .card img {
+      width:100px; height:100px;
+      border-radius:50%;
+      border:3px solid red;
+      margin-bottom:10px;
     }
-
     .video-wrapper {
-      position: relative;
-      width: 100%;
-      height: 0;
-      padding-bottom: 56.25%;
-      margin: 18px 0;
-      background: #000;
-      border-radius: 12px;
-      overflow: hidden;
+      position:relative;
+      padding-bottom:56.25%;
+      height:0;
+      margin:10px 0;
     }
-
     .video-wrapper iframe {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border: none;
+      position:absolute;
+      top:0; left:0;
+      width:100%; height:100%;
+      border:none;
+      border-radius:12px;
     }
-
     .download-btn {
-      margin-top: auto;
-      align-self: center;
-      padding: 14px 32px;
-      background: red;
-      color: white;
-      font-weight: bold;
-      border-radius: 14px;
-      text-decoration: none;
-      font-size: 1.3rem;
-    }
-
-    /* STAFF */
-    #equipo-view {
-      background: linear-gradient(135deg, rgba(50,0,0,0.9), rgba(0,0,0,0.95));
-      padding: 50px 20px;
-      border-radius: 25px;
-      border: 3px solid #ff0000;
-      box-shadow: 0 0 80px rgba(255,0,0,0.7);
-    }
-
-    .equipo-title {
-      font-size: 4rem;
-      color: #ff1a1a;
-      text-shadow: 0 0 60px #ff0000;
-      margin-bottom: 40px;
-    }
-
-    .staff-card, .booster-card {
-      background: rgba(20,0,0,0.8);
-      padding: 25px;
-      border-radius: 20px;
-      border: 2px solid #ff3333;
-      box-shadow: 0 0 50px rgba(255,0,0,0.8);
-      transition: all 0.4s;
+      display:inline-block;
+      margin-top:10px;
+      padding:10px 20px;
+      background:red;
+      color:white;
+      border-radius:10px;
+      font-weight:bold;
+      text-decoration:none;
     }
   </style>
 
 </head>
-
 <body>
 
-<!-- LUCES NAVIDEÑAS -->
-<div id="xmas-lights-container"></div>
-
-<!-- FONDO -->
 <div class="background-container"></div>
+<div id="xmas-lights-container"></div>
+<canvas id="snowCanvas"></canvas>
 
 <!-- INTRO -->
 <div id="intro-overlay">
-  <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" alt="Intro">
+  <img src="https://i.pinimg.com/originals/44/9c/17/449c175588d56442fd162990ac428759.gif" width="300">
   <button onclick="enterSite()">ENTRAR</button>
 </div>
 
-<!-- CONTENIDO PRINCIPAL -->
-<div id="mainContent" style="display:none;">
-
+<!-- CONTENIDO -->
+<div id="mainContent">
   <h1>INJERTOS MODS</h1>
-  <p>"PÁGINA EN MANTENIMIENTO"</p>
-
-  <div class="socials">
-    <a class="spotify" target="_blank" href="https://open.spotify.com/user/31mtjz2i5m63xek4cp4pevznd74i">Spotify</a>
-    <a class="steam" target="_blank" href="https://steamcommunity.com/profiles/76561199805784382/">Steam</a>
-    <a class="discord" target="_blank" href="https://discordapp.com/users/1298301131641983019">Discord</a>
-    <a class="discord" target="_blank" href="https://discord.gg/rNJ7UaPBYa">DC - INJERTOS MODS</a>
-  </div>
+  <p>"Página limpia con datos reducidos"</p>
 
   <div class="filters">
-    <button class="filter-btn active" onclick="showView('equipo', this)">NUESTRO EQUIPO</button>
+    <button class="filter-btn active" onclick="showView('equipo', this)">EQUIPO</button>
     <button class="filter-btn" onclick="showView('aportes', this)">APORTES</button>
     <button class="filter-btn" onclick="showView('datas', this)">DATAS</button>
-    <button class="filter-btn" onclick="showView('tops', this)">APORTES TOPS</button>
+    <button class="filter-btn" onclick="showView('tops', this)">TOPS</button>
   </div>
 
-  <div class="content">
-    <div id="equipo-view" class="view"></div>
-    <div id="aportes-view" class="view" hidden></div>
-    <div id="datas-view" class="view" hidden></div>
-    <div id="tops-view" class="view" hidden></div>
+  <div class="view" id="equipo-view">
+    <div class="grid" id="staff-grid"></div>
+    <h2>BOOSTER</h2>
+    <div class="grid" id="boosters-grid"></div>
   </div>
 
-</div>
-<!-- REPRODUCTOR FLOTANTE -->
-<div id="floating-player">
-  <button id="musicToggle"><i id="playPauseIcon" class="fas fa-play"></i></button>
+  <div class="view" id="aportes-view" hidden></div>
+  <div class="view" id="datas-view" hidden></div>
+  <div class="view" id="tops-view" hidden></div>
 
-  <div class="volume-container">
-    <i id="volumeIcon" class="volume-icon fas fa-volume-up"></i>
-    <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
-  </div>
-
-  <button id="minimizeBtn" class="minimize-btn"><i class="fas fa-window-minimize"></i></button>
 </div>
 
-<!-- SHARINGAN -->
-<div id="sharingan-overlay">
-  <img src="https://i.pinimg.com/originals/93/9f/96/939f964f2c7d21f8684315e5f611f318.gif">
-</div>
-
-<!-- AUDIO -->
-<audio id="bg-music" loop>
-  <source src="https://cdn.discordapp.com/attachments/1315872636883869708/1332867023472035970/SHIVA_-_INJERTOS_MODS_OFFICIAL_THEME.mp3" type="audio/mpeg">
-</audio>
-
-<audio id="sharingan-sound">
-  <source src="https://cdn.discordapp.com/attachments/1315872636883869708/1332866277260806286/215159__otisjay__sharingan.mp3" type="audio/mpeg">
-</audio>
 <script>
 /* ============================
-   STAFF Y BOOSTERS
+   DATOS REDUCIDOS A 1 C/U
 ============================ */
+
 const staff = [
-  { nombre: "Shiva", rol: "FUNDADOR / OWNER", avatar: "https://cdn.discordapp.com/avatars/1298301131641983019/a_96a723ba14e1c6761bb0d8a8b15d7e46.gif" },
-  { nombre: "Joshep", rol: "CO-DUEÑO", avatar: "https://cdn.discordapp.com/avatars/1331636020569643018/a_9d83bb3d0e22db260631c6f96e0d8d94.gif" },
-  { nombre: "Cami", rol: "ADMINISTRADORA", avatar: "https://cdn.discordapp.com/avatars/1419836001614037103/16c9ce1fbea9937535e1d54730ebccd3.png" },
-  { nombre: "Elms", rol: "MODERADOR", avatar: "https://cdn.discordapp.com/avatars/1436669732718907543/65533892c7e114a5c2590fb6304dbe08.png" }
+  { nombre:"HILNZO", rol:"Owner", avatar:"https://cdn.discordapp.com/avatars/1298301131641983019/a_1e3d8f261e5560ab8bec9d92777f0d.gif" }
 ];
 
 const boosters = [
-  { nombre: "cami.rain", avatar: "https://cdn.discordapp.com/avatars/1419836001614037103/16c9ce1fbea9937535e1d54730ebccd3.png" },
-  { nombre: "paja_lex", avatar: "https://cdn.discordapp.com/avatars/1085331269220569179/af0094d6d53facd4f13866b8c4f70b48.png" },
-  { nombre: "elms1pz.1", avatar: "https://cdn.discordapp.com/avatars/1436669732718907543/65533892c7e114a5c2590fb6304dbe08.png" }
+  { nombre:"cami.rain", avatar:"https://cdn.discordapp.com/avatars/1419836001614037103/16c9ce1fbea9937535e1d54730ebccd3.png" }
 ];
 
-/* ========== APORTES - DATAS - TOPS (VACÍO POR AHORA) ========== */
-const aportes = [];
-const datas = [];
-const tops = [];
+const aportes = [
+  { titulo:"TIFFANY", creador:"HILNZO", contrasena:"tiffanyctmr", video:"https://youtube.com/embed/1Iq2YeDLVmM", descarga:"https://www.mediafire.com/file/wsiz41zichaeqxo/Tiffany.rar/file" }
+];
 
-/* =============================
-   RENDERIZAR EQUIPOS Y APARTADOS
-============================= */
+const datas = [
+  { titulo:"DataBlue", creador:"MANZER", contrasena:"NO TIENE", video:"https://youtube.com/embed/Tv7fyMCG0G0", descarga:"https://www.mediafire.com/file/12efvtjw3392v58/DataBlue%F0%9F%94%B5MR%24.zip/file" }
+];
+
+const tops = [
+  { titulo:"SLICK SICK", autor:"HILNZO", descargas:73, video:"https://youtube.com/embed/7P_oX1rxsjs", descarga:"https://www.mediafire.com/file/l6ucin55qy23set/slick_sick.rar/file" }
+];
+
+/* ============================
+   RENDER
+============================ */
+
 function renderEquipo() {
-  document.getElementById('equipo-view').innerHTML = `
-    <h2 class="equipo-title">NUESTRO EQUIPO</h2>
+  document.getElementById("staff-grid").innerHTML =
+    staff.map(s=>`
+      <div class="card">
+        <img src="${s.avatar}">
+        <h3>${s.nombre}</h3>
+        <p>${s.rol}</p>
+      </div>
+    `).join("");
 
-    <div class="grid">
-      ${staff.map(s => `
-        <div class="staff-card">
-          <img src="${s.avatar}" style="width:130px; height:130px; border-radius:50%; border:3px solid red;">
-          <h3 style="margin-top:18px;">${s.nombre}</h3>
-          <p style="color:#ff6666; font-weight:bold;">${s.rol}</p>
-        </div>
-      `).join('')}
-    </div>
+  document.getElementById("boosters-grid").innerHTML =
+    boosters.map(b=>`
+      <div class="card">
+        <img src="${b.avatar}">
+        <h3>${b.nombre}</h3>
+        <p>BOOSTER</p>
+      </div>
+    `).join("");
+}
 
-    <h2 class="equipo-title" style="margin-top:60px;">BOOSTERS</h2>
+function renderAportes(){
+  document.getElementById("aportes-view").innerHTML = `
     <div class="grid">
-      ${boosters.map(b => `
-        <div class="booster-card">
-          <img src="${b.avatar}" style="width:110px; height:110px; border-radius:50%; border:2px solid #ffaa00;">
-          <h3 style="margin-top:18px;">${b.nombre}</h3>
-          <p style="color:#ffaa00; font-weight:bold;">BOOSTER</p>
+      ${aportes.map(a=>`
+        <div class="card">
+          <h3>${a.titulo}</h3>
+          <p><b>Creador:</b> ${a.creador}</p>
+          <p><b>Contraseña:</b> ${a.contrasena}</p>
+          <div class="video-wrapper"><iframe src="${a.video}"></iframe></div>
+          <a class="download-btn" href="${a.descarga}" target="_blank">DESCARGAR</a>
         </div>
-      `).join('')}
+      `).join("")}
     </div>
   `;
 }
 
-function renderAportes() {
-  const view = document.getElementById('aportes-view');
-  view.innerHTML = `<div class="grid">${
-    aportes.map(a => `
-      <div class="aporte">
-        <h3>${a.titulo}</h3>
-        <p><b>CREADOR:</b> ${a.creador}</p>
-        <p><b>CONTRASEÑA:</b> <span style="color:red;font-weight:bold;">${a.contrasena}</span></p>
-        <div class="video-wrapper"><iframe src="${a.video}?enablejsapi=1"></iframe></div>
-        <a href="${a.descarga}" class="download-btn" target="_blank">DESCARGAR</a>
-      </div>
-    `).join('')
-  }</div>` || '<p style="color:#ff6b6b;">Pronto más aportes...</p>';
+function renderDatas(){
+  document.getElementById("datas-view").innerHTML = `
+    <div class="grid">
+      ${datas.map(a=>`
+        <div class="card">
+          <h3>${a.titulo}</h3>
+          <p><b>Creador:</b> ${a.creador}</p>
+          <p><b>Contraseña:</b> ${a.contrasena}</p>
+          <div class="video-wrapper"><iframe src="${a.video}"></iframe></div>
+          <a class="download-btn" href="${a.descarga}" target="_blank">DESCARGAR</a>
+        </div>
+      `).join("")}
+    </div>
+  `;
 }
 
-function renderDatas() {
-  const view = document.getElementById('datas-view');
-  view.innerHTML = `<div class="grid">${
-    datas.map(a => `
-      <div class="aporte">
-        <h3>${a.titulo}</h3>
-        <p><b>CREADOR:</b> ${a.creador}</p>
-        <p><b>CONTRASEÑA:</b> <span style="color:red;font-weight:bold;">${a.contrasena}</span></p>
-        <div class="video-wrapper"><iframe src="${a.video}?enablejsapi=1"></iframe></div>
-        <a href="${a.descarga}" class="download-btn" target="_blank">DESCARGAR</a>
-      </div>
-    `).join('')
-  }</div>` || '<p style="color:#ff6b6b;">Pronto más datas...</p>';
-}
-
-function renderTops() {
-  document.getElementById('tops-view').innerHTML = `<div class="grid">
-    ${tops.map(a => `
-      <div class="aporte">
-        <h3>${a.titulo}</h3>
-        <p><b>CREADOR:</b> ${a.autor}</p>
-        <p><b>DESCARGAS:</b> ${a.descargas}</p>
-        <div class="video-wrapper"><iframe src="${a.video}?enablejsapi=1"></iframe></div>
-        <a href="${a.descarga}" class="download-btn" target="_blank">DESCARGAR</a>
-      </div>
-    `).join('')}
-  </div>`;
+function renderTops(){
+  document.getElementById("tops-view").innerHTML = `
+    <div class="grid">
+      ${tops.map(t=>`
+        <div class="card">
+          <h3>${t.titulo}</h3>
+          <p><b>Autor:</b> ${t.autor}</p>
+          <p><b>Descargas:</b> ${t.descargas}</p>
+          <div class="video-wrapper"><iframe src="${t.video}"></iframe></div>
+          <a class="download-btn" href="${t.descarga}" target="_blank">DESCARGAR</a>
+        </div>
+      `).join("")}
+    </div>
+  `;
 }
 
 /* ============================
-   AUDIO + REPRODUCTOR FLOTANTE
+   VISTAS
 ============================ */
-const audio = document.getElementById('bg-music');
-const sharinganSound = document.getElementById('sharingan-sound');
 
-const toggleBtn = document.getElementById('musicToggle');
-const playPauseIcon = document.getElementById('playPauseIcon');
-const volumeSlider = document.getElementById('volumeSlider');
-const volumeIcon = document.getElementById('volumeIcon');
-const player = document.getElementById('floating-player');
+function showView(view, btn){
+  document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
 
-let unlocked = false;
-let volume = 0.5;
-
-audio.volume = volume;
-
-function updateVolumeIcon() {
-  if (volume == 0) volumeIcon.className = 'fas fa-volume-mute';
-  else if (volume < 0.5) volumeIcon.className = 'fas fa-volume-down';
-  else volumeIcon.className = 'fas fa-volume-up';
-}
-
-function unlockAudio() {
-  if (unlocked) return;
-  unlocked = true;
-  const dummy = new Audio();
-  dummy.play().catch(()=>{});
-}
-
-toggleBtn.addEventListener('click', e => {
-  e.stopPropagation();
-  unlockAudio();
-
-  if (audio.paused) {
-    audio.play();
-    toggleBtn.classList.add('playing');
-    playPauseIcon.className = 'fas fa-pause';
-    sessionStorage.setItem('musicPlaying', 'true');
-  } else {
-    audio.pause();
-    toggleBtn.classList.remove('playing');
-    playPauseIcon.className = 'fas fa-play';
-    sessionStorage.setItem('musicPlaying', 'false');
-  }
-});
-
-volumeSlider.addEventListener('input', e => {
-  unlockAudio();
-  volume = e.target.value;
-  audio.volume = volume;
-  updateVolumeIcon();
-});
-
-/* ============================
-   MINIMIZAR / ARRASTRAR PLAYER
-============================ */
-let isDragging = false, initialX, initialY, currentX, currentY;
-
-player.addEventListener('mousedown', startDrag);
-player.addEventListener('touchstart', startDrag, { passive:false });
-
-function startDrag(e) {
-  if (e.target.closest('#volumeSlider') || e.target.closest('#musicToggle') || e.target.closest('#minimizeBtn')) return;
-
-  isDragging = true;
-  initialX = e.clientX || e.touches[0].clientX;
-  initialY = e.clientY || e.touches[0].clientY;
-  currentX = player.offsetLeft;
-  currentY = player.offsetTop;
-
-  player.style.transition = "none";
-}
-
-document.addEventListener('mousemove', drag);
-document.addEventListener('touchmove', drag, { passive:false });
-document.addEventListener('mouseup', stopDrag);
-document.addEventListener('touchend', stopDrag);
-
-function drag(e) {
-  if (!isDragging) return;
-  e.preventDefault();
-
-  const x = (e.clientX || e.touches[0].clientX) - initialX;
-  const y = (e.clientY || e.touches[0].clientY) - initialY;
-
-  player.style.left = `${currentX + x}px`;
-  player.style.top = `${currentY + y}px`;
-  player.style.bottom = "auto";
-}
-
-function stopDrag() {
-  isDragging = false;
-  player.style.transition = "all .25s";
-}
-
-/* ============================
-       INTRO (ENTRAR)
-============================ */
-function enterSite() {
-  unlockAudio();
-  audio.play().catch(()=>{});
-
-  toggleBtn.classList.add('playing');
-  playPauseIcon.className = 'fas fa-pause';
-
-  document.getElementById("intro-overlay").style.display = "none";
-  document.getElementById("mainContent").style.display = "block";
-
-  sessionStorage.setItem('hasEntered', 'true');
-  sessionStorage.setItem('musicPlaying', 'true');
-
-  const savedView = sessionStorage.getItem('currentView') || 'equipo';
-  const btn = document.querySelector(`.filter-btn[onclick*="${savedView}"]`);
-  if (btn) showView(savedView, btn);
-
-  updateVolumeIcon();
-}
-
-/* ============================
-         VISTAS
-============================ */
-function showView(view, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-
-  ['equipo','aportes','datas','tops'].forEach(v => {
-    document.getElementById(v+'-view').hidden = true;
+  ["equipo","aportes","datas","tops"].forEach(v=>{
+    document.getElementById(v+"-view").hidden = true;
   });
 
-  document.getElementById(view+'-view').hidden = false;
+  document.getElementById(view+"-view").hidden = false;
 
-  if (view === 'equipo') renderEquipo();
-  if (view === 'aportes') renderAportes();
-  if (view === 'datas') renderDatas();
-  if (view === 'tops') renderTops();
-
-  sessionStorage.setItem('currentView', view);
+  if(view=="equipo") renderEquipo();
+  if(view=="aportes") renderAportes();
+  if(view=="datas") renderDatas();
+  if(view=="tops") renderTops();
 }
 
 /* ============================
-        SHARINGAN
+   INTRO
 ============================ */
-function activarSharingan() {
-  const overlay = document.getElementById("sharingan-overlay");
-  overlay.classList.add("active");
 
-  if (unlocked) {
-    sharinganSound.currentTime = 0;
-    sharinganSound.play().catch(()=>{});
-  }
-
-  setTimeout(()=>{
-    location.href = "aportes-exclusivos.html";
-  }, 3000);
-}
-
-function cerrarSharingan() {
-  document.getElementById("sharingan-overlay").classList.remove("active");
-  if (unlocked) sharinganSound.pause();
+function enterSite(){
+  document.getElementById("intro-overlay").style.display="none";
+  document.getElementById("mainContent").style.display="block";
+  renderEquipo();
 }
 
 /* ============================
-        YOUTUBE API
+   LUCES NAVIDEÑAS
 ============================ */
-function loadYouTubeAPI() {
-  if (!window.YT) {
-    const tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    document.head.appendChild(tag);
+
+function createLights(){
+  const cont = document.getElementById("xmas-lights-container");
+  const cantidad = 80;
+
+  for(let i=0;i<cantidad;i++){
+    let div=document.createElement("div");
+    div.className="xmas-light";
+    div.style.background = ["red","green","yellow","blue"][i%4];
+    div.style.top = Math.random()*window.innerHeight+"px";
+    div.style.left = Math.random()*window.innerWidth+"px";
+    cont.appendChild(div);
   }
 }
+createLights();
 
-window.onYouTubeIframeAPIReady = function() {
-  document.querySelectorAll("iframe").forEach(iframe => {
-    new YT.Player(iframe, {
-      events: {
-        'onStateChange': e => {
-          if (e.data === 1 && !audio.paused) {
-            audio.pause();
-            sessionStorage.setItem('musicPlaying', 'false');
-          } else if ((e.data === 0 || e.data === 2) && sessionStorage.getItem('musicPlaying') === 'true') {
-            audio.play().catch(()=>{});
-          }
-        }
-      }
-    });
+/* ============================
+   NIEVE REALISTA
+============================ */
+
+const canvas = document.getElementById("snowCanvas");
+const ctx = canvas.getContext("2d");
+let flakes = [];
+
+function resizeSnow(){
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+}
+resizeSnow();
+window.onresize = resizeSnow;
+
+for(let i=0;i<150;i++){
+  flakes.push({
+    x:Math.random()*innerWidth,
+    y:Math.random()*innerHeight,
+    r:Math.random()*4+1,
+    d:Math.random()+1
   });
-};
-
-/* ============================
-     RESETEAR INTRO AL VOLVER
-============================ */
-function resetToIntro() {
-  document.getElementById('intro-overlay').style.display = 'flex';
-  document.getElementById('mainContent').style.display = 'none';
-
-  audio.pause();
-  toggleBtn.classList.remove('playing');
-  playPauseIcon.className = 'fas fa-play';
-
-  updateVolumeIcon();
-
-  sessionStorage.removeItem('hasEntered');
-  sessionStorage.removeItem('musicPlaying');
-  sessionStorage.removeItem('currentView');
 }
 
-window.addEventListener('load', resetToIntro);
-window.addEventListener('pageshow', e => {
-  if (e.persisted) resetToIntro();
-});
-<script>
-/* ============================
-   LUCES NAVIDEÑAS (CSS INJECT)
-   - Añadimos estilos dinámicamente para evitar problemas con orden de estilos.
-============================ */
-(function injectLightStyles(){
-  const css = `
-  /* LUCES NAVIDEÑAS */
-  #xmas-lights-container { position: fixed; inset: 0; pointer-events: none; z-index: 99999; }
-  .xmas-light { position: absolute; width: 14px; height: 14px; border-radius: 50%;
-                box-shadow: 0 0 8px rgba(255,255,255,0.15), 0 0 12px rgba(0,0,0,0.25) inset;
-                transform: translate(-50%,-50%); }
-  .xmas-light.red { background: #ff3b3b; filter: drop-shadow(0 0 8px #ff5b5b); }
-  .xmas-light.green { background: #33ff88; filter: drop-shadow(0 0 8px #66ffaa); }
-  .xmas-light.yellow { background: #fff36b; filter: drop-shadow(0 0 8px #fff99a); }
-  .xmas-light.blue { background: #4da6ff; filter: drop-shadow(0 0 8px #7fcaff); }
-  .xmas-light.cyan { background: #2ef0e6; filter: drop-shadow(0 0 8px #7ff7f3); }
-  .xmas-light.magenta { background: #ff6bff; filter: drop-shadow(0 0 8px #ff95ff); }
+function drawSnow(){
+  ctx.clearRect(0,0,innerWidth,innerHeight);
+  ctx.fillStyle="white";
+  ctx.beginPath();
 
-  @keyframes xmasBlink {
-    0% { opacity: 0.18; transform: translate(-50%,-50%) scale(0.86); }
-    50% { opacity: 1; transform: translate(-50%,-50%) scale(1.06); }
-    100% { opacity: 0.18; transform: translate(-50%,-50%) scale(0.86); }
-  }`;
-  const s = document.createElement('style');
-  s.appendChild(document.createTextNode(css));
-  document.head.appendChild(s);
-})();
-
-/* ============================
-   GENERADOR DE LUCES (con regeneración on resize)
-============================ */
-(function generateLights(){
-  const container = document.getElementById('xmas-lights-container');
-  if(!container) return;
-
-  const colorClasses = ['red','green','yellow','blue','cyan','magenta'];
-
-  // crea las luces alrededor del borde - usa porcentaje para que se adapten al redimensionar
-  function buildLights(count = 72) {
-    container.innerHTML = ''; // limpiar
-    const w = window.innerWidth;
-    const h = window.innerHeight;
-
-    for (let i = 0; i < count; i++) {
-      const el = document.createElement('div');
-      el.className = 'xmas-light ' + colorClasses[i % colorClasses.length];
-
-      // Distribución por perímetro (0..1)
-      const per = i / count;
-      // cada cara del rectángulo recibe 1/4 de las luces
-      if (per < 0.25) {
-        // top edge
-        const x = (per / 0.25) * 100;
-        el.style.left = x + '%';
-        el.style.top = '0%';
-      } else if (per < 0.5) {
-        // right edge
-        const y = ((per - 0.25) / 0.25) * 100;
-        el.style.left = '100%';
-        el.style.top = y + '%';
-      } else if (per < 0.75) {
-        // bottom edge (right->left)
-        const x = (1 - ((per - 0.5) / 0.25)) * 100;
-        el.style.left = x + '%';
-        el.style.top = '100%';
-      } else {
-        // left edge (bottom->top)
-        const y = (1 - ((per - 0.75) / 0.25)) * 100;
-        el.style.left = '0%';
-        el.style.top = y + '%';
-      }
-
-      // ligera "colgadura" vertical (top/bottom) o horizontal (left/right)
-      // para que no queden exactamente pegadas al borde, desplazamos un poco dentro
-      const offset = (Math.random() * 8) + 6; // 6..14 px
-      const isTopOrBottom = (el.style.top === '0%' || el.style.top === '100%');
-      if (isTopOrBottom) {
-        // mover hacia dentro en px en Y
-        el.style.transform += ` translateY(${el.style.top==='0%'?offset+'px':-offset+'px'})`;
-      } else {
-        el.style.transform += ` translateX(${el.style.left==='0%'?offset+'px':-offset+'px'})`;
-      }
-
-      // animación desordenada
-      el.style.animation = `xmasBlink ${1.2 + Math.random()*1.4}s infinite`;
-      el.style.animationDelay = `${Math.random()*1.5}s`;
-
-      container.appendChild(el);
-    }
-  }
-
-  // Inicial
-  buildLights(80);
-
-  // Regenerar suavemente al redimensionar (debounce)
-  let to; window.addEventListener('resize', () => {
-    clearTimeout(to);
-    to = setTimeout(() => buildLights( Math.max(40, Math.round((window.innerWidth + window.innerHeight)/40)) ), 180);
-  });
-})();
-
-/* ============================
-   NIEVE REALISTA (CANVAS)
-============================ */
-(function snowModule(){
-  // evita re-inicializaciones accidentalmente si el script se pega dos veces
-  if (window.__snowInjected) return;
-  window.__snowInjected = true;
-
-  // crear canvas si no existe (en caso de pegar dos veces)
-  let canvas = document.getElementById('snow-canvas');
-  if (!canvas) {
-    canvas = document.createElement('canvas');
-    canvas.id = 'snow-canvas';
-    document.body.appendChild(canvas);
-  }
-  const ctx = canvas.getContext('2d');
-
-  // estilo del canvas (arriba de todo pero sin bloquear eventos)
-  Object.assign(canvas.style, {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    pointerEvents: 'none',
-    zIndex: 8000
+  flakes.forEach(f=>{
+    ctx.moveTo(f.x,f.y);
+    ctx.arc(f.x,f.y,f.r,0,Math.PI*2,true);
   });
 
-  let DPR = Math.max(1, window.devicePixelRatio || 1);
-  let W = 0, H = 0;
-  function resize() {
-    DPR = Math.max(1, window.devicePixelRatio || 1);
-    W = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-    H = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-    canvas.width = Math.floor(W * DPR);
-    canvas.height = Math.floor(H * DPR);
-    canvas.style.width = W + 'px';
-    canvas.style.height = H + 'px';
-    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-  }
-  window.addEventListener('resize', resize);
-  resize();
+  ctx.fill();
+  updateSnow();
+}
 
-  // partículas
-  const flakes = [];
-  const NUM = Math.round((W * H) / (1280 * 720) * 200) || 160; // escala con tamaño de pantalla
+function updateSnow(){
+  flakes.forEach(f=>{
+    f.y += f.d;
+    f.x += Math.sin(f.y * 0.01);
 
-  class Flake {
-    constructor(first = false){
-      this.reset(first);
+    if(f.y > innerHeight){
+      f.y = -10;
+      f.x = Math.random()*innerWidth;
     }
-    reset(first = false){
-      this.x = Math.random() * W;
-      this.y = first ? Math.random() * H : -10 - Math.random()*H*0.1;
-      this.baseSize = Math.random() * 3.6 + 0.8; // 0.8 .. 4.4
-      this.size = this.baseSize;
-      this.depth = Math.random() * 0.9 + 0.1; // 0.1 .. 1.0
-      this.speed = (0.3 + this.depth * 1.8) * (0.6 + Math.random()*0.8);
-      this.wind = (Math.random() * 0.8 - 0.4); // -0.4 .. 0.4
-      this.angle = Math.random() * Math.PI * 2;
-      this.spin = (Math.random() * 0.04 - 0.02);
-      this.opacity = 0.35 + Math.random() * 0.7;
-    }
-    update(dt, time){
-      // gravedad + oscilación sutil
-      this.angle += this.spin;
-      this.y += this.speed;
-      // parallax x movement
-      this.x += Math.sin(time * 0.0005 + this.angle) * (0.3 * (1/this.depth)) + this.wind;
-
-      // ligero cambio de tamaño por "pulso"
-      this.size = this.baseSize * (0.9 + Math.sin(this.angle*2)*0.12);
-
-      if (this.y > H + 10 || this.x < -30 || this.x > W + 30) {
-        this.reset();
-      }
-    }
-    draw(ctx){
-      ctx.save();
-      ctx.globalAlpha = Math.min(1, this.opacity);
-      // desenfoque sutil: dibujar 2 círculos, uno grande con baja alpha, uno pequeño más definido
-      ctx.beginPath();
-      ctx.fillStyle = 'rgba(255,255,255,0.18)';
-      ctx.arc(this.x, this.y, this.size*1.8, 0, Math.PI*2);
-      ctx.fill();
-
-      ctx.beginPath();
-      ctx.fillStyle = 'rgba(255,255,255,0.95)';
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
-      ctx.fill();
-      ctx.restore();
-    }
-  }
-
-  // poblar
-  function initFlakes(){
-    flakes.length = 0;
-    const count = Math.max(80, Math.min(260, Math.round(NUM)));
-    for (let i=0;i<count;i++) flakes.push(new Flake(true));
-  }
-  initFlakes();
-
-  // animación
-  let last = performance.now();
-  function loop(now){
-    const dt = now - last;
-    last = now;
-
-    ctx.clearRect(0,0,W,H);
-
-    // ordena por tamaño (profundidad visual)
-    flakes.sort((a,b)=> a.baseSize - b.baseSize);
-
-    for (let f of flakes){
-      f.update(dt, now);
-      f.draw(ctx);
-    }
-
-    requestAnimationFrame(loop);
-  }
-  requestAnimationFrame(loop);
-
-  // reiniciar si redimensiona mucho (recalcular NUM y reiniciar)
-  let rto;
-  window.addEventListener('resize', () => {
-    clearTimeout(rto);
-    rto = setTimeout(()=> {
-      resize();
-      initFlakes();
-    }, 160);
   });
-})();
+}
+
+setInterval(drawSnow, 33);
 </script>
 
 </body>
